@@ -1,0 +1,21 @@
+/* 导航链接间距 */
+nav a {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* 首页 hero 区域微调 */
+article > section:first-child {
+  padding-top: 2rem;
+}
+
+/* 中文排版优化 */
+body {
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* 卡片 hover 效果增强 */
+a[href]:hover {
+  text-decoration: none;
+}

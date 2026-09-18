@@ -1,0 +1,86 @@
+{{ define "main" }}
+<div class="hx:mx-auto hx:flex hx:max-w-screen-xl">
+  {{/* Sidebar: chapter navigation */}}
+  {{ $topicRoot := .FirstSection }}
+  {{ if eq . $topicRoot }}
+    {{/* This is a topic root page like /topics/mba/ */}}
+  {{ else }}
+    {{/* This is a chapter page, show sidebar */}}
+  {{ end }}
+  <aside class="hx:hidden hx:md:block hx:w-64 hx:shrink-0">
+    <div class="hx:sticky hx:top-16 hx:py-8 hx:px-4 hx:overflow-y-auto hx:max-h-[calc(100vh-4rem)]">
+      <h3 class="hx:text-sm hx:font-semibold hx:text-gray-900 hx:dark:text-gray-100">
+        <a href="{{ $topicRoot.RelPermalink }}">{{ $topicRoot.Title }}</a>
+      </h3>
+      <nav class="hx:mt-3 hx:space-y-1 hx:text-sm">
+        {{ range $topicRoot.RegularPages }}
+        <a href="{{ .RelPermalink }}"
+           class="hx:block hx:rounded hx:px-3 hx:py-1.5 {{ if eq .RelPermalink $.RelPermalink }}hx:bg-gray-100 hx:font-medium hx:text-gray-900 hx:dark:bg-gray-800 hx:dark:text-gray-100{{ else }}hx:text-gray-600 hx:hover:bg-gray-50 hx:dark:text-gray-400 hx:dark:hover:bg-gray-800/50{{ end }}">
+          {{ .Title }}
+        </a>
+        {{ end }}
+      </nav>
+    </div>
+  </aside>
+
+  {{/* Main content */}}
+  <div class="hx:w-full hx:min-w-0 hx:px-4 hx:sm:px-6 hx:lg:px-8">
+    <article class="hx:py-8">
+      <header>
+        <h1 class="hx:text-3xl hx:font-bold hx:text-gray-900 hx:dark:text-gray-100">{{ .Title }}</h1>
+        {{ with .Description }}
+        <p class="hx:mt-3 hx:text-lg hx:text-gray-500 hx:dark:text-gray-400">{{ . }}</p>
+        {{ end }}
+      </header>
+
+      <div class="hx:mt-8 hx:prose hx:dark:prose-invert">
+        {{ .Content }}
+      </div>
+
+      {{/* Prev / Next chapter navigation */}}
+      {{ with .PrevInSection }}
+      {{ $prev := . }}
+      {{ with $.NextInSection }}
+      {{ $next := . }}
+      <nav class="hx:mt-12 hx:flex hx:justify-between hx:border-t hx:border-gray-200 hx:dark:border-gray-800 hx:pt-6">
+        <a href="{{ $prev.RelPermalink }}" class="hx:text-sm hx:text-gray-500 hx:hover:text-gray-700 hx:dark:text-gray-400 hx:dark:hover:text-gray-200">
+          &larr; {{ $prev.Title }}
+        </a>
+        <a href="{{ $next.RelPermalink }}" class="hx:text-sm hx:text-gray-500 hx:hover:text-gray-700 hx:dark:text-gray-400 hx:dark:hover:text-gray-200">
+          {{ $next.Title }} &rarr;
+        </a>
+      </nav>
+      {{ else }}
+      <nav class="hx:mt-12 hx:flex hx:justify-between hx:border-t hx:border-gray-200 hx:dark:border-gray-800 hx:pt-6">
+        <a href="{{ $prev.RelPermalink }}" class="hx:text-sm hx:text-gray-500 hx:hover:text-gray-700 hx:dark:text-gray-400 hx:dark:hover:text-gray-200">
+          &larr; {{ $prev.Title }}
+        </a>
+        <span></span>
+      </nav>
+      {{ end }}
+      {{ else }}
+      {{ with $.NextInSection }}
+      <nav class="hx:mt-12 hx:flex hx:justify-between hx:border-t hx:border-gray-200 hx:dark:border-gray-800 hx:pt-6">
+        <span></span>
+        <a href="{{ .RelPermalink }}" class="hx:text-sm hx:text-gray-500 hx:hover:text-gray-700 hx:dark:text-gray-400 hx:dark:hover:text-gray-200">
+          {{ .Title }} &rarr;
+        </a>
+      </nav>
+      {{ end }}
+      {{ end }}
+    </article>
+  </div>
+
+  {{/* TOC */}}
+  {{ if .TableOfContents }}
+  <aside class="hx:hidden hx:xl:block hx:w-64 hx:shrink-0">
+    <div class="hx:sticky hx:top-16 hx:py-8 hx:px-4 hx:overflow-y-auto hx:max-h-[calc(100vh-4rem)]">
+      <h3 class="hx:text-sm hx:font-semibold hx:text-gray-900 hx:dark:text-gray-100">本页目录</h3>
+      <nav class="hx:mt-3 hx:text-sm hx:prose hx:dark:prose-invert">
+        {{ .TableOfContents }}
+      </nav>
+    </div>
+  </aside>
+  {{ end }}
+</div>
+{{ end }}

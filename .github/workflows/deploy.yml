@@ -1,0 +1,133 @@
+name: Deploy to 12lab.cn
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: 0.166.0
+  SERVER_HOST: 43.255.31.74
+  SERVER_USER: root
+  SITE_DIR: /var/www/12lab.cn
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.27'
+
+      - name: Hugo Mod Tidy
+        run: hugo mod tidy
+
+      - name: Build
+        run: hugo --minify --gc
+
+      - name: Validate build
+        run: |
+          if [ ! -d "public" ] || [ -z "$(ls -A public)" ]; then
+            echo "Build output is empty!"
+            exit 1
+          fi
+          echo "Build successful. Pages generated:"
+          find public -name "*.html" | wc -l
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-site
+          path: public/
+          retention-days: 7
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hugo-site
+          path: public/
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo -e "Host ${{ env.SERVER_HOST }}\n  HostName ${{ env.SERVER_HOST }}\n  User ${{ env.SERVER_USER }}\n  IdentityFile ~/.ssh/deploy_key\n  StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: Generate release ID
+        id: release
+        run: echo "id=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
+
+      - name: Upload to server
+        run: |
+          ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "mkdir -p ${{ env.SITE_DIR }}/releases/${{ steps.release.outputs.id }}"
+          rsync -avz --delete public/ ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }}:${{ env.SITE_DIR }}/releases/${{ steps.release.outputs.id }}/
+
+      - name: Verify upload
+        run: |
+          FILE_COUNT=$(ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "find ${{ env.SITE_DIR }}/releases/${{ steps.release.outputs.id }} -name '*.html' | wc -l")
+          echo "Uploaded HTML files: $FILE_COUNT"
+          if [ "$FILE_COUNT" -lt 10 ]; then
+            echo "Upload verification failed!"
+            exit 1
+          fi
+
+      - name: Switch current release
+        run: |
+          ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
+            cd ${{ env.SITE_DIR }}
+            rm -f current
+            ln -s releases/${{ steps.release.outputs.id }} current
+          "
+
+      - name: Health check
+        run: |
+          sleep 2
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://12lab.cn/)
+          echo "HTTP Status: $HTTP_CODE"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Health check failed! Rolling back..."
+            ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
+              cd ${{ env.SITE_DIR }}
+              PREVIOUS=$(ls -t releases/ | head -2 | tail -1)
+              rm -f current
+              ln -s releases/\$PREVIOUS current
+            "
+            exit 1
+          fi
+
+      - name: Cleanup old releases
+        run: |
+          ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
+            cd ${{ env.SITE_DIR }}/releases
+            ls -t | tail -n +6 | xargs -r rm -rf
+            echo 'Old releases cleaned. Remaining:'
+            ls -t
+          "
+
+      - name: Deploy summary
+        run: |
+          echo "## Deploy Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Release: ${{ steps.release.outputs.id }}" >> $GITHUB_STEP_SUMMARY
+          echo "- URL: https://12lab.cn/" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: Success" >> $GITHUB_STEP_SUMMARY

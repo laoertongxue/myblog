@@ -1,0 +1,80 @@
+{{ define "main" }}
+<div class="hx:mx-auto hx:flex hx:max-w-screen-xl hx:px-4 hx:sm:px-6 hx:lg:px-8">
+  <div class="hx:w-full">
+
+    {{/* Hero */}}
+    <section class="hx:py-16 hx:sm:py-24 hx:text-center">
+      <h1 class="hx:text-4xl hx:font-bold hx:tracking-tight hx:text-gray-900 hx:dark:text-gray-100 hx:sm:text-5xl">
+        拾贰画生 / 12Lab
+      </h1>
+      <p class="hx:mt-4 hx:text-lg hx:text-gray-500 hx:dark:text-gray-400">
+        有那么点儿追求的中年男人
+      </p>
+      <nav class="hx:mt-8 hx:flex hx:justify-center hx:gap-6 hx:text-sm hx:font-medium">
+        <a href="/weekly/" class="hx:text-gray-600 hx:hover:text-gray-900 hx:dark:text-gray-300 hx:dark:hover:text-white">Weekly</a>
+        <a href="/topics/" class="hx:text-gray-600 hx:hover:text-gray-900 hx:dark:text-gray-300 hx:dark:hover:text-white">专题</a>
+        <a href="/blog/" class="hx:text-gray-600 hx:hover:text-gray-900 hx:dark:text-gray-300 hx:dark:hover:text-white">Blog</a>
+        <a href="/about/" class="hx:text-gray-600 hx:hover:text-gray-900 hx:dark:text-gray-300 hx:dark:hover:text-white">About</a>
+      </nav>
+    </section>
+
+    {{/* Latest Weekly */}}
+    {{ $weekly := where .Site.RegularPages "Section" "weekly" }}
+    {{ $latest := first 1 $weekly }}
+    {{ with $latest }}
+    <section class="hx:py-10 hx:border-t hx:border-gray-200 hx:dark:border-gray-800">
+      <h2 class="hx:text-xl hx:font-semibold hx:text-gray-900 hx:dark:text-gray-100">Latest Weekly</h2>
+      {{ range . }}
+      <a href="{{ .RelPermalink }}" class="hx:mt-4 hx:block hx:rounded-lg hx:border hx:border-gray-200 hx:p-6 hx:hover:border-gray-400 hx:dark:border-gray-700 hx:dark:hover:border-gray-500 hx:transition-colors">
+        <div class="hx:flex hx:items-baseline hx:gap-3">
+          <span class="hx:text-sm hx:font-mono hx:text-gray-400">{{ .Date.Format "2006.01.02" }}</span>
+        </div>
+        <h3 class="hx:mt-2 hx:text-lg hx:font-medium hx:text-gray-900 hx:dark:text-gray-100">{{ .Title }}</h3>
+        <p class="hx:mt-2 hx:text-sm hx:text-gray-500 hx:dark:text-gray-400">{{ .Description }}</p>
+      </a>
+      {{ end }}
+      <a href="/weekly/" class="hx:mt-3 hx:inline-block hx:text-sm hx:text-gray-500 hx:hover:text-gray-700 hx:dark:text-gray-400 hx:dark:hover:text-gray-200">查看所有周刊 &rarr;</a>
+    </section>
+    {{ end }}
+
+    {{/* Topics */}}
+    {{ $topics := .Site.GetPage "topics" }}
+    {{ with $topics }}
+    <section class="hx:py-10 hx:border-t hx:border-gray-200 hx:dark:border-gray-800">
+      <h2 class="hx:text-xl hx:font-semibold hx:text-gray-900 hx:dark:text-gray-100">专题</h2>
+      <div class="hx:mt-4 hx:grid hx:gap-4 hx:sm:grid-cols-2 hx:lg:grid-cols-3">
+        {{ range .Sections }}
+        <a href="{{ .RelPermalink }}" class="hx:block hx:rounded-lg hx:border hx:border-gray-200 hx:p-5 hx:hover:border-gray-400 hx:dark:border-gray-700 hx:dark:hover:border-gray-500 hx:transition-colors">
+          <h3 class="hx:text-base hx:font-medium hx:text-gray-900 hx:dark:text-gray-100">{{ .Title }}</h3>
+          <p class="hx:mt-1 hx:text-sm hx:text-gray-500 hx:dark:text-gray-400">{{ .Description }}</p>
+        </a>
+        {{ end }}
+      </div>
+      <a href="/topics/" class="hx:mt-3 hx:inline-block hx:text-sm hx:text-gray-500 hx:hover:text-gray-700 hx:dark:text-gray-400 hx:dark:hover:text-gray-200">查看所有专题 &rarr;</a>
+    </section>
+    {{ end }}
+
+    {{/* Recent Blog */}}
+    {{ $blog := where (where .Site.RegularPages "Section" "blog") "Kind" "page" }}
+    {{ $recent := first 5 $blog }}
+    {{ with $recent }}
+    <section class="hx:py-10 hx:border-t hx:border-gray-200 hx:dark:border-gray-800">
+      <h2 class="hx:text-xl hx:font-semibold hx:text-gray-900 hx:dark:text-gray-100">最近文章</h2>
+      <div class="hx:mt-4 hx:divide-y hx:divide-gray-100 hx:dark:divide-gray-800">
+        {{ range . }}
+        <article class="hx:py-4">
+          <a href="{{ .RelPermalink }}" class="hx:group">
+            <time class="hx:text-xs hx:text-gray-400 hx:dark:text-gray-500">{{ .Date.Format "2006-01-02" }}</time>
+            <h3 class="hx:mt-1 hx:text-base hx:font-medium hx:text-gray-900 hx:group-hover:text-gray-600 hx:dark:text-gray-100 hx:dark:group-hover:text-gray-300">{{ .Title }}</h3>
+            <p class="hx:mt-1 hx:text-sm hx:text-gray-500 hx:dark:text-gray-400">{{ .Description }}</p>
+          </a>
+        </article>
+        {{ end }}
+      </div>
+      <a href="/blog/" class="hx:mt-3 hx:inline-block hx:text-sm hx:text-gray-500 hx:hover:text-gray-700 hx:dark:text-gray-400 hx:dark:hover:text-gray-200">查看所有文章 &rarr;</a>
+    </section>
+    {{ end }}
+
+  </div>
+</div>
+{{ end }}
