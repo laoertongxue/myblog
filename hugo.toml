@@ -85,3 +85,18 @@ enableInlineShortcodes = true
 [permalinks]
   weekly = "/weekly/:filename/"
   blog = "/blog/:slug/"
+
+[imaging]
+  resampleFilter = "Lanczos"
+  [imaging.jpeg]
+    quality = 75
+  [imaging.webp]
+    quality = 75
+  [imaging.exif]
+    includeFields = "Orientation"
+
+[privacy]
+  [privacy.youtube]
+    privacyEnhanced = true
+  [privacy.twitter]
+    enableDNT = true
