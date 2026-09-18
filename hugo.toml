@@ -21,6 +21,9 @@ paginate = 12
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
   [markup.highlight]
     noClasses = false
 

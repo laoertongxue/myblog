@@ -1,0 +1,2 @@
+{{ partial "lab/breadcrumb.html" . }}
+<header class="page-heading"><h1>{{ if and .IsSection (eq .Section "blog") }}博客{{ else }}{{ .Title }}{{ end }}</h1>{{ with .Description }}<p>{{ . }}</p>{{ end }}</header>

@@ -1,0 +1,1 @@
+<nav class="breadcrumbs" aria-label="面包屑"><a href="{{ "/" | relURL }}">首页</a>{{ range .Ancestors.Reverse }}{{ if not .IsHome }}<span>›</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}{{ end }}<span>›</span><span aria-current="page">{{ .Title }}</span></nav>

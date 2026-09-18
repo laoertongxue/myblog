@@ -1,0 +1,12 @@
+<article class="reading-page">
+  {{ partial "lab/breadcrumb.html" . }}
+  {{ if .Fragments.Headings }}<details class="floating-toc"><summary aria-label="展开或收起本文目录" title="本文目录">{{ partial "lab/icon.html" "toc" }}</summary><div class="toc-panel"><h2>本文目录</h2>{{ .TableOfContents }}</div></details>{{ end }}
+  <header class="article-heading">{{ if eq .Section "weekly" }}<span class="volume">Weekly · Vol. {{ .File.ContentBaseName }}</span>{{ end }}<h1>{{ .Title }}</h1>{{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}<div class="article-meta">{{ if not .Date.IsZero }}<time>{{ .Date.Format "2006-01-02" }}</time><span>·</span>{{ end }}<span>约 {{ .ReadingTime }} 分钟阅读</span>{{ partial "lab/tags.html" . }}</div></header>
+  {{ with .Params.cover }}<img class="article-cover" src="{{ . | relURL }}" alt="{{ $.Title }}">{{ end }}
+  <div class="prose">{{ .Content }}</div>
+  {{ $pages := .Parent.RegularPages.ByDate }}{{ if eq .Section "topics" }}{{ $pages = .Parent.RegularPages.ByWeight }}{{ end }}
+  {{ $current := . }}{{ range $i, $p := $pages }}{{ if eq $p.RelPermalink $current.RelPermalink }}{{ if gt (len $pages) 1 }}
+  <nav class="article-pager" aria-label="上下篇文章"><div>{{ if gt $i 0 }}{{ with index $pages (sub $i 1) }}<a href="{{ .RelPermalink }}"><span>← {{ if eq .Section "weekly" }}上一期{{ else }}上一篇{{ end }}</span><strong>{{ .Title }}</strong></a>{{ end }}{{ end }}</div><div>{{ if lt $i (sub (len $pages) 1) }}{{ with index $pages (add $i 1) }}<a href="{{ .RelPermalink }}"><span>{{ if eq .Section "weekly" }}下一期{{ else }}下一篇{{ end }} →</span><strong>{{ .Title }}</strong></a>{{ end }}{{ end }}</div></nav>
+  {{ end }}{{ end }}{{ end }}
+  {{ if eq .Section "blog" }}{{ $related := first 3 (where (.Site.RegularPages.Related .) "Section" "blog") }}{{ with $related }}<section class="related-posts"><h2>相关文章</h2>{{ range . }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}</section>{{ end }}{{ end }}
+</article>

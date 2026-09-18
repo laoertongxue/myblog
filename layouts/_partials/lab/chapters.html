@@ -1,0 +1,2 @@
+{{ $root := . }}{{ if .IsPage }}{{ $root = .Parent }}{{ end }}
+<aside class="chapter-sidebar"><a class="back-link" href="{{ "/topics/" | relURL }}">← 返回专题</a><h2><a href="{{ $root.RelPermalink }}">{{ $root.Title }}</a></h2><p>{{ $root.Description }}</p><details open><summary>章节导航</summary><nav aria-label="专题章节">{{ range $i, $p := $root.RegularPages.ByWeight }}<a href="{{ .RelPermalink }}" {{ if eq $.RelPermalink .RelPermalink }}aria-current="page"{{ end }}><span>{{ printf "%02d" (add $i 1) }}</span>{{ .Title }}</a>{{ end }}</nav></details></aside>
