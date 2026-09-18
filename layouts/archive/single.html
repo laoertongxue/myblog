@@ -3,7 +3,9 @@
   <div class="hx:w-full hx:max-w-screen-md hx:mx-auto">
     <h1 class="hx:text-3xl hx:font-bold hx:text-gray-900 hx:dark:text-gray-100">归档</h1>
 
-    {{ $pages := where .Site.RegularPages "Kind" "page" }}
+    {{ $blog := where (where .Site.RegularPages "Section" "blog") ".Date.Year" ">" 0 }}
+    {{ $weekly := where (where .Site.RegularPages "Section" "weekly") ".Date.Year" ">" 0 }}
+    {{ $pages := $blog | append $weekly }}
     {{ $byYear := $pages.GroupByDate "2006" }}
     {{ range $byYear }}
     <div class="hx:mt-8">
@@ -12,10 +14,10 @@
         {{ range .Pages }}
         <article class="hx:py-3">
           <a href="{{ .RelPermalink }}" class="hx:group hx:flex hx:items-baseline hx:gap-4">
-            <time class="hx:text-xs hx:text-gray-400 hx:dark:text-gray-500 hx:shrink-0 hx:w-20">{{ .Date.Format "01-02" }}</time>
+            <time class="hx:text-xs hx:text-gray-400 hx:dark:text-gray-500 hx:shrink-0 hx:w-12">{{ .Date.Format "01-02" }}</time>
             <span class="hx:text-sm hx:text-gray-900 hx:group-hover:text-gray-600 hx:dark:text-gray-100 hx:dark:group-hover:text-gray-300">{{ .Title }}</span>
             <span class="hx:text-xs hx:text-gray-400 hx:dark:text-gray-500 hx:shrink-0">
-              {{ .Section | title }}
+              {{ if eq .Section "weekly" }}Weekly{{ else }}Blog{{ end }}
             </span>
           </a>
         </article>
