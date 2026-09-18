@@ -96,7 +96,7 @@ jobs:
         run: |
           ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
             cd ${{ env.SITE_DIR }}
-            rm -f current
+            rm -rf current
             ln -s releases/${{ steps.release.outputs.id }} current
           "
 
