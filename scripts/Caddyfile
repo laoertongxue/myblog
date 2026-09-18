@@ -1,0 +1,19 @@
+12lab.cn {
+    root * /var/www/12lab.cn/current
+    encode zstd gzip
+
+    header {
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+
+    @static path *.css *.js *.png *.jpg *.jpeg *.gif *.webp *.svg *.woff *.woff2 *.ico
+    header @static Cache-Control "public, max-age=31536000, immutable"
+
+    # Revalidate pages and data after each deployment, including Hugo's directory URLs.
+    @html path / */ *.html *.json *.xml
+    header @html Cache-Control "no-cache"
+
+    file_server
+}

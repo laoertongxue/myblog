@@ -12,13 +12,8 @@ echo "=== 复制当前 Caddy 默认页面到 current ==="
 cp -r /usr/share/caddy/* /var/www/12lab.cn/current/ 2>/dev/null || true
 
 echo "=== 更新 Caddy 配置 ==="
-cat > /etc/caddy/Caddyfile << 'EOF'
-12lab.cn {
-    root * /var/www/12lab.cn/current
-    encode zstd gzip
-    file_server
-}
-EOF
+caddy validate --config "$(dirname "$0")/Caddyfile" --adapter caddyfile
+install -m 644 "$(dirname "$0")/Caddyfile" /etc/caddy/Caddyfile
 
 echo "=== 重载 Caddy ==="
 systemctl reload caddy
