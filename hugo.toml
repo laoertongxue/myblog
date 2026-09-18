@@ -32,6 +32,7 @@ enableInlineShortcodes = true
 
 [params]
   description = "有那么点儿追求的中年男人"
+  dateFormat = "2006 年 01 月 02 日"
   [params.author]
     name = "拾贰画生"
   [params.navbar]

@@ -44,10 +44,28 @@
 
     <div class="hx:w-full hx:min-w-0 hx:px-4 hx:sm:px-6 hx:lg:px-8">
       <article class="hx:py-8">
+        {{/* Mobile chapter navigation */}}
+        <details class="hx:md:hidden hx:mb-6 hx:rounded-lg hx:border hx:border-gray-200 hx:dark:border-gray-800">
+          <summary class="hx:cursor-pointer hx:select-none hx:px-4 hx:py-3 hx:text-sm hx:font-medium hx:text-gray-700 hx:dark:text-gray-300">
+            {{ $topicRoot.Title }} · 目录
+          </summary>
+          <nav class="hx:px-4 hx:pb-3 hx:space-y-1 hx:text-sm">
+            {{ range $topicRoot.RegularPages }}
+            <a href="{{ .RelPermalink }}"
+               class="hx:block hx:rounded hx:px-3 hx:py-1.5 hx:text-gray-600 hx:hover:bg-gray-50 hx:dark:text-gray-400 hx:dark:hover:bg-gray-800/50">
+              {{ .Title }}
+            </a>
+            {{ end }}
+          </nav>
+        </details>
+
         <header>
           <h1 class="hx:text-3xl hx:font-bold hx:text-gray-900 hx:dark:text-gray-100">{{ .Title }}</h1>
           {{ with .Description }}
           <p class="hx:mt-3 hx:text-lg hx:text-gray-500 hx:dark:text-gray-400">{{ . }}</p>
+          {{ end }}
+          {{ if .Lastmod.After .Date }}
+          <p class="hx:mt-2 hx:text-xs hx:text-gray-400 hx:dark:text-gray-500">更新于 {{ .Lastmod.Format "2006-01-02" }}</p>
           {{ end }}
         </header>
 

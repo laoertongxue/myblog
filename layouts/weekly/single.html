@@ -1,6 +1,6 @@
 {{ define "main" }}
 <div class="hx:mx-auto hx:flex hx:max-w-screen-xl hx:px-4 hx:sm:px-6 hx:lg:px-8">
-  <div class="hx:w-full hx:max-w-screen-md hx:mx-auto">
+  <div class="hx:w-full hx:max-w-screen-md hx:mx-auto hx:min-w-0">
     <article>
       <header class="hx:mb-8">
         <time class="hx:text-sm hx:text-gray-400 hx:dark:text-gray-500">{{ .Date.Format "2006 年 01 月 02 日" }}</time>
@@ -44,5 +44,16 @@
       {{ end }}
     </article>
   </div>
+
+  {{ if .TableOfContents }}
+  <aside class="hx:hidden hx:xl:block hx:w-60 hx:shrink-0">
+    <div class="hx:sticky hx:top-16 hx:py-8 hx:px-4 hx:overflow-y-auto hx:max-h-[calc(100vh-4rem)]">
+      <h3 class="hx:text-sm hx:font-semibold hx:text-gray-900 hx:dark:text-gray-100">本期目录</h3>
+      <nav class="hx:mt-3 hx:text-sm hx:text-gray-600 hx:dark:text-gray-400">
+        {{ .TableOfContents }}
+      </nav>
+    </div>
+  </aside>
+  {{ end }}
 </div>
 {{ end }}
