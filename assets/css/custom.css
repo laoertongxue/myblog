@@ -136,8 +136,10 @@ h3 {
 .avatar {
   display:block;
   width:120px;
-  height:124px;
-  object-fit:contain;
+  height:120px;
+  object-fit:cover;
+  border-radius:50%;
+  background:#e8edf2;
 }
 
 
@@ -1064,7 +1066,9 @@ h3 {
 }
 
 .about-intro img {
-  border-radius:6px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#e8edf2;
 }
 
 .about-intro h2 {
