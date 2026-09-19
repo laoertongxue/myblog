@@ -8,7 +8,7 @@
   <div class="site-workspace">
     <div class="topline"><span>生活</span><i>×</i><span>思考</span><i>×</i><span>工具</span><i>×</i><span>成长</span></div>
     <main id="content" tabindex="-1" class="page-content">{{ block "main" . }}{{ end }}</main>
-    <footer class="page-footer"><span>记录思考，持续学习。</span><span>{{ .Site.Params.description }} · 12Lab</span></footer>
+    <footer class="page-footer"><span>{{ .Site.Params.description }} · 12Lab</span></footer>
   </div>
   {{ $script := resources.Get "js/lab.js" | minify | fingerprint }}
   <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>

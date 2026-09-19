@@ -129,25 +129,17 @@ h3 {
 
 .avatar-link {
   display:block;
-  width:100px;
-  margin-left:8px;
+  width:120px;
+  margin:0 0 38px 8px;
 }
 
 .avatar {
   display:block;
-  width:100px;
-  height:100px;
-  object-fit:cover;
-  border-radius:50%;
+  width:120px;
+  height:124px;
+  object-fit:contain;
 }
 
-.signature {
-  font-size:12px;
-  line-height:1.9;
-  color:var(--lab-muted);
-  margin:20px 0 36px 8px;
-  white-space:nowrap;
-}
 
 .primary-nav {
   display:grid;
@@ -265,7 +257,7 @@ h3 {
   padding:20px 0 24px;
   border-top:1px solid var(--lab-line);
   display:flex;
-  justify-content:space-between;
+  justify-content:flex-end;
   gap:24px;
   color:#8592a5;
   font-size:12px;
@@ -1208,9 +1200,6 @@ h3 {
   .site-sidebar {
     padding:40px 23px 22px;
   }
-  .signature {
-    font-size:11px;
-  }
   .page-content {
     padding:28px 32px 40px;
   }
@@ -1356,8 +1345,8 @@ h3 {
     width:72px;
     height:72px;
   }
-  .signature {
-    margin:14px 0 22px 8px;
+  .avatar-link {
+    margin-bottom:24px;
   }
   .primary-nav {
     gap:3px;
