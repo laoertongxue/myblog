@@ -1,5 +1,6 @@
 ---
 title: "供应链产品的 AI 时刻"
+slug: supply-chain-ai-moment
 date: 2026-09-20
 description: "AI 正在如何改变供应链产品的设计思路。"
 categories: ["AI", "供应链"]

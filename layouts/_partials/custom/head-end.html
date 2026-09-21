@@ -1,40 +1,35 @@
-{{ if .IsPage }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": {{ .Title | jsonify }},
-  "description": {{ with .Description }}{{ . | jsonify }}{{ else }}{{ .Summary | plainify | truncate 160 | jsonify }}{{ end }},
-  "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z08:00" | jsonify }},
-  "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z08:00" | jsonify }},
-  "author": {
-    "@type": "Person",
-    "name": {{ .Site.Params.author.name | jsonify }}
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": {{ .Site.Title | jsonify }}
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": {{ .Permalink | jsonify }}
-  }
-}
-</script>
-{{ end }}
-{{ if .IsHome }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": {{ .Site.Title | jsonify }},
-  "description": {{ .Site.Params.description | jsonify }},
-  "url": {{ .Site.BaseURL | jsonify }},
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "{{ "search/" | absURL }}?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-{{ end }}
+{{- /* Structured data + feed discovery.
+     Article schema is emitted only for the three dated content types, so an
+     undated page can never publish a 0001-01-01 datePublished. */ -}}
+{{- $articleTypes := slice "blog" "weekly" "topics" }}
+{{- if and .IsPage (in $articleTypes .Section) (not .Date.IsZero) }}
+  {{- $ld := dict
+      "@context" "https://schema.org"
+      "@type" "Article"
+      "headline" .Title
+      "description" (.Description | default (.Summary | plainify | truncate 160))
+      "datePublished" (.Date.Format "2006-01-02T15:04:05-07:00")
+      "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")
+      "author" (dict "@type" "Person" "name" .Site.Params.author.name)
+      "publisher" (dict "@type" "Organization" "name" .Site.Title)
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end }}
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }} · {{ $.Title }}" href="{{ .Permalink }}">
+{{- end }}
+{{- if .IsHome }}
+  {{- $ld := dict
+      "@context" "https://schema.org"
+      "@type" "WebSite"
+      "name" .Site.Title
+      "description" .Site.Params.description
+      "url" .Site.BaseURL
+      "potentialAction" (dict
+        "@type" "SearchAction"
+        "target" (printf "%s?q={search_term_string}" ("search/" | absURL))
+        "query-input" "required name=search_term_string")
+  }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end }}

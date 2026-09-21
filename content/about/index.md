@@ -1,5 +1,6 @@
 ---
 title: 关于
+aboutIntro: true
 description: "关于拾贰画生和 12Lab。"
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "为什么我要建这个网站"
+slug: why-this-site
+aliases: ["/blog/为什么我要建这个网站/"]
 date: 2026-09-18
 description: "关于建设 12Lab 个人网站的初衷和思考。"
 categories: ["随笔"]
