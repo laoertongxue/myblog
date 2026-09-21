@@ -3,6 +3,11 @@ name: Deploy to 12lab.cn
 on:
   push:
     branches: [main]
+  # Hugo omits content whose date is still in the future, so a scheduled
+  # rebuild is what actually publishes it. 16:10 UTC = 00:10 Asia/Shanghai
+  # (hugo.toml timeZone), i.e. just after a post's publish date begins.
+  schedule:
+    - cron: "10 16 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -18,6 +23,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      pages: ${{ steps.count.outputs.pages }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,13 +49,19 @@ jobs:
         run: hugo --minify --gc
 
       - name: Validate build
+        id: count
         run: |
           if [ ! -d "public" ] || [ -z "$(ls -A public)" ]; then
             echo "Build output is empty!"
             exit 1
           fi
-          echo "Build successful. Pages generated:"
-          find public -name "*.html" | wc -l
+          PAGES=$(( $(find public -name "*.html" | wc -l) ))
+          if [ "$PAGES" -lt 10 ]; then
+            echo "::error::Build produced only $PAGES pages"
+            exit 1
+          fi
+          echo "pages=$PAGES" >> "$GITHUB_OUTPUT"
+          echo "Build successful. Pages generated: $PAGES"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -60,6 +73,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      EXPECTED_PAGES: ${{ needs.build.outputs.pages }}
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
@@ -85,10 +100,12 @@ jobs:
 
       - name: Verify upload
         run: |
-          FILE_COUNT=$(ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "find ${{ env.SITE_DIR }}/releases/${{ steps.release.outputs.id }} -name '*.html' | wc -l")
-          echo "Uploaded HTML files: $FILE_COUNT"
-          if [ "$FILE_COUNT" -lt 10 ]; then
-            echo "Upload verification failed!"
+          UPLOADED=$(ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "find ${{ env.SITE_DIR }}/releases/${{ steps.release.outputs.id }} -name '*.html' | wc -l")
+          UPLOADED=$(( UPLOADED ))
+          EXPECTED=$(( EXPECTED_PAGES ))
+          echo "Uploaded HTML files: $UPLOADED (expected $EXPECTED)"
+          if [ "$UPLOADED" != "$EXPECTED" ]; then
+            echo "::error::Uploaded $UPLOADED of $EXPECTED built pages - release not switched"
             exit 1
           fi
 
@@ -96,8 +113,9 @@ jobs:
         run: |
           ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
             cd ${{ env.SITE_DIR }}
-            rm -rf current
-            ln -s releases/${{ steps.release.outputs.id }} current
+            if [ -d current ] && [ ! -L current ]; then rm -rf current; fi
+            ln -sfn releases/${{ steps.release.outputs.id }} current.new
+            mv -T current.new current
           "
 
       - name: Health check
@@ -107,12 +125,21 @@ jobs:
           echo "HTTP Status: $HTTP_CODE"
           if [ "$HTTP_CODE" != "200" ]; then
             echo "Health check failed! Rolling back..."
-            ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
-              cd ${{ env.SITE_DIR }}
-              PREVIOUS=$(ls -t releases/ | head -2 | tail -1)
-              rm -f current
-              ln -s releases/\$PREVIOUS current
-            "
+            # Single-quoted so the release lookup runs on the server, not on the runner.
+            ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} '
+              cd '"${{ env.SITE_DIR }}"'
+              FAILED="${{ steps.release.outputs.id }}"
+              PREVIOUS=$(ls -t releases/ | grep -v -x "$FAILED" | head -1)
+              if [ -z "$PREVIOUS" ]; then
+                echo "::error::No previous release available to roll back to"
+                exit 1
+              fi
+              ln -sfn "releases/$PREVIOUS" current.new
+              mv -T current.new current
+              echo "Rolled back to release $PREVIOUS"
+            '
+            RECOVERED=$(curl -s -o /dev/null -w "%{http_code}" https://12lab.cn/)
+            echo "Status after rollback: $RECOVERED"
             exit 1
           fi
 
