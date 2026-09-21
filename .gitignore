@@ -4,3 +4,5 @@
 
 /.playwright-cli/
 /output/playwright/
+.hugo-check/
+.qoder/
