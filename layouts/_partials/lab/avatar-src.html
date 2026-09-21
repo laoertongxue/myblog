@@ -1,0 +1,14 @@
+{{- /* Resolve params.avatar to a served image URL.
+     Bitmaps under assets/ are resized and re-encoded through Hugo's image
+     pipeline ([imaging] in hugo.toml); SVG params are passed through, since
+     image processing does not apply to vector files. */ -}}
+{{- $param := .Site.Params.avatar | default "images/avatar.svg" }}
+{{- if hasSuffix $param ".svg" }}
+  {{- return ($param | relURL) }}
+{{- end }}
+{{- $img := resources.Get $param }}
+{{- if not $img }}
+  {{- errorf "params.avatar %q not found under assets/ - see the '样式与图片' section of AGENTS.md" $param }}
+  {{- return ($param | relURL) }}
+{{- end }}
+{{- return ($img.Fill "216x216 webp q80").RelPermalink }}

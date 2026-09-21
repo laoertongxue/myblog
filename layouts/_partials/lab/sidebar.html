@@ -1,16 +1,18 @@
 <aside id="site-sidebar" class="site-sidebar" aria-label="站点导航">
-  <a class="avatar-link" href="{{ "/about/" | relURL }}" aria-label="关于拾贰画生"><img class="avatar" src="{{ .Site.Params.avatar | default "images/avatar.svg" | relURL }}" width="108" height="108" alt="拾贰画生的头像"></a>
+  {{ $avatar := partial "lab/avatar-src.html" . }}
+  <a class="avatar-link" href="{{ "/about/" | relURL }}" aria-label="关于拾贰画生"><img class="avatar" src="{{ $avatar }}" width="108" height="108" alt="拾贰画生的头像"></a>
   <nav class="primary-nav" aria-label="主导航">
     {{ $page := . }}
-    {{ range slice (dict "url" "/" "label" "首页" "icon" "home") (dict "url" "/weekly/" "label" "Weekly" "icon" "book") (dict "url" "/topics/" "label" "专题" "icon" "folder") (dict "url" "/blog/" "label" "博客" "icon" "book") (dict "url" "/about/" "label" "关于" "icon" "user") }}
-      {{ $active := cond (eq .url "/") $page.IsHome (hasPrefix $page.RelPermalink (.url | relURL)) }}
-      <a href="{{ .url | relURL }}" {{ if $active }}aria-current="page"{{ end }}>{{ partial "lab/icon.html" .icon }}<span>{{ .label }}</span></a>
+    {{ range .Site.Menus.main }}
+      {{ $url := .URL | relURL }}
+      {{ $active := cond (eq .URL "/") $page.IsHome (hasPrefix $page.RelPermalink $url) }}
+      <a href="{{ $url }}" {{ if $active }}aria-current="page"{{ end }}>{{ partial "lab/icon.html" .Params.icon }}<span>{{ .Name }}</span></a>
     {{ end }}
   </nav>
   <form class="sidebar-search" action="{{ "/search/" | relURL }}" role="search">{{ partial "lab/icon.html" "search" }}<input name="q" aria-label="搜索文章、主题或关键词" placeholder="搜索文章、主题或关键词…" type="search"></form>
   <div class="sidebar-bottom">
     <div class="social-links"><a href="https://github.com/laoertongxue" aria-label="GitHub">{{ partial "lab/icon.html" "github" }}</a><a href="{{ "/index.xml" | relURL }}" aria-label="RSS 订阅">{{ partial "lab/icon.html" "rss" }}</a>{{ with .Site.Params.email }}<a href="mailto:{{ . }}" aria-label="邮件联系">{{ partial "lab/icon.html" "mail" }}</a>{{ end }}</div>
-    <nav class="utility-nav" aria-label="更多页面"><a href="{{ "/archive/" | relURL }}">归档</a><a href="{{ "/now/" | relURL }}">近况</a><a href="{{ "/links/" | relURL }}">友链</a></nav>
+    <nav class="utility-nav" aria-label="更多页面">{{ range .Site.Menus.utility }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}</nav>
     <p>© {{ now.Year }} 12Lab</p>
   </div>
 </aside>
