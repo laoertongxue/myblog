@@ -1,9 +1,16 @@
 <header class="site-header">
+  <a class="mobile-site-title" href="{{ "/" | relURL }}" title="{{ .Site.Title }}">{{ .Site.Params.author.name }}</a>
+  <button class="mobile-menu-toggle" type="button" aria-label="展开导航菜单" aria-haspopup="dialog" aria-controls="mobile-navigation" aria-expanded="false">{{ partial "lab/icon.html" "menu" }}</button>
   <nav class="header-primary" aria-label="主导航">
-    {{ range where .Site.Menus.main "Params.placement" "leading" }}<a href="{{ .URL | relURL }}" {{ if eq ($.RelPermalink) (.URL | relURL) }}aria-current="page"{{ end }}>{{ .Name }}</a>{{ end }}
+    {{ range where .Site.Menus.main "Params.placement" "leading" }}<a href="{{ .URL | relURL }}" {{ if eq ($.RelPermalink) (.URL | relURL) }}aria-current="page"{{ end }}>{{ if and (eq .URL "/") (not $.IsHome) }}← {{ $.Site.Params.author.name }}{{ else }}{{ .Name }}{{ end }}</a>{{ end }}
   </nav>
   <nav class="header-utility" aria-label="更多页面">
     {{ range .Site.Menus.main }}{{ if eq .Params.placement "quick" }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}{{ end }}
     {{ range .Site.Menus.utility }}{{ if eq .Params.placement "quick" }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}{{ end }}
   </nav>
 </header>
+
+<dialog id="mobile-navigation" class="mobile-navigation" aria-labelledby="mobile-navigation-title">
+  <div class="mobile-navigation-heading"><h2 id="mobile-navigation-title">网站导航</h2><button type="button" class="mobile-menu-close" aria-label="关闭导航菜单" autofocus>×</button></div>
+  <nav aria-label="移动端导航">{{ range .Site.Menus.main }}<a href="{{ .URL | relURL }}"{{ if eq $.RelPermalink (.URL | relURL) }} aria-current="page"{{ end }}>{{ .Name }}</a>{{ end }}{{ range .Site.Menus.utility }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}</nav>
+</dialog>

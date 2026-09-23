@@ -1,6 +1,6 @@
 <footer class="page-footer">
   <a class="back-top" href="#top">↑ 回到顶部</a>
   <p>© {{ now.Year }} <a href="{{ "/" | relURL }}">{{ .Site.Params.author.name }}</a> ｜ {{ range .Site.Menus.utility }}{{ if eq .Identifier "archive" }}<a href="{{ .URL | relURL }}">文章归档</a> · {{ end }}{{ end }}<a href="{{ "index.xml" | relURL }}">RSS 订阅</a></p>
-  <p>除特别声明外，本站原创内容采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> 协议，详见{{ range .Site.Menus.utility }}{{ if eq .Identifier "copyright" }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}{{ end }}。</p>
-  <p><a href="{{ "sitemap.xml" | relURL }}">网站地图</a>{{ with .Site.Params.registration.icp }} · <a href="https://beian.miit.gov.cn/">{{ . }}</a>{{ end }}{{ with .Site.Params.registration.police }}{{ with $.Site.Params.registration.policeURL }} · <a href="{{ . }}">{{ $.Site.Params.registration.police }}</a>{{ end }}{{ end }}</p>
+  <p class="footer-details">除特别声明外，本站原创内容采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> 协议，详见{{ range .Site.Menus.utility }}{{ if eq .Identifier "copyright" }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}{{ end }}。</p>
+  <p class="footer-details"><a href="{{ "sitemap.xml" | relURL }}">网站地图</a>{{ with .Site.Params.registration.icp }} · <a href="https://beian.miit.gov.cn/">{{ . }}</a>{{ end }}{{ with .Site.Params.registration.police }}{{ with $.Site.Params.registration.policeURL }} · <a href="{{ . }}">{{ $.Site.Params.registration.police }}</a>{{ end }}{{ end }}</p>
 </footer>

@@ -1,7 +1,7 @@
 <article class="reading-page">
   {{ partial "lab/breadcrumb.html" . }}
   {{ if .Fragments.Headings }}<details class="floating-toc"><summary aria-label="展开或收起本文目录" title="本文目录">{{ partial "lab/icon.html" "toc" }}</summary><div class="toc-panel"><h2>本文目录</h2>{{ .TableOfContents }}</div></details>{{ end }}
-  <header class="article-heading">{{ if eq .Section "weekly" }}<span class="volume">Weekly · Vol. {{ .File.ContentBaseName }}</span>{{ end }}<h1>{{ .Title }}</h1>{{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}<div class="article-meta">{{ if not .Date.IsZero }}<time>{{ .Date.Format "2006-01-02" }}</time><span>·</span>{{ end }}<span>约 {{ .ReadingTime }} 分钟阅读</span>{{ partial "lab/tags.html" . }}</div></header>
+  <header class="article-heading">{{ if eq .Section "weekly" }}<span class="volume">Weekly · Vol. {{ .File.ContentBaseName }}</span>{{ end }}<h1>{{ .Title }}</h1><p class="reading-stats">全文共 {{ .WordCount }} 字，阅读约需 {{ .ReadingTime }} 分钟</p>{{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}<div class="article-meta">{{ if not .Date.IsZero }}<time>{{ .Date.Format "2006-01-02" }}</time>{{ end }}{{ partial "lab/tags.html" . }}</div></header>
   {{ with .Params.cover }}
     {{ $src := . | relURL }}
     {{ $path := strings.TrimPrefix "/" . }}

@@ -1,4 +1,27 @@
 (() => {
+  const menuDialog = document.querySelector('#mobile-navigation');
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  if (menuDialog && menuToggle) {
+    const mobile = matchMedia('(max-width: 760px)');
+    const close = () => menuDialog.close();
+    menuToggle.addEventListener('click', () => {
+      if (!mobile.matches) return;
+      menuDialog.showModal();
+      menuToggle.setAttribute('aria-expanded', 'true');
+      document.documentElement.classList.add('navigation-open');
+    });
+    menuDialog.querySelector('.mobile-menu-close').addEventListener('click', close);
+    menuDialog.addEventListener('click', event => {
+      if (event.target === menuDialog || event.target.closest('a')) close();
+    });
+    menuDialog.addEventListener('close', () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      document.documentElement.classList.remove('navigation-open');
+      if (mobile.matches) menuToggle.focus();
+    });
+    mobile.addEventListener('change', () => { if (!mobile.matches && menuDialog.open) close(); });
+  }
+
   const toc = document.querySelector('.floating-toc');
   document.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return;
