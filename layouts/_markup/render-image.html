@@ -1,0 +1,13 @@
+{{- $source := .Destination -}}
+{{- $path := strings.TrimPrefix "/" $source -}}
+{{- $image := .Page.Resources.GetMatch $path -}}
+{{- if not $image }}{{ $image = resources.Get $path }}{{ end -}}
+{{- $width := 0 -}}{{- $height := 0 -}}
+{{- with $image -}}
+  {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") -}}
+    {{- if gt .Width 1440 }}{{ $image = .Resize "1440x webp q85" }}{{ else }}{{ $image = .Process "webp q85" }}{{ end -}}
+    {{- $width = $image.Width -}}{{- $height = $image.Height -}}
+  {{- end -}}
+  {{- $source = $image.RelPermalink -}}
+{{- end -}}
+<img src="{{ $source | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $width }} width="{{ $width }}" height="{{ $height }}"{{ end }} loading="lazy" decoding="async">

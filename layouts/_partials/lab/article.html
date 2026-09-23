@@ -2,7 +2,20 @@
   {{ partial "lab/breadcrumb.html" . }}
   {{ if .Fragments.Headings }}<details class="floating-toc"><summary aria-label="展开或收起本文目录" title="本文目录">{{ partial "lab/icon.html" "toc" }}</summary><div class="toc-panel"><h2>本文目录</h2>{{ .TableOfContents }}</div></details>{{ end }}
   <header class="article-heading">{{ if eq .Section "weekly" }}<span class="volume">Weekly · Vol. {{ .File.ContentBaseName }}</span>{{ end }}<h1>{{ .Title }}</h1>{{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}<div class="article-meta">{{ if not .Date.IsZero }}<time>{{ .Date.Format "2006-01-02" }}</time><span>·</span>{{ end }}<span>约 {{ .ReadingTime }} 分钟阅读</span>{{ partial "lab/tags.html" . }}</div></header>
-  {{ with .Params.cover }}<img class="article-cover" src="{{ . | relURL }}" alt="{{ $.Title }}">{{ end }}
+  {{ with .Params.cover }}
+    {{ $src := . | relURL }}
+    {{ $path := strings.TrimPrefix "/" . }}
+    {{ $image := $.Resources.GetMatch $path }}
+    {{ if not $image }}{{ $image = resources.Get $path }}{{ end }}
+    {{ with $image }}
+      {{ if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") }}
+        {{ if gt .Width 1440 }}{{ $image = .Resize "1440x webp q85" }}{{ else }}{{ $image = .Process "webp q85" }}{{ end }}
+      {{ end }}
+      {{ $src = $image.RelPermalink }}
+    {{ end }}
+    <img class="article-cover" src="{{ $src }}" alt="{{ $.Title }}" decoding="async">
+  {{ end }}
+  {{ if .Params.testContent }}<p class="test-notice">本文为界面测试内容，用于验证排版、配图与分页，不代表作者的真实经历。</p>{{ end }}
   <div class="prose">{{ .Content }}</div>
   {{ $pages := .Parent.RegularPages.ByDate }}{{ if eq .Section "topics" }}{{ $pages = .Parent.RegularPages.ByWeight }}{{ end }}
   {{ $current := . }}{{ range $i, $p := $pages }}{{ if eq $p.RelPermalink $current.RelPermalink }}{{ if gt (len $pages) 1 }}

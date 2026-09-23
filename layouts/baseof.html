@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang }}">
 {{ partial "head.html" . }}
-<body class="lab-site">
+<body class="lab-site" id="top">
   <a class="skip-link" href="#content">跳到正文</a>
-  <header class="mobile-header"><a href="{{ "/" | relURL }}">拾贰画生</a><button class="menu-toggle" aria-controls="site-sidebar" aria-expanded="false" aria-label="展开导航">{{ partial "lab/icon.html" "menu" }}</button></header>
-  {{ partial "lab/sidebar.html" . }}
+  {{ partial "lab/site-header.html" . }}
   <div class="site-workspace">
-    <div class="topline"><span>生活</span><i>×</i><span>思考</span><i>×</i><span>工具</span><i>×</i><span>成长</span></div>
     <main id="content" tabindex="-1" class="page-content">{{ block "main" . }}{{ end }}</main>
-    <footer class="page-footer"><span>{{ .Site.Params.description }} · 12Lab</span></footer>
+    {{ partial "lab/site-footer.html" . }}
   </div>
   {{ $script := resources.Get "js/lab.js" | minify | fingerprint }}
   <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>
-{{ if .IsHome }}
-  {{ $feedScript := resources.Get "js/home-feed.js" | minify | fingerprint }}
-  <script src="{{ $feedScript.RelPermalink }}" integrity="{{ $feedScript.Data.Integrity }}" defer></script>
-  {{ end }}
 </body>
 </html>

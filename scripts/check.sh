@@ -69,5 +69,6 @@ IMAGES=$(find "$OUT/images" -name '*_hu_*' 2>/dev/null | wc -l | tr -d ' ')
 ok "$IMAGES processed image(s) emitted"
 
 python3 scripts/check-home-pagination.py
+python3 scripts/check-static-output.py "$OUT"
 
 printf '\nAll checks passed.\n'

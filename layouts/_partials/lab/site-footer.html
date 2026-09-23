@@ -1,0 +1,5 @@
+<footer class="page-footer">
+  <nav id="site-navigation" aria-label="网站导航" tabindex="-1"><h2>网站导航</h2><div class="footer-links">{{ range .Site.Menus.main }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}{{ range .Site.Menus.utility }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}</div></nav>
+  <a class="back-top" href="#top">↑ 回到顶部</a>
+  <p>© {{ now.Year }} {{ .Site.Params.author.name }} · <a href="{{ "index.xml" | relURL }}">RSS 订阅</a> · <a href="https://github.com/laoertongxue">GitHub</a></p>
+</footer>

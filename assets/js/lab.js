@@ -1,20 +1,8 @@
 (() => {
-  const menu = document.querySelector('.menu-toggle');
-  const sidebar = document.querySelector('.site-sidebar');
-  const closeMenu = () => { sidebar.classList.remove('is-open'); menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', '展开导航'); };
-  menu?.addEventListener('click', () => {
-    const open = sidebar.classList.toggle('is-open');
-    menu.setAttribute('aria-expanded', String(open));
-    menu.setAttribute('aria-label', open ? '收起导航' : '展开导航');
-  });
-  document.addEventListener('click', event => {
-    if (sidebar?.classList.contains('is-open') && !sidebar.contains(event.target) && !menu.contains(event.target)) closeMenu();
-  });
   const toc = document.querySelector('.floating-toc');
   document.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return;
     if (toc?.open) { toc.open = false; toc.querySelector('summary').focus(); }
-    if (sidebar?.classList.contains('is-open')) { closeMenu(); menu.focus(); }
   });
   document.addEventListener('click', event => { if (toc?.open && !toc.contains(event.target)) toc.open = false; });
   if (toc) {
@@ -30,9 +18,6 @@
     links.forEach(link => link.addEventListener('click', () => { toc.open = false; }));
     update();
   }
-  const chapters = document.querySelector('.chapter-sidebar details');
-  if (chapters && matchMedia('(max-width: 760px)').matches) chapters.open = false;
-
   const search = document.querySelector('.search-page');
   if (!search) return;
   const input = document.querySelector('#search-query');

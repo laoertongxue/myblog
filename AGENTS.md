@@ -34,7 +34,7 @@ GitHub Actions 构建后 rsync 到单机 Caddy。
 - **博客必须有 `slug`。** `[permalinks] blog = "/blog/:slug/"` 在缺 `slug` 时会回退到**标题**，
   于是中文标题会产生百分号编码的线上地址，之后改一次标题就等于永久断链。
   需要保留旧地址时用 `aliases: ["/blog/<旧路径>/"]`，Hugo 会生成 meta-refresh 重定向页。
-- **周刊的目录名同时决定 URL 和页面上显示的 `Vol. NNN`**（`row.html`、`article.html`、`home.html` 读
+- **周刊的目录名同时决定 URL 和页面上显示的 `Vol. NNN`**（`row.html`、`article.html` 读
   `.File.ContentBaseName`）。改名等于换链接又改期号。
 - **专题章节顺序与上下篇都由 `weight` 决定**（`chapters.html`、`article.html`）。曾经存在的
   `prev:`/`next:` 字段没有任何模板读取，已删除——不要再加回来。
@@ -45,12 +45,12 @@ GitHub Actions 构建后 rsync 到单机 Caddy。
 ## 导航
 
 真值只有一处：`hugo.toml` 的 `[[menu.main]]` 与 `[[menu.utility]]`，由
-`layouts/_partials/lab/sidebar.html` 消费（`icon` 走 `[menu.*.params]`，取值见
+`layouts/_partials/lab/site-header.html` 与 `site-footer.html` 消费（`icon` 走 `[menu.*.params]`，取值见
 `layouts/_partials/lab/icon.html`）。**不要**在模板里再硬编码一份导航。
 
 ## 样式与图片
 
-- 站点的设计系统几乎全部在 `assets/css/custom.css`（约 1600 行），自有模板只有约 120 行。
+- 站点的设计系统几乎全部在 `assets/css/custom.css`，采用顶部导航与居中单栏。
   这个文件是被主题的 `css/compiled/main.css` 编译链吸收的，**仓库里没有显式挂接点**——重命名、改后缀或
   新增第二个 CSS 文件，都会静默丢掉全部定制样式。
 - 头像走 Hugo 图片管线：`static/images` 里的文件不会被 `[imaging]` 处理，必须放 `assets/images/`，

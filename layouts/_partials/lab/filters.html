@@ -1,5 +1,0 @@
-<aside class="list-aside" aria-label="文章分类">
-  {{ with .Site.Taxonomies.categories }}<section><h2>分类</h2>{{ range .Alphabetical }}<a class="count-link" href="{{ .Page.RelPermalink }}"><span>{{ .Page.LinkTitle }}</span><span>{{ .Count }}</span></a>{{ end }}</section>{{ end }}
-  {{ with .Site.Taxonomies.tags }}<section><h2>标签</h2><div class="tags">{{ range .Alphabetical }}<a href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle }}</a>{{ end }}</div></section>{{ end }}
-  <section><h2>归档</h2>{{ range (where .Site.RegularPages "Section" "in" (slice "blog" "weekly")).GroupByDate "2006" }}<a class="count-link" href="{{ "/archive/" | relURL }}#year-{{ .Key }}"><span>{{ .Key }} 年</span><span>{{ len .Pages }}</span></a>{{ end }}</section>
-</aside>

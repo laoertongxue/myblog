@@ -1,23 +1,9 @@
 {{ define "main" }}
 {{ $articles := (where .Site.RegularPages "Section" "in" (slice "blog" "weekly" "topics")).ByDate.Reverse }}
 {{ $pager := .Paginate $articles 10 }}
-<h1 class="sr-only">文章列表</h1>
-<section class="home-feed" aria-label="文章列表" data-next="{{ with $pager.Next }}{{ .URL }}{{ end }}">
-  {{ range $pager.Pages }}
-    {{ partial "lab/row.html" . }}
-  {{ end }}
+<header class="home-intro"><div><h1>{{ .Site.Params.author.name }}</h1><p>{{ .Site.Params.description }}</p></div><a href="{{ "about/" | relURL }}" aria-label="关于拾贰画生"><img class="avatar" src="{{ partial "lab/avatar-src.html" . }}" width="72" height="72" alt="拾贰画生的头像"></a></header>
+<section class="home-feed" aria-label="文章列表">
+  {{ range $pager.Pages }}{{ partial "lab/row.html" . }}{{ end }}
 </section>
-{{ if gt $pager.TotalPages 1 }}
-<nav class="feed-pagination" aria-label="文章分页">
-  {{ with $pager.Prev }}<a href="{{ .URL }}" rel="prev">上一页</a>{{ end }}
-  {{ range $pager.Pagers }}
-    <a href="{{ .URL }}" {{ if eq .PageNumber $pager.PageNumber }}aria-current="page"{{ end }} aria-label="第 {{ .PageNumber }} 页">{{ .PageNumber }}</a>
-  {{ end }}
-  {{ with $pager.Next }}<a href="{{ .URL }}" rel="next">下一页</a>{{ end }}
-</nav>
-{{ end }}
-<div class="feed-loader" hidden>
-  <p role="status" aria-live="polite"></p>
-  <button type="button" hidden>加载失败，点击重试</button>
-</div>
+{{ partial "lab/pagination.html" $pager }}
 {{ end }}

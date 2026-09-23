@@ -1,0 +1,15 @@
+{{- if gt .TotalPages 1 -}}
+{{- $pager := . -}}
+<nav class="feed-pagination" aria-label="文章分页">
+  {{ with .Prev }}<a href="{{ .URL }}" rel="prev" aria-label="上一页">←</a>{{ end }}
+  {{- $last := 0 -}}
+  {{- range .Pagers -}}
+    {{- if or (eq .PageNumber 1) (eq .PageNumber $pager.TotalPages) (le (math.Abs (sub .PageNumber $pager.PageNumber)) 1) -}}
+      {{- if gt (sub .PageNumber $last) 1 }}<span class="pagination-gap" aria-hidden="true">…</span>{{ end -}}
+      {{- if eq .PageNumber $pager.PageNumber }}<span aria-current="page" aria-label="第 {{ .PageNumber }} 页">{{ .PageNumber }}</span>{{ else }}<a href="{{ .URL }}" aria-label="第 {{ .PageNumber }} 页">{{ .PageNumber }}</a>{{ end -}}
+      {{- $last = .PageNumber -}}
+    {{- end -}}
+  {{- end -}}
+  {{ with .Next }}<a href="{{ .URL }}" rel="next" aria-label="下一页">→</a>{{ end }}
+</nav>
+{{- end -}}

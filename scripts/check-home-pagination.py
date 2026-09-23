@@ -20,7 +20,9 @@ class FeedParser(HTMLParser):
         attrs = dict(attrs)
         if tag == 'section' and 'home-feed' in attrs.get('class', '').split():
             self.in_feed = True
-            self.next = attrs.get('data-next') or ''
+            self.next = ''
+        if tag == 'a' and attrs.get('rel') == 'next':
+            self.next = attrs['href']
         if self.in_feed and tag == 'h2':
             self.in_heading = True
         if self.in_heading and tag == 'a':
@@ -39,18 +41,18 @@ def check(destination=None):
         content = Path(temporary) / 'content'
         output = Path(destination).resolve() if destination else Path(temporary) / 'public'
         expected = []
-        for i in range(1, 24):
+        for i in range(1, 44):
             section = ('blog', 'weekly', 'topics/example')[i % 3]
             name = f'{i:03d}'
             article = content / section / name / 'index.md'
             article.parent.mkdir(parents=True, exist_ok=True)
-            article.write_text(f'---\ntitle: "测试文章 {i}"\nslug: "{name}"\ndate: 2020-01-{i:02d}\nweight: {i}\ndescription: "分页测试文章"\n---\n测试正文。\n')
-            if i in (21, 22, 23):
+            article.write_text(f'---\ntitle: "测试文章 {i}"\nslug: "{name}"\ndate: 2020-{((i-1)//28)+1:02d}-{((i-1)%28)+1:02d}\nweight: {i}\ndescription: "分页测试文章"\n---\n测试正文。\n')
+            if i in (41, 42, 43):
                 for image in range(1, 5):
                     shutil.copy(root / 'assets/images/avatar-wangye.png', article.parent / f'photo-{image}.png')
-                if i == 22:
+                if i == 42:
                     article.write_text(article.read_text().replace('weight:', 'images: ["photo-3.png", "photo-1.png"]\nweight:'))
-                if i == 21:
+                if i == 41:
                     article.write_text(article.read_text().replace('weight:', 'cover: "photo-2.png"\nweight:'))
             expected.insert(0, f'/{section}/{name}/')
         for name, metadata in [('future', 'date: 2999-01-01'), ('draft', 'date: 2020-02-01\ndraft: true')]:
@@ -65,17 +67,21 @@ def check(destination=None):
         assert 'photo-4_' not in first_page, 'Preview should be limited to three images'
         assert 'photo-3_' in first_page and '.webp' in first_page
         print('ok    thumbnails: explicit images, cover fallback, bundle discovery, three-image limit')
+        assert 'pagination-gap' in first_page, 'Long pagination should collapse middle pages'
+        assert 'home-feed.min.' not in first_page, 'Mobile must use the same numbered pagination'
+        cover_detail = (output / 'topics/example/041/index.html').read_text()
+        assert '/topics/example/041/photo-2_hu_' in cover_detail, 'Bundle cover must resolve inside its article'
         combined = []
-        for page, count in [(1, 10), (2, 10), (3, 3)]:
+        for page, count in [(1, 10), (2, 10), (3, 10), (4, 10), (5, 3)]:
             html = output / ('index.html' if page == 1 else f'page/{page}/index.html')
             parser = FeedParser()
             parser.feed(html.read_text())
             assert len(parser.links) == count, (page, parser.links)
             assert parser.links == expected[(page - 1) * 10:page * 10], 'Incorrect chronological order'
-            assert parser.next == (f'/page/{page + 1}/' if page < 3 else ''), parser.next
+            assert parser.next == (f'/page/{page + 1}/' if page < 5 else ''), parser.next
             combined.extend(parser.links)
-        assert len(set(combined)) == 23
-        print('ok    homepage pagination: 10 + 10 + 3, date order, no duplicates, drafts/future excluded')
+        assert len(set(combined)) == 43
+        print('ok    homepage pagination: 10 + 10 + 10 + 10 + 3, date order, no duplicates, drafts/future excluded')
 
 
 if __name__ == '__main__':

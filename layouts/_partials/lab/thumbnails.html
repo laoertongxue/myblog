@@ -25,7 +25,7 @@
         {{- $url = .RelPermalink -}}
       {{- end -}}
     {{- end -}}
-    <img src="{{ $url }}" alt="{{ $page.Title }} 配图 {{ add $index 1 }}" loading="lazy" decoding="async" width="520" height="520">
+    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" alt="{{ $page.Title }} 配图 {{ add $index 1 }}" loading="lazy" decoding="async" width="520" height="520"></a>
   {{- end -}}
 </div>
 {{- end -}}

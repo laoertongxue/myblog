@@ -7,7 +7,7 @@ hasCJKLanguage = true
 locale = "zh-cn"
 timeZone = "Asia/Shanghai"
 timeout = "60s"
-paginate = 12
+paginate = 10
 
 [outputs]
   home = ["HTML", "RSS"]
@@ -52,6 +52,7 @@ paginate = 12
   weight = 1
   [menu.main.params]
     icon = "home"
+    placement = "leading"
 
 [[menu.main]]
   name = "Weekly"
@@ -80,8 +81,16 @@ paginate = 12
   weight = 5
   [menu.main.params]
     icon = "user"
+    placement = "quick"
 
-# Secondary navigation rendered in the sidebar footer area.
+# Navigation is rendered by the site header and footer.
+[[menu.main]]
+  name = "搜索"
+  pageRef = "/search"
+  weight = 6
+  [menu.main.params]
+    placement = "leading"
+
 [[menu.utility]]
   name = "归档"
   pageRef = "/archive"
@@ -91,11 +100,15 @@ paginate = 12
   name = "近况"
   pageRef = "/now"
   weight = 2
+  [menu.utility.params]
+    placement = "quick"
 
 [[menu.utility]]
   name = "友链"
   pageRef = "/links"
   weight = 3
+  [menu.utility.params]
+    placement = "quick"
 
 [taxonomies]
   tag = "tags"

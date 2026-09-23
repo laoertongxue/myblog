@@ -1,1 +1,1 @@
-{{ define "main" }}<div class="list-layout"><div>{{ partial "lab/header.html" . }}{{ range .RegularPages.ByDate.Reverse }}{{ partial "lab/row.html" . }}{{ end }}</div>{{ partial "lab/filters.html" . }}</div>{{ end }}
+{{ define "main" }}{{ partial "lab/header.html" . }}{{ $pager := .Paginate .RegularPages.ByDate.Reverse 10 }}{{ range $pager.Pages }}{{ partial "lab/row.html" . }}{{ end }}{{ partial "lab/pagination.html" $pager }}{{ end }}
