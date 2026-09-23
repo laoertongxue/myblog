@@ -3,6 +3,11 @@ async (page) => {
   const report=[];
   for(const width of [320,390,760]) {
     await page.setViewportSize({width,height:844});
+    await page.goto(base);
+    if(await page.locator('.home-intro').isVisible()) throw Error('Mobile home intro remains visible');
+    const firstRowTop = await page.locator('.home-feed .post-row').first().evaluate(node=>node.getBoundingClientRect().top);
+    const headerBottom = await page.locator('.site-header').evaluate(node=>node.getBoundingClientRect().bottom);
+    if(firstRowTop-headerBottom > 40) throw Error('Empty intro space remains');
     await page.goto(base+'/blog/layout-test-01/');
     if(!await page.locator('.mobile-site-title').isVisible() || await page.locator('.header-primary').isVisible()) throw Error('Mobile header');
     if(await page.locator('.footer-details').first().isVisible()) throw Error('Mobile footer details visible');

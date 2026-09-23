@@ -1,0 +1,11 @@
+{{- $pages := .RegularPagesRecursive -}}
+{{- if .IsHome }}{{ $pages = where .Site.RegularPages "Section" "in" (slice "blog" "weekly" "topics") }}{{ end -}}
+{{- $pages = where $pages "Params.testcontent" "ne" true -}}
+{{- $pages = where $pages "Params.noindex" "ne" true -}}
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
+<title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
+<link>{{ .Permalink }}</link><description>{{ .Description | default .Site.Params.description }}</description><language>{{ .Site.Language.Lang }}</language>
+{{ with .OutputFormats.Get "rss" }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml"/>{{ end }}
+{{ range first 30 $pages.ByDate.Reverse }}<item><title>{{ .Title }}</title><link>{{ .Permalink }}</link><guid isPermaLink="true">{{ .Permalink }}</guid><pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate><description>{{ .Description | default (.Summary | plainify) }}</description></item>{{ end }}
+</channel></rss>

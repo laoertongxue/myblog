@@ -70,5 +70,6 @@ ok "$IMAGES processed image(s) emitted"
 
 python3 scripts/check-home-pagination.py
 python3 scripts/check-static-output.py "$OUT"
+python3 scripts/check-seo.py "$OUT"
 
 printf '\nAll checks passed.\n'

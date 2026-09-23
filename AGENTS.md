@@ -6,7 +6,7 @@ GitHub Actions 构建后 rsync 到单机 Caddy。
 ## 改动前必须知道的事
 
 - **`push` 到 `main` 就是上线。** 没有预发环境，`main` 无分支保护，历史上 PR 数为 0。
-- 推送前跑 `make check`（构建 + 断言本仓库真实回归项）。`make build` 只构建，不校验。
+- 本地推送前和 CI 发布前都跑 `make check`（构建 + 断言本仓库真实回归项）。`make build` 只构建，不校验。
 - CI 的发布门槛是"上传到服务器的 .html 数 **等于** 本次构建数"，不是阈值。故意丢页会让发布在切换
   `current` 前失败——这是预期行为，不是环境坏了。
 
@@ -51,8 +51,8 @@ GitHub Actions 构建后 rsync 到单机 Caddy。
 ## 样式与图片
 
 - 站点的设计系统几乎全部在 `assets/css/custom.css`，采用顶部导航与居中单栏。
-  这个文件是被主题的 `css/compiled/main.css` 编译链吸收的，**仓库里没有显式挂接点**——重命名、改后缀或
-  新增第二个 CSS 文件，都会静默丢掉全部定制样式。
+  由 `layouts/_partials/head.html` 将主题变量、主题 CSS 和此文件合并、压缩并加指纹。
+  定制样式仍统一维护在此文件；不要另起未接入编译链的 CSS 文件。
 - 头像走 Hugo 图片管线：`static/images` 里的文件不会被 `[imaging]` 处理，必须放 `assets/images/`，
   由 `layouts/_partials/lab/avatar-src.html` 调 `.Fill` 产出 webp。把图片挪回 `static/` 会让
   `[imaging]` 重新变成空转（`make check` 会拦）。
@@ -74,3 +74,11 @@ GitHub Actions 构建后 rsync 到单机 Caddy。
 `public/`、`resources/`、`.hugo-check/`、`output/playwright/`、`.playwright-cli/`、`.hugo_build.lock`
 （均已在 `.gitignore` 中）。注意 `public/` 常是 `hugo server` 的转储（地址是 localhost），
 判断线上状态请以 Actions 产物或线上站点为准，不要用 `public/` 比对。
+
+## SEO 与资源输出
+
+- 页面 head 由本仓库 `layouts/_partials/head.html` 统一输出，避免主题与自定义模板重复 robots、canonical。
+- 列表模板与 head 共用 `lab/pager.html`：Hugo 的首次 `.Paginate` 调用决定数据集，不可分别定义。
+- `testContent: true` / `noindex: true` 内容不进入 sitemap、RSS；搜索页与纯测试标签页输出 noindex。
+- 通用交互放 `assets/js/lab.js`，搜索逻辑仅在搜索页加载 `assets/js/search.js`。搜索索引带内容指纹。
+- `make check` 同时验证 SEO、图片链接、分页及内容契约；浏览器交互检查使用 `scripts/check-design-browser.js` 与 `scripts/check-mobile-navigation.js`。

@@ -1,0 +1,48 @@
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ $url := .Permalink }}{{ $title := .Title }}
+{{ if .IsHome }}{{ $title = .Site.Title }}{{ else }}{{ $title = printf "%s – %s" .Title .Site.Title }}{{ end }}
+{{ if and .IsBranch (ne .Kind "404") (ne .Kind "taxonomy") }}
+  {{ $pager := partial "lab/pager.html" . }}
+  {{ if gt $pager.PageNumber 1 }}{{ $url = $pager.URL | absURL }}{{ $title = printf "%s · 第 %d 页" $title $pager.PageNumber }}{{ end }}
+{{ end }}
+{{ $description := (.Description | default (.Summary | plainify) | default .Site.Params.description) | plainify | strings.TrimSpace | truncate 160 }}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+<meta name="robots" content="{{ if and hugo.IsProduction (partial "lab/indexable.html" .) }}index, follow{{ else }}noindex, follow{{ end }}">
+<link rel="canonical" href="{{ $url }}">
+{{ partialCached "favicons.html" . }}
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ $url }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:locale" content="zh_CN">
+{{ $article := and .IsPage (in (slice "blog" "weekly" "topics") .Section) }}
+<meta property="og:type" content="{{ if $article }}article{{ else }}website{{ end }}">
+{{ $social := resources.Get .Site.Params.avatar }}
+{{ range first 1 (partial "lab/image-sources.html" .) }}
+  {{ with partial "lab/image-resource.html" (dict "page" $ "src" .) }}{{ if ne .MediaType.SubType "svg" }}{{ $social = . }}{{ end }}{{ end }}
+{{ end }}
+{{ with $social }}
+  {{ $preview := . }}
+  {{ if eq .Name $.Site.Params.avatar }}{{ $preview = .Fit "600x600 png" }}{{ else }}{{ $preview = .Fit "1200x630 jpg q80" }}{{ end }}
+  {{ $.Store.Set "socialImage" $preview.Permalink }}
+  <meta property="og:image" content="{{ $preview.Permalink }}">
+  <meta property="og:image:width" content="{{ $preview.Width }}">
+  <meta property="og:image:height" content="{{ $preview.Height }}">
+  <meta property="og:image:alt" content="{{ $.Title }}">
+  <meta name="twitter:image" content="{{ $preview.Permalink }}">
+{{ end }}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{ if and $article (not .Date.IsZero) }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}">
+{{ end }}
+{{ $variables := resources.Get "css/variables.css" | resources.ExecuteAsTemplate "css/variables.css" . }}
+{{ $styles := slice $variables (resources.Get "css/compiled/main.css") (resources.Get "css/custom.css") | resources.Concat "css/compiled/main.css" | minify | fingerprint }}
+<link href="{{ $styles.RelPermalink }}" rel="stylesheet" integrity="{{ $styles.Data.Integrity }}">
+{{ partial "custom/head-end.html" . }}
+</head>

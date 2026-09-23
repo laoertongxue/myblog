@@ -1,13 +1,24 @@
 {{- $source := .Destination -}}
-{{- $path := strings.TrimPrefix "/" $source -}}
-{{- $image := .Page.Resources.GetMatch $path -}}
-{{- if not $image }}{{ $image = resources.Get $path }}{{ end -}}
+{{- $image := partial "lab/image-resource.html" (dict "page" .Page "src" $source) -}}
+{{- $srcset := slice -}}
 {{- $width := 0 -}}{{- $height := 0 -}}
 {{- with $image -}}
   {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") -}}
     {{- if gt .Width 1440 }}{{ $image = .Resize "1440x webp q85" }}{{ else }}{{ $image = .Process "webp q85" }}{{ end -}}
+    {{- range slice 480 960 -}}
+      {{- if lt . $image.Width -}}
+        {{- $variant := $image.Resize (printf "%dx webp q85" .) -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $variant.RelPermalink $variant.Width) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $image.RelPermalink $image.Width) -}}
     {{- $width = $image.Width -}}{{- $height = $image.Height -}}
+  {{- else if eq .MediaType.SubType "svg" -}}
+    {{- with findRE `viewBox=["'][^"']+["']` .Content 1 -}}
+      {{- $box := split (index . 0 | replaceRE `viewBox=["']|["']` "" | replaceRE `[,\s]+` " " | strings.TrimSpace) " " -}}
+      {{- if eq (len $box) 4 }}{{ $width = index $box 2 }}{{ $height = index $box 3 }}{{ end -}}
+    {{- end -}}
   {{- end -}}
   {{- $source = $image.RelPermalink -}}
 {{- end -}}
-<img src="{{ $source | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $width }} width="{{ $width }}" height="{{ $height }}"{{ end }} loading="lazy" decoding="async">
+<img src="{{ $source | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $width }} width="{{ $width }}" height="{{ $height }}"{{ end }} {{ with $srcset }}srcset="{{ delimit . ", " }}" sizes="(max-width:760px) calc(100vw - 40px), (max-width:1800px) 80vw, 1440px"{{ end }} {{ if eq .Ordinal 0 }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async">

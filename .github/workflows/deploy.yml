@@ -46,7 +46,7 @@ jobs:
         run: hugo mod tidy
 
       - name: Build
-        run: hugo --minify --gc
+        run: OUT=public make check
 
       - name: Validate build
         id: count

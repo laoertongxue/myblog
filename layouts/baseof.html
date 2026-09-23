@@ -5,10 +5,11 @@
   <a class="skip-link" href="#content">跳到正文</a>
   {{ partial "lab/site-header.html" . }}
   <div class="site-workspace">
-    <main id="content" tabindex="-1" class="page-content">{{ block "main" . }}{{ end }}</main>
+    <main id="content" tabindex="-1" class="page-content{{ if .IsHome }} home-content{{ end }}">{{ block "main" . }}{{ end }}</main>
     {{ partial "lab/site-footer.html" . }}
   </div>
   {{ $script := resources.Get "js/lab.js" | minify | fingerprint }}
   <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>
+{{ if eq .Layout "search" }}{{ $searchScript := resources.Get "js/search.js" | minify | fingerprint }}<script src="{{ $searchScript.RelPermalink }}" integrity="{{ $searchScript.Data.Integrity }}" defer></script>{{ end }}
 </body>
 </html>

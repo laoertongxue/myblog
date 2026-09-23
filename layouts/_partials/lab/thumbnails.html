@@ -1,31 +1,24 @@
-{{- $page := . -}}
-{{- $sources := slice -}}
-{{- with .Params.images -}}
-  {{- $sources = . -}}
-{{- else -}}
-  {{- with .Params.cover -}}
-    {{- $sources = slice . -}}
-  {{- else -}}
-    {{- range $page.Resources.ByType "image" -}}
-      {{- $sources = $sources | append .Name -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
+{{- $page := . -}}{{- $priority := false -}}
+{{- if reflect.IsMap . }}{{ $page = .page }}{{ $priority = .priority | default false }}{{ end -}}
+{{- $sources := partial "lab/image-sources.html" $page -}}
 {{- with $sources -}}
 <div class="list-thumbnails" style="--thumbnail-count:{{ math.Min 3 (len .) }}">
   {{- range $index, $source := first 3 . -}}
     {{- $url := $source | relURL -}}
-    {{- $resource := $page.Resources.GetMatch $source -}}
-    {{- if not $resource }}{{ $resource = resources.Get $source }}{{ end -}}
+    {{- $resource := partial "lab/image-resource.html" (dict "page" $page "src" $source) -}}
+    {{- $srcset := "" -}}
     {{- with $resource -}}
       {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") -}}
         {{- $preview := .Fill "520x520 webp q80" -}}
         {{- $url = $preview.RelPermalink -}}
+        {{- $small := .Fill "320x320 webp q80" -}}
+        {{- $large := .Fill "1040x1040 webp q80" -}}
+        {{- $srcset = printf "%s 320w, %s 520w, %s 1040w" $small.RelPermalink $preview.RelPermalink $large.RelPermalink -}}
       {{- else -}}
         {{- $url = .RelPermalink -}}
       {{- end -}}
     {{- end -}}
-    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" alt="{{ $page.Title }} 配图 {{ add $index 1 }}" loading="lazy" decoding="async" width="520" height="520"></a>
+    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" alt="{{ $page.Title }} 配图 {{ add $index 1 }}" {{ if and $priority (eq $index 0) }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}{{ with $srcset }} srcset="{{ . }}" sizes="(max-width: 760px) calc((100vw - 56px) / 3), (max-width: 1800px) calc((80vw - 32px) / 3), 470px"{{ end }} decoding="async" width="520" height="520"></a>
   {{- end -}}
 </div>
 {{- end -}}

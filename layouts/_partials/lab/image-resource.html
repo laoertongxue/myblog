@@ -1,0 +1,4 @@
+{{- $path := strings.TrimPrefix "/" .src -}}
+{{- $image := .page.Resources.GetMatch $path -}}
+{{- if not $image }}{{ $image = resources.Get $path }}{{ end -}}
+{{- return $image -}}

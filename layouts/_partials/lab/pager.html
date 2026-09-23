@@ -1,0 +1,11 @@
+{{- $pages := .Pages -}}
+{{- if .IsHome -}}
+  {{- $pages = (where .Site.RegularPages "Section" "in" (slice "blog" "weekly" "topics")).ByDate.Reverse -}}
+{{- else if eq .Kind "term" -}}
+  {{- $pages = .RegularPages.ByDate.Reverse -}}
+{{- else if in (slice "blog" "weekly") .Section -}}
+  {{- $pages = .RegularPages.ByDate.Reverse -}}
+{{- else if eq .Section "topics" -}}
+  {{- if eq .Parent .Site.Home }}{{ $pages = .Sections }}{{ else }}{{ $pages = .RegularPages.ByWeight }}{{ end -}}
+{{- end -}}
+{{- return (.Paginate $pages 10) -}}

@@ -1,0 +1,7 @@
+{{- $sources := slice -}}
+{{- with .Params.images }}{{ $sources = . }}{{ else }}
+  {{- with .Params.cover }}{{ $sources = slice . }}{{ else }}
+    {{- range $.Resources.ByType "image" }}{{ $sources = $sources | append .Name }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $sources -}}

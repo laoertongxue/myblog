@@ -139,10 +139,8 @@ h3 { font-size:21px; }
   .site-header nav { gap:10px; }
   .header-primary a+a::before { margin-right:10px; }
   .page-content { padding-top:65px; }
-  .home-intro { margin-bottom:70px; gap:16px; }
-  .home-intro h1 { font-size:25px; }
-  .home-intro p { font-size:14px; }
-  .avatar { width:56px; height:56px; }
+  .home-intro { display:none; }
+  .home-content { padding-top:36px; }
   h1,.article-heading h1 { font-size:25px; }
   .row-body h2 { font-size:22px; }
   .row-date { font-size:13px; }
@@ -186,3 +184,7 @@ html.navigation-open { overflow:hidden; }
   .mobile-menu-toggle { display:grid; place-items:center; width:44px; height:44px; border:0; background:transparent; margin-right:-8px; }
   .footer-details { display:none; }
 }
+
+.taxonomy-list { display:flex; flex-wrap:wrap; gap:20px 32px; list-style:none; padding:0; margin:32px 0; }
+.taxonomy-list a { text-decoration:underline; text-underline-offset:4px; }
+.taxonomy-list span { color:var(--lab-muted); font-size:14px; }

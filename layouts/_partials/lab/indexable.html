@@ -1,0 +1,5 @@
+{{- $allowed := not (or .Params.testContent .Params.noindex (eq .Layout "search") (eq .RelPermalink ("search/" | relURL)) (eq .Kind "404")) -}}
+{{- if eq .Kind "term" -}}
+  {{- $allowed = and $allowed (gt (len (where (where .RegularPages "Params.testcontent" "ne" true) "Params.noindex" "ne" true)) 0) -}}
+{{- end -}}
+{{- return $allowed -}}

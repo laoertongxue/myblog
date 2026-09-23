@@ -1,31 +1,27 @@
 #!/bin/bash
-# 12Lab 服务器初始化脚本
-# 创建版本化部署目录，配置 Caddy
+# Idempotent setup: never copy the default Caddy page over a deployed release.
+set -euo pipefail
 
-set -e
+SITE_DIR=/var/www/12lab.cn
+mkdir -p "$SITE_DIR/releases"
+if [ ! -e "$SITE_DIR/current" ] && [ ! -L "$SITE_DIR/current" ]; then
+    mkdir -p "$SITE_DIR/current"
+    cp -r /usr/share/caddy/. "$SITE_DIR/current/"
+fi
 
-echo "=== 创建部署目录 ==="
-mkdir -p /var/www/12lab.cn/releases
-mkdir -p /var/www/12lab.cn/current
-
-echo "=== 复制当前 Caddy 默认页面到 current ==="
-cp -r /usr/share/caddy/* /var/www/12lab.cn/current/ 2>/dev/null || true
-
-echo "=== 更新 Caddy 配置 ==="
-caddy validate --config "$(dirname "$0")/Caddyfile" --adapter caddyfile
-install -m 644 "$(dirname "$0")/Caddyfile" /etc/caddy/Caddyfile
-
-echo "=== 重载 Caddy ==="
+CONFIG="$(dirname "$0")/Caddyfile"
+caddy validate --config "$CONFIG" --adapter caddyfile
+BACKUP="/etc/caddy/Caddyfile.backup.$(date +%Y%m%d-%H%M%S)"
+cp -p /etc/caddy/Caddyfile "$BACKUP"
+rollback() {
+    echo "Caddy reload or health check failed; restoring $BACKUP" >&2
+    install -m 644 "$BACKUP" /etc/caddy/Caddyfile
+    systemctl reload caddy
+}
+trap rollback ERR
+install -m 644 "$CONFIG" /etc/caddy/Caddyfile
 systemctl reload caddy
-
-echo "=== 验证 Caddy 状态 ==="
-systemctl status caddy --no-pager | head -5
-
-echo "=== 验证网站访问 ==="
-curl -s -o /dev/null -w "HTTP Status: %{http_code}\n" https://12lab.cn/
-
-echo "=== 完成 ==="
-echo "部署目录: /var/www/12lab.cn/"
-echo "  releases/  - 版本化发布目录"
-echo "  current    - 当前版本（符号链接或直接目录）"
-echo "Caddy 根目录: /var/www/12lab.cn/current"
+systemctl is-active --quiet caddy
+curl --fail --silent --show-error --max-time 20 https://12lab.cn/ -o /dev/null
+trap - ERR
+printf 'Caddy configuration applied. Backup: %s\n' "$BACKUP"

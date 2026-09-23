@@ -1,0 +1,6 @@
+{{ define "main" }}
+{{ partial "lab/breadcrumb.html" . }}
+<ul class="taxonomy-list">
+{{ range .Data.Terms.Alphabetical }}<li><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a> <span>{{ .Count }} 篇</span></li>{{ end }}
+</ul>
+{{ end }}

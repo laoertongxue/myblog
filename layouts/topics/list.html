@@ -1,13 +1,13 @@
 {{ define "main" }}
 {{ partial "lab/breadcrumb.html" . }}
 {{ if eq .Parent .Site.Home }}
-  {{ $pager := .Paginate .Sections 10 }}
-  {{ range $pager.Pages }}<article class="post-row topic-row"><div class="row-date">{{ len .RegularPagesRecursive }} 篇文章{{ if .Params.testContent }} · 测试专题{{ end }}</div><div class="row-body"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>{{ partial "lab/thumbnails.html" . }}<p>{{ .Description }}</p><a class="read-more" href="{{ .RelPermalink }}">浏览专题 →</a></div></article>{{ end }}
+  {{ $pager := partial "lab/pager.html" . }}
+  {{ range $i, $p := $pager.Pages }}<article class="post-row topic-row"><div class="row-date">{{ len .RegularPagesRecursive }} 篇文章{{ if .Params.testContent }} · 测试专题{{ end }}</div><div class="row-body"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>{{ partial "lab/thumbnails.html" (dict "page" . "priority" (eq $i 0)) }}<p>{{ .Description }}</p><a class="read-more" href="{{ .RelPermalink }}">浏览专题 →</a></div></article>{{ end }}
   {{ partial "lab/pagination.html" $pager }}
 {{ else }}
   <div class="prose topic-intro">{{ .Content }}</div>
-  {{ $pager := .Paginate .RegularPages.ByWeight 10 }}
-  {{ range $pager.Pages }}{{ partial "lab/row.html" . }}{{ end }}
+  {{ $pager := partial "lab/pager.html" . }}
+  {{ range $i, $p := $pager.Pages }}{{ partial "lab/row.html" (dict "page" . "priority" (eq $i 0)) }}{{ end }}
   {{ partial "lab/pagination.html" $pager }}
 {{ end }}
 {{ end }}
