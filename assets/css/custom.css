@@ -1600,3 +1600,47 @@ h3 {
     scroll-behavior:auto;
   }
 }
+
+/* Desktop page links remain usable when JavaScript is unavailable. */
+.feed-pagination {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:32px;
+}
+.feed-pagination a {
+  min-width:40px;
+  padding:7px 12px;
+  text-align:center;
+  border:1px solid var(--lab-line);
+  border-radius:4px;
+  color:var(--lab-muted);
+  font-size:14px;
+}
+.feed-pagination a[aria-current="page"] {
+  background:var(--lab-blue);
+  border-color:var(--lab-blue);
+  color:var(--lab-accent);
+}
+.mobile-feed .feed-pagination {
+  display:none;
+}
+.feed-loader {
+  text-align:center;
+  padding:24px 0;
+  color:var(--lab-muted);
+  font-size:13px;
+}
+.feed-loader[hidden], .feed-loader button[hidden] {
+  display:none;
+}
+.feed-loader button {
+  margin-top:10px;
+  padding:8px 16px;
+  border:1px solid var(--lab-line);
+  border-radius:4px;
+  background:var(--lab-blue);
+  color:var(--lab-accent);
+}

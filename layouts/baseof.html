@@ -12,5 +12,9 @@
   </div>
   {{ $script := resources.Get "js/lab.js" | minify | fingerprint }}
   <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>
+{{ if .IsHome }}
+  {{ $feedScript := resources.Get "js/home-feed.js" | minify | fingerprint }}
+  <script src="{{ $feedScript.RelPermalink }}" integrity="{{ $feedScript.Data.Integrity }}" defer></script>
+  {{ end }}
 </body>
 </html>

@@ -68,4 +68,6 @@ IMAGES=$(find "$OUT/images" -name '*_hu_*' 2>/dev/null | wc -l | tr -d ' ')
 [ "$IMAGES" -ge 1 ] || fail "no processed images in output - [imaging] pipeline is inert"
 ok "$IMAGES processed image(s) emitted"
 
+python3 scripts/check-home-pagination.py
+
 printf '\nAll checks passed.\n'

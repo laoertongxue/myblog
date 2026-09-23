@@ -1,9 +1,23 @@
 {{ define "main" }}
+{{ $articles := (where .Site.RegularPages "Section" "in" (slice "blog" "weekly" "topics")).ByDate.Reverse }}
+{{ $pager := .Paginate $articles 10 }}
 <h1 class="sr-only">文章列表</h1>
-<section class="home-feed" aria-label="文章列表">
-  {{ $articles := where .Site.RegularPages "Section" "in" (slice "blog" "weekly" "topics") }}
-  {{ range $articles.ByDate.Reverse }}
+<section class="home-feed" aria-label="文章列表" data-next="{{ with $pager.Next }}{{ .URL }}{{ end }}">
+  {{ range $pager.Pages }}
     {{ partial "lab/row.html" . }}
   {{ end }}
 </section>
+{{ if gt $pager.TotalPages 1 }}
+<nav class="feed-pagination" aria-label="文章分页">
+  {{ with $pager.Prev }}<a href="{{ .URL }}" rel="prev">上一页</a>{{ end }}
+  {{ range $pager.Pagers }}
+    <a href="{{ .URL }}" {{ if eq .PageNumber $pager.PageNumber }}aria-current="page"{{ end }} aria-label="第 {{ .PageNumber }} 页">{{ .PageNumber }}</a>
+  {{ end }}
+  {{ with $pager.Next }}<a href="{{ .URL }}" rel="next">下一页</a>{{ end }}
+</nav>
+{{ end }}
+<div class="feed-loader" hidden>
+  <p role="status" aria-live="polite"></p>
+  <button type="button" hidden>加载失败，点击重试</button>
+</div>
 {{ end }}
