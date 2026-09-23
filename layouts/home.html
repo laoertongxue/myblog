@@ -1,6 +1,9 @@
 {{ define "main" }}
-<header class="home-intro"><p class="eyebrow">欢迎来到我的博客</p><h1>记录思考，持续学习。</h1><p>关于产品、技术与商业的观察，关于高效的工具方法，<br>以及在日常生活中的一些思考与记录。</p></header>
-<section class="home-section"><div class="section-heading"><h2>最新文章</h2><a href="{{ "/blog/" | relURL }}">查看全部　→</a></div>{{ range first 4 (where .Site.RegularPages "Section" "blog") }}{{ partial "lab/row.html" . }}{{ end }}</section>
-<section class="home-section"><div class="section-heading"><h2>Weekly · 每周记录</h2><a href="{{ "/weekly/" | relURL }}">查看全部　→</a></div>{{ range first 3 (where .Site.RegularPages "Section" "weekly") }}<a class="weekly-compact" href="{{ .RelPermalink }}"><span class="volume">Vol. {{ .File.ContentBaseName }}</span><time>{{ .Date.Format "2006-01-02" }}</time><strong>{{ .Title }}</strong><span>{{ .Description }}</span></a>{{ end }}</section>
-<section class="home-section"><div class="section-heading"><h2>专题推荐</h2><a href="{{ "/topics/" | relURL }}">查看全部　→</a></div><div class="topic-highlights">{{ with .Site.GetPage "topics" }}{{ range .Sections }}<a href="{{ .RelPermalink }}">{{ partial "lab/icon.html" "book" }}<div><h3>{{ .Title }}</h3><p>{{ .Description }}</p><span>{{ len .RegularPagesRecursive }} 篇文章　→</span></div></a>{{ end }}{{ end }}</div></section>
+<h1 class="sr-only">文章列表</h1>
+<section class="home-feed" aria-label="文章列表">
+  {{ $articles := where .Site.RegularPages "Section" "in" (slice "blog" "weekly" "topics") }}
+  {{ range $articles.ByDate.Reverse }}
+    {{ partial "lab/row.html" . }}
+  {{ end }}
+</section>
 {{ end }}
