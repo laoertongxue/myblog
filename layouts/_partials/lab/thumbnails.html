@@ -1,0 +1,31 @@
+{{- $page := . -}}
+{{- $sources := slice -}}
+{{- with .Params.images -}}
+  {{- $sources = . -}}
+{{- else -}}
+  {{- with .Params.cover -}}
+    {{- $sources = slice . -}}
+  {{- else -}}
+    {{- range $page.Resources.ByType "image" -}}
+      {{- $sources = $sources | append .Name -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $sources -}}
+<div class="list-thumbnails" style="--thumbnail-count:{{ math.Min 3 (len .) }}">
+  {{- range $index, $source := first 3 . -}}
+    {{- $url := $source | relURL -}}
+    {{- $resource := $page.Resources.GetMatch $source -}}
+    {{- if not $resource }}{{ $resource = resources.Get $source }}{{ end -}}
+    {{- with $resource -}}
+      {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") -}}
+        {{- $preview := .Fill "520x520 webp q80" -}}
+        {{- $url = $preview.RelPermalink -}}
+      {{- else -}}
+        {{- $url = .RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
+    <img src="{{ $url }}" alt="{{ $page.Title }} 配图 {{ add $index 1 }}" loading="lazy" decoding="async" width="520" height="520">
+  {{- end -}}
+</div>
+{{- end -}}

@@ -1,5 +1,5 @@
 <article class="post-row">
   <div class="row-date">{{ if eq .Section "weekly" }}<span class="volume">Vol. {{ .File.ContentBaseName }}</span>{{ end }}{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}</div>
-  <div class="row-body"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>{{ with .Description }}<p>{{ . }}</p>{{ end }}{{ partial "lab/tags.html" . }}</div>
+  <div class="row-body"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>{{ partial "lab/thumbnails.html" . }}{{ with .Description }}<p>{{ . }}</p>{{ end }}{{ partial "lab/tags.html" . }}</div>
   <a class="row-arrow" href="{{ .RelPermalink }}" aria-label="阅读：{{ .Title }}">→</a>
 </article>

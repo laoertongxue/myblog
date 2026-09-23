@@ -4,6 +4,7 @@ import argparse
 from html.parser import HTMLParser
 from pathlib import Path
 import subprocess
+import shutil
 import tempfile
 
 
@@ -44,12 +45,26 @@ def check(destination=None):
             article = content / section / name / 'index.md'
             article.parent.mkdir(parents=True, exist_ok=True)
             article.write_text(f'---\ntitle: "测试文章 {i}"\nslug: "{name}"\ndate: 2020-01-{i:02d}\nweight: {i}\ndescription: "分页测试文章"\n---\n测试正文。\n')
+            if i in (21, 22, 23):
+                for image in range(1, 5):
+                    shutil.copy(root / 'assets/images/avatar-wangye.png', article.parent / f'photo-{image}.png')
+                if i == 22:
+                    article.write_text(article.read_text().replace('weight:', 'images: ["photo-3.png", "photo-1.png"]\nweight:'))
+                if i == 21:
+                    article.write_text(article.read_text().replace('weight:', 'cover: "photo-2.png"\nweight:'))
             expected.insert(0, f'/{section}/{name}/')
         for name, metadata in [('future', 'date: 2999-01-01'), ('draft', 'date: 2020-02-01\ndraft: true')]:
             article = content / 'blog' / name / 'index.md'
             article.parent.mkdir(parents=True)
             article.write_text(f'---\ntitle: "不应发布"\nslug: {name}\n{metadata}\n---\n')
         subprocess.run(['hugo', '--gc', '--minify', '--contentDir', str(content), '--destination', str(output)], cwd=root, check=True, capture_output=True)
+        first_page = (output / 'index.html').read_text()
+        assert first_page.count('class=list-thumbnails') + first_page.count('class="list-thumbnails"') == 3
+        for count in (1, 2, 3):
+            assert f'--thumbnail-count:{count}' in first_page
+        assert 'photo-4_' not in first_page, 'Preview should be limited to three images'
+        assert 'photo-3_' in first_page and '.webp' in first_page
+        print('ok    thumbnails: explicit images, cover fallback, bundle discovery, three-image limit')
         combined = []
         for page, count in [(1, 10), (2, 10), (3, 3)]:
             html = output / ('index.html' if page == 1 else f'page/{page}/index.html')
