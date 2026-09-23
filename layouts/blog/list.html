@@ -1,1 +1,1 @@
-{{ define "main" }}{{ partial "lab/header.html" . }}{{ $pager := .Paginate .RegularPages.ByDate.Reverse 10 }}{{ range $pager.Pages }}{{ partial "lab/row.html" . }}{{ end }}{{ partial "lab/pagination.html" $pager }}{{ end }}
+{{ define "main" }}{{ partial "lab/breadcrumb.html" . }}{{ $pager := .Paginate .RegularPages.ByDate.Reverse 10 }}{{ range $pager.Pages }}{{ partial "lab/row.html" . }}{{ end }}{{ partial "lab/pagination.html" $pager }}{{ end }}

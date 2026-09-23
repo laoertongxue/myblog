@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ partial "lab/header.html" . }}
+{{ partial "lab/breadcrumb.html" . }}
 {{ if eq .Parent .Site.Home }}
   {{ $pager := .Paginate .Sections 10 }}
   {{ range $pager.Pages }}<article class="post-row topic-row"><div class="row-date">{{ len .RegularPagesRecursive }} 篇文章{{ if .Params.testContent }} · 测试专题{{ end }}</div><div class="row-body"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>{{ partial "lab/thumbnails.html" . }}<p>{{ .Description }}</p><a class="read-more" href="{{ .RelPermalink }}">浏览专题 →</a></div></article>{{ end }}
