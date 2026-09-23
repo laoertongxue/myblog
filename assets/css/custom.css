@@ -165,3 +165,8 @@ h3 { font-size:21px; }
   html { scroll-behavior:auto; }
   .list-thumbnails img { transition:none; }
 }
+
+/* Compact legal footer; primary sections are available directly in the header. */
+.page-footer .back-top { margin:0 0 25px; }
+.page-footer p+p { margin-top:8px; }
+.page-footer p a { text-decoration:underline; text-decoration-color:#ccc6b8; }

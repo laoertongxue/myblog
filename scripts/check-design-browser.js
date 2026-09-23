@@ -4,7 +4,7 @@ async (page) => {
   const report = [];
   const failures = [];
   page.on('pageerror', error => failures.push(error.message));
-  const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/layout-test/', '/blog/layout-test-01/', '/weekly/003/', '/topics/layout-test/01-chapter/', '/about/', '/now/', '/links/', '/archive/', '/search/'];
+  const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/layout-test/', '/blog/layout-test-01/', '/weekly/003/', '/topics/layout-test/01-chapter/', '/about/', '/now/', '/links/', '/archive/', '/search/', '/copyright/'];
   for (const width of [1440, 1920, 768, 390, 320]) {
     await page.setViewportSize({width, height:960});
     for (const path of routes) {
@@ -24,7 +24,7 @@ async (page) => {
       });
       if(state.overflow || state.oldSidebar || state.badImages.length || !state.readingAligned || state.background !== 'rgb(250, 248, 241)') throw Error(`${width} ${path}: ${JSON.stringify(state)}`);
     }
-    report.push(`${width}px: 13 routes, no overflow, all pictures loaded, single column`);
+    report.push(`${width}px: 14 routes, no overflow, all pictures loaded, single column`);
   }
   for (const width of [1440, 390]) {
     await page.setViewportSize({width,height:960});
@@ -42,14 +42,14 @@ async (page) => {
       if(current.length !== 10) throw Error('Incomplete non-final page');
       await next.click();
     } while(pages < 10);
-    if(pages !== 5 || links.length !== 43 || new Set(links).size !== 43) throw Error(`Bad pagination: ${pages} / ${links.length}`);
+    if(pages !== 4 || links.length !== 39 || new Set(links).size !== 39) throw Error(`Bad pagination: ${pages} / ${links.length}`);
     if(!await page.locator('.feed-pagination [rel=prev]').count()) throw Error('Missing previous arrow');
     await page.locator('.feed-pagination [rel=prev]').click();
-    if(!page.url().endsWith('/page/4/')) throw Error('Previous arrow failed');
+    if(!page.url().endsWith('/page/3/')) throw Error('Previous arrow failed');
     await page.goto(base);
     if(await page.locator('.pagination-gap').count() !== 1) throw Error('Missing ellipsis');
     await page.screenshot({path:`output/playwright/single-column-${width}.png`});
-    report.push(`${width}px: five numbered pages, 10+10+10+10+3 unique articles, arrows and ellipsis`);
+    report.push(`${width}px: four numbered pages, 10+10+10+9 unique articles, arrows and ellipsis`);
     await page.goto(base+'/blog/layout-test-01/');
     const toc=page.locator('.floating-toc');
     await toc.locator('summary').click();

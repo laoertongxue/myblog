@@ -57,22 +57,25 @@ paginate = 10
 [[menu.main]]
   name = "Weekly"
   pageRef = "/weekly"
-  weight = 2
+  weight = 3
   [menu.main.params]
+    placement = "leading"
     icon = "book"
 
 [[menu.main]]
   name = "专题"
   pageRef = "/topics"
-  weight = 3
+  weight = 4
   [menu.main.params]
+    placement = "leading"
     icon = "folder"
 
 [[menu.main]]
   name = "博客"
   pageRef = "/blog"
-  weight = 4
+  weight = 5
   [menu.main.params]
+    placement = "leading"
     icon = "book"
 
 [[menu.main]]
@@ -87,11 +90,12 @@ paginate = 10
 [[menu.main]]
   name = "搜索"
   pageRef = "/search"
-  weight = 6
+  weight = 2
   [menu.main.params]
     placement = "leading"
 
 [[menu.utility]]
+  identifier = "archive"
   name = "归档"
   pageRef = "/archive"
   weight = 1
@@ -109,6 +113,17 @@ paginate = 10
   weight = 3
   [menu.utility.params]
     placement = "quick"
+
+[[menu.utility]]
+  identifier = "copyright"
+  name = "版权与隐私"
+  pageRef = "/copyright"
+  weight = 4
+
+[params.registration]
+  icp = ""
+  police = ""
+  policeURL = ""
 
 [taxonomies]
   tag = "tags"

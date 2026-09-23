@@ -1,7 +1,6 @@
 <header class="site-header">
   <nav class="header-primary" aria-label="主导航">
     {{ range where .Site.Menus.main "Params.placement" "leading" }}<a href="{{ .URL | relURL }}" {{ if eq ($.RelPermalink) (.URL | relURL) }}aria-current="page"{{ end }}>{{ .Name }}</a>{{ end }}
-    <a href="#site-navigation">导航 ↓</a>
   </nav>
   <nav class="header-utility" aria-label="更多页面">
     {{ range .Site.Menus.main }}{{ if eq .Params.placement "quick" }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}{{ end }}
