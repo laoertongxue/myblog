@@ -52,10 +52,10 @@ h3 { font-size:21px; }
 .list-thumbnails a:hover img { opacity:.88; }
 .test-label { font-size:11px; letter-spacing:.08em; border:1px solid #ddd8cb; padding:0 6px; line-height:1.8; color:#8b8170; }
 .test-notice { margin:0 0 28px; padding:12px 16px; border-left:2px solid #b2aa94; background:var(--lab-wash); color:#777163; font-size:14px; }
-.feed-pagination { display:flex; flex-wrap:wrap; align-items:center; gap:15px; margin:60px 0 100px; font-size:18px; }
-.feed-pagination a,.feed-pagination>span { display:inline-flex; align-items:center; justify-content:center; min-width:38px; min-height:42px; }
-.feed-pagination [aria-current=page] { color:var(--lab-ink); border-bottom:1px solid currentColor; font-weight:650; }
-.feed-pagination a { color:var(--lab-muted); }
+.feed-pagination { display:flex; flex-wrap:wrap; align-items:center; gap:15px; margin:60px 0 100px; font-size:17px; }
+.feed-pagination a,.feed-pagination>span { display:inline-flex; align-items:center; justify-content:center; min-width:35px; min-height:35px; }
+.feed-pagination [aria-current=page] { color:var(--lab-paper); background:#161616; border-radius:4px; font-weight:500; }
+.feed-pagination a { color:#161616; border-radius:4px; }
 .feed-pagination a:hover { color:var(--lab-ink); }
 .feed-pagination .pagination-gap { min-width:20px; }
 .page-footer { margin-top:80px; padding:44px 0 48px; border-top:1px solid var(--lab-line); color:var(--lab-muted); font-size:14px; }
