@@ -1,0 +1,8 @@
+{{- $current := "" -}}
+{{- $url := .menu.URL | relURL -}}
+{{- if eq .page.RelPermalink $url -}}
+  {{- $current = "page" -}}
+{{- else if and (ne $url ("/" | relURL)) (hasPrefix .page.RelPermalink $url) -}}
+  {{- $current = "location" -}}
+{{- end -}}
+{{- return $current -}}

@@ -12,7 +12,9 @@
     });
     menuDialog.querySelector('.mobile-menu-close').addEventListener('click', close);
     menuDialog.addEventListener('click', event => {
-      if (event.target === menuDialog || event.target.closest('a')) close();
+      const bounds = menuDialog.getBoundingClientRect();
+      const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+      if ((event.target === menuDialog && outside) || event.target.closest('a')) close();
     });
     menuDialog.addEventListener('close', () => {
       menuToggle.setAttribute('aria-expanded', 'false');

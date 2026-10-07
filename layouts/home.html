@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ $pager := partial "lab/pager.html" . }}
 <section class="home-feed" aria-label="文章列表">
-  {{ range $i, $p := $pager.Pages }}{{ partial "lab/row.html" (dict "page" . "priority" (eq $i 0)) }}{{ end }}
+  {{ $firstImagePage := partial "lab/first-image-page.html" $pager.Pages }}{{ range $i, $p := $pager.Pages }}{{ partial "lab/row.html" (dict "page" . "priority" (eq .RelPermalink $firstImagePage)) }}{{ end }}
 </section>
 {{ partial "lab/pagination.html" $pager }}
 {{ end }}

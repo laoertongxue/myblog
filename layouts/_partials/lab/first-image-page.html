@@ -1,0 +1,8 @@
+{{- $first := "" -}}
+{{- range . -}}
+  {{- if partial "lab/image-sources.html" . -}}
+    {{- $first = .RelPermalink -}}
+    {{- break -}}
+  {{- end -}}
+{{- end -}}
+{{- return $first -}}

@@ -1,7 +1,7 @@
 /* 12Lab: warm, single-column journal. This file is included by Hextra. */
 :root {
   --lab-ink:#30302e;
-  --lab-muted:#8d8c86;
+  --lab-muted:#706f69;
   --lab-accent:#655d47;
   --lab-line:#e9e6de;
   --lab-wash:#f1eee6;
@@ -17,7 +17,7 @@ a:hover { color:var(--lab-accent); text-decoration:underline; }
 button,input { font:inherit; color:inherit; }
 button,summary { cursor:pointer; }
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible { outline:2px solid var(--lab-accent); outline-offset:5px; }
-h1,h2,h3,p { margin:0; }
+h1,h2,h3,p { margin:0; overflow-wrap:anywhere; }
 h1,h2,h3 { font-family:inherit; color:#292927; font-weight:650; line-height:1.5; }
 h1 { font-size:28px; }
 h2 { font-size:24px; }
@@ -29,7 +29,7 @@ h3 { font-size:21px; }
 .site-header { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:36px 0 0; font-size:16px; }
 .site-header nav { display:flex; align-items:center; flex-wrap:wrap; gap:18px; }
 .header-primary a+a::before { content:"|"; color:#aaa79e; display:inline-block; margin-right:18px; }
-.site-header a[aria-current=page] { text-decoration:underline; }
+.site-header a[aria-current] { text-decoration:underline; }
 .site-workspace { min-height:calc(100vh - 70px); display:flex; flex-direction:column; }
 .page-content { padding:92px 0 0; flex:1; min-width:0; outline:none; }
 .breadcrumbs { display:flex; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--lab-muted); margin-bottom:26px; }
@@ -170,7 +170,7 @@ h3 { font-size:21px; }
 .mobile-menu-close { border:0; background:transparent; width:44px; height:44px; font-size:30px; line-height:1; }
 .mobile-navigation nav { display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; }
 .mobile-navigation nav a { display:block; padding:12px 10px; border-radius:4px; font-size:16px; }
-.mobile-navigation nav a[aria-current=page] { background:var(--lab-wash); font-weight:600; }
+.mobile-navigation nav a[aria-current] { background:var(--lab-wash); font-weight:600; }
 html.navigation-open { overflow:hidden; }
 @media (max-width:760px) {
   .site-header { flex-wrap:nowrap; align-items:center; gap:16px; padding-top:18px; }
