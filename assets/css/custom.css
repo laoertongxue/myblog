@@ -32,10 +32,6 @@ h3 { font-size:21px; }
 .site-header a[aria-current=page] { text-decoration:underline; }
 .site-workspace { min-height:calc(100vh - 70px); display:flex; flex-direction:column; }
 .page-content { padding:92px 0 0; flex:1; min-width:0; outline:none; }
-.home-intro { display:flex; align-items:center; gap:24px; justify-content:space-between; margin-bottom:112px; }
-.home-intro h1 { font-size:29px; margin-bottom:5px; }
-.home-intro p { color:var(--lab-muted); }
-.avatar { width:72px; height:72px; object-fit:cover; border-radius:50%; background:#e9e6df; }
 .breadcrumbs { display:flex; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--lab-muted); margin-bottom:26px; }
 .post-row { display:block; padding:0 0 50px; margin:0 0 50px; border-bottom:1px solid var(--lab-line); }
 .row-date { display:flex; flex-wrap:wrap; align-items:center; gap:14px; color:var(--lab-muted); font-size:15px; margin-bottom:10px; }
@@ -139,7 +135,6 @@ h3 { font-size:21px; }
   .site-header nav { gap:10px; }
   .header-primary a+a::before { margin-right:10px; }
   .page-content { padding-top:65px; }
-  .home-intro { display:none; }
   .home-content { padding-top:36px; }
   h1,.article-heading h1 { font-size:25px; }
   .row-body h2 { font-size:22px; }

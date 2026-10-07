@@ -1,6 +1,5 @@
 {{ define "main" }}
 {{ $pager := partial "lab/pager.html" . }}
-<header class="home-intro"><div><h1>{{ .Site.Params.author.name }}</h1><p>{{ .Site.Params.description }}</p></div><a href="{{ "about/" | relURL }}" aria-label="关于拾贰画生"><img class="avatar" loading="lazy" src="{{ partial "lab/avatar-src.html" . }}" width="72" height="72" alt="拾贰画生的头像"></a></header>
 <section class="home-feed" aria-label="文章列表">
   {{ range $i, $p := $pager.Pages }}{{ partial "lab/row.html" (dict "page" . "priority" (eq $i 0)) }}{{ end }}
 </section>
