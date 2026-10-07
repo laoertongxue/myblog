@@ -16,6 +16,9 @@ fail() { printf 'FAIL  %s\n' "$1" >&2; exit 1; }
 ok()   { printf 'ok    %s\n' "$1"; }
 
 printf '==> hugo --gc --minify (same flags as CI)\n'
+# Only disposable build destinations inside this repository may be cleared.
+case "$OUT" in .hugo-check|public) ;; *) fail "unsupported build output: $OUT" ;; esac
+[ ! -L "$OUT" ] || fail "build output must not be a symlink"
 rm -rf "$OUT"
 hugo --gc --minify --destination "$OUT" >/dev/null
 
@@ -25,27 +28,7 @@ PAGES=$(find "$OUT" -name '*.html' | wc -l | tr -d ' ')
 [ "$PAGES" -ge "$MIN_PAGES" ] || fail "only $PAGES pages built (floor $MIN_PAGES)"
 ok "built $PAGES pages"
 
-# R2: every blog post must pin its slug. [permalinks] blog = "/blog/:slug/"
-# falls back to the title, so an unslugged post gets a title-derived URL and a
-# later title edit silently breaks the published link.
-missing=""
-for dir in content/blog/*/; do
-  [ -f "$dir/index.md" ] || continue
-  name=$(basename "$dir")
-  grep -Eq "^slug: *\"?'?${name}\"?'?$" "$dir/index.md" || missing="$missing $name"
-done
-[ -z "$missing" ] || fail "blog posts without a matching slug:$missing"
-ok "every blog post pins its slug"
-
-# R4: an Article schema built from a page with no `date` publishes year 1, and
-# head-end.html now drops the schema instead - a silent SEO loss. Assert the
-# date on the content side, where the real invariant lives.
-nodate=""
-for f in $(find content/blog content/weekly content/topics -name 'index.md' ! -name '_index.md' 2>/dev/null | sort); do
-  grep -Eq '^date: *[0-9]{4}-[0-9]{2}-[0-9]{2}' "$f" || nodate="$nodate $f"
-done
-[ -z "$nodate" ] || fail "article pages without a valid date:$nodate"
-ok "every article page declares a date"
+python3 scripts/check-content.py
 
 if grep -rq '0001-01-01' "$OUT"; then
   fail "a page publishes a 0001-01-01 date - a dated content type is missing front matter date"
@@ -71,5 +54,8 @@ ok "$IMAGES processed image(s) emitted"
 python3 scripts/check-home-pagination.py
 python3 scripts/check-static-output.py "$OUT"
 python3 scripts/check-seo.py "$OUT"
+
+python3 scripts/check-content-workflow.py
+python3 scripts/check-deploy-release.py
 
 printf '\nAll checks passed.\n'

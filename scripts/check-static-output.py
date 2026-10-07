@@ -17,18 +17,27 @@ class Check(HTMLParser):
         attrs = dict(attrs)
         if 'site-sidebar' in attrs.get('class', '').split():
             errors.append(f'{self.file}: old sidebar remains')
-        key = 'src' if tag == 'img' else 'href' if tag == 'a' else None
-        if not key or not attrs.get(key):
-            return
-        url = urlsplit(attrs[key])
-        if url.scheme or url.netloc or not url.path:
-            return
-        path = unquote(url.path)
-        target = output / path.lstrip('/') if path.startswith('/') else self.file.parent / path
-        if target.is_dir():
-            target /= 'index.html'
-        if not target.exists():
-            errors.append(f'{self.file.relative_to(output)}: missing {attrs[key]}')
+        references = []
+        if tag in ('img', 'script', 'source') and attrs.get('src'):
+            references.append(attrs['src'])
+        if tag == 'a' and attrs.get('href'):
+            references.append(attrs['href'])
+        if tag == 'link' and attrs.get('rel') in ('stylesheet', 'preload', 'modulepreload') and attrs.get('href'):
+            references.append(attrs['href'])
+        if attrs.get('data-index'):
+            references.append(attrs['data-index'])
+        if attrs.get('srcset') and not attrs['srcset'].startswith('data:'):
+            references.extend(part.strip().split()[0] for part in attrs['srcset'].split(',') if part.strip())
+        for reference in references:
+            url = urlsplit(reference)
+            if (url.scheme and url.scheme not in ('http', 'https')) or (url.netloc and url.netloc != '12lab.cn') or not url.path:
+                continue
+            path = unquote(url.path)
+            target = output / path.lstrip('/') if path.startswith('/') else self.file.parent / path
+            if target.is_dir():
+                target /= 'index.html'
+            if not target.exists():
+                errors.append(f'{self.file.relative_to(output)}: missing {reference}')
         if tag == 'img':
             images += 1
             if 'alt' not in attrs:

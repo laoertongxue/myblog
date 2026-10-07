@@ -6,3 +6,6 @@
 /output/playwright/
 .hugo-check/
 .qoder/
+
+__pycache__/
+*.pyc

@@ -31,14 +31,15 @@ GitHub Actions 构建后 rsync 到单机 Caddy。
 | 专题文章 | `content/topics/<topic>/<NN-name>/index.md` | `date`、`weight`、`description` | 目录名 |
 | 单页 | `content/<name>/index.md` | 无 `date` 也可 | 目录名 |
 
-- **博客必须有 `slug`。** `[permalinks] blog = "/blog/:slug/"` 在缺 `slug` 时会回退到**标题**，
+- **准备发布或定时发布的博客必须有 `slug`。** `[permalinks] blog = "/blog/:slug/"` 在缺 `slug` 时会回退到**标题**，
   于是中文标题会产生百分号编码的线上地址，之后改一次标题就等于永久断链。
   需要保留旧地址时用 `aliases: ["/blog/<旧路径>/"]`，Hugo 会生成 meta-refresh 重定向页。
 - **周刊的目录名同时决定 URL 和页面上显示的 `Vol. NNN`**（`row.html`、`article.html` 读
   `.File.ContentBaseName`）。改名等于换链接又改期号。
 - **专题章节顺序与上下篇都由 `weight` 决定**（`chapters.html`、`article.html`）。曾经存在的
   `prev:`/`next:` 字段没有任何模板读取，已删除——不要再加回来。
-- `date` 是 `blog`/`weekly`/`topics` 的硬性要求：缺日期会让 Article 结构化数据发布 `0001-01-01`。
+- `date` 是非草稿 `blog`/`weekly`/`topics` 的硬性要求（由 Hugo 解析，支持带引号日期）：缺日期会让 Article 结构化数据发布 `0001-01-01`。
+  `draft: true` 的内容允许暂缺必填元数据，但 front matter 本身仍须能被 Hugo 解析。
   反过来，**未来日期会被 Hugo 主动排除**，到期内容由 `deploy.yml` 的 `schedule` 触发（每天 00:10
   Asia/Shanghai）重建后才会出现，不依赖是否有人 push。
 
@@ -65,9 +66,13 @@ GitHub Actions 构建后 rsync 到单机 Caddy。
 - `scripts/Caddyfile` **不由 CI 下发**。生效方式是登录服务器执行 `scripts/server-init.sh`
   （`caddy validate` → 安装到 `/etc/caddy/Caddyfile` → `systemctl reload caddy`）。
   缓存与安全头类改动如果没有这一步，线上不会变化。
-- 服务器上 `/var/www/12lab.cn/current` 必须是**符号链接**（原子切换依赖它）；若它是普通目录，
-  `deploy.yml` 里的一次性迁移分支会先删掉再建链接。
-- 发布产物落在 `releases/<时间戳>/`，只保留最近 5 份；健康检查失败时回滚到上一个 release。
+- 服务器上 `/var/www/12lab.cn/current` 必须是**符号链接**；发布脚本遇到普通目录会中止，禁止自动删除迁移。
+- 发布产物落在 `releases/<UTC时间戳>-<run_id>-<attempt>/`，保留 5 份并保护当前和上一份正常版本。
+- `release-manifest.json` 记录全部文件的 SHA-256、HTML 数量及关键 HTTP 探针。远端校验后才切换。
+- `scripts/deploy-release.py` 在切换前保存 current 原目标；HTTP、网络或中断异常均恢复该目标，禁止按目录时间猜测回滚版本。
+- 发布账户为 `deploy12lab`，仅写站点目录和自己的 home，无 sudo；CI 使用 `DEPLOY_SSH_KEY_DEPLOY12LAB`。
+- SSH 指纹固定在 `scripts/deploy-known-hosts`，更新前通过可信管理员连接核验，禁止关闭 StrictHostKeyChecking。
+- 初次配置部署账户运行 `scripts/setup-deploy-user.sh <公钥文件>`，管理员负责 Caddy 配置，不给发布账户授权。
 
 ## 不要提交
 
@@ -82,3 +87,5 @@ GitHub Actions 构建后 rsync 到单机 Caddy。
 - `testContent: true` / `noindex: true` 内容不进入 sitemap、RSS；搜索页与纯测试标签页输出 noindex。
 - 通用交互放 `assets/js/lab.js`，搜索逻辑仅在搜索页加载 `assets/js/search.js`。搜索索引带内容指纹。
 - `make check` 同时验证 SEO、图片链接、分页及内容契约；浏览器交互检查使用 `scripts/check-design-browser.js` 与 `scripts/check-mobile-navigation.js`。
+
+- `make check` 还包含三类文章的真实生成测试和发布故障注入测试；均在临时目录执行，不触及线上 current。
