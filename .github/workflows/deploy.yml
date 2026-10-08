@@ -40,14 +40,6 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
-      - name: Setup Go
-        uses: actions/setup-go@v7.0.0
-        with:
-          go-version: '1.27'
-
-      - name: Hugo Mod Tidy
-        run: hugo mod tidy
-
       - name: Build
         run: OUT=public make check
 

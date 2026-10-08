@@ -1,5 +1,6 @@
 baseURL = "https://12lab.cn/"
 title = "拾贰画生 · 有那么点儿追求的中年男人"
+theme = "hextra"
 enableRobotsTXT = true
 enableEmoji = true
 defaultContentLanguage = "zh-cn"
@@ -27,10 +28,6 @@ timeout = "60s"
     endLevel = 3
   [markup.highlight]
     noClasses = false
-
-[module]
-  [[module.imports]]
-    path = "github.com/imfing/hextra"
 
 [params]
   avatar = "images/avatar-wangye.png"

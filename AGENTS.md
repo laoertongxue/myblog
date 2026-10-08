@@ -1,7 +1,8 @@
 # AGENTS.md — 12lab.cn
 
-Hugo 静态站（主题以 Go module 方式引入 `github.com/imfing/hextra`，不是 `themes/`），
-GitHub Actions 构建后 rsync 到单机 Caddy。
+Hugo 静态站（主题已 vendor 进 `themes/hextra/`，来源是 `github.com/imfing/hextra`
+v0.12.3，由 `hugo.toml` 的 `theme = "hextra"` 启用），GitHub Actions 构建后
+rsync 到单机 Caddy。
 
 ## 改动前必须知道的事
 
