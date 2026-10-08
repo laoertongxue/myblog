@@ -10,7 +10,8 @@
       menuToggle.setAttribute('aria-expanded', 'true');
       document.documentElement.classList.add('navigation-open');
     });
-    menuDialog.querySelector('.mobile-menu-close').addEventListener('click', close);
+    const closeButton = menuDialog.querySelector('.mobile-menu-close');
+    if (closeButton) closeButton.addEventListener('click', close);
     menuDialog.addEventListener('click', event => {
       const bounds = menuDialog.getBoundingClientRect();
       const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;

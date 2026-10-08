@@ -9,6 +9,5 @@
 {{- $img := resources.Get $param }}
 {{- if not $img }}
   {{- errorf "params.avatar %q not found under assets/ - see the '样式与图片' section of AGENTS.md" $param }}
-  {{- return ($param | relURL) }}
 {{- end }}
 {{- return ($img.Fill "216x216 webp q80").RelPermalink }}

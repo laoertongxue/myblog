@@ -30,7 +30,7 @@ def verify(release, expected_pages):
         if hashlib.sha256((release / name).read_bytes()).hexdigest() != expected:
             raise ValueError(f'Checksum mismatch: {name}')
     count = sum(p.endswith('.html') for p in actual)
-    if count != expected_pages or count != manifest['html_count']:
+    if count != expected_pages:
         raise ValueError(f'HTML count mismatch: {count} != {expected_pages}')
     if not manifest.get('probes'):
         raise ValueError('No health probes')

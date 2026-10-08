@@ -1,6 +1,6 @@
 {{- $pages := .RegularPagesRecursive -}}
 {{- if .IsHome }}{{ $pages = where .Site.RegularPages "Section" "in" (slice "blog" "weekly" "topics") }}{{ end -}}
-{{- $pages = where $pages "Params.testcontent" "ne" true -}}
+{{- $pages = where $pages "Params.testContent" "ne" true -}}
 {{- $pages = where $pages "Params.noindex" "ne" true -}}
 {{ printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
