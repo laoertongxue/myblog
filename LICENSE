@@ -1,0 +1,30 @@
+# License
+
+本仓库（包括但不限于 `content/`、`layouts/`、`scripts/`、`assets/`、`hugo.toml`、
+`AGENTS.md`、`README.md`、`Makefile`、`archetypes/`，**不含** `themes/hextra/` 自带的
+MIT 许可部分）采用 **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
+International（CC BY-NC-ND 4.0）** 协议授权。
+
+Copyright © 2026 拾贰画生（laoertongxue）
+
+## 你可以
+
+- **分享** — 在任何媒介以任何形式复制、转载本作品
+
+## 必须遵守
+
+- **署名（Attribution）** — 你必须给出适当的署名，提供指向本许可协议的链接，同时标明是否对作品做了修改。署名建议保留原作者"拾贰画生"并附 https://12lab.cn/。
+- **非商业性使用（NonCommercial）** — 你不得将本作品用于商业目的。
+- **不可修改（NoDerivatives）** — 如果你对作品进行重混、转换或基于其进行再创作，你不得分发修改后的作品。
+
+## 完整法律文本
+
+- 完整法律文本（Legal Code）：https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+- 人类可读摘要（Deed）：https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+完整法律文本以 creativecommons.org 上的版本为准；本文件仅为人类可读摘要与导航。
+
+## 主题例外
+
+`themes/hextra/` 下 vendored 的 [Hextra](https://github.com/imfing/hextra) 主题代码
+遵循其上游的 MIT 许可（见 `themes/hextra/LICENSE`）。
