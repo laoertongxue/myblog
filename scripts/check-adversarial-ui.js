@@ -29,7 +29,7 @@ async (page) => {
   for (const [route, target, state] of [
     ['/blog/layout-test-01/', '/blog/', 'location'],
     ['/weekly/003/', '/weekly/', 'location'],
-    ['/topics/layout-test/01-chapter/', '/topics/', 'location'],
+    ['/topics/agent-engineering/01-agent-framework/', '/topics/', 'location'],
     ['/blog/', '/blog/', 'page'],
     ['/about/', '/about/', 'page'],
     ['/now/', '/now/', 'page'],

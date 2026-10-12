@@ -4,7 +4,7 @@ async (page) => {
   const report = [];
   const failures = [];
   page.on('pageerror', error => failures.push(error.message));
-  const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/layout-test/', '/blog/layout-test-01/', '/weekly/003/', '/topics/layout-test/01-chapter/', '/about/', '/now/', '/links/', '/archive/', '/search/', '/copyright/', '/tags/', '/tags/测试内容/', '/categories/', '/404.html'];
+  const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/agent-engineering/', '/blog/layout-test-01/', '/weekly/003/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/', '/about/', '/now/', '/links/', '/archive/', '/search/', '/copyright/', '/tags/', '/tags/测试内容/', '/categories/', '/404.html'];
   for (const width of [1440, 1920, 768, 390, 320]) {
     await page.setViewportSize({width, height:960});
     for (const path of routes) {
@@ -24,7 +24,7 @@ async (page) => {
       });
       if(state.overflow || state.oldSidebar || state.badImages.length || !state.readingAligned || state.background !== 'rgb(250, 248, 241)') throw Error(`${width} ${path}: ${JSON.stringify(state)}`);
     }
-    report.push(`${width}px: 18 routes, no overflow, all pictures loaded, single column`);
+    report.push(`${width}px: ${routes.length} routes, no overflow, all pictures loaded, single column`);
   }
   for (const width of [1440, 390]) {
     await page.setViewportSize({width,height:960});
@@ -69,7 +69,7 @@ async (page) => {
     await page.screenshot({path:`output/playwright/single-article-${width}.png`});
     report.push(`${width}px: TOC opens, jumps, highlights, closes on Escape and outside click`);
   }
-  for(const path of ['/blog/','/weekly/','/topics/layout-test/','/tags/测试内容/','/categories/图文测试/']) {
+  for(const path of ['/blog/','/weekly/','/tags/测试内容/','/categories/图文测试/']) {
     await page.goto(base+path);
     if(await page.locator('.post-row').count()!==10) throw Error(`${path}: first page count`);
     await page.locator('.feed-pagination [rel=next]').click();
@@ -79,7 +79,9 @@ async (page) => {
   await page.waitForFunction(()=>document.querySelectorAll('.search-result').length>0);
   await page.locator('[data-filter=weekly]').click();
   await page.waitForFunction(()=>[...document.querySelectorAll('.result-kind')].every(n=>n.textContent==='Weekly'));
-  report.push('Blog, Weekly and topic pagination; search and filters work');
+  await page.goto(base+'/topics/agent-engineering/');
+  if(await page.locator('.post-row').count()!==2 || await page.locator('.feed-pagination').count()) throw Error('Topic must show both chapters without pagination');
+  report.push('Blog and Weekly pagination; two-chapter topic list; search and filters work');
   const context = await page.context().browser().newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const fallback=await context.newPage();
   await fallback.goto(base);

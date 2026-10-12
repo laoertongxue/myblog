@@ -35,12 +35,39 @@ class FeedParser(HTMLParser):
             self.in_feed = False
 
 
+class TopicParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.in_article = self.in_heading = False
+        self.links = []
+        self.next = None
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == 'article' and 'post-row' in attrs.get('class', '').split():
+            self.in_article = True
+        if self.in_article and tag == 'h2':
+            self.in_heading = True
+        if self.in_heading and tag == 'a':
+            self.links.append(attrs['href'])
+        if tag == 'a' and attrs.get('rel') == 'next':
+            self.next = attrs['href']
+
+    def handle_endtag(self, tag):
+        if tag == 'h2': self.in_heading = False
+        if tag == 'article': self.in_article = False
+
+
 def check(destination=None):
     root = Path(__file__).resolve().parent.parent
     with tempfile.TemporaryDirectory(prefix='12lab-pagination-') as temporary:
         content = Path(temporary) / 'content'
         output = Path(destination).resolve() if destination else Path(temporary) / 'public'
         expected = []
+        for section, title in [('topics', '测试专题'), ('topics/example', '章节分页测试')]:
+            directory = content / section
+            directory.mkdir(parents=True, exist_ok=True)
+            (directory / '_index.md').write_text(f'---\ntitle: "{title}"\ndescription: "仅用于临时分页验收"\n---\n')
         for i in range(1, 44):
             section = ('blog', 'weekly', 'topics/example')[i % 3]
             name = f'{i:03d}'
@@ -82,6 +109,18 @@ def check(destination=None):
             combined.extend(parser.links)
         assert len(set(combined)) == 43
         print('ok    homepage pagination: 10 + 10 + 10 + 10 + 3, date order, no duplicates, drafts/future excluded')
+        chapters = [f'/topics/example/{i:03d}/' for i in range(1, 44) if i % 3 == 2]
+        combined = []
+        for page, count in [(1, 10), (2, 4)]:
+            html = output / ('topics/example/index.html' if page == 1 else f'topics/example/page/{page}/index.html')
+            parser = TopicParser()
+            parser.feed(html.read_text())
+            assert len(parser.links) == count, (page, parser.links)
+            assert parser.links == chapters[(page - 1) * 10:page * 10], 'Incorrect topic weight order'
+            assert parser.next == ('/topics/example/page/2/' if page == 1 else None), parser.next
+            combined.extend(parser.links)
+        assert len(set(combined)) == 14
+        print('ok    topic pagination fixture: 10 + 4 chapters, weight order, no duplicates')
 
 
 if __name__ == '__main__':

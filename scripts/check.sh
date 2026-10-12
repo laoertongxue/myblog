@@ -8,9 +8,8 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 OUT=${OUT:-.hugo-check}
-# Floor on generated .html files, not on Hugo's "Pages" metric (55 Pages = 34
-# HTML + 21 XML/RSS + 1 JSON here). Only meant to catch catastrophic loss.
-MIN_PAGES=${MIN_PAGES:-30}
+# Validate published routes against Hugo's current inventory, so intentional
+# topic cleanup never requires weakening an arbitrary total-page floor.
 
 fail() { printf 'FAIL  %s\n' "$1" >&2; exit 1; }
 ok()   { printf 'ok    %s\n' "$1"; }
@@ -25,8 +24,8 @@ hugo --gc --minify --destination "$OUT" >/dev/null
 [ -d "$OUT" ] && [ -n "$(ls -A "$OUT")" ] || fail "build output $OUT/ is empty"
 
 PAGES=$(find "$OUT" -name '*.html' | wc -l | tr -d ' ')
-[ "$PAGES" -ge "$MIN_PAGES" ] || fail "only $PAGES pages built (floor $MIN_PAGES)"
 ok "built $PAGES pages"
+python3 scripts/check-published-pages.py "$OUT"
 
 python3 scripts/check-content.py
 
@@ -54,6 +53,7 @@ ok "$IMAGES processed image(s) emitted"
 python3 scripts/check-home-pagination.py
 python3 scripts/check-static-output.py "$OUT"
 python3 scripts/check-seo.py "$OUT"
+python3 scripts/check-agent-series.py "$OUT"
 
 python3 scripts/check-content-workflow.py
 python3 scripts/check-deploy-release.py
