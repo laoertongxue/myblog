@@ -1,5 +1,6 @@
 ---
 title: 关于我
+aboutIntro: true
 description: "拾贰画生，有那么点儿追求的中年男人。"
 ---
 
