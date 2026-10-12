@@ -1,107 +1,395 @@
 #!/usr/bin/env python3
-"""Check the new series and its discovery outputs in the generated site."""
+"""Regression check for the long-form topic series: expectations are derived from
+content/ and from the templates, never hardcoded.
+
+The series is discovered - chapter order and titles come from the front matter
+`weight`/`title`, the expected pictures come from each chapter bundle, the
+expected rendered size comes from the source picture (read out of the file
+header) plus the rule in layouts/_markup/render-image.html, and the table /
+reference counts come from the Markdown. Adding a chapter, re-exporting a
+picture or renaming a heading therefore cannot fail this check; a lost TOC
+entry, a cropped picture, a missing original, a wrong chapter order, a lost
+table or a broken reference still can.
+"""
 from html.parser import HTMLParser
 import json
+import re
+import struct
 from pathlib import Path
 import sys
-from urllib.parse import urlsplit, urljoin
+from urllib.parse import unquote as url_unquote, urlsplit
 from xml.etree import ElementTree as ET
 
-root = Path(sys.argv[1] if len(sys.argv) > 1 else '.hugo-check')
-topic = '/topics/agent-engineering/'
-routes = [topic + name + '/' for name in ('01-agent-framework', '02-harness')]
+TOPIC_SOURCE = Path('content/topics/agent-engineering')
+TOPIC_ROUTE = '/topics/agent-engineering/'
+REMOVED_ROUTE = Path('topics/layout-test')
+# layouts/_partials/lab/thumbnails.html caps previews at three pictures.
+PREVIEW_LIMIT = 3
 
-class Page(HTMLParser):
-    def __init__(self, route):
+
+def unquote(value):
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in '"\'':
+        return value[1:-1]
+    return value
+
+
+def front_matter(path):
+    """Minimal YAML front matter reader for the scalar fields used here."""
+    match = re.match(r'^---\n(.*?)\n---\n', path.read_text(encoding='utf-8'), re.S)
+    if not match:
+        raise ValueError(f'{path}: no YAML front matter')
+    data, key = {}, None
+    for line in match.group(1).splitlines():
+        if not line.strip():
+            continue
+        if line.lstrip().startswith('- ') and key:
+            data.setdefault(key, []).append(unquote(line.lstrip()[2:]))
+            continue
+        name, _, value = line.partition(':')
+        key = name.strip()
+        value = value.strip()
+        if not value:
+            data[key] = []
+        elif value.startswith('['):
+            data[key] = [unquote(item) for item in value[1:-1].split(',') if item.strip()]
+        else:
+            data[key] = unquote(value)
+    return data
+
+
+def image_size(path):
+    """Intrinsic size of PNG / JPEG / WebP / SVG without third-party libraries."""
+    data = path.read_bytes()
+    if data.startswith(b'\x89PNG\r\n\x1a\n'):
+        return struct.unpack('>II', data[16:24])
+    if data[:2] == b'\xff\xd8':
+        index = 2
+        while index + 9 < len(data):
+            if data[index] != 0xFF:
+                index += 1
+                continue
+            marker = data[index + 1]
+            if 0xC0 <= marker <= 0xCF and marker not in (0xC4, 0xC8, 0xCC):
+                height, width = struct.unpack('>HH', data[index + 5:index + 9])
+                return width, height
+            if marker in (0xD8, 0x01) or 0xD0 <= marker <= 0xD7:
+                index += 2
+                continue
+            index += 2 + struct.unpack('>H', data[index + 2:index + 4])[0]
+        raise ValueError(f'{path}: unsupported JPEG layout')
+    if data.startswith(b'RIFF') and data[8:12] == b'WEBP':
+        chunk = data[12:16]
+        if chunk == b'VP8X':
+            return int.from_bytes(data[24:27], 'little') + 1, int.from_bytes(data[27:30], 'little') + 1
+        if chunk == b'VP8 ':
+            return int.from_bytes(data[26:28], 'little') & 0x3FFF, int.from_bytes(data[28:30], 'little') & 0x3FFF
+        if chunk == b'VP8L':
+            bits = int.from_bytes(data[21:25], 'little')
+            return (bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1
+        raise ValueError(f'{path}: unsupported WebP variant')
+    match = re.search(rb'viewBox=["\']([^"\']+)["\']', data[:2000])
+    if match:
+        parts = re.split(rb'[,\s]+', match.group(1).strip())
+        if len(parts) == 4:
+            return int(float(parts[2])), int(float(parts[3]))
+    raise ValueError(f'{path}: cannot determine the intrinsic size (add support here if this format is intentional)')
+
+
+def markdown_table_count(path):
+    return len(re.findall(r'^\|[\s|:-]+\|\s*$', path.read_text(encoding='utf-8'), re.M))
+
+
+def normalized(html):
+    """Quote unquoted attribute values so the structural regexes below also work
+    on `hugo --minify` output, which writes class=toc-panel / href=/blog/."""
+    return re.sub(r'([\w-]+)=(?!["\'])([^\s">]+)', r'\1="\2"', html)
+
+
+class Body(HTMLParser):
+    """Ordered h2/h3 headings, pictures and tables of one rendered article."""
+
+    def __init__(self, path):
         super().__init__()
-        self.text = (root / route.lstrip('/') / 'index.html').read_text()
-        self.anchors, self.images, self.ids, self.image_chapters = [], [], [], []
-        self.chapter = None
+        source = path.read_text(encoding='utf-8')
+        self.text = normalized(source)
+        self.in_prose = False
+        self.depth = 0
+        self.section = None
+        self.heading = None
+        self.heading_id = None
+        self.pictures = []
+        self.headings = []
         self.tables = 0
-        self.feed(self.text)
+        self.ids = []
+        self.feed(source)
 
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        if tag == 'a': self.anchors.append(attrs.get('href'))
-        if attrs.get('id', '').startswith('第') and '章' in attrs['id']:
-            self.chapter = attrs['id']
-        if tag == 'img':
-            self.images.append(attrs)
-            self.image_chapters.append(self.chapter)
-        if attrs.get('id'): self.ids.append(attrs['id'])
-        if tag == 'table': self.tables += 1
+        attributes = dict(attrs)
+        classes = attributes.get('class', '').split()
+        if tag == 'div' and 'prose' in classes:
+            self.in_prose = True
+            self.depth = 1
+            return
+        if not self.in_prose:
+            return
+        if tag == 'div':
+            self.depth += 1
+        if attributes.get('id'):
+            self.ids.append(attributes['id'])
+        if tag in ('h2', 'h3'):
+            self.heading = tag
+            self.heading_id = attributes.get('id')
+            self.section = ''
+        elif tag == 'img':
+            self.pictures.append({
+                'section': self.section,
+                'src': attributes.get('src'),
+                'srcset': attributes.get('srcset', ''),
+                'width': attributes.get('width'),
+                'height': attributes.get('height'),
+                'alt': attributes.get('alt'),
+            })
+        elif tag == 'table':
+            self.tables += 1
 
-overview = Page(topic)
-assert overview.anchors.index(routes[0]) < overview.anchors.index(routes[1]), 'Chapter list must follow weight order'
-
-class ThumbnailRows(HTMLParser):
-    def __init__(self, route):
-        super().__init__()
-        self.rows, self.row = [], None
-        self.heading = False
-        self.feed((root / route.lstrip('/') / 'index.html').read_text())
-
-    def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        if tag == 'article' and 'post-row' in attrs.get('class', '').split():
-            self.row = {'url': None, 'fit': None, 'images': []}
-            self.rows.append(self.row)
-        if self.row is not None:
-            if tag == 'h2': self.heading = True
-            if tag == 'a' and self.heading: self.row['url'] = attrs['href']
-            if tag == 'div' and 'list-thumbnails' in attrs.get('class', '').split(): self.row['fit'] = attrs.get('data-fit')
-            if tag == 'img': self.row['images'].append(attrs)
+    def handle_data(self, data):
+        if self.in_prose and self.heading:
+            self.section = (self.section or '') + data
 
     def handle_endtag(self, tag):
-        if tag == 'h2': self.heading = False
-        if tag == 'article': self.row = None
+        if tag in ('h2', 'h3') and self.heading:
+            self.headings.append({'level': int(self.heading[1]), 'text': (self.section or '').strip(), 'id': self.heading_id})
+            self.heading = None
+        elif self.in_prose and tag == 'div':
+            self.depth -= 1
+            if self.depth <= 0:
+                self.in_prose = False
 
-expected_previews = [['00-agent-framework', '01-agent-overview', '02-context-engineering'], ['00-cover', '01-architecture', '02-loop']]
-for listing in ('/', topic):
-    rows = ThumbnailRows(listing).rows
-    for route, names in zip(routes, expected_previews):
-        row = next(row for row in rows if row['url'] == route)
-        assert row['fit'] == 'contain' and len(row['images']) == 3, 'Both articles must show three complete previews'
-        for picture, name in zip(row['images'], names):
-            assert name + '_hu_' in picture['src'] and int(picture['width']) > int(picture['height']), 'Preview selection or full aspect ratio changed'
-for listing in ('/blog/', '/weekly/'):
-    for row in ThumbnailRows(listing).rows:
-        assert row['fit'] is None, 'Default Blog/Weekly thumbnail behavior must stay unchanged'
-        assert all(picture['width'] == picture['height'] == '520' for picture in row['images'])
-print('ok    thumbnail previews: three complete Agent/Harness pictures on home and topic lists; default Blog/Weekly crop retained')
-for route in ('/topics/', topic, *routes):
-    page = Page(route)
-    assert '测试专题' not in page.text and 'test-notice' not in page.text and 'test-label' not in page.text, route
-first, second = map(Page, routes)
-chapter_ids = [identifier for identifier in first.ids if identifier.startswith('第') and '章' in identifier]
-assert len(chapter_ids) == 10 and all('#' + identifier in first.anchors for identifier in chapter_ids), 'All ten book chapters must be in the TOC'
-assert len(first.images) == 11, 'All eleven Agent pictures must render once'
-assert first.image_chapters == [None] + chapter_ids, 'Agent pictures must match the introduction and all ten chapters'
-picture_names = ['00-agent-framework', '01-agent-overview', '02-context-engineering', '03-memory-and-knowledge', '04-tools', '05-coding-agent', '06-interaction', '07-evaluation', '08-post-training', '09-continuous-evolution', '10-multi-agent']
-original_sizes = [(1697, 927), (1698, 926)] + [(1536, 1024)] * 9
-for picture, name, (width, height) in zip(first.images, picture_names, original_sizes):
-    assert picture['src'].startswith(routes[0] + 'assets/' + name), picture
-    assert int(picture['width']) == 1440 and abs(int(picture['width']) / int(picture['height']) - width / height) < .003, 'Picture aspect ratio changed'
-    assert routes[0] + 'assets/' + name + '.png' in [urljoin(routes[0], link) for link in first.anchors if link], 'Full-resolution source link missing'
-    assert (root / (routes[0] + 'assets/' + name + '.png').lstrip('/')).is_file(), 'Original PNG missing from output'
-assert len({picture['src'] for picture in first.images}) == 11, 'Do not duplicate pictures across chapters'
-assert second.tables == 2, 'Both source concept tables must be retained'
-assert len(second.images) == 5, 'All five Harness pictures must render once'
-for picture in second.images:
-    assert picture['src'].startswith(routes[1] + 'assets/'), picture
-    assert int(picture['width']) > 0 and int(picture['height']) > 0, picture
-for number in range(1, 6):
-    assert f'ref-{number}' in second.ids and f'#ref-{number}' in second.anchors, 'Reference anchor lost'
 
-indices = list(root.glob('search-index.*.json'))
-assert len(indices) == 1, 'Expected one fingerprinted search index'
-items = json.loads(indices[0].read_text())
-assert {topic, *routes} <= {item['url'] for item in items}, 'Series or articles missing from search'
-assert not any('/topics/layout-test/' in item['url'] for item in items), 'Removed topic in search'
-locations = [element.text for element in ET.parse(root / 'sitemap.xml').findall('.//{*}loc')]
-assert {topic, *routes} <= {urlsplit(url).path for url in locations}, 'Series missing from sitemap'
-for path in ('index.xml', 'topics/index.xml', 'topics/agent-engineering/index.xml'):
-    links = [item.findtext('link') for item in ET.parse(root / path).findall('./channel/item')]
-    assert set(routes) <= {urlsplit(link).path for link in links}, f'Articles missing from {path}'
-assert not (root / 'topics/layout-test').exists(), 'Removed test topic still generated'
-print('ok    Agent series: chapter order, ten-section TOC, eleven unique Agent pictures in correct positions with original-PNG links, five Harness pictures, two tables, reference anchors, search, sitemap and RSS')
+class Listing(HTMLParser):
+    """Rows of a listing page: link, title, preview mode and preview pictures."""
+
+    def __init__(self, path):
+        super().__init__()
+        self.rows = []
+        self.row = None
+        self.heading = False
+        self.feed(path.read_text(encoding='utf-8'))
+
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        classes = attributes.get('class', '').split()
+        if tag == 'article' and 'post-row' in classes:
+            self.row = {'url': None, 'title': None, 'fit': None, 'pictures': []}
+            self.rows.append(self.row)
+        if self.row is None:
+            return
+        if tag == 'h2':
+            self.heading = True
+        elif tag == 'a' and self.heading and self.row['url'] is None:
+            self.row['url'] = attributes.get('href')
+        elif tag == 'div' and 'list-thumbnails' in classes:
+            self.row['fit'] = attributes.get('data-fit')
+        elif tag == 'img':
+            self.row['pictures'].append({
+                'src': attributes.get('src'),
+                'srcset': attributes.get('srcset', ''),
+                'width': attributes.get('width'),
+                'height': attributes.get('height'),
+            })
+
+    def handle_data(self, data):
+        if self.row is not None and self.heading and self.row['title'] is None:
+            self.row['title'] = data.strip()
+
+    def handle_endtag(self, tag):
+        if tag == 'h2':
+            self.heading = False
+        elif tag == 'article':
+            self.row = None
+
+
+def descriptors(picture):
+    return {int(candidate.strip().split()[1].rstrip('w')) for candidate in picture['srcset'].split(',') if candidate.strip()}
+
+
+def check(output='.hugo-check'):
+    root = Path(output)
+    assert TOPIC_SOURCE.is_dir(), f'{TOPIC_SOURCE} is missing'
+
+    chapters = []
+    for directory in sorted(TOPIC_SOURCE.iterdir()):
+        source = directory / 'index.md'
+        if not source.is_file():
+            continue
+        markdown = source.read_text(encoding='utf-8')
+        meta = front_matter(source)
+        bundle = {item.name: item for item in sorted((directory / 'assets').glob('*')) if item.is_file()}
+        # Body pictures and their order come from the Markdown; the front matter
+        # `images:` list selects the *list previews* only (see docs/列表缩略图.md).
+        body = [Path(reference).name for reference in re.findall(r'!\[[^\]]*\]\(([^)\s]+)', markdown)]
+        declared = [Path(reference).name for reference in (meta.get('images') or [])]
+        for name in declared:
+            if name not in bundle:
+                raise ValueError(f'{source}: preview image {name} is not in the bundle')
+        for name in body:
+            if name not in bundle:
+                raise ValueError(f'{source}: body picture {name} is not in the bundle')
+        # No orphan bundle pictures: every file is either shown in the article or
+        # declared for the list previews (docs/列表缩略图.md). This is what still
+        # catches an accidentally deleted body picture line when previews are
+        # declared explicitly.
+        for name in bundle:
+            if name not in body and name not in declared:
+                raise ValueError(f'{source}: {name} is in the bundle but neither rendered nor declared as a preview')
+        chapters.append({
+            'route': f'{TOPIC_ROUTE}{directory.name}/',
+            'title': meta.get('title', ''),
+            'weight': int(meta.get('weight', 0)),
+            'fit': meta.get('thumbnailFit', ''),
+            'pictures': body,
+            'previews': declared or list(bundle),
+            'bundle': bundle,
+            'tables': markdown_table_count(source),
+        })
+    chapters.sort(key=lambda chapter: (chapter['weight'], chapter['route']))
+    assert len(chapters) >= 2, 'the series must keep at least two chapters'
+    routes = [chapter['route'] for chapter in chapters]
+
+    for chapter in chapters:
+        page = root / chapter['route'].lstrip('/') / 'index.html'
+        assert page.is_file(), f'{chapter["route"]}: page not generated'
+        body = Body(page)
+        assert chapter['title'], f'{chapter["route"]}: front matter has no title'
+        assert '测试专题' not in body.text and 'test-notice' not in body.text and 'test-label' not in body.text, f'{chapter["route"]}: test markers remain'
+
+        # TOC: one entry per body heading (levels 2-3, as configured in
+        # hugo.toml), and every entry must resolve to a real id in the page -
+        # the theme puts those ids on its heading-anchor spans, not on the h2.
+        toc = re.search(r'<div class="toc-panel">(.*?)</details>', body.text, re.S)
+        assert toc, f'{chapter["route"]}: no table of contents rendered'
+        toc_hrefs = re.findall(r'href="(#[^"]+)"', toc.group(1))
+        anchors = [heading for heading in body.headings if heading['level'] in (2, 3)]
+        assert len(toc_hrefs) == len(anchors), f'{chapter["route"]}: TOC lists {len(toc_hrefs)} of {len(anchors)} headings'
+        for href in toc_hrefs:
+            assert href[1:] in body.ids, f'{chapter["route"]}: TOC entry {href} has no target in the page'
+
+        # Pictures: the bundle pictures, once each, in their own section, shown
+        # at min(natural width, 1440) with the responsive candidates that
+        # layouts/_markup/render-image.html promises.
+        rendered = [picture for picture in body.pictures if picture['src']]
+        assert len(rendered) == len(chapter['pictures']), f'{chapter["route"]}: rendered {len(rendered)} of {len(chapter["pictures"])} bundle pictures'
+        assert len({picture['src'] for picture in rendered}) == len(rendered), f'{chapter["route"]}: a picture is rendered twice'
+        sections = [picture['section'] for picture in rendered]
+        assert len(set(sections)) == len(sections), f'{chapter["route"]}: two pictures share one section'
+        for picture, name in zip(rendered, chapter['pictures']):
+            source = chapter['bundle'][name]
+            natural_width, natural_height = image_size(source)
+            expected_width = min(natural_width, 1440)
+            expected_height = round(natural_height * expected_width / natural_width)
+            base = name.rsplit('.', 1)[0]
+            src = url_unquote(picture['src'])
+            assert src.startswith(f'{chapter["route"]}assets/'), f'{chapter["route"]}: {src} is not served from its own bundle'
+            assert base in src, f'{chapter["route"]}: expected {name}, page shows {src}'
+            assert re.search(rf'{re.escape(base)}_hu_[0-9a-f]+\.webp$', src), f'{chapter["route"]}: {src} is not a fingerprinted WebP derivative of {name}'
+            assert picture['alt'], f'{chapter["route"]}: {name} has no alt text'
+            assert int(picture['width']) == expected_width, f'{chapter["route"]}: {name} renders {picture["width"]}px wide, expected {expected_width}px from {natural_width}x{natural_height}'
+            assert abs(int(picture['height']) - expected_height) <= 1, f'{chapter["route"]}: {name} renders {picture["width"]}x{picture["height"]} for a {natural_width}x{natural_height} source (aspect ratio changed)'
+            expected_descriptors = {width for width in (480, 960) if width < expected_width} | {expected_width}
+            assert descriptors(picture) == expected_descriptors, f'{chapter["route"]}: {name} srcset is {sorted(descriptors(picture))}, expected {sorted(expected_descriptors)}'
+            original = root / chapter['route'].lstrip('/') / 'assets' / name
+            assert original.is_file(), f'{chapter["route"]}: original {name} missing from the output'
+            assert original.read_bytes() == source.read_bytes(), f'{chapter["route"]}: original {name} was rewritten by the build'
+
+        # Tables and in-page references, counted from the Markdown.
+        assert body.tables == chapter['tables'], f'{chapter["route"]}: {body.tables} table(s) rendered, {chapter["tables"]} in the source'
+        reference_ids = [identifier for identifier in body.ids if re.fullmatch(r'ref-\d+', identifier)]
+        linked = set(re.findall(r'href="#(ref-\d+)"', body.text))
+        assert linked == set(reference_ids), f'{chapter["route"]}: references {sorted(linked)} do not match ids {sorted(reference_ids)}'
+
+        # Chapter navigation order and the previous/next pager, from weight order.
+        navigation = re.search(r'<section class="chapter-navigation">.*?</section>', body.text, re.S)
+        assert navigation, f'{chapter["route"]}: no chapter navigation'
+        nav = re.search(r'<nav aria-label="专题章节">(.*?)</nav>', navigation.group(0), re.S)
+        assert nav, f'{chapter["route"]}: empty chapter navigation'
+        nav_hrefs = re.findall(r'href="([^"]+)"', nav.group(1))
+        assert nav_hrefs == routes, f'{chapter["route"]}: chapter navigation is {nav_hrefs}, expected weight order {routes}'
+        index = routes.index(chapter['route'])
+        neighbours = sorted(routes[i] for i in (index - 1, index + 1) if 0 <= i < len(routes))
+        pager = re.search(r'<nav class="article-pager"[^>]*>(.*?)</nav>', body.text, re.S)
+        pager_hrefs = sorted(re.findall(r'href="([^"]+)"', pager.group(1))) if pager else []
+        assert pager_hrefs == neighbours, f'{chapter["route"]}: pager is {pager_hrefs}, expected {neighbours}'
+
+    # Topic listing: order, titles and preview mode follow the front matter.
+    # The default crop size is read from the template instead of repeated here.
+    square = re.search(r'\.Fill\s+"(\d+)x(\d+)\s+webp', Path('layouts/_partials/lab/thumbnails.html').read_text(encoding='utf-8'))
+    assert square, 'layouts/_partials/lab/thumbnails.html: the default crop size moved (update this check)'
+    square_size = (square.group(1), square.group(2))
+
+    listing = Listing(root / TOPIC_ROUTE.lstrip('/') / 'index.html')
+    assert [row['url'] for row in listing.rows] == routes, f'{TOPIC_ROUTE}: listing order {[row["url"] for row in listing.rows]} does not follow weight order {routes}'
+    for row, chapter in zip(listing.rows, chapters):
+        assert row['title'] == chapter['title'], f'{chapter["route"]}: listing title {row["title"]!r} differs from front matter'
+        expected_fit = 'contain' if chapter['fit'] == 'contain' else None
+        assert row['fit'] == expected_fit, f'{chapter["route"]}: preview mode {row["fit"]!r} does not follow thumbnailFit {chapter["fit"]!r}'
+        previews = min(PREVIEW_LIMIT, len(chapter['previews']))
+        assert len(row['pictures']) == previews, f'{chapter["route"]}: {len(row["pictures"])} preview(s), expected {previews}'
+        for picture, name in zip(row['pictures'], chapter['previews'][:previews]):
+            natural_width, natural_height = image_size(chapter['bundle'][name])
+            assert name.rsplit('.', 1)[0] in picture['src'], f'{chapter["route"]}: preview {picture["src"]} is not {name}'
+            if expected_fit is None:
+                assert (picture['width'], picture['height']) == square_size, \
+                    f'{chapter["route"]}: default previews must stay {square_size[0]}x{square_size[1]}, got {picture["width"]}x{picture["height"]}'
+                continue
+            # contain: the square frame stays, but the picture inside keeps the
+            # source ratio - in its reserved size and in every built candidate.
+            reserved = int(picture['width']) / int(picture['height'])
+            assert abs(reserved - natural_width / natural_height) <= 0.01, \
+                f'{chapter["route"]}: contain preview {name} reserves {picture["width"]}x{picture["height"]} for a {natural_width}x{natural_height} source'
+            for candidate in picture['srcset'].split(','):
+                if not candidate.strip():
+                    continue
+                url, descriptor = candidate.strip().split()
+                assert descriptor.endswith('w'), f'{chapter["route"]}: preview srcset entry {candidate!r} is not width-described'
+                width = int(descriptor.rstrip('w'))
+                built = root / urlsplit(url).path.lstrip('/')
+                assert built.is_file(), f'{chapter["route"]}: preview candidate {url} is missing from the output'
+                variant_width, variant_height = image_size(built)
+                assert variant_width == width, f'{chapter["route"]}: preview candidate {url} is {variant_width}px wide but declares {width}w'
+                assert abs(variant_height - natural_height * width / natural_width) <= 1, \
+                    f'{chapter["route"]}: preview candidate {url} is {variant_width}x{variant_height}, cropped from {natural_width}x{natural_height}'
+
+    for listing_route in ('/blog/', '/weekly/'):
+        page = Listing(root / listing_route.lstrip('/') / 'index.html')
+        assert page.rows, f'{listing_route}: no rows'
+        for row in page.rows:
+            assert row['fit'] is None, f'{listing_route}: default previews must not opt into contain mode'
+            for picture in row['pictures']:
+                assert (picture['width'], picture['height']) == square_size, \
+                    f'{listing_route}: default previews must stay {square_size[0]}x{square_size[1]}, got {picture["width"]}x{picture["height"]}'
+
+    # Discovery outputs.
+    indices = list(root.glob('search-index.*.json'))
+    assert len(indices) == 1, 'expected exactly one fingerprinted search index'
+    urls = {item['url'] for item in json.loads(indices[0].read_text())}
+    assert {TOPIC_ROUTE, *routes} <= urls, 'series or articles missing from the search index'
+    assert not any(str(REMOVED_ROUTE) in url for url in urls), 'removed test topic still in the search index'
+    locations = {urlsplit(element.text).path for element in ET.parse(root / 'sitemap.xml').findall('.//{*}loc')}
+    assert {TOPIC_ROUTE, *routes} <= locations, 'series or articles missing from the sitemap'
+    for feed in ('index.xml', 'topics/index.xml', 'topics/agent-engineering/index.xml'):
+        path = root / feed
+        assert path.is_file(), f'{feed}: missing'
+        links = {urlsplit(item.findtext('link')).path for item in ET.parse(path).findall('./channel/item')}
+        assert set(routes) <= links, f'{feed}: articles missing'
+    assert not (root / REMOVED_ROUTE).exists(), 'removed test topic is still generated'
+
+    counts = ', '.join(f'{len(chapter["pictures"])} pictures' for chapter in chapters)
+    print(f'ok    series: {len(chapters)} chapters in weight order ({counts}); sizes, TOC, tables, references, previews, search, sitemap and RSS all derived from content and templates')
+
+
+if __name__ == '__main__':
+    try:
+        check(sys.argv[1] if len(sys.argv) > 1 else '.hugo-check')
+    except (AssertionError, ValueError) as exc:
+        sys.exit(f'FAIL  {exc}')
