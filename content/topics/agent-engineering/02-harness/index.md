@@ -11,8 +11,6 @@ images:
   - assets/02-loop.png
 ---
 
-作者：拾贰画生
-
 ![理解 Harness：从模型回答到 Agent 执行，拾贰画生](assets/00-cover.png)
 
 
