@@ -4,6 +4,11 @@
 #
 # Builds into .hugo-check/ rather than public/ so an existing local public/
 # (often a `hugo server` dump) is never clobbered.
+#
+# The last step runs the real browser checks in scripts/check-*.js through
+# scripts/run-browser-checks.mjs. BROWSER_CHECKS=auto (default) runs them when
+# playwright is installed and prints an explicit skip otherwise,
+# BROWSER_CHECKS=require (CI) fails instead of skipping, BROWSER_CHECKS=0 skips.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -44,6 +49,15 @@ if grep -rq 'http://localhost' "$OUT"; then
 fi
 ok "no localhost URLs"
 
+# Go's html/template writes this literal when an action sits in a position it
+# cannot escape - in practice `{{ with partial ... }}attr="{{ . }}"{{ end }}`
+# in attribute-name position, which fires on every empty partial result and
+# replaced the whole aria-current attribute on non-current nav links.
+if grep -rqi 'zgotmplz' "$OUT"; then
+  fail "template escaping placeholder (zgotmplz) leaked into the output - bind the partial result to a variable before using it in an attribute"
+fi
+ok "no template escaping placeholders"
+
 # R7: the avatar must go through the image pipeline. If it drifts back to
 # static/, [imaging] silently stops doing anything.
 IMAGES=$(find "$OUT/images" -name '*_hu_*' 2>/dev/null | wc -l | tr -d ' ')
@@ -57,5 +71,23 @@ python3 scripts/check-agent-series.py "$OUT"
 
 python3 scripts/check-content-workflow.py
 python3 scripts/check-deploy-release.py
+
+# Real browser checks against the build that was just produced. They are never
+# silently skipped: with BROWSER_CHECKS=require (CI) a missing playwright is a
+# failure, and the "auto" default always prints which of the two happened.
+case "${BROWSER_CHECKS:-auto}" in
+  0|off|false)
+    printf 'skip  browser checks (BROWSER_CHECKS=%s)\n' "${BROWSER_CHECKS}"
+    ;;
+  *)
+    if node -e "require.resolve('playwright')" >/dev/null 2>&1; then
+      node scripts/run-browser-checks.mjs --dir "$OUT"
+    elif [ "${BROWSER_CHECKS}" = "require" ]; then
+      fail "BROWSER_CHECKS=require but playwright is not installed - run: npm ci && npx playwright install chromium"
+    else
+      printf 'skip  browser checks: playwright not installed (npm ci && npx playwright install chromium)\n'
+    fi
+    ;;
+esac
 
 printf '\nAll checks passed.\n'

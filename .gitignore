@@ -9,3 +9,11 @@
 
 __pycache__/
 *.pyc
+
+# Browser-check tooling (scripts/run-browser-checks.mjs).
+# package.json / package-lock.json are committed on purpose: the browser checks
+# declare their own dependency instead of relying on a globally installed
+# playwright, and .hugo-check/ is the site they run against.
+/node_modules/
+/.npm-cache/
+/.playwright-browsers/

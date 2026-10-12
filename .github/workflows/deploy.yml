@@ -40,7 +40,19 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
+      # The browser checks in scripts/ are real tests, so CI installs the one
+      # dependency they declare (package.json) plus the headless browser they
+      # drive. BROWSER_CHECKS=require below turns a missing browser into a build
+      # failure instead of a silent skip.
+      - name: Install browser check dependencies
+        run: |
+          node --version
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium --only-shell
+
       - name: Build
+        env:
+          BROWSER_CHECKS: require
         run: OUT=public make check
 
       - name: Validate build

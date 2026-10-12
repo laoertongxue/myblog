@@ -1,0 +1,12 @@
+{
+  "name": "12lab-cn",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tooling for the 12lab.cn Hugo site: real browser regression checks (see scripts/run-browser-checks.mjs).",
+  "scripts": {
+    "check:browser": "node scripts/run-browser-checks.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.0"
+  }
+}

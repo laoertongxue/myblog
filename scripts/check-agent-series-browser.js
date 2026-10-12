@@ -1,102 +1,150 @@
-// Run with playwright-cli run-code against make check output on port 1316.
-async (page) => {
-  const base = 'http://127.0.0.1:1316';
+// The Agent/Harness series end to end. Executed by
+// scripts/run-browser-checks.mjs.
+//   npm run check:browser -- --only agent-series
+//
+// The series is discovered from the built pages (topic index -> chapter list ->
+// article body) instead of from tables of file names and pixel sizes: adding a
+// chapter or re-exporting a picture must not break this check, while a broken
+// TOC, a cropped picture, a missing original PNG, a lost table or a wrong
+// previous/next link still must.
+async (page, ctx) => {
+  const { base, assert } = ctx;
   const topic = '/topics/agent-engineering/';
-  const chapters = [topic + '01-agent-framework/', topic + '02-harness/'];
-  const titles = ['理解 Agent：从核心构成到工程全景', '理解 Harness：从模型回答到 Agent 执行'];
   const report = [];
-  const errors = [];
-  page.on('pageerror', error => errors.push(error.message));
+
+  const feedLinks = async feedPath => {
+    const xml = await (await fetch(base + feedPath)).text();
+    return [...xml.matchAll(/<item>[\s\S]*?<link>([^<]+)<\/link>/g)].map(match => new URL(match[1]).pathname);
+  };
+
   for (const width of [1440, 390, 320]) {
-    await page.setViewportSize({width, height: 900});
+    await page.setViewportSize({ width, height: 900 });
+
     await page.goto(base + '/topics/');
-    if (await page.locator('.topic-row').count() !== 1) throw Error('Expected one real series');
-    await page.locator('.topic-row h2 a').click();
-    await page.waitForURL(base + topic);
-    const links = await page.locator('.post-row h2 a').evaluateAll(nodes => nodes.map(node => ({href: node.getAttribute('href'), title: node.textContent})));
-    if (JSON.stringify(links) !== JSON.stringify(chapters.map((href, i) => ({href, title: titles[i]})))) throw Error('Wrong chapter order');
-    for (const [i, chapter] of chapters.entries()) {
-      await page.goto(base + chapter);
-      if (await page.locator('h1').count() !== 1 || await page.locator('h1').textContent() !== titles[i]) throw Error('Article title duplicated or wrong');
-      if (await page.locator('.test-notice, .test-label').count()) throw Error('Test marker remains');
+    const seriesRows = await page.locator('.topic-row').evaluateAll(nodes => nodes.map(node => ({
+      href: node.querySelector('h2 a').getAttribute('href'),
+      title: node.querySelector('h2 a').textContent,
+      label: node.querySelector('.row-date')?.textContent ?? '',
+      text: node.textContent,
+    })));
+    const series = seriesRows.find(row => row.href === topic);
+    assert(series, `${topic} is missing from the topics index`);
+    assert(!/测试/.test(series.label) && !/测试/.test(series.text), 'the series is labelled as test content');
+
+    await page.goto(base + topic);
+    const chapters = await page.locator('.post-row h2 a').evaluateAll(nodes => nodes.map(node => ({ href: node.getAttribute('href'), title: node.textContent })));
+    assert(chapters.length >= 2, `series must keep at least two chapters, found ${chapters.length}`);
+    assert(new Set(chapters.map(chapter => chapter.href)).size === chapters.length, 'duplicate chapter links');
+    assert(JSON.stringify([...await feedLinks(topic + 'index.xml')].sort()) === JSON.stringify(chapters.map(chapter => chapter.href).sort()), 'series feed does not mirror the chapter list');
+    assert(!await page.locator('.test-notice, .test-label').count(), 'test markers leaked into the series');
+
+    for (const [index, chapter] of chapters.entries()) {
+      await page.goto(base + chapter.href);
+      assert(await page.locator('h1').count() === 1, `${chapter.href}: expected exactly one h1`);
+      assert((await page.locator('h1').textContent()).trim() === chapter.title.trim(), `${chapter.href}: h1 does not match the chapter list title`);
+      assert(!await page.locator('.test-notice, .test-label').count(), `${chapter.href}: test markers remain`);
+      assert(!await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), `${chapter.href}: horizontal overflow at ${width}px`);
+
+      // Every body picture keeps its reserved box, its own bundle path, its
+      // original PNG link, and the aspect ratio of that original.
       const pictures = await page.locator('.prose img').evaluateAll(async images => {
         images.forEach(image => image.loading = 'eager');
         await Promise.all(images.map(image => image.decode()));
-        return images.map(image => ({src: image.currentSrc, width: image.naturalWidth, height: image.naturalHeight, alt: image.alt}));
+        return images.map(image => ({
+          src: image.currentSrc,
+          width: Number(image.getAttribute('width')),
+          height: Number(image.getAttribute('height')),
+          alt: image.alt,
+          rendered: image.getBoundingClientRect().width,
+          original: image.closest('a')?.href ?? null,
+        }));
       });
-      if (pictures.length !== (i === 0 ? 11 : 5) || pictures.some(picture => !picture.width || !picture.height || !picture.alt || !picture.src.startsWith(base + chapter + 'assets/'))) throw Error('Invalid article pictures');
-      if (i === 0) {
-        const expected = ['00-agent-framework', '01-agent-overview', '02-context-engineering', '03-memory-and-knowledge', '04-tools', '05-coding-agent', '06-interaction', '07-evaluation', '08-post-training', '09-continuous-evolution', '10-multi-agent'];
-        const sizes = [[1697, 927], [1698, 926], ...Array.from({length: 9}, () => [1536, 1024])];
-        const mapped = await page.locator('.prose').evaluate(element => {
-          let chapter = '';
-          const result = [];
-          for (const node of element.querySelectorAll('h2, img')) {
-            if (node.tagName === 'H2') chapter = node.textContent;
-            else result.push({chapter, src: node.getAttribute('src'), original: node.closest('a')?.getAttribute('href'), rendered: node.getBoundingClientRect().width});
-          }
-          return result;
-        });
-        const expectedChapters = ['', '第一章', '第二章', '第三章', '第四章', '第五章', '第六章', '第七章', '第八章', '第九章', '第十章'];
-        if (mapped.length !== 11 || mapped[0].chapter !== '' || mapped.some((image, index) => !image.chapter.startsWith(expectedChapters[index]) || !image.src.includes(expected[index]) || !image.original.endsWith(expected[index] + '.png') || image.rendered > width - 40)) throw Error('Wrong Agent picture placement or size');
-        for (const [index, name] of expected.entries()) {
-          const original = page.locator('.prose img').nth(index).locator('..');
-          await original.click();
-          await page.waitForURL(base + chapter + 'assets/' + name + '.png');
-          const resolution = await page.locator('img').evaluate(async image => { await image.decode(); return [image.naturalWidth, image.naturalHeight]; });
-          if (JSON.stringify(resolution) !== JSON.stringify(sizes[index])) throw Error('Full-resolution PNG unavailable');
-          await page.goBack();
-          await page.waitForURL(base + chapter);
+      assert(pictures.length > 0, `${chapter.href}: no body pictures`);
+      assert(new Set(pictures.map(picture => picture.src)).size === pictures.length, `${chapter.href}: a picture is rendered twice`);
+      // The original is derived from the bundle convention
+      // (<article>/assets/<name>.png next to index.md), not from a wrapper link:
+      // only some chapters link the full-resolution file.
+      const originalOf = picture => chapter.href + 'assets/' + decodeURIComponent(new URL(picture.src).pathname.split('/').pop()).replace(/_hu_[0-9a-f]+\.webp$/, '.png');
+      for (const picture of pictures) {
+        assert(picture.src.startsWith(base + chapter.href + 'assets/'), `${chapter.href}: picture outside its bundle: ${picture.src}`);
+        assert(picture.width > 0 && picture.height > 0 && picture.alt, `${chapter.href}: picture without reserved size or alt: ${picture.src}`);
+        assert(picture.rendered <= width - 40, `${chapter.href}: picture wider than its column: ${Math.round(picture.rendered)}px`);
+        if (picture.original) {
+          assert(decodeURIComponent(new URL(picture.original, base).pathname) === originalOf(picture), `${chapter.href}: original link ${picture.original} does not match the rendered picture`);
         }
       }
-      if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw Error('Horizontal overflow');
+      const originals = await page.evaluate(async pictures => {
+        const sizes = [];
+        for (const picture of pictures) {
+          const image = new Image();
+          image.src = picture.original;
+          try { await image.decode(); } catch { image.width = 0; }
+          sizes.push([image.naturalWidth, image.naturalHeight]);
+        }
+        return sizes;
+      }, pictures.map(picture => ({ original: originalOf(picture) })));
+      for (const [i, picture] of pictures.entries()) {
+        const [originalWidth, originalHeight] = originals[i];
+        assert(originalWidth > 0 && originalHeight > 0, `${chapter.href}: original PNG missing: ${originalOf(picture)}`);
+        const rendered = picture.width / picture.height;
+        assert(Math.abs(rendered - originalWidth / originalHeight) < 0.01, `${chapter.href}: cropped or distorted picture ${picture.src}`);
+        assert(originalWidth >= picture.width, `${chapter.href}: original PNG is not the full resolution of ${picture.src}`);
+      }
+
       const toc = page.locator('.floating-toc');
       await toc.locator('summary').click();
-      const entries = toc.locator('a');
-      if (await entries.count() !== (i === 0 ? 10 : 8)) throw Error('Incomplete article TOC');
-      const target = entries.last();
-      const hash = await target.getAttribute('href');
-      await target.click();
+      const headings = await page.locator('.prose h2, .prose h3').count();
+      assert(await toc.locator('a').count() === headings, `${chapter.href}: TOC lists ${await toc.locator('a').count()} of ${headings} headings`);
+      const last = toc.locator('a').last();
+      const hash = await last.getAttribute('href');
+      assert(await page.evaluate(value => !!document.getElementById(decodeURIComponent(value.slice(1))), hash), `${chapter.href}: TOC entry ${hash} points at nothing`);
+      await last.click();
       await page.waitForFunction(value => decodeURIComponent(location.hash) === decodeURIComponent(value), hash);
       await page.waitForFunction(() => !document.querySelector('.floating-toc').open);
       await page.waitForFunction(value => document.querySelector('.toc-panel a[aria-current=location]')?.getAttribute('href') === value, hash);
+
+      const neighbours = [chapters[index - 1], chapters[index + 1]].filter(Boolean);
       const pager = page.locator('.article-pager a');
-      if (await pager.count() !== 1 || await pager.getAttribute('href') !== chapters[1 - i]) throw Error('Wrong previous/next article');
-      await pager.click();
-      await page.waitForURL(base + chapters[1 - i]);
-      await page.goto(base + chapter);
+      assert(await pager.count() === neighbours.length, `${chapter.href}: expected ${neighbours.length} previous/next link(s)`);
+      const pagerLinks = await pager.evaluateAll(nodes => nodes.map(node => node.getAttribute('href')));
+      for (const neighbour of neighbours) assert(pagerLinks.includes(neighbour.href), `${chapter.href}: missing ${neighbour.href} in the article pager`);
+
       const navigation = page.locator('.chapter-navigation');
       await navigation.locator('summary').click();
-      const chapterLinks = navigation.locator('nav a');
-      if (JSON.stringify(await chapterLinks.evaluateAll(nodes => nodes.map(node => node.getAttribute('href')))) !== JSON.stringify(chapters)) throw Error('Chapter navigation order');
-      if (await navigation.locator('[aria-current=page]').getAttribute('href') !== chapter) throw Error('Active chapter not marked');
-      await chapterLinks.nth(1 - i).click();
-      await page.waitForURL(base + chapters[1 - i]);
-      if (i === 1) {
-        await page.goto(base + chapter);
-        if (await page.locator('.prose table').count() !== 2) throw Error('Concept tables missing');
-        for (let reference = 1; reference <= 5; reference++) {
-          const link = page.locator(`.prose a[href="#ref-${reference}"]`).first();
-          await link.click();
-          await page.waitForFunction(id => location.hash === '#' + id && !!document.getElementById(id), `ref-${reference}`);
-        }
+      const chapterLinks = await navigation.locator('nav a').evaluateAll(nodes => nodes.map(node => node.getAttribute('href')));
+      assert(JSON.stringify(chapterLinks) === JSON.stringify(chapters.map(chapter => chapter.href)), `${chapter.href}: chapter navigation order changed`);
+      assert(await navigation.locator('[aria-current=page]').getAttribute('href') === chapter.href, `${chapter.href}: active chapter not marked`);
+
+      // Internal references (ref-N) and tables are content features of the
+      // series: assert every reference resolves, without counting them.
+      const references = await page.locator('.prose [id^=ref-]').evaluateAll(nodes => nodes.map(node => node.id));
+      for (const id of references) {
+        const link = page.locator(`.prose a[href="#${id}"]`).first();
+        assert(await link.count() > 0, `${chapter.href}: reference #${id} has no link`);
+        await link.click();
+        await page.waitForFunction(value => location.hash === '#' + value && !!document.getElementById(value), id);
       }
+      const tables = page.locator('.prose table');
+      for (let i = 0; i < await tables.count(); i++) {
+        assert(await tables.nth(i).locator('thead th').count() > 0, `${chapter.href}: table ${i + 1} lost its header row`);
+      }
+      report.push(`${width}px ${chapter.href}: ${pictures.length} pictures, ${headings} TOC entries, ${references.length} references, ${await tables.count()} table(s)`);
     }
-    for (const query of ['Agent 的构造与实践', ...titles]) {
+
+    for (const query of [series.title, ...chapters.map(chapter => chapter.title)]) {
       await page.goto(base + '/search/?q=' + encodeURIComponent(query));
       await page.waitForFunction(() => !document.querySelector('#search-status').textContent.includes('正在搜索'));
       await page.locator('[data-filter=topics]').click();
       await page.waitForFunction(() => document.querySelectorAll('.search-result').length > 0);
-      if (!(await page.locator('.search-result h2 a').allTextContents()).includes(query)) throw Error('Series/article absent in search');
+      const titles = await page.locator('.search-result h2 a').allTextContents();
+      assert(titles.includes(query), `search does not find ${JSON.stringify(query)}`);
     }
-    await page.goto(base + chapters[1]);
-    await page.screenshot({path: `output/playwright/agent-harness-${width}.png`, fullPage: true});
+    report.push(`${width}px: series and every chapter are searchable under the topics filter`);
+
     await page.goto(base + topic);
-    await page.screenshot({path: `output/playwright/agent-series-${width}.png`, fullPage: true});
-    await page.goto(base + chapters[0]);
-    await page.screenshot({path: `output/playwright/agent-framework-${width}.png`, fullPage: true});
-    report.push(`${width}px: series order, local pictures, TOCs, previous/next, chapter navigation, tables, references and search passed`);
+    await page.screenshot({ path: `output/playwright/agent-series-${width}.png`, fullPage: true });
+    await page.goto(base + chapters[0].href);
+    await page.screenshot({ path: `output/playwright/agent-framework-${width}.png`, fullPage: true });
   }
-  if (errors.length) throw Error(errors.join('\n'));
   return report;
 }
