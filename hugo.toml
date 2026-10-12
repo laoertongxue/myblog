@@ -44,12 +44,22 @@ timeout = "60s"
   [params.editURL]
     enable = false
 
+# Navigation has exactly one source of truth: these menus. The site header and
+# footer read `params.placement` ("leading" = top left, "quick" = top right) and
+# `weight` (order, also used by the mobile dialog). Icons were never rendered by
+# the site templates, so no `params.icon` is configured.
 [[menu.main]]
   name = "首页"
   pageRef = "/"
   weight = 1
   [menu.main.params]
-    icon = "home"
+    placement = "leading"
+
+[[menu.main]]
+  name = "搜索"
+  pageRef = "/search"
+  weight = 2
+  [menu.main.params]
     placement = "leading"
 
 [[menu.main]]
@@ -58,7 +68,6 @@ timeout = "60s"
   weight = 3
   [menu.main.params]
     placement = "leading"
-    icon = "book"
 
 [[menu.main]]
   name = "专题"
@@ -66,7 +75,6 @@ timeout = "60s"
   weight = 4
   [menu.main.params]
     placement = "leading"
-    icon = "folder"
 
 [[menu.main]]
   name = "博客"
@@ -74,23 +82,13 @@ timeout = "60s"
   weight = 5
   [menu.main.params]
     placement = "leading"
-    icon = "book"
 
 [[menu.main]]
   name = "关于"
   pageRef = "/about"
-  weight = 5
+  weight = 6
   [menu.main.params]
-    icon = "user"
     placement = "quick"
-
-# Navigation is rendered by the site header and footer.
-[[menu.main]]
-  name = "搜索"
-  pageRef = "/search"
-  weight = 2
-  [menu.main.params]
-    placement = "leading"
 
 [[menu.utility]]
   identifier = "archive"

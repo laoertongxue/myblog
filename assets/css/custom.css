@@ -1,4 +1,9 @@
-/* 12Lab: warm, single-column journal. This file is included by Hextra. */
+/* 12Lab: warm, single-column journal. Concatenated, minified and fingerprinted
+   by layouts/_partials/head.html (theme variables + theme CSS + this file), so
+   it wins the cascade by order and overrides Hextra's dark mode explicitly.
+   Unstyled hooks kept on purpose: `home-feed` (the home article feed, also used
+   by scripts/check-home-pagination.py) and `topic-row` (a topic row on
+   /topics/, also used by the browser checks). They need no rules of their own. */
 :root {
   --lab-ink:#30302e;
   --lab-muted:#706f69;
@@ -55,7 +60,6 @@ h3 { font-size:21px; }
 .feed-pagination .pagination-gap { min-width:20px; }
 .page-footer { margin-top:80px; padding:44px 0 48px; border-top:1px solid var(--lab-line); color:var(--lab-muted); font-size:14px; }
 .page-footer h2 { font-size:17px; margin-bottom:18px; }
-.footer-links { display:flex; flex-wrap:wrap; gap:12px 28px; color:var(--lab-ink); }
 .back-top { display:inline-block; margin:36px 0 25px; }
 .reading-page,.standard-page { width:100%; min-width:0; }
 .article-heading { margin-bottom:70px; }
