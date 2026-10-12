@@ -37,10 +37,13 @@ git push                           # 触发 CI，部署到 12lab.cn
 ## 技术栈
 
 - **Hugo** v0.166.0+extended（Hextra 要求 `min_version = "0.146.0"`）
-- **Hextra** v0.12.3，vendor 到 `themes/hextra/`，由 `hugo.toml` 的 `theme = "hextra"` 启用
+- **Hextra** v0.12.3，vendor 到 `themes/hextra/`（版本与来源记录在同目录的
+  `12LAB-VENDOR.md`），由 `hugo.toml` 的 `theme = "hextra"` 启用
 - **项目级覆盖**位于 `layouts/_partials/lab/*`、`layouts/baseof.html`、`layouts/_partials/head.html`、`assets/css/custom.css`，独立于主题升级，主题切换可分享干净副本
 - **GitHub Actions**：build → release-manifest → rsync 到 `43.255.31.74`，部署账户 `deploy12lab` 仅有最小权限
 - **Caddy**：基于内容哈希的 immutable 缓存、`nosniff` / `SAMEORIGIN` / `strict-origin-when-cross-origin` 安全头、zstd+gzip
+- **Playwright**（唯一 npm 依赖，`package.json`）：驱动 `scripts/check-*.js` 里六个真实浏览器回归检查，
+  由 `scripts/run-browser-checks.mjs` 统一在本地静态服务上执行
 
 ## 本地开发
 
@@ -49,12 +52,20 @@ git push                           # 触发 CI，部署到 12lab.cn
 | 本地预览 | `make serve`（http://localhost:1313） |
 | 与 CI 一致构建 | `make build` |
 | 推送前校验 | `make check` |
+| 只跑浏览器检查 | `npm run check:browser` |
+| 准备浏览器检查 | `npm ci && npx playwright install chromium` |
 
-`make check` 比 CI 的 build 步骤更严格：除了构建还跑 SEO / 图片链接 / 分页 / 三类文章真实生成 / 发布故障注入测试，详见 `scripts/check.sh` 与 `scripts/check-*.py`。`make build` 只构建不校验——发布前请用 `make check`。
+`make check` 与 CI 完全同源：CI 就是 `OUT=public make check`。它除了构建还跑 SEO / 图片链接 /
+分页夹具 / 三类文章真实生成 / 发布故障注入，以及**六个浏览器检查**（布局、移动端导航、极端内容、
+专题系列、缩略图、资源加载）。没有装 playwright 时浏览器检查会打印 `skip`（CI 用
+`BROWSER_CHECKS=require` 把它变成失败）；`BROWSER_CHECKS=0 make check` 可临时只跑非浏览器部分。
+`make build` 只构建不校验——发布前请用 `make check`。
 
 ## 部署
 
-- `push` 到 `main` 触发 `.github/workflows/deploy.yml`：Setup Hugo 0.166 → `OUT=public make check` → 生成 SHA-256 清单 → 上传 artifact
+- `push` 到 `main` 触发 `.github/workflows/deploy.yml`：Setup Hugo 0.166 → `npm ci` +
+  `npx playwright install --with-deps chromium --only-shell` → `BROWSER_CHECKS=require OUT=public make check`
+  → 生成 SHA-256 清单 → 上传 artifact
 - 然后 deploy job：rsync 到 `releases/<UTC时间戳>-<run_id>-<attempt>/`，调用 `scripts/deploy-release.py`
 - `deploy-release.py` 会校验 SHA-256、HTML 数等于 CI 报告、做 HTTP 探针；**任一失败原子回滚**到 `previous-release.txt` 指向的 release
 - 当前与上一份正常 release 始终保留；服务器最多保留 5 份
@@ -68,16 +79,22 @@ assets/          # css / js / 头像图（Hugo 图片管线入口）
 content/         # 博客 / 周刊 / 专题 / 单页
 docs/            # 设计与工程变更日志
 layouts/         # 项目级模板，覆盖 themes/hextra 同名文件
-scripts/         # 构建检查 / 发布 / 服务器初始化
-themes/hextra/   # vendor 的主题（独立可分享）
+scripts/         # 构建检查 / 浏览器检查 / 发布 / 服务器初始化
+  check.sh                    # make check 的入口
+  run-browser-checks.mjs      # 起本地服务并执行下面六个浏览器检查
+  check-*-browser.js / check-*.js
+package.json     # 唯一依赖声明：playwright（devDependency）
+themes/hextra/   # vendor 的主题（独立可分享，版本见 12LAB-VENDOR.md）
 AGENTS.md        # AI 协作 / 改代码时的工程注意事项
 ```
 
 ## 相关文档
 
 - **改代码前必读**：[`AGENTS.md`](./AGENTS.md) — 列出所有"为什么这么写"的不变量、CI 发布门槛、回滚路径、SSH 凭据策略
-- **设计变更日志**：[`docs/`](./docs/) — 单栏改版、列表缩略图、后台链路修复等历史记录
-- **主题原文档**：[`themes/hextra/README.md`](./themes/hextra/README.md) — vendored Hextra 主题的官方说明
+- **设计变更日志**：[`docs/`](./docs/) — 单栏改版、列表缩略图、后台链路修复等历史记录；
+  最近一次核查修复见 [`docs/2026-10-12-核查修复.md`](./docs/2026-10-12-核查修复.md)
+- **主题原文档**：[`themes/hextra/README.md`](./themes/hextra/README.md) — vendored Hextra 主题的官方说明；
+  版本与升级方式见 [`themes/hextra/12LAB-VENDOR.md`](./themes/hextra/12LAB-VENDOR.md)
 
 ## 致谢与许可
 
