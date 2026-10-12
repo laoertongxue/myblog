@@ -3,6 +3,7 @@ title: "理解 Agent：从核心构成到工程全景"
 date: 2026-10-12T14:26:33+08:00
 weight: 10
 draft: false
+thumbnailFit: contain
 description: "以模型、上下文与工具为线索，梳理《深入理解 AI Agent：设计原理与工程实践》的十章结构，建立从原理走向工程的阅读框架。"
 ---
 

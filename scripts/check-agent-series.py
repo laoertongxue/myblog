@@ -33,6 +33,42 @@ class Page(HTMLParser):
 
 overview = Page(topic)
 assert overview.anchors.index(routes[0]) < overview.anchors.index(routes[1]), 'Chapter list must follow weight order'
+
+class ThumbnailRows(HTMLParser):
+    def __init__(self, route):
+        super().__init__()
+        self.rows, self.row = [], None
+        self.heading = False
+        self.feed((root / route.lstrip('/') / 'index.html').read_text())
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == 'article' and 'post-row' in attrs.get('class', '').split():
+            self.row = {'url': None, 'fit': None, 'images': []}
+            self.rows.append(self.row)
+        if self.row is not None:
+            if tag == 'h2': self.heading = True
+            if tag == 'a' and self.heading: self.row['url'] = attrs['href']
+            if tag == 'div' and 'list-thumbnails' in attrs.get('class', '').split(): self.row['fit'] = attrs.get('data-fit')
+            if tag == 'img': self.row['images'].append(attrs)
+
+    def handle_endtag(self, tag):
+        if tag == 'h2': self.heading = False
+        if tag == 'article': self.row = None
+
+expected_previews = [['00-agent-framework', '01-agent-overview', '02-context-engineering'], ['00-cover', '01-architecture', '02-loop']]
+for listing in ('/', topic):
+    rows = ThumbnailRows(listing).rows
+    for route, names in zip(routes, expected_previews):
+        row = next(row for row in rows if row['url'] == route)
+        assert row['fit'] == 'contain' and len(row['images']) == 3, 'Both articles must show three complete previews'
+        for picture, name in zip(row['images'], names):
+            assert name + '_hu_' in picture['src'] and int(picture['width']) > int(picture['height']), 'Preview selection or full aspect ratio changed'
+for listing in ('/blog/', '/weekly/'):
+    for row in ThumbnailRows(listing).rows:
+        assert row['fit'] is None, 'Default Blog/Weekly thumbnail behavior must stay unchanged'
+        assert all(picture['width'] == picture['height'] == '520' for picture in row['images'])
+print('ok    thumbnail previews: three complete Agent/Harness pictures on home and topic lists; default Blog/Weekly crop retained')
 for route in ('/topics/', topic, *routes):
     page = Page(route)
     assert '测试专题' not in page.text and 'test-notice' not in page.text and 'test-label' not in page.text, route

@@ -58,6 +58,23 @@ class TopicParser(HTMLParser):
         if tag == 'article': self.in_article = False
 
 
+class ContainParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.contain = False
+        self.images = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == 'div' and 'list-thumbnails' in attrs.get('class', '').split():
+            self.contain = attrs.get('data-fit') == 'contain'
+        if tag == 'img' and self.contain:
+            self.images.append(attrs)
+
+    def handle_endtag(self, tag):
+        if tag == 'div': self.contain = False
+
+
 def check(destination=None):
     root = Path(__file__).resolve().parent.parent
     with tempfile.TemporaryDirectory(prefix='12lab-pagination-') as temporary:
@@ -80,7 +97,7 @@ def check(destination=None):
                 if i == 42:
                     article.write_text(article.read_text().replace('weight:', 'images: ["photo-3.png", "photo-1.png"]\nweight:'))
                 if i == 41:
-                    article.write_text(article.read_text().replace('weight:', 'cover: "photo-2.png"\nweight:'))
+                    article.write_text(article.read_text().replace('weight:', 'thumbnailFit: contain\ncover: "photo-2.png"\nweight:'))
             expected.insert(0, f'/{section}/{name}/')
         for name, metadata in [('future', 'date: 2999-01-01'), ('draft', 'date: 2020-02-01\ndraft: true')]:
             article = content / 'blog' / name / 'index.md'
@@ -94,6 +111,14 @@ def check(destination=None):
         assert 'photo-4_' not in first_page, 'Preview should be limited to three images'
         assert 'photo-3_' in first_page and '.webp' in first_page
         print('ok    thumbnails: explicit images, cover fallback, bundle discovery, three-image limit')
+        contained = ContainParser()
+        contained.feed(first_page)
+        assert len(contained.images) == 1, 'Contain fixture must opt in without changing default thumbnails'
+        picture = contained.images[0]
+        assert int(picture['width']) < int(picture['height']), 'Portrait source was cropped square'
+        widths = [int(candidate.strip().split()[1][:-1]) for candidate in picture['srcset'].split(',')]
+        assert widths[1] == int(picture['width']) and all(width < box for width, box in zip(widths, [320, 520, 1040])), 'srcset must report actual fitted widths'
+        print('ok    contain thumbnail: complete portrait ratio, actual responsive widths, default crop mode retained')
         assert 'pagination-gap' in first_page, 'Long pagination should collapse middle pages'
         assert 'home-feed.min.' not in first_page, 'Mobile must use the same numbered pagination'
         cover_detail = (output / 'topics/example/041/index.html').read_text()

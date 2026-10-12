@@ -1,24 +1,34 @@
 {{- $page := . -}}{{- $priority := false -}}
 {{- if reflect.IsMap . }}{{ $page = .page }}{{ $priority = .priority | default false }}{{ end -}}
 {{- $sources := partial "lab/image-sources.html" $page -}}
+{{- $contain := eq ($page.Params.thumbnailFit | default "cover") "contain" -}}
 {{- with $sources -}}
-<div class="list-thumbnails" style="--thumbnail-count:{{ math.Min 3 (len .) }}">
+<div class="list-thumbnails"{{ if $contain }} data-fit="contain"{{ end }} style="--thumbnail-count:{{ math.Min 3 (len .) }}">
   {{- range $index, $source := first 3 . -}}
     {{- $url := $source | relURL -}}
     {{- $resource := partial "lab/image-resource.html" (dict "page" $page "src" $source) -}}
     {{- $srcset := "" -}}
+    {{- $width := 520 -}}{{- $height := 520 -}}
     {{- with $resource -}}
       {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") -}}
-        {{- $preview := .Fill "520x520 webp q80" -}}
+        {{- $preview := . -}}{{- $small := . -}}{{- $large := . -}}
+        {{- if $contain -}}
+          {{- $preview = .Fit "520x520 webp q85" -}}
+          {{- $small = .Fit "320x320 webp q85" -}}
+          {{- $large = .Fit "1040x1040 webp q85" -}}
+        {{- else -}}
+          {{- $preview = .Fill "520x520 webp q80" -}}
+          {{- $small = .Fill "320x320 webp q80" -}}
+          {{- $large = .Fill "1040x1040 webp q80" -}}
+        {{- end -}}
         {{- $url = $preview.RelPermalink -}}
-        {{- $small := .Fill "320x320 webp q80" -}}
-        {{- $large := .Fill "1040x1040 webp q80" -}}
-        {{- $srcset = printf "%s 320w, %s 520w, %s 1040w" $small.RelPermalink $preview.RelPermalink $large.RelPermalink -}}
+        {{- $width = $preview.Width -}}{{- $height = $preview.Height -}}
+        {{- $srcset = printf "%s %dw, %s %dw, %s %dw" $small.RelPermalink $small.Width $preview.RelPermalink $preview.Width $large.RelPermalink $large.Width -}}
       {{- else -}}
         {{- $url = .RelPermalink -}}
       {{- end -}}
     {{- end -}}
-    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" alt="{{ $page.Title }} 配图 {{ add $index 1 }}" {{ if and $priority (eq $index 0) }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}{{ with $srcset }} srcset="{{ . }}" sizes="(max-width: 760px) calc((100vw - 56px) / 3), (max-width: 1800px) calc((80vw - 32px) / 3), 470px"{{ end }} decoding="async" width="520" height="520"></a>
+    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" alt="{{ $page.Title }} 配图 {{ add $index 1 }}" {{ if and $priority (eq $index 0) }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}{{ with $srcset }} srcset="{{ . }}" sizes="(max-width: 760px) calc((100vw - 56px) / 3), (max-width: 1800px) calc((80vw - 32px) / 3), 470px"{{ end }} decoding="async" width="{{ $width }}" height="{{ $height }}"></a>
   {{- end -}}
 </div>
 {{- end -}}
