@@ -36,6 +36,10 @@ async (page, ctx) => {
         return {
           overflow: document.documentElement.scrollWidth > innerWidth,
           badImages: pictures.filter(image => !image.naturalWidth).map(image => image.src),
+          imageFrames: [...document.querySelectorAll('.list-thumbnails img, .article-cover, .prose img')].map(image => {
+            const rect = image.getBoundingClientRect();
+            return { src: image.src, width: rect.width, height: rect.height, fit: getComputedStyle(image).objectFit };
+          }),
           mainCount: document.querySelectorAll('main').length,
           // A single-column layout means one <main> and its footer inside the
           // workspace; a reintroduced sidebar would add a third child or squeeze
@@ -50,6 +54,10 @@ async (page, ctx) => {
       });
       assert(!state.overflow, `${width} ${path}: horizontal overflow`);
       assert(!state.badImages.length, `${width} ${path}: images failed to decode: ${state.badImages.join(', ')}`);
+      for (const image of state.imageFrames) {
+        assert(image.width > 0 && Math.abs(image.height - image.width * 500 / 900) <= 1, `${width} ${path}: image frame must follow 900x500, got ${image.width}x${image.height}: ${image.src}`);
+        assert(image.fit === 'contain', `${width} ${path}: image must scale without cropping or distortion: ${image.src}`);
+      }
       assert(state.mainCount === 1, `${width} ${path}: expected exactly one <main>, found ${state.mainCount}`);
       assert(JSON.stringify(state.workspaceChildren) === JSON.stringify(['MAIN', 'FOOTER']), `${width} ${path}: single-column workspace contains ${state.workspaceChildren.join(' + ')}`);
       assert(state.mainWidthRatio >= 0.99, `${width} ${path}: the main column only spans ${(state.mainWidthRatio * 100).toFixed(1)}% of the workspace`);

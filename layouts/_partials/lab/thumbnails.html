@@ -1,26 +1,18 @@
 {{- $page := . -}}{{- $priority := false -}}
 {{- if reflect.IsMap . }}{{ $page = .page }}{{ $priority = .priority | default false }}{{ end -}}
 {{- $sources := partial "lab/image-sources.html" $page -}}
-{{- $contain := eq ($page.Params.thumbnailFit | default "cover") "contain" -}}
 {{- with $sources -}}
-<div class="list-thumbnails"{{ if $contain }} data-fit="contain"{{ end }} style="--thumbnail-count:{{ math.Min 3 (len .) }}">
+<div class="list-thumbnails" data-fit="contain" style="--thumbnail-count:{{ math.Min 3 (len .) }}">
   {{- range $index, $source := first 3 . -}}
     {{- $url := $source | relURL -}}
     {{- $resource := partial "lab/image-resource.html" (dict "page" $page "src" $source) -}}
     {{- $srcset := "" -}}
-    {{- $width := 520 -}}{{- $height := 520 -}}
+    {{- $width := 900 -}}{{- $height := 500 -}}
     {{- with $resource -}}
       {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") -}}
-        {{- $preview := . -}}{{- $small := . -}}{{- $large := . -}}
-        {{- if $contain -}}
-          {{- $preview = .Fit "520x520 webp q85" -}}
-          {{- $small = .Fit "320x320 webp q85" -}}
-          {{- $large = .Fit "1040x1040 webp q85" -}}
-        {{- else -}}
-          {{- $preview = .Fill "520x520 webp q80" -}}
-          {{- $small = .Fill "320x320 webp q80" -}}
-          {{- $large = .Fill "1040x1040 webp q80" -}}
-        {{- end -}}
+        {{- $preview := .Fit "540x300 webp q85" -}}
+        {{- $small := .Fit "324x180 webp q85" -}}
+        {{- $large := .Fit "900x500 webp q85" -}}
         {{- $url = $preview.RelPermalink -}}
         {{- $width = $preview.Width -}}{{- $height = $preview.Height -}}
         {{- $srcset = printf "%s %dw, %s %dw, %s %dw" $small.RelPermalink $small.Width $preview.RelPermalink $preview.Width $large.RelPermalink $large.Width -}}

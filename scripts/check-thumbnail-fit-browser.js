@@ -1,8 +1,7 @@
-// List thumbnails: "contain" previews for the series, default square crop for
-// Blog/Weekly. Executed by scripts/run-browser-checks.mjs.
+// List thumbnails: complete pictures in 900x500-proportion frames throughout
+// Blog/Weekly/topics. Executed by scripts/run-browser-checks.mjs.
 //   npm run check:browser -- --only thumbnail-fit
 //
-// Content expectation kept here: the series declares `thumbnailFit: contain`.
 // Everything else is derived - the previewed pictures, the original they come
 // from and every expected size are read out of the build, following the
 // documented bundle convention (`<article>/assets/<name>.png` next to
@@ -35,7 +34,7 @@ async (page, ctx) => {
         const row = page.locator(`.post-row:has(h2 a[href="${route}"])`);
         const group = row.locator('.list-thumbnails');
         assert(await group.count() === 1, `${listing} ${route}: no thumbnail group`);
-        assert(await group.getAttribute('data-fit') === 'contain', `${listing} ${route}: the series must keep complete previews (thumbnailFit: contain)`);
+        assert(await group.getAttribute('data-fit') === 'contain', `${listing} ${route}: the series must keep complete previews`);
         const expected = Math.min(3, bodyCounts[route]);
         assert(await group.locator('img').count() === expected, `${listing} ${route}: expected ${expected} preview(s)`);
         const images = await group.locator('img').evaluateAll(async nodes => {
@@ -69,21 +68,25 @@ async (page, ctx) => {
             assert(variant.width === variant.descriptor, `${listing} ${route}: srcset width ${variant.descriptor} does not match the served ${variant.width}px`);
             assert(Math.abs(variant.height - variant.width / expectedRatio) <= 1, `${listing} ${route}: preview variant ${variant.url} is cropped or distorted`);
           }
-          assert(Math.abs(image.rendered[0] - image.rendered[1]) <= 1, `${listing} ${route}: the square preview frame changed`);
+          assert(Math.abs(image.rendered[1] - image.rendered[0] * 500 / 900) <= 1, `${listing} ${route}: preview frame must follow 900x500`);
         }
         assert(!await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), `${listing} ${route}: horizontal overflow`);
         await row.screenshot({ path: `output/playwright/thumbnail-fit-${listing === '/' ? 'home' : 'topic'}-${route.split('/').filter(Boolean).pop()}-${width}.png` });
       }
-      report.push(`${width}px ${listing}: ${chapters.length} series row(s) show complete source-proportion previews with correct widths and square frames`);
+      report.push(`${width}px ${listing}: ${chapters.length} series row(s) show complete source-proportion previews with correct widths and 9:5 frames`);
     }
   }
 
   for (const listing of ['/blog/', '/weekly/']) {
     await page.goto(base + listing);
-    assert(await page.locator('.list-thumbnails[data-fit=contain]').count() === 0, `${listing}: default crop mode must stay unchanged`);
+    assert(await page.locator('.list-thumbnails:not([data-fit=contain])').count() === 0, `${listing}: every preview must keep its complete image`);
     const images = page.locator('.list-thumbnails img');
     assert(await images.count() > 0, `${listing}: no thumbnails to inspect`);
-    assert(await images.first().evaluate(node => getComputedStyle(node).objectFit) === 'cover', `${listing}: default thumbnails are no longer cropped to cover`);
+    assert(await images.first().evaluate(node => getComputedStyle(node).objectFit) === 'contain', `${listing}: default thumbnails must scale without cropping`);
+    // All candidates must agree with the served image's intrinsic size.
+    // Original preservation is checked above and by the portrait fixture in
+    // check-home-pagination.py; a list preview need not also appear in its body.
+    const sourceSize = await images.first().evaluate(node => [Number(node.getAttribute('width')), Number(node.getAttribute('height'))]);
     const variants = await images.first().evaluate(async node => {
       const load = async url => { const picture = new Image(); picture.src = url; await picture.decode(); return [picture.naturalWidth, picture.naturalHeight]; };
       const out = [];
@@ -95,11 +98,11 @@ async (page, ctx) => {
     });
     for (const variant of variants) {
       assert(variant.size[0] === variant.descriptor, `${listing}: srcset width ${variant.descriptor} does not match the served ${variant.size[0]}px`);
-      assert(variant.size[0] === variant.size[1], `${listing}: default thumbnails must stay square, got ${variant.size.join('x')}`);
+      assert(Math.abs(variant.size[1] - variant.size[0] * sourceSize[1] / sourceSize[0]) <= 1, `${listing}: thumbnail was cropped or distorted: ${variant.size.join('x')}`);
     }
-    const reserved = await images.first().evaluate(node => [Number(node.getAttribute('width')), Number(node.getAttribute('height'))]);
-    assert(reserved[0] === reserved[1] && reserved[0] > 0, `${listing}: default thumbnail box must stay square, got ${reserved.join('x')}`);
+    const frame = await images.first().boundingBox();
+    assert(frame.width > 0 && Math.abs(frame.height - frame.width * 500 / 900) <= 1, `${listing}: thumbnail frame must follow 900x500`);
   }
-  report.push('Default Blog/Weekly square crop retained');
+  report.push('Blog/Weekly/topic previews use 9:5 frames and preserve original image proportions');
   return report;
 }

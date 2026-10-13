@@ -321,29 +321,20 @@ def check(output='.hugo-check'):
         pager_hrefs = sorted(re.findall(r'href="([^"]+)"', pager.group(1))) if pager else []
         assert pager_hrefs == neighbours, f'{chapter["route"]}: pager is {pager_hrefs}, expected {neighbours}'
 
-    # Topic listing: order, titles and preview mode follow the front matter.
-    # The default crop size is read from the template instead of repeated here.
-    square = re.search(r'\.Fill\s+"(\d+)x(\d+)\s+webp', Path('layouts/_partials/lab/thumbnails.html').read_text(encoding='utf-8'))
-    assert square, 'layouts/_partials/lab/thumbnails.html: the default crop size moved (update this check)'
-    square_size = (square.group(1), square.group(2))
-
+    # Topic listing: order and titles follow the front matter; every preview
+    # preserves its original proportions inside the site's 9:5 frame.
     listing = Listing(root / TOPIC_ROUTE.lstrip('/') / 'index.html')
     assert [row['url'] for row in listing.rows] == routes, f'{TOPIC_ROUTE}: listing order {[row["url"] for row in listing.rows]} does not follow weight order {routes}'
     for row, chapter in zip(listing.rows, chapters):
         assert row['title'] == chapter['title'], f'{chapter["route"]}: listing title {row["title"]!r} differs from front matter'
-        expected_fit = 'contain' if chapter['fit'] == 'contain' else None
-        assert row['fit'] == expected_fit, f'{chapter["route"]}: preview mode {row["fit"]!r} does not follow thumbnailFit {chapter["fit"]!r}'
+        assert row['fit'] == 'contain', f'{chapter["route"]}: preview mode must preserve complete pictures'
         previews = min(PREVIEW_LIMIT, len(chapter['previews']))
         assert len(row['pictures']) == previews, f'{chapter["route"]}: {len(row["pictures"])} preview(s), expected {previews}'
         for picture, name in zip(row['pictures'], chapter['previews'][:previews]):
             natural_width, natural_height = image_size(chapter['bundle'][name])
             assert name.rsplit('.', 1)[0] in picture['src'], f'{chapter["route"]}: preview {picture["src"]} is not {name}'
-            if expected_fit is None:
-                assert (picture['width'], picture['height']) == square_size, \
-                    f'{chapter["route"]}: default previews must stay {square_size[0]}x{square_size[1]}, got {picture["width"]}x{picture["height"]}'
-                continue
-            # contain: the square frame stays, but the picture inside keeps the
-            # source ratio - in its reserved size and in every built candidate.
+            # The picture keeps the source ratio in its intrinsic attributes
+            # and in every built candidate; CSS controls the 9:5 frame.
             reserved = int(picture['width']) / int(picture['height'])
             assert abs(reserved - natural_width / natural_height) <= 0.01, \
                 f'{chapter["route"]}: contain preview {name} reserves {picture["width"]}x{picture["height"]} for a {natural_width}x{natural_height} source'
@@ -364,10 +355,16 @@ def check(output='.hugo-check'):
         page = Listing(root / listing_route.lstrip('/') / 'index.html')
         assert page.rows, f'{listing_route}: no rows'
         for row in page.rows:
-            assert row['fit'] is None, f'{listing_route}: default previews must not opt into contain mode'
+            if not row['pictures']:
+                continue
+            assert row['fit'] == 'contain', f'{listing_route}: default previews must preserve complete pictures'
             for picture in row['pictures']:
-                assert (picture['width'], picture['height']) == square_size, \
-                    f'{listing_route}: default previews must stay {square_size[0]}x{square_size[1]}, got {picture["width"]}x{picture["height"]}'
+                if not picture['srcset']:
+                    continue  # SVG previews keep their original vector source.
+                source = root / urlsplit(picture['src']).path.lstrip('/')
+                intrinsic = image_size(source)
+                assert (int(picture['width']), int(picture['height'])) == intrinsic, \
+                    f'{listing_route}: thumbnail dimensions do not match the served image'
 
     # Discovery outputs.
     indices = list(root.glob('search-index.*.json'))
