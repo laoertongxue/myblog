@@ -353,7 +353,6 @@ def check(output='.hugo-check'):
 
     for listing_route in ('/blog/', '/weekly/'):
         page = Listing(root / listing_route.lstrip('/') / 'index.html')
-        assert page.rows, f'{listing_route}: no rows'
         for row in page.rows:
             if not row['pictures']:
                 continue

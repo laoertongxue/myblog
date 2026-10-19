@@ -21,7 +21,7 @@ async (page, ctx) => {
     const headerBottom = await page.locator('.site-header').evaluate(node => node.getBoundingClientRect().bottom);
     assert(firstRowTop - headerBottom <= 40, `empty block between header and feed: ${Math.round(firstRowTop - headerBottom)}px`);
 
-    await page.goto(base + '/blog/supply-chain-ai-moment/');
+    await page.goto(base + '/topics/agent-engineering/01-agent-framework/');
     assert(await page.locator('.mobile-site-title').isVisible(), 'mobile site title hidden');
     assert(!await page.locator('.header-primary').isVisible(), 'desktop navigation visible at mobile width');
     assert(!await page.locator('.footer-details').first().isVisible(), 'mobile footer still shows the legal details');
@@ -50,7 +50,7 @@ async (page, ctx) => {
     await page.locator('.post-row').first().waitFor();
     assert(!await page.locator('#mobile-navigation').isVisible(), 'menu stayed open after navigating');
 
-    await page.goto(base + '/blog/supply-chain-ai-moment/');
+    await page.goto(base + '/topics/agent-engineering/01-agent-framework/');
     const stats = await page.locator('.reading-stats').textContent();
     const match = stats.match(/全文共 (\d+) 字，阅读约需 (\d+) 分钟/);
     assert(match, `reading stats missing or reworded: ${JSON.stringify(stats)}`);

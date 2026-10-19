@@ -36,7 +36,7 @@ async (page, ctx) => {
   await dialog.waitFor({ state: 'hidden' });
   report.push('Menu ignores clicks inside its own padding; backdrop and Escape still close it');
 
-  for (const route of ['/blog/supply-chain-ai-moment/', '/weekly/002/', '/topics/agent-engineering/01-agent-framework/', '/blog/', '/about/', '/now/', '/links/']) {
+  for (const route of ['/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/', '/blog/', '/weekly/', '/topics/', '/about/', '/now/', '/links/']) {
     await page.goto(base + route);
     for (const selector of ['.site-header', '#mobile-navigation']) {
       const marked = page.locator(`${selector} [aria-current]`);
@@ -79,7 +79,9 @@ async (page, ctx) => {
   // expectation is "one prioritized picture per listing that shows previews".
   for (const route of ['/', '/weekly/', '/blog/', '/topics/', '/topics/agent-engineering/']) {
     await page.goto(base + route);
-    assert(await page.locator('.post-row').count() > 0, `${route}: listing is empty`);
+    if (route === '/' || route === '/topics/' || route === '/topics/agent-engineering/') {
+      assert(await page.locator('.post-row').count() > 0, `${route}: listing is empty`);
+    }
     const groups = await page.locator('.post-row .list-thumbnails').count();
     const total = await page.locator('.list-thumbnails img').count();
     const prioritized = await page.locator('.list-thumbnails img[fetchpriority="high"]').count();

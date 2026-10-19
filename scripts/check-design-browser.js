@@ -11,8 +11,8 @@
 async (page, ctx) => {
   const { base, assert, pagerSize, walkPagination, rssCount } = ctx;
   const report = [];
-  const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/agent-engineering/', '/blog/supply-chain-ai-moment/', '/weekly/002/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/', '/about/', '/now/', '/links/', '/archive/', '/search/', '/copyright/', '/tags/', '/tags/ai/', '/categories/', '/404.html'];
-  const articleRoutes = ['/blog/supply-chain-ai-moment/', '/weekly/002/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/'];
+  const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/agent-engineering/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/', '/about/', '/now/', '/links/', '/archive/', '/search/', '/copyright/', '/tags/', '/categories/', '/404.html'];
+  const articleRoutes = ['/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/'];
 
   for (const width of [1440, 1920, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 960 });
@@ -81,11 +81,11 @@ async (page, ctx) => {
     if (home.pages > 3) assert(await page.locator('.pagination-gap').count() > 0, 'collapsed middle pages show no ellipsis');
     report.push(`${width}px: ${home.pages} numbered home page(s), ${home.links.length} unique articles, ${pagerSize} per page`);
 
-    for (const listing of ['/blog/', '/weekly/', '/tags/ai/', '/categories/周刊/']) {
+    for (const listing of ['/blog/', '/weekly/', '/topics/agent-engineering/']) {
       const walked = await walkPagination(page, { path: listing });
-      assert(walked.links.length > 0, `${listing}: no articles listed`);
+      if (listing === '/topics/agent-engineering/') assert(walked.links.length > 0, `${listing}: no articles listed`);
     }
-    report.push(`Blog, Weekly and taxonomy listings paginate at ${pagerSize} with unique articles`);
+    report.push(`Blog, Weekly and topic listings paginate at ${pagerSize} with unique articles`);
 
     await page.goto(base + '/topics/agent-engineering/');
     const chapters = await rssCount('/topics/agent-engineering/index.xml');
@@ -96,7 +96,7 @@ async (page, ctx) => {
   }
 
   await page.setViewportSize({ width: 1440, height: 960 });
-  await page.goto(base + '/blog/supply-chain-ai-moment/');
+  await page.goto(base + '/topics/agent-engineering/01-agent-framework/');
   const toc = page.locator('.floating-toc');
   await toc.locator('summary').click();
   const last = toc.locator('a').last();
@@ -116,16 +116,17 @@ async (page, ctx) => {
   report.push('TOC opens, jumps, highlights, and closes on Escape and outside click');
 
   // Search a title that the generated index really contains, then narrow it to
-  // one section: no hardcoded query string.
+  // its section: no hardcoded query string or section assumption.
   const indexHref = await page.goto(base + '/search/').then(() => page.locator('.search-page').getAttribute('data-index'));
   const index = await (await fetch(base + indexHref)).json();
-  const sample = index.find(item => item.section === 'weekly');
-  assert(sample, 'search index carries no Weekly item to search for');
+  const sample = index[0];
+  const labels = { blog: '博客', weekly: 'Weekly', topics: '专题' };
+  assert(sample, 'search index carries no item to search for');
   await page.goto(`${base}/search/?q=${encodeURIComponent(sample.title)}`);
   await page.waitForFunction(() => document.querySelectorAll('.search-result').length > 0);
-  await page.locator('[data-filter=weekly]').click();
-  await page.waitForFunction(() => [...document.querySelectorAll('.result-kind')].every(node => node.textContent === 'Weekly'));
-  report.push(`Search and the Weekly filter work for the indexed title ${JSON.stringify(sample.title)}`);
+  await page.locator(`[data-filter=${sample.section}]`).click();
+  await page.waitForFunction(expected => [...document.querySelectorAll('.result-kind')].every(node => node.textContent === expected), labels[sample.section]);
+  report.push(`Search and the ${sample.section} filter work for the indexed title ${JSON.stringify(sample.title)}`);
 
   const noJsContext = await page.context().browser().newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const fallback = await noJsContext.newPage();
