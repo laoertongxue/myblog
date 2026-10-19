@@ -14,10 +14,11 @@ async (page, ctx) => {
   tab.on('request', request => requests.push(request.url()));
   const report = [];
 
-  for (const path of ['/', '/blog/layout-test-01/']) {
+  for (const path of ['/', '/topics/agent-engineering/01-agent-framework/']) {
     requests = [];
     await tab.goto(base + path);
     const selector = path === '/' ? '.list-thumbnails img' : '.prose img';
+    await tab.locator(selector).first().evaluate(image => image.decode());
     const images = await tab.locator(selector).evaluateAll(nodes => nodes.map(image => ({
       width: image.getAttribute('width'),
       height: image.getAttribute('height'),
@@ -28,11 +29,12 @@ async (page, ctx) => {
     })));
     assert(images.length > 0, `${path}: no images matched ${selector}`);
     assert(images[0].loading === 'eager' && images[0].priority === 'high', `${path}: the first image is not prioritized`);
+    assert(images[0].src, `${path}: the prioritized first image did not select a candidate`);
     assert(images.slice(1).every(image => image.loading === 'lazy'), `${path}: images after the first must stay lazy`);
     assert(images.every(image => image.width && image.height), `${path}: an image is missing its reserved dimensions`);
     for (const image of images) {
-      if (!image.srcset) continue;
-      const chosen = new URL(image.src).pathname;
+      if (!image.srcset || !image.src) continue;
+      const chosen = decodeURIComponent(new URL(image.src).pathname);
       const candidates = image.srcset.split(',').map(candidate => candidate.trim().split(/\s+/)[0]);
       assert(candidates.includes(chosen), `${path}: selected candidate ${chosen} is not in its own srcset`);
     }

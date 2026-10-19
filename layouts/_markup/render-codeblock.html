@@ -1,0 +1,5 @@
+{{- if transform.CanHighlight .Type -}}
+  {{- highlight .Inner .Type .Options -}}
+{{- else -}}
+  <pre><code>{{ .Inner }}</code></pre>
+{{- end -}}

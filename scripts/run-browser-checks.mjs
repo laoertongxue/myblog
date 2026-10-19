@@ -184,8 +184,12 @@ function makeContext({ base, directory, pagerSize }) {
           assert(current.length === pagerSize, `${listing}: non-final page ${pages} lists ${current.length} rows, expected ${pagerSize}`);
         }
         links.push(...current);
-        const active = (await page.locator('.feed-pagination [aria-current=page]').textContent()).trim();
-        assert(active === String(pages), `${listing}: page ${pages} marks "${active}" as current`);
+        if (lastPage > 1) {
+          const active = (await page.locator('.feed-pagination [aria-current=page]').textContent()).trim();
+          assert(active === String(pages), `${listing}: page ${pages} marks "${active}" as current`);
+        } else {
+          assert(await page.locator('.feed-pagination').count() === 0, `${listing}: single-page listing should not render pagination`);
+        }
         if (!hasNext) break;
         await next.click();
         await page.waitForFunction(expected => document.querySelector('.feed-pagination [aria-current=page]')?.textContent.trim() === String(expected), pages + 1);

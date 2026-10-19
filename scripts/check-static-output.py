@@ -46,10 +46,7 @@ class Check(HTMLParser):
 for file in output.rglob('*.html'):
     Check(file).feed(file.read_text())
 tests = [p for p in Path('content').rglob('index.md') if 'testContent: true' in p.read_text()]
-
-for file in tests:
-    text = file.read_text()
-    assert '\nimages:\n' in text and '![' in text, f'{file} must contain preview and body images'
+assert not tests, f'testContent articles must not remain in content/: {tests}'
 
 assert not errors, '\n'.join(errors)
-print(f'ok    all local image/article links resolve; {len(tests)} test articles and {images} image references')
+print(f'ok    all local image/article links resolve; 0 test articles and {images} image references')

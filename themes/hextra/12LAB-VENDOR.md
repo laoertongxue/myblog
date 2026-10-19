@@ -25,5 +25,6 @@ repository.
 - **Upgrading**: replace this directory with the upstream release, update
   `Recorded version` / `Vendored on` above, then run `make check`. The browser
   checks and `scripts/check-seo.py` are what catch theme-level regressions — the
-  site's own templates and CSS no longer depend on Hextra's CSS variables at all,
-  only on its `_markup` render hooks, icons/favicons partials and data files.
+  site's own templates and CSS no longer depend on Hextra's CSS (`variables.css` /
+  `compiled/main.css`) at all, only on its `render-link` / `render-blockquote-*`
+  hooks, `favicons.html` partial and data files.

@@ -11,8 +11,8 @@
 async (page, ctx) => {
   const { base, assert, pagerSize, walkPagination, rssCount } = ctx;
   const report = [];
-  const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/agent-engineering/', '/blog/layout-test-01/', '/weekly/003/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/', '/about/', '/now/', '/links/', '/archive/', '/search/', '/copyright/', '/tags/', '/tags/测试内容/', '/categories/', '/404.html'];
-  const articleRoutes = ['/blog/layout-test-01/', '/weekly/003/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/'];
+  const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/agent-engineering/', '/blog/supply-chain-ai-moment/', '/weekly/002/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/', '/about/', '/now/', '/links/', '/archive/', '/search/', '/copyright/', '/tags/', '/tags/ai/', '/categories/', '/404.html'];
+  const articleRoutes = ['/blog/supply-chain-ai-moment/', '/weekly/002/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/'];
 
   for (const width of [1440, 1920, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 960 });
@@ -76,12 +76,12 @@ async (page, ctx) => {
       await page.locator('.feed-pagination [rel=prev]').click();
       await page.waitForFunction(expected => document.querySelector('.feed-pagination [aria-current=page]')?.textContent.trim() === String(expected), home.pages - 1);
       await page.goto(base);
-      await page.screenshot({ path: `output/playwright/single-column-${width}.png` });
     }
+    await page.screenshot({ path: `output/playwright/single-column-${width}.png` });
     if (home.pages > 3) assert(await page.locator('.pagination-gap').count() > 0, 'collapsed middle pages show no ellipsis');
-    report.push(`${width}px: ${home.pages} numbered home page(s), ${home.links.length} unique articles, ${pagerSize} per page, arrows and ellipsis`);
+    report.push(`${width}px: ${home.pages} numbered home page(s), ${home.links.length} unique articles, ${pagerSize} per page`);
 
-    for (const listing of ['/blog/', '/weekly/', '/tags/测试内容/', '/categories/图文测试/']) {
+    for (const listing of ['/blog/', '/weekly/', '/tags/ai/', '/categories/周刊/']) {
       const walked = await walkPagination(page, { path: listing });
       assert(walked.links.length > 0, `${listing}: no articles listed`);
     }
@@ -96,7 +96,7 @@ async (page, ctx) => {
   }
 
   await page.setViewportSize({ width: 1440, height: 960 });
-  await page.goto(base + '/blog/layout-test-01/');
+  await page.goto(base + '/blog/supply-chain-ai-moment/');
   const toc = page.locator('.floating-toc');
   await toc.locator('summary').click();
   const last = toc.locator('a').last();

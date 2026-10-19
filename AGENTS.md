@@ -68,7 +68,7 @@ playwright 变成失败（CI 用的就是它，见下）。
   列表使用 Hugo `.Fit` 保留完整画面，不再使用方形 `.Fill` 裁切；已有 `thumbnailFit` 字段不再决定显示方式。
   头像和导航图标继续使用各自的尺寸。详见 `docs/列表缩略图.md`。
 - 站点的设计系统几乎全部在 `assets/css/custom.css`，采用顶部导航与居中单栏。
-  由 `layouts/_partials/head.html` 将主题变量、主题 CSS 和此文件合并、压缩并加指纹。
+  由 `layouts/_partials/head.html` 将 `assets/css/chroma.css`（Hugo Chroma 语法高亮）和此文件合并、压缩并加指纹（已抛弃主题的 `css/variables.css` 与 `css/compiled/main.css`）。
   定制样式仍统一维护在此文件；不要另起未接入编译链的 CSS 文件。
 - 头像走 Hugo 图片管线：`static/images` 里的文件不会被 `[imaging]` 处理，必须放 `assets/images/`，
   由 `layouts/_partials/lab/avatar-src.html` 调 `.Fill` 产出 webp。把图片挪回 `static/` 会让

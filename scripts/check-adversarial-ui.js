@@ -36,7 +36,7 @@ async (page, ctx) => {
   await dialog.waitFor({ state: 'hidden' });
   report.push('Menu ignores clicks inside its own padding; backdrop and Escape still close it');
 
-  for (const route of ['/blog/layout-test-01/', '/weekly/003/', '/topics/agent-engineering/01-agent-framework/', '/blog/', '/about/', '/now/', '/links/']) {
+  for (const route of ['/blog/supply-chain-ai-moment/', '/weekly/002/', '/topics/agent-engineering/01-agent-framework/', '/blog/', '/about/', '/now/', '/links/']) {
     await page.goto(base + route);
     for (const selector of ['.site-header', '#mobile-navigation']) {
       const marked = page.locator(`${selector} [aria-current]`);
@@ -74,11 +74,10 @@ async (page, ctx) => {
   report.push(`Muted list text renders at ${contrast.ratio.toFixed(2)}:1 against the real page background`);
 
   // Thumbnail priority is derived from the listing itself: exactly one group's
-  // first picture may be eager/high, everything else stays lazy. The topics
-  // index legitimately has no previews (its bundle carries no images), so the
-  // expectation is "one prioritized picture per listing that shows previews",
-  // not "every listing must show previews".
-  for (const route of ['/', '/weekly/', '/blog/', '/topics/']) {
+  // first picture may be eager/high, everything else stays lazy. Listings whose
+  // posts have no images legitimately render 0 preview groups, so the
+  // expectation is "one prioritized picture per listing that shows previews".
+  for (const route of ['/', '/weekly/', '/blog/', '/topics/', '/topics/agent-engineering/']) {
     await page.goto(base + route);
     assert(await page.locator('.post-row').count() > 0, `${route}: listing is empty`);
     const groups = await page.locator('.post-row .list-thumbnails').count();
@@ -88,7 +87,7 @@ async (page, ctx) => {
     assert(prioritized === (groups ? 1 : 0), `${route}: ${prioritized} prioritized thumbnail(s) across ${groups} preview group(s)`);
     assert(eager === prioritized, `${route}: eager thumbnails (${eager}) do not match prioritized ones (${prioritized})`);
     assert(await page.locator('.list-thumbnails img[loading="lazy"]').count() === total - prioritized, `${route}: every thumbnail after the first must stay lazy`);
-    if (route !== '/topics/') assert(groups > 0, `${route}: previews disappeared from a listing that shows them`);
+    if (route === '/' || route === '/topics/agent-engineering/') assert(groups > 0, `${route}: previews disappeared from a listing that shows them`);
     for (let i = 0; i < groups; i++) {
       assert(await page.locator('.list-thumbnails').nth(i).locator('img').count() <= 3, `${route}: a preview group shows more than three pictures`);
     }
