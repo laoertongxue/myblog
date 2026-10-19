@@ -1,6 +1,5 @@
 baseURL = "https://12lab.cn/"
 title = "拾贰画生 · 有那么点儿追求的中年男人"
-theme = "hextra"
 enableRobotsTXT = true
 enableEmoji = true
 defaultContentLanguage = "zh-cn"
@@ -32,17 +31,8 @@ timeout = "60s"
 [params]
   avatar = "images/avatar-wangye.png"
   description = "有那么点儿追求的中年男人"
-  dateFormat = "2006 年 01 月 02 日"
   [params.author]
     name = "拾贰画生"
-  [params.navbar]
-    displayTitle = true
-    displayLogo = false
-  [params.footer]
-    displayCopyright = false
-    displayPoweredBy = false
-  [params.editURL]
-    enable = false
 
 # Navigation has exactly one source of truth: these menus. The site header and
 # footer read `params.placement` ("leading" = top left, "quick" = top right) and

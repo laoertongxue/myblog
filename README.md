@@ -4,7 +4,7 @@
 
 线上地址：**https://12lab.cn/**
 
-本站是一个 Hugo 静态站，主题 [Hextra](https://github.com/imfing/hextra) v0.12.3 已经 vendor 进 `themes/hextra/`，由 GitHub Actions 自动构建并 rsync 到单机 Caddy。任何 `push` 到 `main` 的提交都会直接上线；本地构建失败的改动会被部署脚本原子回滚到上一个稳定 release。
+本站是一个零外部主题依赖的 Hugo 静态站（模板与单栏编辑部设计系统全部内聚在 `layouts/` 与 `assets/`），由 GitHub Actions 自动构建并 rsync 到单机 Caddy。任何 `push` 到 `main` 的提交都会直接上线；本地构建失败的改动会被部署脚本原子回滚到上一个稳定 release。
 
 ## 三类内容
 
@@ -36,10 +36,8 @@ git push                           # 触发 CI，部署到 12lab.cn
 
 ## 技术栈
 
-- **Hugo** v0.166.0+extended（Hextra 要求 `min_version = "0.146.0"`）
-- **Hextra** v0.12.3，vendor 到 `themes/hextra/`（版本与来源记录在同目录的
-  `12LAB-VENDOR.md`），由 `hugo.toml` 的 `theme = "hextra"` 启用
-- **项目级覆盖**位于 `layouts/_partials/lab/*`、`layouts/baseof.html`、`layouts/_partials/head.html`、`assets/css/custom.css`，独立于主题升级，主题切换可分享干净副本
+- **Hugo** v0.166.0+extended
+- **自研模板与设计系统**：全部位于 `layouts/`、`assets/css/custom.css`、`assets/css/chroma.css` 与 `assets/js/`，不依赖任何第三方 Hugo 主题
 - **GitHub Actions**：build → release-manifest → rsync 到 `43.255.31.74`，部署账户 `deploy12lab` 仅有最小权限
 - **Caddy**：基于内容哈希的 immutable 缓存、`nosniff` / `SAMEORIGIN` / `strict-origin-when-cross-origin` 安全头、zstd+gzip
 - **Playwright**（唯一 npm 依赖，`package.json`）：驱动 `scripts/check-*.js` 里六个真实浏览器回归检查，
@@ -78,13 +76,13 @@ archetypes/      # hugo new 骨架（blog / weekly / topics / default）
 assets/          # css / js / 头像图（Hugo 图片管线入口）
 content/         # 博客 / 周刊 / 专题 / 单页
 docs/            # 设计与工程变更日志
-layouts/         # 项目级模板，覆盖 themes/hextra 同名文件
+layouts/         # 站点全部模板与 partial
 scripts/         # 构建检查 / 浏览器检查 / 发布 / 服务器初始化
   check.sh                    # make check 的入口
   run-browser-checks.mjs      # 起本地服务并执行下面六个浏览器检查
   check-*-browser.js / check-*.js
+static/          # 站点图标、webmanifest 与静态兜底资源
 package.json     # 唯一依赖声明：playwright（devDependency）
-themes/hextra/   # vendor 的主题（独立可分享，版本见 12LAB-VENDOR.md）
 AGENTS.md        # AI 协作 / 改代码时的工程注意事项
 ```
 
@@ -93,12 +91,9 @@ AGENTS.md        # AI 协作 / 改代码时的工程注意事项
 - **改代码前必读**：[`AGENTS.md`](./AGENTS.md) — 列出所有"为什么这么写"的不变量、CI 发布门槛、回滚路径、SSH 凭据策略
 - **设计变更日志**：[`docs/`](./docs/) — 单栏改版、列表缩略图、后台链路修复等历史记录；
   最近一次核查修复见 [`docs/2026-10-12-核查修复.md`](./docs/2026-10-12-核查修复.md)
-- **主题原文档**：[`themes/hextra/README.md`](./themes/hextra/README.md) — vendored Hextra 主题的官方说明；
-  版本与升级方式见 [`themes/hextra/12LAB-VENDOR.md`](./themes/hextra/12LAB-VENDOR.md)
 
 ## 致谢与许可
 
-- 主题：[imfing/hextra](https://github.com/imfing/hextra)（MIT）
 - 静态站点生成：[Hugo](https://gohugo.io/)（Apache-2.0）
 - 站内原创内容采用 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)，详见站内版权页
 

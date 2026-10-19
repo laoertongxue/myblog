@@ -38,10 +38,9 @@ def create(root):
         if file.is_file() and file.relative_to(root).as_posix() != NAME:
             files[file.relative_to(root).as_posix()] = hashlib.sha256(file.read_bytes()).hexdigest()
     selected = ['index.html', 'search/index.html', 'index.xml', 'sitemap.xml', 'robots.txt', '404.html']
-    # Prefer a real article over layout-test content, but accept small sites too.
     articles = sorted(p for p in files if p.startswith(('blog/', 'weekly/', 'topics/')) and p.count('/') >= 2 and p.endswith('/index.html') and '/page/' not in p)
     if articles:
-        selected.append(next((p for p in articles if 'layout-test' not in p), articles[0]))
+        selected.append(articles[0])
     probes = {}
     for name in selected:
         if name not in files:

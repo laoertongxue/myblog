@@ -22,7 +22,7 @@ class Check(HTMLParser):
             references.append(attrs['src'])
         if tag == 'a' and attrs.get('href'):
             references.append(attrs['href'])
-        if tag == 'link' and attrs.get('rel') in ('stylesheet', 'preload', 'modulepreload') and attrs.get('href'):
+        if tag == 'link' and attrs.get('rel') in ('stylesheet', 'preload', 'modulepreload', 'icon', 'icon shortcut', 'apple-touch-icon', 'manifest') and attrs.get('href'):
             references.append(attrs['href'])
         if attrs.get('data-index'):
             references.append(attrs['data-index'])

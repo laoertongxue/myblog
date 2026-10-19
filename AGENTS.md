@@ -1,7 +1,6 @@
 # AGENTS.md — 12lab.cn
 
-Hugo 静态站（主题已 vendor 进 `themes/hextra/`，来源是 `github.com/imfing/hextra`
-v0.12.3，由 `hugo.toml` 的 `theme = "hextra"` 启用），GitHub Actions 构建后
+Hugo 静态站（无外部主题依赖，全部模板与样式收归仓库内 `layouts/` 与 `assets/`），GitHub Actions 构建后
 rsync 到单机 Caddy。
 
 ## 改动前必须知道的事
@@ -67,8 +66,8 @@ playwright 变成失败（CI 用的就是它，见下）。
   禁止拉伸变形或裁掉信息；历史图片、截图、SVG 与外链图按原比例完整放入 9:5 区域，必要时留白。
   列表使用 Hugo `.Fit` 保留完整画面，不再使用方形 `.Fill` 裁切；已有 `thumbnailFit` 字段不再决定显示方式。
   头像和导航图标继续使用各自的尺寸。详见 `docs/列表缩略图.md`。
-- 站点的设计系统几乎全部在 `assets/css/custom.css`，采用顶部导航与居中单栏。
-  由 `layouts/_partials/head.html` 将 `assets/css/chroma.css`（Hugo Chroma 语法高亮）和此文件合并、压缩并加指纹（已抛弃主题的 `css/variables.css` 与 `css/compiled/main.css`）。
+- 站点的设计系统全部在 `assets/css/custom.css`，采用顶部导航与居中单栏。
+  由 `layouts/_partials/head.html` 将 `assets/css/chroma.css`（Hugo Chroma 语法高亮）和此文件合并、压缩并加指纹（已彻底移除外部 `themes/hextra` 依赖）。
   定制样式仍统一维护在此文件；不要另起未接入编译链的 CSS 文件。
 - 头像走 Hugo 图片管线：`static/images` 里的文件不会被 `[imaging]` 处理，必须放 `assets/images/`，
   由 `layouts/_partials/lab/avatar-src.html` 调 `.Fill` 产出 webp。把图片挪回 `static/` 会让

@@ -62,13 +62,15 @@ jobs:
             echo "Build output is empty!"
             exit 1
           fi
+          python3 scripts/check-published-pages.py public
+          PUBLISHED=$(( $(hugo list published | tail -n +2 | wc -l) + 2 ))
           PAGES=$(( $(find public -name "*.html" | wc -l) ))
-          if [ "$PAGES" -lt 10 ]; then
-            echo "::error::Build produced only $PAGES pages"
+          if [ "$PAGES" -lt "$PUBLISHED" ]; then
+            echo "::error::Build produced $PAGES HTML pages, fewer than $PUBLISHED required published routes"
             exit 1
           fi
           echo "pages=$PAGES" >> "$GITHUB_OUTPUT"
-          echo "Build successful. Pages generated: $PAGES"
+          echo "Build successful. Pages generated: $PAGES (minimum required routes: $PUBLISHED)"
 
       - name: Generate release manifest
         run: python3 scripts/release-manifest.py public

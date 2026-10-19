@@ -1,8 +1,7 @@
 # License
 
-本仓库（包括但不限于 `content/`、`layouts/`、`scripts/`、`assets/`、`hugo.toml`、
-`AGENTS.md`、`README.md`、`Makefile`、`archetypes/`，**不含** `themes/hextra/` 自带的
-MIT 许可部分）采用 **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
+本仓库（包括但不限于 `content/`、`layouts/`、`scripts/`、`assets/`、`static/`、`hugo.toml`、
+`AGENTS.md`、`README.md`、`Makefile`、`archetypes/`）采用 **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
 International（CC BY-NC-ND 4.0）** 协议授权。
 
 Copyright © 2026 拾贰画生（laoertongxue）
@@ -23,8 +22,3 @@ Copyright © 2026 拾贰画生（laoertongxue）
 - 人类可读摘要（Deed）：https://creativecommons.org/licenses/by-nc-nd/4.0/
 
 完整法律文本以 creativecommons.org 上的版本为准；本文件仅为人类可读摘要与导航。
-
-## 主题例外
-
-`themes/hextra/` 下 vendored 的 [Hextra](https://github.com/imfing/hextra) 主题代码
-遵循其上游的 MIT 许可（见 `themes/hextra/LICENSE`）。
