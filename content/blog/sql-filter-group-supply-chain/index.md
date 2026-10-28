@@ -55,13 +55,13 @@ tags: ["供应链", "SQL", "数据分析"]
 
 这不是随便编的五行：取消单用于检验状态条件，午夜前后的两单用于检验时间边界，每单两条明细用于检验“订单数”和“明细行数”是否混淆。牛奶存在于主数据却未出现在这个切片中，用来提醒我们：查询没有返回某个 SKU，不一定是数据丢失。
 
-![01-hewei-filter](images/d2-01-hewei-filter.png)
+[![01-hewei-filter](images/d2-01-hewei-filter.png)](images/d2-01-hewei-filter.png)
 
 服装样本采用同样的对照结构，完整单号为 `PO-DEMO-001` 至 `PO-DEMO-005`。001、002、004、005 属于 WH-FG-01，003 属于 WH-FG-02；创建时间分别为 10 月 21 日 08:00、10:00、11:00、23:59:59，以及 22 日 00:00。002 取消，其余确认。五单的黑色 M/L 明细分别为 120/80、50/30、100/60、40/20、30/10 件。
 
 因此，10 月 21 日应纳入 001、003、004：3 张订单、6 条明细，M 码 260 件、L 码 160 件，共 420 件。注意，“420 件”只回答总体规模；M、L 仍是不同 SKU，不能据此认为尺码之间可以替代交付。
 
-![02-apparel-grain](images/d2-02-apparel-grain.png)
+[![02-apparel-grain](images/d2-02-apparel-grain.png)](images/d2-02-apparel-grain.png)
 
 ## 三 模板一：筛选某店某天的有效订单
 
@@ -87,7 +87,7 @@ ORDER BY created_at, order_id;
 
 第三，本文时间已经转换为各案例的业务本地时间，并统一存为 `YYYY-MM-DD HH:MM:SS` 格式的文本，查询边界也使用同一格式、同一时区。这是 SQLite 教学数据的约定，不是 SQL 自动完成了时区转换；混入仅有日期、不同分隔符或带时区偏移的字符串，不能继续假设文本比较等于时间比较。生产库若存 UTC，应先把业务日的起止边界分别换算为 UTC，再按原时间列查询。[SQLite 日期时间存储说明](https://www.sqlite.org/datatype3.html#date_and_time_datatype)
 
-![04-date-boundary](images/d2-04-date-boundary.png)
+[![04-date-boundary](images/d2-04-date-boundary.png)](images/d2-04-date-boundary.png)
 
 换成大学城店，只改 `store_id`。换成服装生产订单，则使用 `production_orders`、`warehouse_id = 'WH-FG-01'`，日期改为 10 月 21—22 日。查询结构相同，但不能把门店时区和仓库时区混为一谈。
 
@@ -170,7 +170,7 @@ ORDER BY l.sku_id;
 
 这张表不应该增加一个“合计 74”的总计行。74 只是五个数的算术和，混合单位后没有可解释的订货量含义。即便把公斤类单独相加成 66 公斤，也只能表示重量规模，不能代替具体 SKU 的采购需求。
 
-![03-sku-quantities](images/d2-03-sku-quantities.png)
+[![03-sku-quantities](images/d2-03-sku-quantities.png)](images/d2-03-sku-quantities.png)
 
 本例假设每个 SKU 只有一个标准单位。如果真实业务同时以箱、袋、公斤下单，必须先有经确认的换算关系，再转为标准单位；把字段名从“箱”改成“公斤”并不是换算。鸡蛋 5 盒也不能在不知道包装规格时直接当作 5 个。
 

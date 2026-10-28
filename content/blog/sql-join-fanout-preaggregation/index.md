@@ -33,7 +33,7 @@ tags: ["供应链", "SQL", "连接扇出", "数据分析"]
 
 这张表是连接后的结果，不是原始订单表。它的粒度已经从“一个订单行”变成“订单行×匹配到的验收事件”。因此，验收量相加仍是100，计划量却不能直接相加。
 
-![分批验收如何复制计划量](images/d4-01_fanout.png)
+[![分批验收如何复制计划量](images/d4-01_fanout.png)](images/d4-01_fanout.png)
 
 下面这段查询会得到50%。为隔离连接问题，此处只取A1，两条验收均已按时合格。
 
@@ -54,7 +54,7 @@ WHERE o.line_id = 'A1';
 
 “先汇总”和“先封顶”不能交换：一行订20公斤，两批各收12公斤，应先合计24，再封顶为20；如果逐批各封顶为12，再相加就成了24。
 
-![正确计算的四个步骤](images/d4-02_correct_pipeline.png)
+[![正确计算的四个步骤](images/d4-02_correct_pipeline.png)](images/d4-02_correct_pipeline.png)
 
 为了把查询读清楚，教学库只保留两个核心对象：订单行和验收事件。`line_id`是全库唯一订单行标识，`receipt_id`是唯一验收事件标识；若真实系统的明细号只在单据内唯一，就必须用完整组合键，不能照搬单列连接。
 
@@ -113,7 +113,7 @@ GROUP BY business, sku, unit;
 
 正确满足率为100÷200＝50%。采用左连接直接求和时，A1展开成两行、A2保留一行，错误分母为300，结果约33.33%；改成`SUM(DISTINCT ordered_qty)`后，两条真实需求的100又被压成一个100，结果错误地变成100%。
 
-![相同数量不等于重复业务](images/d4-03_distinct_trap.png)
+[![相同数量不等于重复业务](images/d4-03_distinct_trap.png)](images/d4-03_distinct_trap.png)
 
 `DISTINCT`按所给的值判断重复，并不理解业务身份。数值100相同，不代表A1和A2是同一条需求。这也是为什么`COUNT(DISTINCT line_id)`有时能正确数订单行，却不能推出`SUM(DISTINCT ordered_qty)`也能正确算数量。[SQLite聚合函数说明](https://www.sqlite.org/lang_aggfunc.html)
 
@@ -127,7 +127,7 @@ GROUP BY business, sku, unit;
 
 两店各有一条20公斤的有效订货明细，承诺时刻均为10月10日18:00。江城店H1分两批按时合格验收12＋8公斤；大学城店H2一次按时合格验收22公斤。
 
-![禾味双店连接与封顶对照](images/d4-04_hewei.png)
+[![禾味双店连接与封顶对照](images/d4-04_hewei.png)](images/d4-04_hewei.png)
 
 直接连接求和会得到验收42公斤、订货60公斤，满足率70%。即使只修复分母，把60还原为40，42÷40仍是105%，因为大学城店多收的2公斤被当成了额外完成量。
 

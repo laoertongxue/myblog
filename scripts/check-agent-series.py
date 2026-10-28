@@ -322,7 +322,7 @@ def check(output='.hugo-check'):
         assert pager_hrefs == neighbours, f'{chapter["route"]}: pager is {pager_hrefs}, expected {neighbours}'
 
     # Topic listing: order and titles follow the front matter; every preview
-    # preserves its original proportions inside the site's 9:5 frame.
+    # preserves its original proportions inside the site's listing frame.
     listing = Listing(root / TOPIC_ROUTE.lstrip('/') / 'index.html')
     assert [row['url'] for row in listing.rows] == routes, f'{TOPIC_ROUTE}: listing order {[row["url"] for row in listing.rows]} does not follow weight order {routes}'
     for row, chapter in zip(listing.rows, chapters):
@@ -334,7 +334,7 @@ def check(output='.hugo-check'):
             natural_width, natural_height = image_size(chapter['bundle'][name])
             assert name.rsplit('.', 1)[0] in picture['src'], f'{chapter["route"]}: preview {picture["src"]} is not {name}'
             # The picture keeps the source ratio in its intrinsic attributes
-            # and in every built candidate; CSS controls the 9:5 frame.
+            # and in every built candidate; CSS controls the listing frame.
             reserved = int(picture['width']) / int(picture['height'])
             assert abs(reserved - natural_width / natural_height) <= 0.01, \
                 f'{chapter["route"]}: contain preview {name} reserves {picture["width"]}x{picture["height"]} for a {natural_width}x{natural_height} source'

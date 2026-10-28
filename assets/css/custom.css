@@ -16,7 +16,7 @@
   --lab-wash:#f1eee6;
   --lab-paper:#faf8f1;
   --lab-width:min(80%, 1440px);
-  --lab-image-ratio:9/5;
+  --lab-image-ratio:900/383;
   color-scheme:light;
 }
 html { scroll-behavior:smooth; scroll-padding-top:32px; background:var(--lab-paper)!important; }
@@ -72,7 +72,7 @@ h3 { font-size:21px; }
 .tags { display:flex; flex-wrap:wrap; gap:12px; }
 .tags a { color:var(--lab-muted); font-size:14px; }
 .volume { display:block; color:var(--lab-muted); font-size:14px; margin-bottom:8px; }
-.article-cover { display:block; width:100%; height:auto; aspect-ratio:var(--lab-image-ratio); object-fit:contain; margin-bottom:30px; }
+.article-cover { display:block; width:100%; height:auto; object-fit:contain; margin-bottom:30px; }
 .prose { max-width:none; color:var(--lab-ink); font-size:18px; line-height:2; overflow-wrap:anywhere; }
 .prose p { margin:0 0 24px; }
 .prose h2 { margin:46px 0 20px; font-size:25px; }
@@ -86,7 +86,8 @@ h3 { font-size:21px; }
 .prose pre { overflow:auto; max-width:100%; padding:22px; border:1px solid var(--lab-line); background:var(--lab-wash)!important; color:var(--lab-ink); line-height:1.7; margin:28px 0; font-size:14px; }
 .prose code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.85em; }
 .prose :not(pre)>code { background:var(--lab-wash); padding:2px 5px; }
-.prose img { display:block; width:100%; max-width:100%; height:auto; aspect-ratio:var(--lab-image-ratio); object-fit:contain; margin:26px 0; }
+/* Historical diagrams keep their full column width so dense labels remain readable. */
+.prose img { display:block; width:100%; max-width:100%; height:auto; object-fit:contain; margin:26px 0; }
 .prose table { display:block; max-width:100%; overflow:auto; border-collapse:collapse; margin:28px 0; }
 .prose th,.prose td { border:1px solid #ddd8cc; padding:9px 15px; }
 .prose hr { border:0; border-top:1px solid var(--lab-line); margin:40px 0; }

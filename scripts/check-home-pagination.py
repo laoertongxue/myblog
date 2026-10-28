@@ -97,12 +97,12 @@ def check(destination=None):
                 for image in range(1, 5):
                     shutil.copy(root / 'assets/images/avatar-wangye.png', article.parent / f'photo-{image}.png')
                 if i == 42:
-                    # A real 900x500 source exercises the shared WeChat/blog
+                    # A real 900x383 source exercises the shared WeChat/blog
                     # convention alongside the existing portrait fixtures.
                     def chunk(name, data):
                         return struct.pack('>I', len(data)) + name + data + struct.pack('>I', zlib.crc32(name + data))
-                    banner = b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', 900, 500, 8, 2, 0, 0, 0))
-                    banner += chunk(b'IDAT', zlib.compress((b'\0' + b'\x65\x7d\x96' * 900) * 500)) + chunk(b'IEND', b'')
+                    banner = b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', 900, 383, 8, 2, 0, 0, 0))
+                    banner += chunk(b'IDAT', zlib.compress((b'\0' + b'\x65\x7d\x96' * 900) * 383)) + chunk(b'IEND', b'')
                     (article.parent / 'photo-3.png').write_bytes(banner)
                     article.write_text(article.read_text().replace('weight:', 'images: ["photo-3.png", "photo-1.png"]\nweight:'))
                 if i == 41:
@@ -129,10 +129,10 @@ def check(destination=None):
         assert widths[1] == int(picture['width']) and all(width < box for width, box in zip(widths, [324, 540, 900])), 'srcset must report actual fitted widths'
         print('ok    contain thumbnails: complete portrait ratio and actual responsive widths for every preview source')
         standard = next(picture for picture in contained.images if '/blog/042/photo-3_' in picture['src'])
-        assert (int(standard['width']), int(standard['height'])) == (540, 300), '900x500 source must produce an exact 9:5 thumbnail'
+        assert (int(standard['width']), int(standard['height'])) == (540, 230), '900x383 source must produce an exact 900:383 thumbnail'
         widths = [int(candidate.strip().split()[1][:-1]) for candidate in standard['srcset'].split(',')]
-        assert widths == [324, 540, 900], '900x500 source must retain the small, medium and original-width candidates'
-        print('ok    900x500 source: exact 540x300 preview, 324/540/900 responsive widths')
+        assert widths == [324, 540, 900], '900x383 source must retain the small, medium and original-width candidates'
+        print('ok    900x383 source: exact 540x230 preview, 324/540/900 responsive widths')
         assert 'pagination-gap' in first_page, 'Long pagination should collapse middle pages'
         assert 'home-feed.min.' not in first_page, 'Mobile must use the same numbered pagination'
         cover_detail = (output / 'topics/example/041/index.html').read_text()

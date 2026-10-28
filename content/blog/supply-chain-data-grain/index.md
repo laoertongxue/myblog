@@ -42,7 +42,7 @@ tags: ["供应链", "数据建模", "数据粒度"]
 
 **图1 生产需求到库存快照的业务流程**
 
-![01\_apparel\_flow](images/d1-01_apparel_flow.png)
+[![01\_apparel\_flow](images/d1-01_apparel_flow.png)](images/d1-01_apparel_flow.png)
 
 图1中，工厂交出、仓库接收、质检确认和入库过账是不同业务动作。它们可以被系统整合到同一操作界面，但含义不能混同。工厂已交出，不等于成衣仓已有可用库存。
 
@@ -68,7 +68,7 @@ Kimball在《Declaring the Grain》中强调，设计事实表时应先明确每
 
 **先看样例怎么连，再查字段定义**
 
-![06\_apparel\_table\_atlas](images/d1-06_apparel_table_atlas.png)
+[![06\_apparel\_table\_atlas](images/d1-06_apparel_table_atlas.png)](images/d1-06_apparel_table_atlas.png)
 
 从PO-DEMO-001向下看：1张生产单拆成2个商品行，再对应4条入库明细。两侧关联线把仓库、SKU与它们的引用记录连起来；快照不直接挂在某张生产单下面。
 
@@ -116,7 +116,7 @@ accepted_at记录验收确认时间，posted_at记录库存入账时间。本例
 
 **图2 六表关联与数据粒度**
 
-![02\_six\_table\_er](images/d1-02_six_table_er.png)
+[![02\_six\_table\_er](images/d1-02_six_table_er.png)](images/d1-02_six_table_er.png)
 
 图2省略非关键字段。快照的组合业务唯一约束见上文；生产需求、货主等外部档案未画入六表。入库明细的SKU由生产单行追溯，避免在最小模型中重复维护两份规格。
 
@@ -170,7 +170,7 @@ accepted_at记录验收确认时间，posted_at记录库存入账时间。本例
 
 **图3 合格入库进度判定图**
 
-![03\_receipt\_progress](images/d1-03_receipt_progress.png)
+[![03\_receipt\_progress](images/d1-03_receipt_progress.png)](images/d1-03_receipt_progress.png)
 
 图3不替代正式生产单状态。足量入库不代表工序、结算、签收或货权转移完成。主案例不含取消、退货和冲销；发生这些事件时，应另定有效数量规则并重算进度。
 
@@ -191,7 +191,7 @@ accepted_at记录验收确认时间，posted_at记录库存入账时间。本例
 
 **图4 分批入库与库存快照的信息时序**
 
-![04\_posting\_sequence](images/d1-04_posting_sequence.png)
+[![04\_posting\_sequence](images/d1-04_posting_sequence.png)](images/d1-04_posting_sequence.png)
 
 图4展示一种建议实现：在同一库存记账边界内，使入库明细与库存增量原子提交，并让相同请求的重试复用原结果。请求K1对应两条明细，不能拿K1直接做每条明细的唯一主键。
 
@@ -222,7 +222,7 @@ accepted_at记录验收确认时间，posted_at记录库存入账时间。本例
 
 ### 禾味的六表模型
 
-![07\_hewei\_table\_atlas](images/d1-07_hewei_table_atlas.png)
+[![07\_hewei\_table\_atlas](images/d1-07_hewei_table_atlas.png)](images/d1-07_hewei_table_atlas.png)
 
 先沿HW-DEMO-001找到HL01与HL02，再向下找到三条验收记录。鸡腿肉按公斤核对，鸡蛋按盒核对；最下面的日末库存另含领用假设，不能只看验收量。
 
@@ -243,7 +243,7 @@ delivery_batch_id只是把同批明细归组，不能当作每条验收的唯一
 
 **图5 禾味两店订货到库存快照的流程**
 
-![05\_hewei\_flow](images/d1-05_hewei_flow.png)
+[![05\_hewei\_flow](images/d1-05_hewei_flow.png)](images/d1-05_hewei_flow.png)
 
 图5将领用等库存变化单独画出，提醒读者：六表能够记录订货、验收和快照，但并未覆盖所有库存变动。本文主样本简化为验收后当日成功入库；真实系统不能据此省略入账校验。
 

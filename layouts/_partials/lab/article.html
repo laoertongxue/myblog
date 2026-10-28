@@ -4,16 +4,19 @@
   <header class="article-heading">{{ if eq .Section "weekly" }}<span class="volume">Weekly · Vol. {{ .File.ContentBaseName }}</span>{{ end }}<h1>{{ .Title }}</h1><p class="reading-stats">全文共 {{ .WordCount }} 字，阅读约需 {{ .ReadingTime }} 分钟</p>{{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}<div class="article-meta">{{ if not .Date.IsZero }}<time>{{ .Date.Format "2006-01-02" }}</time>{{ end }}{{ partial "lab/tags.html" . }}</div></header>
   {{ with .Params.cover }}
     {{ $src := . | relURL }}
+    {{ $originalSource := $src }}{{ $originalWidth := 0 }}{{ $originalHeight := 0 }}
     {{ $path := strings.TrimPrefix "/" . }}
     {{ $image := $.Resources.GetMatch $path }}
     {{ if not $image }}{{ $image = resources.Get $path }}{{ end }}
     {{ with $image }}
+      {{ $originalSource = .RelPermalink }}
       {{ if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") }}
+        {{ $originalWidth = .Width }}{{ $originalHeight = .Height }}
         {{ if gt .Width 1440 }}{{ $image = .Resize "1440x webp q85" }}{{ else }}{{ $image = .Process "webp q85" }}{{ end }}
       {{ end }}
       {{ $src = $image.RelPermalink }}
     {{ end }}
-    <img class="article-cover" src="{{ $src }}" alt="{{ $.Title }}" decoding="async">
+    <img class="article-cover" src="{{ $src }}" data-original-src="{{ $originalSource }}"{{ if $originalWidth }} data-original-width="{{ $originalWidth }}" data-original-height="{{ $originalHeight }}"{{ end }} alt="{{ $.Title }}" decoding="async">
   {{ end }}
   {{ if .Params.testContent }}<p class="test-notice">本文为界面测试内容，用于验证排版、配图与分页，不代表作者的真实经历。</p>{{ end }}
   <div class="prose">{{ .Content }}</div>

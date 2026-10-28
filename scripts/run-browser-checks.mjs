@@ -32,11 +32,11 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 
 // Keep this list explicit: `--list` is the record of what actually runs.
 const CHECKS = [
-  { name: 'design', file: 'check-design-browser.js', description: 'layout, images, pagination, TOC, search, no-JS pagination' },
+  { name: 'design', file: 'check-design-browser.js', description: 'layout, all blog images and originals, pagination, TOC, search, no-JS pagination' },
   { name: 'mobile-navigation', file: 'check-mobile-navigation.js', description: 'mobile dialog open/close/focus, footer, reading stats' },
   { name: 'adversarial-ui', file: 'check-adversarial-ui.js', description: 'long-content overflow, aria-current, contrast, image priority' },
   { name: 'agent-series', file: 'check-agent-series-browser.js', description: 'Agent/Harness series structure end to end' },
-  { name: 'thumbnail-fit', file: 'check-thumbnail-fit-browser.js', description: '9:5 thumbnail frames, complete images and responsive widths' },
+  { name: 'thumbnail-fit', file: 'check-thumbnail-fit-browser.js', description: '900:383 thumbnail frames, complete images and responsive widths' },
   { name: 'resource-loading', file: 'check-resource-loading.js', description: 'chosen image candidates, lazy search index, no hidden avatar' },
 ];
 

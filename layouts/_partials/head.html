@@ -26,7 +26,7 @@
 {{ end }}
 {{ with $social }}
   {{ $preview := . }}
-  {{ if eq (strings.TrimPrefix "/" .Name) (strings.TrimPrefix "/" $.Site.Params.avatar) }}{{ $preview = .Fit "600x600 png" }}{{ else }}{{ $preview = .Fit "1200x630 jpg q80" }}{{ end }}
+  {{ if eq (strings.TrimPrefix "/" .Name) (strings.TrimPrefix "/" $.Site.Params.avatar) }}{{ $preview = .Fit "600x600 png" }}{{ else }}{{ $preview = .Fit "900x383 jpg q80" }}{{ end }}
   {{ $.Store.Set "socialImage" $preview.Permalink }}
   <meta property="og:image" content="{{ $preview.Permalink }}">
   <meta property="og:image:width" content="{{ $preview.Width }}">

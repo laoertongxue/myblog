@@ -28,7 +28,7 @@ tags: ["供应链", "SQL", "数量满足率", "OTIF"]
 
 - **固定时点缺货率**：在约定观察时刻，有多少个有效的“门店 × SKU”库存记录为零？
 
-![01\_metric\_comparison](images/d3-01_metric_comparison.png)
+[![01\_metric\_comparison](images/d3-01_metric_comparison.png)](images/d3-01_metric_comparison.png)
 
 这三个指标不是同一件事的不同叫法。数量满足率关心缺了多少；整单 OTIF 关心承诺有没有完整兑现；快照缺货率关心观察时点的库存状态。
 
@@ -99,7 +99,7 @@ A01 在 11:00 验收 M 码 130 件、L 码 70 件。A02 在 12:00 恰好完成 M
 | A02 / M | 100 | 100 | 100 | 是 |
 | A02 / L | 50 | 50 | 50 | 是 |
 
-![02\_apparel\_fulfillment](images/d3-02_apparel_fulfillment.png)
+[![02\_apparel\_fulfillment](images/d3-02_apparel_fulfillment.png)](images/d3-02_apparel_fulfillment.png)
 
 按 SKU 汇总后：
 
@@ -128,7 +128,7 @@ A01 在 11:00 验收 M 码 130 件、L 码 70 件。A02 在 12:00 恰好完成 M
 | H02 / 大学城店 | 鸡腿肉 | 10 公斤 | 11:00 收 10 公斤 | 0 | 10 公斤 |
 | H02 / 大学城店 | 鸡蛋 | 3 盒 | 11:00 收 3 盒 | 0 | 3 盒 |
 
-![03\_hewei\_deadline](images/d3-03_hewei_deadline.png)
+[![03\_hewei\_deadline](images/d3-03_hewei_deadline.png)](images/d3-03_hewei_deadline.png)
 
 晚到的 8 公斤鸡腿肉，可以增加下午实际库存，却不能计入午市前的及时满足数量。因此：
 
@@ -176,7 +176,7 @@ A01 在 11:00 验收 M 码 130 件、L 码 70 件。A02 在 12:00 恰好完成 M
 
 **有效覆盖率 = 10 ÷ 12 ≈ 83.33%。** 它表示 12 个应观察组合中，有 10 个得到可信观测，另外 2 个仍无法判断库存状态。
 
-![04\_snapshot\_denominator](images/d3-04_snapshot_denominator.png)
+[![04\_snapshot\_denominator](images/d3-04_snapshot_denominator.png)](images/d3-04_snapshot_denominator.png)
 
 缺失不能补成零，否则会凭空制造缺货；负库存也不能因为“不等于零”就算作有货。负数可能来自出入库时间差、重复扣减或其他记账问题，需要追查，不能在指标计算时悄悄修成正常状态。
 

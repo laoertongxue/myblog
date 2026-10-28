@@ -1,4 +1,4 @@
-// List thumbnails: complete pictures in 900x500-proportion frames throughout
+// List thumbnails: complete pictures in 900x383-proportion frames throughout
 // Blog/Weekly/topics. Executed by scripts/run-browser-checks.mjs.
 //   npm run check:browser -- --only thumbnail-fit
 //
@@ -68,12 +68,12 @@ async (page, ctx) => {
             assert(variant.width === variant.descriptor, `${listing} ${route}: srcset width ${variant.descriptor} does not match the served ${variant.width}px`);
             assert(Math.abs(variant.height - variant.width / expectedRatio) <= 1, `${listing} ${route}: preview variant ${variant.url} is cropped or distorted`);
           }
-          assert(Math.abs(image.rendered[1] - image.rendered[0] * 500 / 900) <= 1, `${listing} ${route}: preview frame must follow 900x500`);
+          assert(Math.abs(image.rendered[1] - image.rendered[0] * 383 / 900) <= 1, `${listing} ${route}: preview frame must follow 900x383`);
         }
         assert(!await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), `${listing} ${route}: horizontal overflow`);
         await row.screenshot({ path: `output/playwright/thumbnail-fit-${listing === '/' ? 'home' : 'topic'}-${route.split('/').filter(Boolean).pop()}-${width}.png` });
       }
-      report.push(`${width}px ${listing}: ${chapters.length} series row(s) show complete source-proportion previews with correct widths and 9:5 frames`);
+      report.push(`${width}px ${listing}: ${chapters.length} series row(s) show complete source-proportion previews with correct widths and 900:383 frames`);
     }
   }
 
@@ -101,8 +101,8 @@ async (page, ctx) => {
       assert(Math.abs(variant.size[1] - variant.size[0] * sourceSize[1] / sourceSize[0]) <= 1, `${listing}: thumbnail was cropped or distorted: ${variant.size.join('x')}`);
     }
     const frame = await images.first().boundingBox();
-    assert(frame.width > 0 && Math.abs(frame.height - frame.width * 500 / 900) <= 1, `${listing}: thumbnail frame must follow 900x500`);
+    assert(frame.width > 0 && Math.abs(frame.height - frame.width * 383 / 900) <= 1, `${listing}: thumbnail frame must follow 900x383`);
   }
-  report.push('Blog/Weekly/topic previews use 9:5 frames and preserve original image proportions');
+  report.push('Blog/Weekly/topic previews use 900:383 frames and preserve original image proportions');
   return report;
 }
