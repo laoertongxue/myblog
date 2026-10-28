@@ -23,7 +23,7 @@
         {{- $url = .RelPermalink -}}
       {{- end -}}
     {{- end -}}
-    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" data-original-src="{{ $originalSource }}"{{ if $originalWidth }} data-original-width="{{ $originalWidth }}" data-original-height="{{ $originalHeight }}"{{ end }} alt="{{ $page.Title }} 封面" {{ if and $priority (eq $index 0) }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}{{ with $srcset }} srcset="{{ . }}" sizes="(max-width: 580px) calc(100vw - 40px), 540px"{{ end }} decoding="async" width="{{ $width }}" height="{{ $height }}"></a>
+    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" data-original-src="{{ $originalSource }}"{{ if $originalWidth }} data-original-width="{{ $originalWidth }}" data-original-height="{{ $originalHeight }}"{{ end }} alt="{{ $page.Title }} 封面" {{ if and $priority (eq $index 0) }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}{{ with $srcset }} srcset="{{ . }}" sizes="(max-width: 580px) calc(100vw - 40px), (max-width: 900px) 540px, (max-width: 1467px) 36.8vw, 540px"{{ end }} decoding="async" width="{{ $width }}" height="{{ $height }}"></a>
   {{- end -}}
 </div>
 {{- end -}}

@@ -3,10 +3,15 @@
   <div class="row-date">{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年01月02日" }}</time>{{ end }}{{ if .Params.testContent }}<span class="test-label">测试文章</span>{{ end }}</div>
   <div class="row-body">
     <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    {{ partial "lab/thumbnails.html" (dict "page" . "priority" $priority) }}
-    {{ with .Description }}<p>{{ . }}</p>{{ end }}
-    <a class="read-more" href="{{ .RelPermalink }}">继续阅读 →</a>
-    <div class="row-meta"><span>阅读约需 {{ .ReadingTime }} 分钟</span><span>·</span><a href="{{ .Parent.RelPermalink }}">{{ if eq .Section "weekly" }}Weekly · Vol. {{ .File.ContentBaseName }}{{ else if eq .Section "topics" }}{{ .Parent.Title }}{{ else }}博客{{ end }}</a></div>
+    {{ $cover := partial "lab/thumbnails.html" (dict "page" . "priority" $priority) }}
+    <div class="row-content{{ if $cover }} has-cover{{ end }}">
+      {{ $cover }}
+      <div class="row-summary">
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        <a class="read-more" href="{{ .RelPermalink }}">继续阅读 →</a>
+        <div class="row-meta"><span>阅读约需 {{ .ReadingTime }} 分钟</span><span>·</span><a href="{{ .Parent.RelPermalink }}">{{ if eq .Section "weekly" }}Weekly · Vol. {{ .File.ContentBaseName }}{{ else if eq .Section "topics" }}{{ .Parent.Title }}{{ else }}博客{{ end }}</a></div>
+      </div>
+    </div>
   </div>
 </article>
 

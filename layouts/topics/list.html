@@ -2,7 +2,7 @@
 {{ partial "lab/breadcrumb.html" . }}
 {{ if eq .Parent .Site.Home }}
   {{ $pager := partial "lab/pager.html" . }}
-  {{ $firstImagePage := partial "lab/first-image-page.html" $pager.Pages }}{{ range $i, $p := $pager.Pages }}<article class="post-row topic-row"><div class="row-date">{{ len .RegularPagesRecursive }} 篇文章{{ if .Params.testContent }} · 测试专题{{ end }}</div><div class="row-body"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>{{ partial "lab/thumbnails.html" (dict "page" . "priority" (eq .RelPermalink $firstImagePage)) }}<p>{{ .Description }}</p><a class="read-more" href="{{ .RelPermalink }}">浏览专题 →</a></div></article>{{ end }}
+  {{ $firstImagePage := partial "lab/first-image-page.html" $pager.Pages }}{{ range $i, $p := $pager.Pages }}<article class="post-row topic-row"><div class="row-date">{{ len .RegularPagesRecursive }} 篇文章{{ if .Params.testContent }} · 测试专题{{ end }}</div><div class="row-body"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>{{ $cover := partial "lab/thumbnails.html" (dict "page" . "priority" (eq .RelPermalink $firstImagePage)) }}<div class="row-content{{ if $cover }} has-cover{{ end }}">{{ $cover }}<div class="row-summary"><p>{{ .Description }}</p><a class="read-more" href="{{ .RelPermalink }}">浏览专题 →</a></div></div></div></article>{{ end }}
   {{ partial "lab/pagination.html" $pager }}
 {{ else }}
   <div class="prose topic-intro">{{ .Content }}</div>

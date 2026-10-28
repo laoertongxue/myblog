@@ -60,14 +60,89 @@ async (page, ctx) => {
             assert(Math.abs(variant.height - variant.width / expectedRatio) <= 1, `${listing} ${route}: preview variant ${variant.url} is cropped or distorted`);
           }
           assert(Math.abs(image.rendered[1] - image.rendered[0] * 383 / 900) <= 1, `${listing} ${route}: preview frame must follow 900x383`);
-          const available = await row.evaluate(node => node.getBoundingClientRect().width);
-          assert(Math.abs(image.rendered[0] - Math.min(available, 540)) <= 1, `${listing} ${route}: single cover must fill its card up to 540px`);
+          const available = await group.evaluate(node => {
+            const content = node.closest('.row-content');
+            if (!content) return 0;
+            if (innerWidth > 900) return parseFloat(getComputedStyle(content).gridTemplateColumns);
+            return content.getBoundingClientRect().width;
+          });
+          assert(available > 0 && Math.abs(image.rendered[0] - Math.min(available, 540)) <= 1, `${listing} ${route}: single cover must fill its grid cell up to 540px`);
         }
         assert(!await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), `${listing} ${route}: horizontal overflow`);
         await row.screenshot({ path: `output/playwright/thumbnail-fit-${listing === '/' ? 'home' : 'topic'}-${route.split('/').filter(Boolean).pop()}-${width}.png` });
       }
       report.push(`${width}px ${listing}: ${chapters.length} series row(s) show one complete cover each with correct responsive widths and 900:383 frames`);
     }
+  }
+
+  // Term URLs come from the built taxonomy indexes so category/tag names
+  // can change without weakening the shared card-layout checks.
+  const taxonomyRoutes = [];
+  for (const index of ['/tags/', '/categories/']) {
+    await page.goto(base + index);
+    const first = page.locator('.taxonomy-list a').first();
+    if (await first.count()) taxonomyRoutes.push(await first.getAttribute('href'));
+  }
+  const listingRoutes = [...new Set(['/', '/blog/', '/topics/', topic, ...taxonomyRoutes])];
+  for (const width of [1440, 1024, 768, 390, 320]) {
+    await page.setViewportSize({ width, height: 960 });
+    let checked = 0;
+    for (const listing of listingRoutes) {
+      await page.goto(base + listing);
+      assert(!await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), `${width}px ${listing}: horizontal overflow`);
+      const rows = await page.locator('.post-row').evaluateAll(nodes => nodes.map(row => {
+        const rect = node => {
+          if (!node) return null;
+          const box = node.getBoundingClientRect();
+          return { left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: box.width, height: box.height };
+        };
+        const content = row.querySelector('.row-content');
+        const summary = row.querySelector('.row-summary');
+        return {
+          href: row.querySelector('h2 a')?.getAttribute('href'),
+          date: rect(row.querySelector('.row-date')),
+          title: rect(row.querySelector('.row-body h2')),
+          content: rect(content), summary: rect(summary),
+          cover: rect(content?.querySelector('.list-thumbnails')),
+          coverCount: content?.querySelectorAll('.list-thumbnails img').length || 0,
+          description: rect(summary?.querySelector('p')),
+          readMore: rect(summary?.querySelector('.read-more')),
+          meta: rect(summary?.querySelector('.row-meta')),
+          order: content ? [...content.children].map(child => child.className) : [],
+        };
+      }));
+      assert(rows.length > 0, `${width}px ${listing}: no cards to inspect`);
+      for (const row of rows) {
+        const label = `${width}px ${listing} ${row.href}`;
+        assert(row.date && row.title && row.content && row.summary && row.readMore, `${label}: card is missing its date/title/content/summary/read-more structure`);
+        assert(row.date.bottom <= row.title.top + 1, `${label}: date must stay above the title`);
+        assert(row.title.bottom <= row.content.top + 1, `${label}: title must stay above cover and summary`);
+        assert(row.summary.left >= row.content.left - 1 && row.summary.right <= row.content.right + 1, `${label}: summary extends outside its row`);
+        if (row.description) assert(row.description.bottom <= row.readMore.top + 1, `${label}: read-more must follow the description`);
+        if (row.meta) assert(row.readMore.bottom <= row.meta.top + 1, `${label}: reading metadata must follow read-more`);
+        if (row.cover) {
+          assert(row.coverCount === 1 && row.order.length === 2 && row.order[0] === 'list-thumbnails' && row.order[1] === 'row-summary', `${label}: a card must contain one cover followed by one summary`);
+          assert(Math.abs(row.cover.height - row.cover.width * 383 / 900) <= 1, `${label}: cover frame must keep 900:383`);
+          const expectedWidth = Math.min(width > 900 ? row.content.width * 0.46 : row.content.width, 540);
+          assert(Math.abs(row.cover.width - expectedWidth) <= 1, `${label}: cover width must follow its available grid column`);
+          if (width > 900) {
+            assert(Math.abs(row.cover.left - row.content.left) <= 1 && row.cover.right < row.summary.left, `${label}: cover must sit left of the summary`);
+            assert(Math.abs(row.cover.top - row.summary.top) <= 1 && Math.abs(row.cover.top - row.content.top) <= 1, `${label}: cover and summary must align at the top`);
+            assert(Math.abs(row.summary.right - row.content.right) <= 1, `${label}: summary must use the right column`);
+            assert(Math.abs(row.content.height - Math.max(row.cover.height, row.summary.height)) <= 1, `${label}: side-by-side card has unnecessary vertical space`);
+          } else {
+            const gap = row.summary.top - row.cover.bottom;
+            assert(gap >= 0 && gap <= 24, `${label}: narrow card must stack summary closely below its cover`);
+            assert(Math.abs(row.cover.left - row.content.left) <= 1 && Math.abs(row.summary.left - row.content.left) <= 1, `${label}: stacked cover and summary must align with the column`);
+            assert(Math.abs(row.summary.width - row.content.width) <= 1, `${label}: stacked summary must use the full column width`);
+          }
+        } else {
+          assert(row.order.length === 1 && row.order[0] === 'row-summary' && Math.abs(row.summary.width - row.content.width) <= 1, `${label}: a coverless card must use the full row`);
+        }
+        checked++;
+      }
+    }
+    report.push(`${width}px: ${checked} home/blog/topic/taxonomy cards keep date/title above, cover ${width > 900 ? 'left of' : 'above'} summary, ordered information and no overflow`);
   }
 
   for (const listing of ['/', '/blog/', '/weekly/', '/topics/agent-engineering/']) {

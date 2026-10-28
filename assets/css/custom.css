@@ -42,14 +42,18 @@ h3 { font-size:21px; }
 .site-workspace { min-height:calc(100vh - 70px); display:flex; flex-direction:column; }
 .page-content { padding:92px 0 0; flex:1; min-width:0; outline:none; }
 .breadcrumbs { display:flex; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--lab-muted); margin-bottom:26px; }
-.post-row { display:block; padding:0 0 50px; margin:0 0 50px; border-bottom:1px solid var(--lab-line); }
+.post-row { display:block; padding:0 0 32px; margin:0 0 32px; border-bottom:1px solid var(--lab-line); }
 .row-date { display:flex; flex-wrap:wrap; align-items:center; gap:14px; color:var(--lab-muted); font-size:15px; margin-bottom:10px; }
 .row-body h2 { margin:0 0 18px; font-size:25px; }
-.row-body p { line-height:1.95; }
-.read-more { display:inline-block; margin-top:22px; }
-.row-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; font-size:14px; color:var(--lab-muted); }
+.row-body p { line-height:1.9; }
+.row-content { min-width:0; }
+.row-content.has-cover { display:grid; grid-template-columns:minmax(0,min(46%,540px)) minmax(0,1fr); gap:32px; align-items:start; }
+.row-summary { min-width:0; }
+.row-summary>p { margin:0; }
+.read-more { display:inline-block; margin-top:14px; }
+.row-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; font-size:14px; color:var(--lab-muted); }
 .row-meta a { color:#67655d; }
-.list-thumbnails { display:block; width:100%; max-width:540px; margin:20px 0; }
+.list-thumbnails { display:block; width:100%; max-width:540px; margin:0; }
 .list-thumbnails a { display:block; min-width:0; overflow:hidden; }
 .list-thumbnails img { display:block; width:100%; height:auto; aspect-ratio:var(--lab-image-ratio); object-fit:contain; background:var(--lab-wash); transition:opacity .2s; }
 .list-thumbnails a:hover img { opacity:.88; }
@@ -139,6 +143,9 @@ h3 { font-size:21px; }
 .search-result h2 { margin:8px 0; }
 .search-result .result-kind,.search-result time { color:var(--lab-muted); font-size:13px; }
 .search-result time { display:block; margin-top:8px; }
+@media (max-width:900px) {
+  .row-content.has-cover { grid-template-columns:minmax(0,1fr); gap:18px; }
+}
 @media (max-width:760px) {
   :root { --lab-width:calc(100% - 40px); }
   body.lab-site { font-size:16px; }
@@ -150,7 +157,7 @@ h3 { font-size:21px; }
   h1,.article-heading h1 { font-size:25px; }
   .row-body h2 { font-size:22px; }
   .row-date { font-size:13px; }
-  .post-row { padding-bottom:36px; margin-bottom:36px; }
+  .post-row { padding-bottom:28px; margin-bottom:28px; }
   .row-meta { font-size:12px; }
   .article-heading { margin-bottom:44px; }
   .prose { font-size:17px; }
