@@ -12,9 +12,8 @@ async (page, ctx) => {
   const { base, assert, pagerSize, walkPagination, rssCount } = ctx;
   const report = [];
   const { readFile, readdir } = await import('node:fs/promises');
-  const { createHash } = await import('node:crypto');
-  const legacySources = JSON.parse(await readFile(`${ctx.root}/scripts/legacy-image-sources.json`, 'utf8'));
   const checkedSources = new Map();
+  const checkedCandidates = new Map();
   const checkOriginal = async (image, label) => {
     assert(image.originalSrc, `${label}: image is missing its original source: ${image.src}`);
     const url = new URL(image.originalSrc, base);
@@ -29,21 +28,35 @@ async (page, ctx) => {
         return [picture.naturalWidth, picture.naturalHeight];
       }, url.href);
       assert(size && size[0] > 0 && size[1] > 0, `${label}: original source failed to decode: ${url.href}`);
-      const sha256 = createHash('sha256').update(await response.body()).digest('hex');
-      source = { width: size[0], height: size[1], sha256 };
-      const legacy = url.origin === base ? legacySources[decodeURIComponent(url.pathname)] : null;
-      if (source.width !== 900 || source.height !== 383) {
-        assert(legacy && source.sha256 === legacy.sha256 && source.width === legacy.width && source.height === legacy.height, `${label}: source must be 900x383 or match the recorded legacy dimensions and SHA, got ${source.width}x${source.height}: ${url.href}`);
-      }
+      source = { width: size[0], height: size[1] };
       checkedSources.set(url.href, source);
+    }
+    if (image.cover || image.listing) {
+      assert(source.width === 900 && source.height === 383, `${label}: cover source must be 900x383, got ${source.width}x${source.height}: ${url.href}`);
     }
     if (image.originalWidth || image.originalHeight) {
       assert(image.originalWidth === source.width && image.originalHeight === source.height, `${label}: original size metadata disagrees with decoded source: ${url.href}`);
     }
     if (image.intrinsicWidth > 0) assert(Math.abs(image.intrinsicHeight - image.intrinsicWidth * source.height / source.width) <= 1, `${label}: processed image changed its original proportions: ${image.src}`);
+    // srcset images expose density-corrected natural sizes. Decode the chosen
+    // file without srcset so rounding is checked against its encoded pixels.
+    const candidateUrl = new URL(image.currentSrc || image.src, base).href;
+    let candidate = checkedCandidates.get(candidateUrl);
+    if (!candidate) {
+      candidate = await page.evaluate(async value => {
+        const picture = new Image();
+        picture.src = value;
+        try { await picture.decode(); } catch { return null; }
+        return [picture.naturalWidth, picture.naturalHeight];
+      }, candidateUrl);
+      assert(candidate && candidate[0] > 0 && candidate[1] > 0, `${label}: selected candidate failed to decode: ${candidateUrl}`);
+      checkedCandidates.set(candidateUrl, candidate);
+    }
+    assert(Math.abs(candidate[1] - candidate[0] * source.height / source.width) <= 1, `${label}: selected candidate changed the source proportions: ${candidateUrl}`);
+
   };
-  // Scan every built page so future covers and chapters cannot escape the
-  // source-size gate just by staying outside the sampled visual routes.
+  // Check covers on every built page; other body pictures keep their own
+  // dimensions and are checked only for successful, proportional rendering.
   await page.goto(base);
   const checkBuiltSources = async directory => {
     for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -55,6 +68,8 @@ async (page, ctx) => {
           const doc = new DOMParser().parseFromString(html, 'text/html');
           return [...doc.querySelectorAll('img[data-original-src]')].map(image => ({
             src: image.getAttribute('src'),
+            listing: !!image.closest('.list-thumbnails'),
+            cover: image.matches('.article-cover') || (!doc.querySelector('.article-cover') && image === doc.querySelector('.reading-page .prose img')),
             originalSrc: image.dataset.originalSrc,
             originalWidth: Number(image.dataset.originalWidth),
             originalHeight: Number(image.dataset.originalHeight),
@@ -67,6 +82,32 @@ async (page, ctx) => {
     }
   };
   await checkBuiltSources(ctx.dir);
+  const checkPager = async (label, expected = null) => {
+    const pager = page.locator('.article-pager');
+    if (!await pager.count()) {
+      if (expected) assert(!expected.previous && !expected.next, `${label}: article pager is missing`);
+      return;
+    }
+    assert(await pager.count() === 1, `${label}: duplicate article pagers`);
+    const slots = await pager.evaluate(node => [...node.children].map(slot => {
+      const rect = slot.getBoundingClientRect();
+      return {
+        className: slot.className, left: rect.left, right: rect.right,
+        top: rect.top, width: rect.width, align: getComputedStyle(slot).textAlign,
+        links: [...slot.querySelectorAll('a')].map(link => link.getAttribute('href')),
+      };
+    }));
+    assert(slots.length === 2 && slots[0].className === 'article-prev' && slots[1].className === 'article-next', `${label}: previous/next must keep two ordered slots, including empty edges`);
+    const [previous, next] = slots;
+    assert(previous.width > 0 && next.width > 0 && Math.abs(previous.width - next.width) <= 1, `${label}: pager columns must keep equal space`);
+    assert(Math.abs(previous.top - next.top) <= 1 && previous.right <= next.left, `${label}: pager must remain in one left/right row`);
+    assert(['left', 'start'].includes(previous.align) && ['right', 'end'].includes(next.align), `${label}: pager text must align to previous-left and next-right`);
+    assert(previous.links.length <= 1 && next.links.length <= 1, `${label}: a pager slot contains multiple article links`);
+    if (expected) {
+      assert(JSON.stringify(previous.links) === JSON.stringify(expected.previous ? [expected.previous] : []), `${label}: previous link moved out of the left slot`);
+      assert(JSON.stringify(next.links) === JSON.stringify(expected.next ? [expected.next] : []), `${label}: next link moved out of the right slot`);
+    }
+  };
   const routes = ['/', '/blog/', '/weekly/', '/topics/', '/topics/agent-engineering/', '/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/', '/about/', '/now/', '/links/', '/archive/', '/search/', '/copyright/', '/tags/', '/categories/', '/404.html'];
   const articleRoutes = ['/topics/agent-engineering/01-agent-framework/', '/topics/agent-engineering/02-harness/'];
 
@@ -95,8 +136,10 @@ async (page, ctx) => {
           imageFrames: [...document.querySelectorAll('.list-thumbnails img, .article-cover, .prose img')].map(image => {
             const rect = image.getBoundingClientRect();
             return {
-              src: image.src, width: rect.width, height: rect.height,
+              src: image.src, currentSrc: image.currentSrc, width: rect.width, height: rect.height,
               listing: !!image.closest('.list-thumbnails'),
+              cover: image.matches('.article-cover') || (!document.querySelector('.article-cover') && image === document.querySelector('.reading-page .prose img')),
+              columnWidth: (image.closest('.prose') || image.closest('article'))?.getBoundingClientRect().width || 0,
               intrinsicWidth: Number(image.getAttribute('width')) || image.naturalWidth,
               intrinsicHeight: Number(image.getAttribute('height')) || image.naturalHeight,
               originalSrc: image.dataset.originalSrc,
@@ -124,6 +167,7 @@ async (page, ctx) => {
         const expected = image.listing ? '900x383 list frame' : 'intrinsic article image ratio';
         assert(image.width > 0 && Math.abs(image.height - image.width * ratio) <= 1, `${width} ${path}: expected ${expected}, got ${image.width}x${image.height}: ${image.src}`);
         assert(image.fit === 'contain', `${width} ${path}: image must scale without cropping or distortion: ${image.src}`);
+        if (!image.listing) assert(Math.abs(image.width - image.columnWidth) <= 1, `${width} ${path}: article image must fill its reading column: ${image.src}`);
         await checkOriginal(image, `${width} ${path}`);
       }
       assert(state.mainCount === 1, `${width} ${path}: expected exactly one <main>, found ${state.mainCount}`);
@@ -132,6 +176,7 @@ async (page, ctx) => {
       assert(state.background === state.paper, `${width} ${path}: body background ${state.background} does not follow the --lab-paper token (${state.paper})`);
       assert(state.readingAligned, `${width} ${path}: reading column is not aligned with the workspace`);
       assert(state.hasReading === articleRoutes.includes(path), `${width} ${path}: .reading-page presence does not match the template`);
+      if (state.hasReading) await checkPager(`${width} ${path}`);
     }
     report.push(`${width}px: ${routes.length} routes, no overflow, every picture decoded, single column, design tokens applied`);
   }
@@ -164,15 +209,15 @@ async (page, ctx) => {
   }
 
   // Discover every published blog article through pagination, then inspect all
-  // its inline images. Lead pictures are covers; technical figures after the
-  // cover link to their untouched source so dense tables remain inspectable.
+  // its inline images. Lead pictures are covers; optional original links
+  // supplement full-width body pictures without constraining their dimensions.
   const blogs = await walkPagination(page, { path: '/blog/' });
   const blogImageReports = [];
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 960 });
     let pictureCount = 0;
     let sourceCount = 0;
-    for (const path of blogs.links) {
+    for (const [index, path] of blogs.links.entries()) {
       const response = await page.goto(base + path);
       assert(response.status() === 200, `${path}: HTTP ${response.status()}`);
       const state = await page.evaluate(async () => {
@@ -185,9 +230,9 @@ async (page, ctx) => {
           images: [...document.querySelectorAll('.article-cover, .prose img')].map(image => {
             const rect = image.getBoundingClientRect();
             return {
-              src: image.src, width: rect.width, height: rect.height,
+              src: image.src, currentSrc: image.currentSrc, width: rect.width, height: rect.height,
               left: rect.left, right: rect.right,
-              prose: !!image.closest('.prose'),
+              cover: image.matches('.article-cover') || (!document.querySelector('.article-cover') && image === document.querySelector('.reading-page .prose img')),
               columnWidth: (image.closest('.prose') || image.closest('article')).getBoundingClientRect().width,
               intrinsicWidth: Number(image.getAttribute('width')) || image.naturalWidth,
               intrinsicHeight: Number(image.getAttribute('height')) || image.naturalHeight,
@@ -203,16 +248,14 @@ async (page, ctx) => {
       });
       assert(!state.overflow, `${width} ${path}: horizontal overflow`);
       assert(!state.badImages.length, `${width} ${path}: images failed to decode: ${state.badImages.join(', ')}`);
-      let inlineIndex = 0;
+      await checkPager(`${width} ${path}`, { previous: blogs.links[index + 1], next: blogs.links[index - 1] });
       for (const image of state.images) {
         const ratio = image.intrinsicHeight / image.intrinsicWidth;
         assert(image.width > 0 && image.height > 0 && Math.abs(image.height - image.width * ratio) <= 1, `${width} ${path}: inline image lost its intrinsic ratio: ${image.src}`);
-        assert(Math.abs(image.naturalHeight - image.naturalWidth * ratio) <= 1, `${width} ${path}: image attributes disagree with decoded proportions: ${image.src}`);
         assert(image.fit === 'contain', `${width} ${path}: inline image must remain complete: ${image.src}`);
         assert(Math.abs(image.width - image.columnWidth) <= 1, `${width} ${path}: article image must fill its reading column: ${image.src}`);
         assert(image.left >= -1 && image.right <= width + 1, `${width} ${path}: inline image extends beyond the viewport: ${image.src}`);
         await checkOriginal(image, `${width} ${path}`);
-        if (image.prose && inlineIndex++ > 0) assert(image.original, `${width} ${path}: technical figure must link to its original source: ${image.src}`);
         if (image.original) {
           const original = new URL(image.original);
           assert(original.href === new URL(image.originalSrc, base).href && !/_hu_[0-9a-f]+\./.test(original.pathname), `${width} ${path}: figure link must preserve its unprocessed source: ${image.original}`);
@@ -281,6 +324,6 @@ async (page, ctx) => {
   assert(await avatar.evaluate(node => node.complete && node.naturalWidth > 0), `the avatar did not load: ${avatarSrc}`);
   assert(await avatar.getAttribute('width') === '120' && await avatar.getAttribute('height') === '120', 'the avatar must reserve its rendered square');
   report.push('About intro renders the pipelined avatar through aboutIntro');
-  report.push(`${blogImageReports.join('; ')}; ${checkedSources.size} distinct original source(s) passed dimensions and legacy SHA checks`);
+  report.push(`${blogImageReports.join('; ')}; ${checkedSources.size} distinct original source(s) decoded with preserved proportions; every cover is 900x383`);
   return report;
 }

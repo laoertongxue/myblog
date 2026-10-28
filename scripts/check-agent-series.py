@@ -23,8 +23,8 @@ from xml.etree import ElementTree as ET
 TOPIC_SOURCE = Path('content/topics/agent-engineering')
 TOPIC_ROUTE = '/topics/agent-engineering/'
 REMOVED_ROUTE = Path('topics/layout-test')
-# layouts/_partials/lab/thumbnails.html caps previews at three pictures.
-PREVIEW_LIMIT = 3
+# layouts/_partials/lab/thumbnails.html shows one article cover.
+PREVIEW_LIMIT = 1
 
 
 def unquote(value):
@@ -230,7 +230,8 @@ def check(output='.hugo-check'):
         # `images:` list selects the *list previews* only (see docs/列表缩略图.md).
         body = [Path(reference).name for reference in re.findall(r'!\[[^\]]*\]\(([^)\s]+)', markdown)]
         declared = [Path(reference).name for reference in (meta.get('images') or [])]
-        for name in declared:
+        cover = [Path(meta['cover']).name] if meta.get('cover') else []
+        for name in cover + declared:
             if name not in bundle:
                 raise ValueError(f'{source}: preview image {name} is not in the bundle')
         for name in body:
@@ -241,7 +242,7 @@ def check(output='.hugo-check'):
         # catches an accidentally deleted body picture line when previews are
         # declared explicitly.
         for name in bundle:
-            if name not in body and name not in declared:
+            if name not in body and name not in declared and name not in cover:
                 raise ValueError(f'{source}: {name} is in the bundle but neither rendered nor declared as a preview')
         chapters.append({
             'route': f'{TOPIC_ROUTE}{directory.name}/',
@@ -249,7 +250,7 @@ def check(output='.hugo-check'):
             'weight': int(meta.get('weight', 0)),
             'fit': meta.get('thumbnailFit', ''),
             'pictures': body,
-            'previews': declared or list(bundle),
+            'previews': cover or declared[:1] or list(bundle)[:1],
             'bundle': bundle,
             'tables': markdown_table_count(source),
         })
@@ -281,8 +282,10 @@ def check(output='.hugo-check'):
         rendered = [picture for picture in body.pictures if picture['src']]
         assert len(rendered) == len(chapter['pictures']), f'{chapter["route"]}: rendered {len(rendered)} of {len(chapter["pictures"])} bundle pictures'
         assert len({picture['src'] for picture in rendered}) == len(rendered), f'{chapter["route"]}: a picture is rendered twice'
-        sections = [picture['section'] for picture in rendered]
-        assert len(set(sections)) == len(sections), f'{chapter["route"]}: two pictures share one section'
+        assert rendered, f'{chapter["route"]}: article cover is missing'
+        assert image_size(chapter['bundle'][chapter['pictures'][0]]) == (900, 383), f'{chapter["route"]}: first picture must be a 900x383 cover'
+        sections = [picture['section'] for picture in rendered[1:]]
+        assert len(set(sections)) == len(sections), f'{chapter["route"]}: two body pictures share one section'
         for picture, name in zip(rendered, chapter['pictures']):
             source = chapter['bundle'][name]
             natural_width, natural_height = image_size(source)
@@ -332,6 +335,8 @@ def check(output='.hugo-check'):
         assert len(row['pictures']) == previews, f'{chapter["route"]}: {len(row["pictures"])} preview(s), expected {previews}'
         for picture, name in zip(row['pictures'], chapter['previews'][:previews]):
             natural_width, natural_height = image_size(chapter['bundle'][name])
+            assert (natural_width, natural_height) == (900, 383), f'{chapter["route"]}: list cover {name} must be 900x383'
+            assert name == chapter['pictures'][0], f'{chapter["route"]}: list cover must be the first article picture'
             assert name.rsplit('.', 1)[0] in picture['src'], f'{chapter["route"]}: preview {picture["src"]} is not {name}'
             # The picture keeps the source ratio in its intrinsic attributes
             # and in every built candidate; CSS controls the listing frame.
@@ -357,6 +362,7 @@ def check(output='.hugo-check'):
             if not row['pictures']:
                 continue
             assert row['fit'] == 'contain', f'{listing_route}: default previews must preserve complete pictures'
+            assert len(row['pictures']) == PREVIEW_LIMIT, f'{listing_route}: each article must show one cover'
             for picture in row['pictures']:
                 if not picture['srcset']:
                     continue  # SVG previews keep their original vector source.

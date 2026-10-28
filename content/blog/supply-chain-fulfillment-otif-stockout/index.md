@@ -6,6 +6,8 @@ slug: "supply-chain-fulfillment-otif-stockout"
 description: "用匿名服装企业与虚构餐饮品牌“禾味”双案例，把“交得怎么样”变成数量满足率、OTIF 与快照缺货率三个可复算指标。"
 categories: ["供应链"]
 tags: ["供应链", "SQL", "数量满足率", "OTIF"]
+images:
+  - images/d3-00_cover.png
 ---
 
 ![00\_cover](images/d3-00_cover.png)

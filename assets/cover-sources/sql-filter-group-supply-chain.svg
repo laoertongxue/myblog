@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="383" viewBox="0 0 900 383">
+<title>用 SQL 算清订单：筛选 · 分组 · 汇总</title>
+<rect width="900" height="383" fill="white"/>
+<g font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<rect x="12" y="12" width="876" height="359" rx="18" fill="white" stroke="#303030" stroke-width="2"/>
+<path d="M530 64V312" stroke="#d7d7d7"/>
+<text x="42" y="65" font-size="17" font-weight="500" fill="#666" text-anchor="start">供应链 · SQL</text>
+<text x="40" y="143" font-size="43" font-weight="700" fill="#222" text-anchor="start">用 SQL 算清订单</text>
+<text x="42" y="193" font-size="27" font-weight="600" fill="#222" text-anchor="start">筛选 · 分组 · 汇总</text>
+<text x="42" y="242" font-size="18" font-weight="400" fill="#555" text-anchor="start">先说明统计对象，再核对每一个结果</text>
+<text x="42" y="335" font-size="15" font-weight="500" fill="#666" text-anchor="start">拾贰画生  /  12LAB.CN</text>
+<rect x="564" y="82" width="286" height="60" rx="9" fill="#f8f8f8" stroke="#888"/>
+<text x="707" y="119" font-size="21" font-weight="600" fill="#222" text-anchor="middle">筛选有效单据</text>
+<path d="M707 142v16m-5-5 5 5 5-5" fill="none" stroke="#555" stroke-width="2"/>
+<rect x="564" y="164" width="286" height="60" rx="9" fill="#ededed" stroke="#888"/>
+<text x="707" y="201" font-size="21" font-weight="600" fill="#222" text-anchor="middle">按业务粒度分组</text>
+<path d="M707 224v16m-5-5 5 5 5-5" fill="none" stroke="#555" stroke-width="2"/>
+<rect x="564" y="246" width="286" height="60" rx="9" fill="#f8f8f8" stroke="#888"/>
+<text x="707" y="283" font-size="21" font-weight="600" fill="#222" text-anchor="middle">按 SKU 与单位汇总</text>
+</g></svg>

@@ -49,7 +49,7 @@ h3 { font-size:21px; }
 .read-more { display:inline-block; margin-top:22px; }
 .row-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; font-size:14px; color:var(--lab-muted); }
 .row-meta a { color:#67655d; }
-.list-thumbnails { display:grid; grid-template-columns:repeat(var(--thumbnail-count),minmax(0,1fr)); gap:16px; max-width:100%; width:calc(var(--thumbnail-count) * 100% / 3); margin:20px 0; }
+.list-thumbnails { display:block; width:100%; max-width:540px; margin:20px 0; }
 .list-thumbnails a { display:block; min-width:0; overflow:hidden; }
 .list-thumbnails img { display:block; width:100%; height:auto; aspect-ratio:var(--lab-image-ratio); object-fit:contain; background:var(--lab-wash); transition:opacity .2s; }
 .list-thumbnails a:hover img { opacity:.88; }
@@ -91,10 +91,12 @@ h3 { font-size:21px; }
 .prose table { display:block; max-width:100%; overflow:auto; border-collapse:collapse; margin:28px 0; }
 .prose th,.prose td { border:1px solid #ddd8cc; padding:9px 15px; }
 .prose hr { border:0; border-top:1px solid var(--lab-line); margin:40px 0; }
-.article-pager { display:flex; flex-direction:column; gap:28px; margin-top:70px; padding-top:32px; border-top:1px solid var(--lab-line); }
+.article-pager { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; margin-top:70px; padding-top:32px; border-top:1px solid var(--lab-line); }
+.article-pager>div { min-width:0; }
+.article-pager .article-next { text-align:right; }
 .article-pager a { display:flex; flex-direction:column; gap:5px; }
 .article-pager span { font-size:14px; color:var(--lab-muted); }
-.article-pager strong { font-size:17px; font-weight:400; }
+.article-pager strong { font-size:17px; font-weight:400; overflow-wrap:anywhere; }
 .related-posts { margin-top:48px; }
 .related-posts h2 { font-size:19px; margin-bottom:14px; }
 .related-posts a { display:block; padding:8px 0; }
@@ -149,7 +151,6 @@ h3 { font-size:21px; }
   .row-body h2 { font-size:22px; }
   .row-date { font-size:13px; }
   .post-row { padding-bottom:36px; margin-bottom:36px; }
-  .list-thumbnails { gap:8px; }
   .row-meta { font-size:12px; }
   .article-heading { margin-bottom:44px; }
   .prose { font-size:17px; }

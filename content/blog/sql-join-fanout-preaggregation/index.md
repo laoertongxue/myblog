@@ -6,6 +6,8 @@ slug: "sql-join-fanout-preaggregation"
 description: "订单行连接多条验收记录后，计划量可能被重复累计。用订单行预聚合修复连接扇出，让满足率可复算、可验收。"
 categories: ["供应链"]
 tags: ["供应链", "SQL", "连接扇出", "数据分析"]
+images:
+  - images/d4-00_cover.png
 ---
 
 ![同一个满足率为什么有两个答案](images/d4-00_cover.png)

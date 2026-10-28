@@ -19,17 +19,34 @@ async (page, ctx) => {
     await tab.goto(base + path);
     const selector = path === '/' ? '.list-thumbnails img' : '.prose img';
     await tab.locator(selector).first().evaluate(image => image.decode());
-    const images = await tab.locator(selector).evaluateAll(nodes => nodes.map(image => ({
-      width: image.getAttribute('width'),
-      height: image.getAttribute('height'),
-      src: image.currentSrc,
-      srcset: image.srcset,
-      loading: image.loading,
-      priority: image.fetchPriority,
+    const images = await tab.locator(selector).evaluateAll(nodes => Promise.all(nodes.map(async image => {
+      let pixels = null;
+      if (image.currentSrc && image.complete && image.naturalWidth) {
+        const candidate = new Image();
+        candidate.src = image.currentSrc;
+        await candidate.decode();
+        pixels = [candidate.naturalWidth, candidate.naturalHeight];
+      }
+      return {
+        width: image.getAttribute('width'),
+        height: image.getAttribute('height'),
+        src: image.currentSrc,
+        srcset: image.srcset,
+        loading: image.loading,
+        priority: image.fetchPriority,
+        pixels,
+        sizes: image.sizes,
+      };
     })));
     assert(images.length > 0, `${path}: no images matched ${selector}`);
     assert(images[0].loading === 'eager' && images[0].priority === 'high', `${path}: the first image is not prioritized`);
     assert(images[0].src, `${path}: the prioritized first image did not select a candidate`);
+    if (path === '/') {
+      assert(images[0].pixels?.[0] === 540 && images[0].pixels[1] === 230, `home: single mobile cover must select the encoded 540x230 candidate, got ${images[0].pixels}`);
+      const widths = images[0].srcset.split(',').map(candidate => Number(candidate.trim().split(/\s+/)[1].slice(0, -1)));
+      assert(JSON.stringify(widths) === JSON.stringify([540, 900]), 'home: cover candidates must be 540px and 900px');
+      assert(images[0].sizes.includes('540px') && images[0].sizes.includes('100vw - 40px'), 'home: cover sizes must follow its full-width capped card');
+    }
     assert(images.slice(1).every(image => image.loading === 'lazy'), `${path}: images after the first must stay lazy`);
     assert(images.every(image => image.width && image.height), `${path}: an image is missing its reserved dimensions`);
     for (const image of images) {

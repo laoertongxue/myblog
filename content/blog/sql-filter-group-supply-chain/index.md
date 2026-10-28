@@ -6,6 +6,8 @@ slug: "sql-filter-group-supply-chain"
 description: "把业务问题翻译成可以执行、可以核对的查询：查有效单据、按组织数单、按 SKU 汇总数量，以及排查数据问题。"
 categories: ["供应链"]
 tags: ["供应链", "SQL", "数据分析"]
+images:
+  - images/d2-00_cover.png
 ---
 
 ![理解SQL查询](images/d2-00_cover.png)

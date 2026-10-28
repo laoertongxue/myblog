@@ -22,7 +22,7 @@
   <div class="prose">{{ .Content }}</div>
   {{ $pages := .Parent.RegularPages.ByDate }}{{ if eq .Section "topics" }}{{ $pages = .Parent.RegularPages.ByWeight }}{{ end }}
   {{ $current := . }}{{ range $i, $p := $pages }}{{ if eq $p.RelPermalink $current.RelPermalink }}{{ if gt (len $pages) 1 }}
-  <nav class="article-pager" aria-label="上下篇文章"><div>{{ if gt $i 0 }}{{ with index $pages (sub $i 1) }}<a href="{{ .RelPermalink }}"><span>← {{ if eq .Section "weekly" }}上一期{{ else }}上一篇{{ end }}</span><strong>{{ .Title }}</strong></a>{{ end }}{{ end }}</div><div>{{ if lt $i (sub (len $pages) 1) }}{{ with index $pages (add $i 1) }}<a href="{{ .RelPermalink }}"><span>{{ if eq .Section "weekly" }}下一期{{ else }}下一篇{{ end }} →</span><strong>{{ .Title }}</strong></a>{{ end }}{{ end }}</div></nav>
+  <nav class="article-pager" aria-label="上下篇文章"><div class="article-prev">{{ if gt $i 0 }}{{ with index $pages (sub $i 1) }}<a href="{{ .RelPermalink }}"><span>← {{ if eq .Section "weekly" }}上一期{{ else }}上一篇{{ end }}</span><strong>{{ .Title }}</strong></a>{{ end }}{{ end }}</div><div class="article-next">{{ if lt $i (sub (len $pages) 1) }}{{ with index $pages (add $i 1) }}<a href="{{ .RelPermalink }}"><span>{{ if eq .Section "weekly" }}下一期{{ else }}下一篇{{ end }} →</span><strong>{{ .Title }}</strong></a>{{ end }}{{ end }}</div></nav>
   {{ end }}{{ end }}{{ end }}
   {{ if eq .Section "blog" }}{{ $related := first 3 (where (.Site.RegularPages.Related .) "Section" "blog") }}{{ with $related }}<section class="related-posts"><h2>相关文章</h2>{{ range . }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}</section>{{ end }}{{ end }}
 </article>

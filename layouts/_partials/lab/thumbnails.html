@@ -2,8 +2,8 @@
 {{- if reflect.IsMap . }}{{ $page = .page }}{{ $priority = .priority | default false }}{{ end -}}
 {{- $sources := partial "lab/image-sources.html" $page -}}
 {{- with $sources -}}
-<div class="list-thumbnails" data-fit="contain" style="--thumbnail-count:{{ math.Min 3 (len .) }}">
-  {{- range $index, $source := first 3 . -}}
+<div class="list-thumbnails" data-fit="contain">
+  {{- range $index, $source := first 1 . -}}
     {{- $url := $source | relURL -}}
     {{- $resource := partial "lab/image-resource.html" (dict "page" $page "src" $source) -}}
     {{- $srcset := "" -}}
@@ -15,16 +15,15 @@
       {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") -}}
         {{- $originalWidth = .Width -}}{{- $originalHeight = .Height -}}
         {{- $preview := .Fit "540x230 webp q85" -}}
-        {{- $small := .Fit "324x138 webp q85" -}}
         {{- $large := .Fit "900x383 webp q85" -}}
         {{- $url = $preview.RelPermalink -}}
         {{- $width = $preview.Width -}}{{- $height = $preview.Height -}}
-        {{- $srcset = printf "%s %dw, %s %dw, %s %dw" $small.RelPermalink $small.Width $preview.RelPermalink $preview.Width $large.RelPermalink $large.Width -}}
+        {{- $srcset = printf "%s %dw, %s %dw" $preview.RelPermalink $preview.Width $large.RelPermalink $large.Width -}}
       {{- else -}}
         {{- $url = .RelPermalink -}}
       {{- end -}}
     {{- end -}}
-    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" data-original-src="{{ $originalSource }}"{{ if $originalWidth }} data-original-width="{{ $originalWidth }}" data-original-height="{{ $originalHeight }}"{{ end }} alt="{{ $page.Title }} 配图 {{ add $index 1 }}" {{ if and $priority (eq $index 0) }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}{{ with $srcset }} srcset="{{ . }}" sizes="(max-width: 760px) calc((100vw - 56px) / 3), (max-width: 1800px) calc((80vw - 32px) / 3), 470px"{{ end }} decoding="async" width="{{ $width }}" height="{{ $height }}"></a>
+    <a href="{{ $page.RelPermalink }}" aria-label="阅读：{{ $page.Title }}"><img src="{{ $url }}" data-original-src="{{ $originalSource }}"{{ if $originalWidth }} data-original-width="{{ $originalWidth }}" data-original-height="{{ $originalHeight }}"{{ end }} alt="{{ $page.Title }} 封面" {{ if and $priority (eq $index 0) }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }}{{ with $srcset }} srcset="{{ . }}" sizes="(max-width: 580px) calc(100vw - 40px), 540px"{{ end }} decoding="async" width="{{ $width }}" height="{{ $height }}"></a>
   {{- end -}}
 </div>
 {{- end -}}

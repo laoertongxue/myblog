@@ -5,7 +5,11 @@ weight: 10
 draft: false
 thumbnailFit: contain
 description: "以模型、上下文与工具为线索，梳理《深入理解 AI Agent：设计原理与工程实践》的十章结构，建立从原理走向工程的阅读框架。"
+images:
+  - assets/00-cover.png
 ---
+
+![理解 Agent：模型、上下文与工具](assets/00-cover.png)
 
 这篇导读围绕《深入理解 AI Agent：设计原理与工程实践》的十章结构，整理核心概念与阅读线索。文中引号保留书本阅读中整理的相关表述，章节介绍与观点应放回书本语境理解。
 

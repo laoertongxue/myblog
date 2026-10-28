@@ -7,8 +7,6 @@ thumbnailFit: contain
 description: "从生产单延期排查出发，理解 Harness 如何组织模型调用、工具执行、反馈与任务状态，让模型回答接上实际业务。"
 images:
   - assets/00-cover.png
-  - assets/01-architecture.png
-  - assets/02-loop.png
 ---
 
 ![理解 Harness：从模型回答到 Agent 执行，拾贰画生](assets/00-cover.png)

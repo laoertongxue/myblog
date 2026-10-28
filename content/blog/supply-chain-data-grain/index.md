@@ -6,6 +6,8 @@ slug: "supply-chain-data-grain"
 description: "数据库里的一行，到底代表什么？用匿名服装生产与虚构餐饮品牌“禾味”两个案例，理解供应链数据粒度。"
 categories: ["供应链"]
 tags: ["供应链", "数据建模", "数据粒度"]
+images:
+  - images/d1-00_cover.png
 ---
 
 ![理解数据粒度](images/d1-00_cover.png)

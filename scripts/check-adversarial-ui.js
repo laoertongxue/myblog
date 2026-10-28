@@ -86,14 +86,15 @@ async (page, ctx) => {
     const total = await page.locator('.list-thumbnails img').count();
     const prioritized = await page.locator('.list-thumbnails img[fetchpriority="high"]').count();
     const eager = await page.locator('.list-thumbnails img[loading="eager"]').count();
+    assert(total === groups, `${route}: every preview group must contain exactly one cover`);
     assert(prioritized === (groups ? 1 : 0), `${route}: ${prioritized} prioritized thumbnail(s) across ${groups} preview group(s)`);
     assert(eager === prioritized, `${route}: eager thumbnails (${eager}) do not match prioritized ones (${prioritized})`);
     assert(await page.locator('.list-thumbnails img[loading="lazy"]').count() === total - prioritized, `${route}: every thumbnail after the first must stay lazy`);
     if (route === '/' || route === '/topics/agent-engineering/') assert(groups > 0, `${route}: previews disappeared from a listing that shows them`);
     for (let i = 0; i < groups; i++) {
-      assert(await page.locator('.list-thumbnails').nth(i).locator('img').count() <= 3, `${route}: a preview group shows more than three pictures`);
+      assert(await page.locator('.list-thumbnails').nth(i).locator('img').count() === 1, `${route}: a preview group must show exactly one cover`);
     }
   }
-  report.push('Exactly the first preview of each listing is prioritized, never more than three per row, the rest lazy');
+  report.push('Exactly the first preview of each listing is prioritized, exactly one cover per row, the rest lazy');
   return report;
 }

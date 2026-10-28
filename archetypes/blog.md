@@ -11,11 +11,12 @@ tags: []
 <!-- slug is load-bearing: [permalinks] blog = "/blog/:slug/" falls back to the
      title when it is absent, so a later title edit would change the published URL. -->
 
-<!-- 新增、重新生成或替换配图的交付尺寸必须为 900 × 383px（精确比例 900:383，约 2.35:1），交付前核对实际像素。
-     技术图优先保留可编辑矢量源；文字过密时拆图或重排，不拉伸、不裁切、不把高图压小塞入宽框。
-     原尺寸例外仅限 scripts/legacy-image-sources.json 已固定的 39 张原字节不变历史图；
-     不得自动追加清单，替换历史图也须遵守新尺寸。浏览器检查校验新图尺寸或历史图固定哈希。
-     正文与封面默认按原比例全栏显示，列表才使用统一宽幅框。
-     技术图提供原图入口，例如：[![流程与字段说明](images/01-flow.png)](images/01-flow.png)
+<!-- 每篇文章只设计一张 900 × 383px 封面（精确比例 900:383，约 2.35:1），导出后核对实际像素。
+     封面按适用图片技能制作，原生图形优先 SVG 排版；不裁切、拉伸旧图或用留白补边。
+     可编辑源放在文章 bundle 外。
+     front matter 显式配置 images: ["images/00-cover.png"]，正文首图也使用同一封面：
+     ![文章封面](images/00-cover.png)
+     其他正文配图保留自己的原始尺寸与比例，不套封面尺寸要求，也没有历史尺寸白名单。
+     技术图可链接原图：[![流程与字段说明](images/01-flow.png)](images/01-flow.png)
      原图入口仅补充放大阅读，不能代替正文可读性；已有图片链接不要重复包裹。
-     封面可直接使用 ![文章封面](images/00-cover.png)。 -->
+     列表只展示这一张封面；上下篇始终为上一篇左、下一篇右两列，缺项留空。 -->

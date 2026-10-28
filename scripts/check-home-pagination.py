@@ -65,13 +65,16 @@ class ContainParser(HTMLParser):
         super().__init__()
         self.contain = False
         self.images = []
+        self.all_images = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == 'div' and 'list-thumbnails' in attrs.get('class', '').split():
             self.contain = attrs.get('data-fit') == 'contain'
-        if tag == 'img' and self.contain:
-            self.images.append(attrs)
+        if tag == 'img':
+            self.all_images.append(attrs)
+            if self.contain:
+                self.images.append(attrs)
 
     def handle_endtag(self, tag):
         if tag == 'div': self.contain = False
@@ -96,17 +99,20 @@ def check(destination=None):
             if i in (41, 42, 43):
                 for image in range(1, 5):
                     shutil.copy(root / 'assets/images/avatar-wangye.png', article.parent / f'photo-{image}.png')
+                # Each selection route gets a real cover; the other images stay
+                # portrait sources so a single-preview cap cannot hide cropping.
+                def chunk(name, data):
+                    return struct.pack('>I', len(data)) + name + data + struct.pack('>I', zlib.crc32(name + data))
+                banner = b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', 900, 383, 8, 2, 0, 0, 0))
+                banner += chunk(b'IDAT', zlib.compress((b'\0' + b'\x65\x7d\x96' * 900) * 383)) + chunk(b'IEND', b'')
+                selected = {41: 2, 42: 3, 43: 1}[i]
+                (article.parent / f'photo-{selected}.png').write_bytes(banner)
                 if i == 42:
-                    # A real 900x383 source exercises the shared WeChat/blog
-                    # convention alongside the existing portrait fixtures.
-                    def chunk(name, data):
-                        return struct.pack('>I', len(data)) + name + data + struct.pack('>I', zlib.crc32(name + data))
-                    banner = b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', 900, 383, 8, 2, 0, 0, 0))
-                    banner += chunk(b'IDAT', zlib.compress((b'\0' + b'\x65\x7d\x96' * 900) * 383)) + chunk(b'IEND', b'')
-                    (article.parent / 'photo-3.png').write_bytes(banner)
                     article.write_text(article.read_text().replace('weight:', 'images: ["photo-3.png", "photo-1.png"]\nweight:'))
                 if i == 41:
-                    article.write_text(article.read_text().replace('weight:', 'thumbnailFit: contain\ncover: "photo-2.png"\nweight:'))
+                    article.write_text(article.read_text().replace('weight:', 'thumbnailFit: contain\ncover: "photo-2.png"\nimages: ["photo-3.png"]\nweight:'))
+                with article.open('a') as fixture:
+                    fixture.write('\n![正文竖图](photo-4.png)\n')
             expected.insert(0, f'/{section}/{name}/')
         for name, metadata in [('future', 'date: 2999-01-01'), ('draft', 'date: 2020-02-01\ndraft: true')]:
             article = content / 'blog' / name / 'index.md'
@@ -115,28 +121,29 @@ def check(destination=None):
         subprocess.run(['hugo', '--gc', '--minify', '--contentDir', str(content), '--destination', str(output)], cwd=root, check=True, capture_output=True)
         first_page = (output / 'index.html').read_text()
         assert first_page.count('class=list-thumbnails') + first_page.count('class="list-thumbnails"') == 3
-        for count in (1, 2, 3):
-            assert f'--thumbnail-count:{count}' in first_page
-        assert 'photo-4_' not in first_page, 'Preview should be limited to three images'
-        assert 'photo-3_' in first_page and '.webp' in first_page
-        print('ok    thumbnails: explicit images, cover fallback, bundle discovery, three-image limit')
+        assert '--thumbnail-count' not in first_page, 'A single cover must not retain the multi-image layout variable'
         contained = ContainParser()
         contained.feed(first_page)
-        assert len(contained.images) == 6, 'Explicit images, cover and automatic previews must all preserve complete pictures'
-        picture = contained.images[0]
-        assert int(picture['width']) < int(picture['height']), 'Portrait source was cropped square'
-        widths = [int(candidate.strip().split()[1][:-1]) for candidate in picture['srcset'].split(',')]
-        assert widths[1] == int(picture['width']) and all(width < box for width, box in zip(widths, [324, 540, 900])), 'srcset must report actual fitted widths'
-        print('ok    contain thumbnails: complete portrait ratio and actual responsive widths for every preview source')
-        standard = next(picture for picture in contained.images if '/blog/042/photo-3_' in picture['src'])
-        assert (int(standard['width']), int(standard['height'])) == (540, 230), '900x383 source must produce an exact 900:383 thumbnail'
-        widths = [int(candidate.strip().split()[1][:-1]) for candidate in standard['srcset'].split(',')]
-        assert widths == [324, 540, 900], '900x383 source must retain the small, medium and original-width candidates'
-        print('ok    900x383 source: exact 540x230 preview, 324/540/900 responsive widths')
+        assert len(contained.images) == 3, 'Each of the three selection routes must show exactly one cover'
+        expected_covers = ['/weekly/043/photo-1_', '/blog/042/photo-3_', '/topics/example/041/photo-2_']
+        for picture, expected_cover in zip(contained.images, expected_covers):
+            assert expected_cover in picture['src'], f'Cover priority selected {picture["src"]}, expected {expected_cover}'
+            assert (int(picture['width']), int(picture['height'])) == (540, 230), '900x383 cover must produce a 540x230 preview'
+            widths = [int(candidate.strip().split()[1][:-1]) for candidate in picture['srcset'].split(',')]
+            assert widths == [540, 900], 'A single cover must retain medium and original-width candidates'
+        print('ok    thumbnails: cover over images, first explicit image, bundle discovery; exactly one cover per row')
+        print('ok    900x383 covers: 540x230 previews, 540/900 responsive widths')
         assert 'pagination-gap' in first_page, 'Long pagination should collapse middle pages'
         assert 'home-feed.min.' not in first_page, 'Mobile must use the same numbered pagination'
         cover_detail = (output / 'topics/example/041/index.html').read_text()
         assert '/topics/example/041/photo-2_hu_' in cover_detail, 'Bundle cover must resolve inside its article'
+        detail = ContainParser()
+        detail.feed(cover_detail)
+        portrait = next(picture for picture in detail.all_images if '/photo-4_hu_' in picture['src'])
+        natural_width, natural_height = struct.unpack('>II', (root / 'assets/images/avatar-wangye.png').read_bytes()[16:24])
+        assert natural_height > natural_width, 'The body-picture fixture must remain portrait'
+        assert abs(int(portrait['height']) - int(portrait['width']) * natural_height / natural_width) <= 1, 'A portrait body image must retain its natural proportions'
+        print('ok    body images: portrait source keeps its independent original proportions')
         combined = []
         for page, count in [(1, 10), (2, 10), (3, 10), (4, 10), (5, 3)]:
             html = output / ('index.html' if page == 1 else f'page/{page}/index.html')

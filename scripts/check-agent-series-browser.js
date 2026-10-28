@@ -85,6 +85,7 @@ async (page, ctx) => {
       }, pictures.map(picture => ({ original: originalOf(picture) })));
       for (const [i, picture] of pictures.entries()) {
         const [originalWidth, originalHeight] = originals[i];
+        if (i === 0) assert(originalWidth === 900 && originalHeight === 383, `${chapter.href}: first article picture must be a 900x383 cover`);
         assert(originalWidth > 0 && originalHeight > 0, `${chapter.href}: original PNG missing: ${originalOf(picture)}`);
         const rendered = picture.width / picture.height;
         assert(Math.abs(rendered - originalWidth / originalHeight) < 0.01, `${chapter.href}: cropped or distorted picture ${picture.src}`);
