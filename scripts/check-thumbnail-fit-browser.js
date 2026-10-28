@@ -84,7 +84,7 @@ async (page, ctx) => {
     if (await first.count()) taxonomyRoutes.push(await first.getAttribute('href'));
   }
   const listingRoutes = [...new Set(['/', '/blog/', '/topics/', topic, ...taxonomyRoutes])];
-  for (const width of [1440, 1024, 768, 390, 320]) {
+  for (const width of [1920, 1440, 1024, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 960 });
     let checked = 0;
     for (const listing of listingRoutes) {
@@ -106,6 +106,7 @@ async (page, ctx) => {
         const textBounds = paragraph ? textRange.getBoundingClientRect() : null;
         return {
           href: row.querySelector('h2 a')?.getAttribute('href'),
+          dividerRight: row.getBoundingClientRect().right,
           date: rect(row.querySelector('.row-date')),
           title: rect(row.querySelector('.row-body h2')),
           content: rect(content), summary: rect(summary),
@@ -133,13 +134,14 @@ async (page, ctx) => {
         assert(row.date.bottom <= row.title.top + 1, `${label}: date must stay above the title`);
         assert(row.title.bottom <= row.content.top + 1, `${label}: title must stay above cover and summary`);
         assert(row.summary.left >= row.content.left - 1 && row.summary.right <= row.content.right + 1, `${label}: summary extends outside its row`);
+        assert(Math.abs(row.content.right - row.dividerRight) <= 1 && Math.abs(row.summary.right - row.dividerRight) <= 1, `${label}: content and summary must end at the row divider right edge`);
         assert(!row.summaryClipped, `${label}: summary column clips its contents`);
         if (row.description) {
           assert(row.paragraph.text && row.description.width > 0 && row.description.height > 0, `${label}: rendered summary must be nonempty and visible`);
           assert(!row.paragraph.clipped && !['ellipsis'].includes(row.paragraph.textOverflow) && !Number(row.paragraph.lineClamp), `${label}: summary text must remain complete and unclamped`);
           assert(row.paragraph.textBottom <= row.description.bottom + 1 && row.paragraph.textLeft >= row.description.left - 1 && row.paragraph.textRight <= row.description.right + 1, `${label}: summary glyphs extend outside their paragraph`);
           assert(Math.abs(row.paragraph.lineHeight / row.paragraph.fontSize - 1.7) <= 0.01, `${label}: summary line height must keep the compact reading rhythm`);
-          assert(row.description.width <= Math.min(row.summary.width, row.paragraph.fontSize * 38) + 1, `${label}: summary measure must stay within its column and 38em`);
+          assert(Math.abs(row.description.left - row.summary.left) <= 1 && Math.abs(row.description.width - row.summary.width) <= 1 && Math.abs(row.description.right - row.summary.right) <= 1, `${label}: summary paragraph must fill the right column without an extra width limit`);
           assert(row.description.bottom <= row.readMore.top + 1, `${label}: read-more must follow the complete summary`);
         }
         if (row.meta) {
