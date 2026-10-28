@@ -48,10 +48,11 @@ h3 { font-size:21px; }
 .row-body p { line-height:1.9; }
 .row-content { min-width:0; }
 .row-content.has-cover { display:grid; grid-template-columns:minmax(0,min(46%,540px)) minmax(0,1fr); gap:32px; align-items:start; }
-.row-summary { min-width:0; }
-.row-summary>p { margin:0; }
-.read-more { display:inline-block; margin-top:14px; }
+.row-summary { display:flex; flex-direction:column; align-self:stretch; min-width:0; }
+.row-summary>p { max-width:38em; margin:0; line-height:1.7; }
+.read-more { display:inline-block; align-self:flex-start; margin-top:16px; }
 .row-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; font-size:14px; color:var(--lab-muted); }
+.row-summary .row-meta { margin-top:auto; padding-top:14px; }
 .row-meta a { color:#67655d; }
 .list-thumbnails { display:block; width:100%; max-width:540px; margin:0; }
 .list-thumbnails a { display:block; min-width:0; overflow:hidden; }

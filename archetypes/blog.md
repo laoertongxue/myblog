@@ -4,6 +4,7 @@ slug: '{{ .File.ContentBaseName }}'
 date: '{{ time.Now.Format "2006-01-02" }}'
 draft: true
 description: ""
+summary: ""
 categories: []
 tags: []
 ---
@@ -20,3 +21,7 @@ tags: []
      技术图可链接原图：[![流程与字段说明](images/01-flow.png)](images/01-flow.png)
      原图入口仅补充放大阅读，不能代替正文可读性；已有图片链接不要重复包裹。
      列表只展示这一张封面；上下篇始终为上一篇左、下一篇右两列，缺项留空。 -->
+
+<!-- description 保持简短，用于 SEO、文章导语、搜索与订阅描述。
+     summary 为可选的手写列表摘要，通常约 120–180 字，概括业务问题、案例或方法与阅读收益，不凑字数。
+     列表优先使用 summary，空值回退 description；不使用自动生成的 Hugo .Summary，不强制长度或行数。 -->

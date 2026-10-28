@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build isolated content to check ten-item pages without publishing fixtures."""
 import argparse
+import json
 from html.parser import HTMLParser
 from pathlib import Path
 import subprocess
@@ -80,12 +81,56 @@ class ContainParser(HTMLParser):
         if tag == 'div': self.contain = False
 
 
+
+class SummaryParser(HTMLParser):
+    def __init__(self, text):
+        super().__init__()
+        self.rows, self.meta, self.schemas = {}, {}, []
+        self.row = self.json = None
+        self.heading = self.summary = self.paragraph = False
+        self.feed(text)
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == 'meta':
+            self.meta[attrs.get('name', attrs.get('property', ''))] = attrs.get('content', '')
+        if tag == 'script' and attrs.get('type') == 'application/ld+json':
+            self.json = ''
+        if tag == 'article' and 'post-row' in attrs.get('class', '').split():
+            self.row = {'href': None, 'summary': ''}
+        if self.row is not None:
+            if tag == 'h2': self.heading = True
+            if self.heading and tag == 'a': self.row['href'] = attrs.get('href')
+            if tag == 'div' and 'row-summary' in attrs.get('class', '').split(): self.summary = True
+            if self.summary and tag == 'p': self.paragraph = True
+
+    def handle_data(self, data):
+        if self.json is not None: self.json += data
+        if self.row is not None and self.paragraph: self.row['summary'] += data
+
+    def handle_endtag(self, tag):
+        if tag == 'script' and self.json is not None:
+            self.schemas.append(json.loads(self.json))
+            self.json = None
+        if tag == 'h2': self.heading = False
+        if tag == 'p': self.paragraph = False
+        if tag == 'article' and self.row is not None:
+            self.rows[self.row['href']] = self.row['summary'].strip()
+            self.row = None
+            self.summary = False
+
+
 def check(destination=None):
     root = Path(__file__).resolve().parent.parent
     with tempfile.TemporaryDirectory(prefix='12lab-pagination-') as temporary:
         content = Path(temporary) / 'content'
         output = Path(destination).resolve() if destination else Path(temporary) / 'public'
         expected = []
+        long_summary = ('这段列表摘要说明文章覆盖的业务问题、案例边界和阅读收益，让读者先判断内容是否适合自己。'
+                        '正文会逐步梳理数据口径、展示计算过程，并用可复核的示例解释常见错误。'
+                        '摘要独立于搜索引擎描述保存，不能因为页面宽度变化而被省略、截断或替换；'
+                        '不同栏目共用同一套列表模板，短摘要和没有填写摘要的旧文章也应保持正常展示。')
+        short_summary = '短摘要仍应完整显示。'
         for section, title in [('topics', '测试专题'), ('topics/example', '章节分页测试')]:
             directory = content / section
             directory.mkdir(parents=True, exist_ok=True)
@@ -96,6 +141,10 @@ def check(destination=None):
             article = content / section / name / 'index.md'
             article.parent.mkdir(parents=True, exist_ok=True)
             article.write_text(f'---\ntitle: "测试文章 {i}"\nslug: "{name}"\ndate: 2020-{((i-1)//28)+1:02d}-{((i-1)%28)+1:02d}\nweight: {i}\ndescription: "分页测试文章"\n---\n测试正文。\n')
+            if i == 42:
+                article.write_text(article.read_text().replace('description:', f'summary: >-\n  {long_summary}\ndescription:'))
+            elif i == 41:
+                article.write_text(article.read_text().replace('description:', f'summary: "{short_summary}"\ndescription:'))
             if i in (41, 42, 43):
                 for image in range(1, 5):
                     shutil.copy(root / 'assets/images/avatar-wangye.png', article.parent / f'photo-{image}.png')
@@ -122,6 +171,17 @@ def check(destination=None):
         first_page = (output / 'index.html').read_text()
         assert first_page.count('class=list-thumbnails') + first_page.count('class="list-thumbnails"') == 3
         assert '--thumbnail-count' not in first_page, 'A single cover must not retain the multi-image layout variable'
+        summaries = SummaryParser(first_page)
+        assert summaries.rows['/blog/042/'] == long_summary, 'The list must render the complete explicit summary, not the SEO description'
+        assert summaries.rows['/topics/example/041/'] == short_summary, 'Short explicit summaries must remain valid'
+        assert summaries.rows['/weekly/043/'] == '分页测试文章', 'Missing summaries must fall back to description, not an automatic body excerpt'
+        for route in ['/blog/042/', '/topics/example/041/', '/weekly/043/']:
+            detail_head = SummaryParser((output / route.lstrip('/') / 'index.html').read_text())
+            for field in ['description', 'og:description', 'twitter:description']:
+                assert detail_head.meta[field] == '分页测试文章', f'{route}: {field} must retain the independent SEO description'
+            schema = next(item for item in detail_head.schemas if item.get('@type') == 'Article')
+            assert schema['description'] == '分页测试文章', f'{route}: Article schema must retain the independent SEO description'
+        print('ok    summaries: complete explicit text, short-summary support, description fallback and independent SEO metadata')
         contained = ContainParser()
         contained.feed(first_page)
         assert len(contained.images) == 3, 'Each of the three selection routes must show exactly one cover'

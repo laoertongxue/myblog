@@ -98,6 +98,12 @@ async (page, ctx) => {
         };
         const content = row.querySelector('.row-content');
         const summary = row.querySelector('.row-summary');
+        const paragraph = summary?.querySelector('p');
+        const paragraphStyle = paragraph && getComputedStyle(paragraph);
+        const meta = summary?.querySelector('.row-meta');
+        const textRange = document.createRange();
+        if (paragraph) textRange.selectNodeContents(paragraph);
+        const textBounds = paragraph ? textRange.getBoundingClientRect() : null;
         return {
           href: row.querySelector('h2 a')?.getAttribute('href'),
           date: rect(row.querySelector('.row-date')),
@@ -105,9 +111,18 @@ async (page, ctx) => {
           content: rect(content), summary: rect(summary),
           cover: rect(content?.querySelector('.list-thumbnails')),
           coverCount: content?.querySelectorAll('.list-thumbnails img').length || 0,
-          description: rect(summary?.querySelector('p')),
+          description: rect(paragraph),
+          paragraph: paragraph ? {
+            text: paragraph.textContent.trim(),
+            fontSize: parseFloat(paragraphStyle.fontSize), lineHeight: parseFloat(paragraphStyle.lineHeight),
+            lineClamp: paragraphStyle.webkitLineClamp, textOverflow: paragraphStyle.textOverflow,
+            clipped: paragraph.scrollHeight > paragraph.clientHeight + 1 || paragraph.scrollWidth > paragraph.clientWidth + 1,
+            textBottom: textBounds.bottom, textLeft: textBounds.left, textRight: textBounds.right,
+          } : null,
+          summaryClipped: summary && (summary.scrollHeight > summary.clientHeight + 1 || summary.scrollWidth > summary.clientWidth + 1),
+          metaPaddingTop: meta ? parseFloat(getComputedStyle(meta).paddingTop) : 0,
           readMore: rect(summary?.querySelector('.read-more')),
-          meta: rect(summary?.querySelector('.row-meta')),
+          meta: rect(meta),
           order: content ? [...content.children].map(child => child.className) : [],
         };
       }));
@@ -118,8 +133,20 @@ async (page, ctx) => {
         assert(row.date.bottom <= row.title.top + 1, `${label}: date must stay above the title`);
         assert(row.title.bottom <= row.content.top + 1, `${label}: title must stay above cover and summary`);
         assert(row.summary.left >= row.content.left - 1 && row.summary.right <= row.content.right + 1, `${label}: summary extends outside its row`);
-        if (row.description) assert(row.description.bottom <= row.readMore.top + 1, `${label}: read-more must follow the description`);
-        if (row.meta) assert(row.readMore.bottom <= row.meta.top + 1, `${label}: reading metadata must follow read-more`);
+        assert(!row.summaryClipped, `${label}: summary column clips its contents`);
+        if (row.description) {
+          assert(row.paragraph.text && row.description.width > 0 && row.description.height > 0, `${label}: rendered summary must be nonempty and visible`);
+          assert(!row.paragraph.clipped && !['ellipsis'].includes(row.paragraph.textOverflow) && !Number(row.paragraph.lineClamp), `${label}: summary text must remain complete and unclamped`);
+          assert(row.paragraph.textBottom <= row.description.bottom + 1 && row.paragraph.textLeft >= row.description.left - 1 && row.paragraph.textRight <= row.description.right + 1, `${label}: summary glyphs extend outside their paragraph`);
+          assert(Math.abs(row.paragraph.lineHeight / row.paragraph.fontSize - 1.7) <= 0.01, `${label}: summary line height must keep the compact reading rhythm`);
+          assert(row.description.width <= Math.min(row.summary.width, row.paragraph.fontSize * 38) + 1, `${label}: summary measure must stay within its column and 38em`);
+          assert(row.description.bottom <= row.readMore.top + 1, `${label}: read-more must follow the complete summary`);
+        }
+        if (row.meta) {
+          assert(row.readMore.bottom + 13 <= row.meta.top + row.metaPaddingTop, `${label}: reading metadata needs a visible gap after read-more`);
+          assert(Math.abs(row.meta.bottom - row.summary.bottom) <= 1, `${label}: reading metadata must finish at the bottom of the summary column`);
+          if (width <= 900) assert(row.meta.top + row.metaPaddingTop - row.readMore.bottom <= 18, `${label}: stacked summary must not add artificial filler above metadata`);
+        }
         if (row.cover) {
           assert(row.coverCount === 1 && row.order.length === 2 && row.order[0] === 'list-thumbnails' && row.order[1] === 'row-summary', `${label}: a card must contain one cover followed by one summary`);
           assert(Math.abs(row.cover.height - row.cover.width * 383 / 900) <= 1, `${label}: cover frame must keep 900:383`);
@@ -129,6 +156,7 @@ async (page, ctx) => {
             assert(Math.abs(row.cover.left - row.content.left) <= 1 && row.cover.right < row.summary.left, `${label}: cover must sit left of the summary`);
             assert(Math.abs(row.cover.top - row.summary.top) <= 1 && Math.abs(row.cover.top - row.content.top) <= 1, `${label}: cover and summary must align at the top`);
             assert(Math.abs(row.summary.right - row.content.right) <= 1, `${label}: summary must use the right column`);
+            assert(row.summary.height >= row.cover.height - 1, `${label}: desktop summary column must stretch to at least the cover height`);
             assert(Math.abs(row.content.height - Math.max(row.cover.height, row.summary.height)) <= 1, `${label}: side-by-side card has unnecessary vertical space`);
           } else {
             const gap = row.summary.top - row.cover.bottom;
@@ -142,7 +170,7 @@ async (page, ctx) => {
         checked++;
       }
     }
-    report.push(`${width}px: ${checked} home/blog/topic/taxonomy cards keep date/title above, cover ${width > 900 ? 'left of' : 'above'} summary, ordered information and no overflow`);
+    report.push(`${width}px: ${checked} home/blog/topic/taxonomy cards keep date/title above, cover ${width > 900 ? 'left of' : 'above'} summary, full unclamped summaries, bottom-aligned metadata and no overflow`);
   }
 
   for (const listing of ['/', '/blog/', '/weekly/', '/topics/agent-engineering/']) {
