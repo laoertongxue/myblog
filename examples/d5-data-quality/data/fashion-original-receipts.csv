@@ -1,0 +1,5 @@
+source_row_id,origin_row_id,event_id,line_id,accepted_qty,accepted_at,qualified
+R01,R01,RE1,L1,60,2026-10-21T10:00:00+07:00,1
+R02,R02,RE2,L1,40,2026-10-21T12:00:00+07:00,1
+R03,R03,RE3,L2,80,2026-10-21T11:00:00+07:00,1
+R04,R04,RE4,L4,100,2026-10-21T11:00:00+07:00,1

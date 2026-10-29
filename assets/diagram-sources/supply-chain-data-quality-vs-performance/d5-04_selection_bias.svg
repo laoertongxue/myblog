@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="920" viewBox="0 0 720 920">
+<title>排除低表现记录可能产生的选择偏差</title>
+<rect width="720" height="920" fill="white"/>
+<g font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<text x="32" y="55" font-size="33" font-weight="700" fill="#222" text-anchor="start">指标变好，可能只是分母变小</text>
+<text x="32" y="99" font-size="24" font-weight="400" fill="#555" text-anchor="start">独立受控对照：只屏蔽未交付的 L3</text>
+<rect x="32" y="140" width="656" height="215" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="185" font-size="30" font-weight="700" fill="#222" text-anchor="start">原始四单，各计划 100 件</text>
+<text x="54" y="231" font-size="27" font-weight="400" fill="#222" text-anchor="start">按时计入量：100 + 80 + 0 + 100</text>
+<text x="360" y="299" font-size="40" font-weight="700" fill="#222" text-anchor="middle">280 ÷ 400 = 70%</text>
+<path d="M360 360V407m-7-8 7 8 7-8" fill="none" stroke="#555" stroke-width="2"/>
+<text x="360" y="449" font-size="27" font-weight="600" fill="#222" text-anchor="middle">只移除 L3：少了 100 件需求</text>
+<rect x="32" y="490" width="656" height="215" rx="12" fill="#ededed" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="535" font-size="30" font-weight="700" fill="#222" text-anchor="start">剩余三单，分子仍是 280 件</text>
+<text x="54" y="581" font-size="27" font-weight="400" fill="#222" text-anchor="start">按时计入量：100 + 80 + 100</text>
+<text x="360" y="649" font-size="40" font-weight="700" fill="#222" text-anchor="middle">280 ÷ 300 ≈ 93.33%</text>
+<text x="32" y="774" font-size="29" font-weight="700" fill="#222" text-anchor="start">没有多交一件，只是换了评价集合。</text>
+<text x="32" y="825" font-size="25" font-weight="400" fill="#555" text-anchor="start">必须同时报告原始范围、排除数量与原因。</text>
+<text x="32" y="870" font-size="24" font-weight="400" fill="#555" text-anchor="start">这不是多异常处理后 90% 子集的同一组对照。</text>
+</g></svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="950" viewBox="0 0 720 950">
+<title>禾味案例的零库存、NULL与缺失快照</title>
+<rect width="720" height="950" fill="white"/>
+<g font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<text x="32" y="55" font-size="33" font-weight="700" fill="#222" text-anchor="start">零、NULL、无记录，不是同一件事</text>
+<text x="32" y="99" font-size="24" font-weight="400" fill="#555" text-anchor="start">虚构禾味：固定时点库存的三种状态</text>
+<rect x="32" y="140" width="656" height="175" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="184" font-size="30" font-weight="700" fill="#222" text-anchor="start">0：观测到零库存</text>
+<text x="54" y="236" font-size="26" font-weight="400" fill="#222" text-anchor="start">本例纳入有效快照，也计入零库存数</text>
+<text x="54" y="280" font-size="26" font-weight="400" fill="#555" text-anchor="start">仅描述此时点，不代表全天缺货</text>
+<rect x="32" y="355" width="656" height="175" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="399" font-size="30" font-weight="700" fill="#222" text-anchor="start">NULL：有行，但库存未知</text>
+<text x="54" y="451" font-size="26" font-weight="400" fill="#222" text-anchor="start">本例不纳入有效快照，另报空值</text>
+<text x="54" y="495" font-size="26" font-weight="400" fill="#555" text-anchor="start">不能改成 0，也不能称为库存充足</text>
+<rect x="32" y="570" width="656" height="175" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="614" font-size="30" font-weight="700" fill="#222" text-anchor="start">无记录：应观察组合缺少快照</text>
+<text x="54" y="666" font-size="26" font-weight="400" fill="#222" text-anchor="start">本例另报缺行，覆盖率下降</text>
+<text x="54" y="710" font-size="26" font-weight="400" fill="#555" text-anchor="start">库存状态未知，不能反推真实缺货</text>
+<text x="32" y="806" font-size="27" font-weight="600" fill="#222" text-anchor="start">先有“日期 × 门店 × SKU”应观察清单</text>
+<text x="32" y="854" font-size="25" font-weight="400" fill="#555" text-anchor="start">再关联快照，才能发现“根本没有那一行”。</text>
+<text x="32" y="902" font-size="27" font-weight="600" fill="#222" text-anchor="start">把 NULL 与缺行一起补零，会制造缺货。</text>
+</g></svg>

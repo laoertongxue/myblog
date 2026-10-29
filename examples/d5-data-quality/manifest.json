@@ -1,0 +1,11 @@
+{
+  "data_kind": "entirely_simulated_teaching_slice",
+  "fashion_receipts_complete_in_this_simulation": true,
+  "fashion_candidate_orders_frozen_before_injection": true,
+  "fashion_scope": "TEE-M, 2026-10-21, UTC+07:00; four simulated candidate orders",
+  "hewei_framework": "S01 江城店 / S02 大学城店; eight SKUs; 2026-10-01 through 2026-10-14",
+  "hewei_materialized_slice": ["2026-10-10", "2026-10-11"],
+  "hewei_snapshot_time": "18:00:00+08:00",
+  "hewei_expected_slots_in_slice": 32,
+  "hewei_full_14_day_dataset_generated": false
+}

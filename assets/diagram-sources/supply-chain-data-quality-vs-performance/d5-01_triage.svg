@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1320" viewBox="0 0 720 1320">
+<title>数据异常的分流与披露流程</title>
+<rect width="720" height="1320" fill="white"/>
+<g font-family="PingFang SC, Microsoft YaHei, sans-serif">
+<text x="32" y="55" font-size="33" font-weight="700" fill="#222" text-anchor="start">先分流异常，再评价业务</text>
+<text x="32" y="99" font-size="24" font-weight="400" fill="#555" text-anchor="start">原始数据保留，处理范围单独记录</text>
+<rect x="32" y="135" width="656" height="90" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="171" font-size="30" font-weight="600" fill="#222" text-anchor="start">原始版</text>
+<text x="54" y="206" font-size="26" font-weight="400" fill="#555" text-anchor="start">保留事件身份、数量与业务时间</text>
+<path d="M360 225V251m-7-8 7 8 7-8" fill="none" stroke="#555" stroke-width="2"/>
+<rect x="32" y="260" width="656" height="90" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="296" font-size="30" font-weight="600" fill="#222" text-anchor="start">异常副本</text>
+<text x="54" y="331" font-size="26" font-weight="400" fill="#555" text-anchor="start">注入问题，不覆盖原始事实</text>
+<path d="M360 350V376m-7-8 7 8 7-8" fill="none" stroke="#555" stroke-width="2"/>
+<rect x="32" y="385" width="656" height="90" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="421" font-size="30" font-weight="600" fill="#222" text-anchor="start">规则命中清单</text>
+<text x="54" y="456" font-size="26" font-weight="400" fill="#555" text-anchor="start">记录命中数、来源行与受影响范围</text>
+<path d="M360 475V501m-7-8 7 8 7-8" fill="none" stroke="#555" stroke-width="2"/>
+<rect x="32" y="525" width="656" height="100" rx="12" fill="#ededed" stroke="#888" stroke-width="1.5"/>
+<text x="54" y="565" font-size="30" font-weight="700" fill="#222" text-anchor="start">按影响范围处置</text>
+<text x="54" y="607" font-size="26" font-weight="500" fill="#444" text-anchor="start">以下动作可同时发生，并非互斥三选一</text>
+<path d="M360 625V652H48V1030" fill="none" stroke="#777" stroke-width="2"/>
+<path d="M48 740H78m-8-6 8 6-8 6" fill="none" stroke="#555" stroke-width="2"/>
+<rect x="80" y="690" width="608" height="100" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="102" y="728" font-size="30" font-weight="600" fill="#222" text-anchor="start">阻断正式评价</text>
+<text x="102" y="768" font-size="26" font-weight="400" fill="#444" text-anchor="start">身份或关键口径不明，先修复再发布</text>
+<path d="M48 885H78m-8-6 8 6-8 6" fill="none" stroke="#555" stroke-width="2"/>
+<rect x="80" y="835" width="608" height="100" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="102" y="873" font-size="30" font-weight="600" fill="#222" text-anchor="start">披露诊断子集</text>
+<text x="102" y="913" font-size="26" font-weight="400" fill="#444" text-anchor="start">说明排除范围，不能当作全量表现</text>
+<path d="M48 1030H78m-8-6 8 6-8 6" fill="none" stroke="#555" stroke-width="2"/>
+<rect x="80" y="980" width="608" height="100" rx="12" fill="#f7f7f7" stroke="#888" stroke-width="1.5"/>
+<text x="102" y="1018" font-size="30" font-weight="600" fill="#222" text-anchor="start">待确认</text>
+<text x="102" y="1058" font-size="26" font-weight="400" fill="#444" text-anchor="start">有行未知或缺行，不擅自补成零</text>
+<text x="32" y="1142" font-size="29" font-weight="700" fill="#222" text-anchor="start">阻断与待确认，可以同时发生。</text>
+<text x="32" y="1190" font-size="26" font-weight="600" fill="#222" text-anchor="start">正式指标旁，同时披露质量覆盖与规则影响。</text>
+<text x="32" y="1237" font-size="25" font-weight="400" fill="#555" text-anchor="start">分子、分母、来源行和规则版本要可追溯。</text>
+<text x="32" y="1284" font-size="25" font-weight="400" fill="#555" text-anchor="start">保留原始记录，不把“坏数据”一律删除。</text>
+</g></svg>
