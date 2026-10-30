@@ -1,0 +1,8 @@
+scenario,site_id,order_id,passed
+匿名服装企业,A01,AO1,0
+匿名服装企业,A01,AO2,1
+禾味,H01,HO1,0
+禾味,H01,HO2,1
+禾味,H01,HO3,0
+禾味,H02,HO6,1
+禾味,H02,HO7,0

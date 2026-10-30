@@ -1,0 +1,3 @@
+scenario,order_id,site_id,due_at,status,reason
+禾味,HO4,H01,2026-10-23 12:00:00,cancelled,cancelled
+禾味,HO5,H02,2026-10-31 12:00:00,valid,not_due

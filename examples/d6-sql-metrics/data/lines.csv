@@ -1,0 +1,12 @@
+scenario,line_id,order_id,sku_id,ordered_qty
+禾味,HL1,HO1,HS01,10
+禾味,HL2,HO1,HS02,5
+禾味,HL3,HO2,HS01,10
+禾味,HL4,HO3,HS01,10
+禾味,HL5,HO4,HS03,5
+禾味,HL6,HO5,HS04,5
+禾味,HL7,HO6,HS05,8
+禾味,HL8,HO7,HS06,4
+匿名服装企业,AL1,AO1,AS01,100
+匿名服装企业,AL2,AO1,AS02,50
+匿名服装企业,AL3,AO2,AS01,100

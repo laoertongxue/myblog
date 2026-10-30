@@ -1,0 +1,7 @@
+scenario,site_id,sku_id,snapshot_at,on_hand,quality
+匿名服装企业,A01,AS01,2026-10-18 18:00:00,,missing
+匿名服装企业,A01,AS01,2026-10-19 18:00:00,-1,negative
+匿名服装企业,A01,AS01,2026-10-20 18:00:00,,unknown
+禾味,H01,HS01,2026-10-18 18:00:00,,missing
+禾味,H01,HS01,2026-10-19 18:00:00,-1,negative
+禾味,H01,HS01,2026-10-20 18:00:00,,unknown

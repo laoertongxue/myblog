@@ -1,0 +1,29 @@
+{
+  "python_version": "3.12.14",
+  "sqlite_version": "3.53.1",
+  "timezone": "Asia/Shanghai",
+  "window_start_inclusive": "2026-10-16 00:00:00",
+  "window_end_exclusive": "2026-10-30 00:00:00",
+  "as_of": "2026-10-30 00:00:00",
+  "snapshot_daily_time": "18:00:00",
+  "simulated": true,
+  "duplicate_receipt_rows_removed": 2,
+  "expected_snapshots": 448,
+  "input_rows": {
+    "sites": 4,
+    "skus": 16,
+    "orders": 9,
+    "lines": 11,
+    "receipts": 15,
+    "snapshots": 446
+  },
+  "input_sha256": {
+    "lines.csv": "18037706c1ef88f5154f315379906c5be858fb104b1ce166107c24a8d2a4e603",
+    "orders.csv": "5c85679c39f7e9f141acc00dcf45fecf686725124def28ad542afcf748b5ee3a",
+    "receipts.csv": "3304ce824b8dd6c42b5f9dbf77f93d94cad6f632863d3e50729c6cf86a7a2052",
+    "sites.csv": "f8201c93e948e515dea48e923980b07c0fb6bc118ed7d8bd5328f4586fc235b0",
+    "skus.csv": "50895a46c8aae70dd8c72889e2348cf24cb95263d9cf01b2fa830df528a3cac5",
+    "snapshots.csv": "db103fcd59dc6106337b7459e0f1c8708bd67858375707b6ae0cc23597768513"
+  },
+  "sql_sha256": "2eebc8f33135b33df0e3518d56f637b7d364fbaccabe5080871fb2ecf774b65c"
+}
