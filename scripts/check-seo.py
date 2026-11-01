@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Validate generated pages, including pagination and discovery outputs, not template text."""
 import json
+import re
 import sys
 from datetime import datetime
 from html.parser import HTMLParser
@@ -129,7 +130,7 @@ for url in locations:
 # Sitemap is a discovery aid, not an index count. This site's contract includes
 # each indexable primary page; paginated pages remain discoverable via links.
 expected_locations = {head.links['canonical'][0] for path, head in pages.items()
-                      if 'noindex' not in head.meta['robots'][0] and '/page/' not in head.links['canonical'][0]}
+                      if 'noindex' not in head.meta['robots'][0] and not re.search(r'/page/\d+/$', head.links['canonical'][0])}
 assert set(locations) == expected_locations, ('sitemap coverage', expected_locations - set(locations))
 
 home = pages[(root / 'index.html').resolve()]

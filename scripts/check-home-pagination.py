@@ -139,7 +139,7 @@ def check(destination=None):
                 with (directory / '_index.md').open('a') as overview:
                     overview.write('这是已完成的栏目介绍，尚无子文章也可以阅读。\n')
         for flag in ('noindex', 'testContent'):
-            directory = content / 'excluded' / flag
+            directory = content / 'excluded' / flag.lower()
             directory.mkdir(parents=True)
             (directory / 'index.md').write_text(f'---\ntitle: "排除索引的页面"\n{flag}: true\ntags: ["excluded-{flag}"]\n---\n临时内容。\n')
         for i in range(1, 44):
@@ -176,7 +176,7 @@ def check(destination=None):
             article.write_text(f'---\ntitle: "不应发布"\nslug: {name}\n{metadata}\n---\n')
         subprocess.run(['hugo', '--gc', '--minify', '--contentDir', str(content), '--destination', str(output)], cwd=root, check=True, capture_output=True)
         first_page = (output / 'index.html').read_text()
-        for route in ['empty', 'excluded/noindex', 'excluded/testContent', 'tags/excluded-noindex', 'tags/excluded-testcontent']:
+        for route in ['empty', 'excluded/noindex', 'excluded/testcontent', 'tags/excluded-noindex', 'tags/excluded-testcontent']:
             head = SummaryParser((output / route / 'index.html').read_text())
             assert head.meta['robots'] == 'noindex, follow', f'{route}: empty/excluded content must stay out of the index'
             assert f'https://12lab.cn/{route}/' not in (output / 'sitemap.xml').read_text()
