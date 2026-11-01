@@ -209,9 +209,11 @@ async (page, ctx) => {
     report.push(`${width}px: ${routes.length} routes, no overflow, every picture decoded, single column, design tokens applied`);
   }
 
+  let homeLinks = [];
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 960 });
     const home = await walkPagination(page, { path: '/', rowSelector: '.home-feed .post-row' });
+    homeLinks = home.links;
     if (home.pages > 1) {
       assert(await page.locator('.feed-pagination [rel=prev]').count() > 0, 'last home page has no previous arrow');
       await page.locator('.feed-pagination [rel=prev]').click();
@@ -331,10 +333,13 @@ async (page, ctx) => {
   const noJsContext = await page.context().browser().newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const fallback = await noJsContext.newPage();
   await fallback.goto(base);
-  if (await fallback.locator('.feed-pagination [rel=next]').count()) {
+  const hasNextWithoutJs = await fallback.locator('.feed-pagination [rel=next]').count() > 0;
+  assert(hasNextWithoutJs === (homeLinks.length > pagerSize), 'without JavaScript the next-page link does not match the article count');
+  if (hasNextWithoutJs) {
     await fallback.locator('.feed-pagination [rel=next]').click();
-    const rows = await fallback.locator('.post-row').count();
-    assert(rows === pagerSize, `without JavaScript the next page shows ${rows} of ${pagerSize} articles`);
+    const links = await fallback.locator('.home-feed .post-row h2 a').evaluateAll(nodes => nodes.map(node => node.getAttribute('href')));
+    const expected = homeLinks.slice(pagerSize, pagerSize * 2);
+    assert(JSON.stringify(links) === JSON.stringify(expected), `without JavaScript the next page shows unexpected articles: ${JSON.stringify(links)}, expected ${JSON.stringify(expected)}`);
   }
   await noJsContext.close();
   report.push('Numbered pagination works without JavaScript');

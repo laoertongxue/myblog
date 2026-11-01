@@ -19,9 +19,17 @@ async (page, ctx) => {
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 960 });
     for (const listing of ['/', topic]) {
-      await page.goto(base + listing);
       for (const route of chapters) {
+        await page.goto(base + listing);
         const row = page.locator(`.post-row:has(h2 a[href="${route}"])`);
+        const visited = new Set();
+        while (await row.count() === 0 && await page.locator('.feed-pagination [rel=next]').count()) {
+          assert(!visited.has(page.url()), `${listing}: pagination loop while finding ${route}`);
+          visited.add(page.url());
+          const next = await page.locator('.feed-pagination [rel=next]').getAttribute('href');
+          await page.goto(new URL(next, page.url()).href);
+        }
+        assert(await row.count() === 1, `${listing} ${route}: expected one series row across pagination`);
         const group = row.locator('.list-thumbnails');
         assert(await group.count() === 1, `${listing} ${route}: no thumbnail group`);
         assert(await group.getAttribute('data-fit') === 'contain', `${listing} ${route}: the series must keep complete previews`);
