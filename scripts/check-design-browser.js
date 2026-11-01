@@ -14,6 +14,7 @@ async (page, ctx) => {
   const { readFile, readdir } = await import('node:fs/promises');
   const checkedSources = new Map();
   const checkedCandidates = new Map();
+  const checkedMonochrome = new Set();
   const checkOriginal = async (image, label) => {
     assert(image.originalSrc, `${label}: image is missing its original source: ${image.src}`);
     const url = new URL(image.originalSrc, base);
@@ -53,6 +54,31 @@ async (page, ctx) => {
       checkedCandidates.set(candidateUrl, candidate);
     }
     assert(Math.abs(candidate[1] - candidate[0] * source.height / source.width) <= 1, `${label}: selected candidate changed the source proportions: ${candidateUrl}`);
+    // Lossy WebP can tint neutral edges; check every opt-in source and srcset file.
+    if (image.monochrome) {
+      const urls = new Set([url.href, new URL(image.src, base).href,
+        ...(image.srcset || '').split(',').map(value => value.trim().split(/\s+/)[0]).filter(Boolean).map(value => new URL(value, base).href)]);
+      for (const value of urls) {
+        if (checkedMonochrome.has(value)) continue;
+        const nonNeutral = await page.evaluate(async src => {
+          const picture = new Image();
+          picture.src = src;
+          await picture.decode();
+          const canvas = document.createElement('canvas');
+          canvas.width = picture.naturalWidth;
+          canvas.height = picture.naturalHeight;
+          const context = canvas.getContext('2d', { willReadFrequently: true });
+          context.drawImage(picture, 0, 0);
+          const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+          let count = 0;
+          for (let i = 0; i < pixels.length; i += 4) if (pixels[i] !== pixels[i + 1] || pixels[i + 1] !== pixels[i + 2]) count++;
+          return count;
+        }, value);
+        assert(nonNeutral === 0, `${label}: ${nonNeutral} non-neutral pixels in monochrome image: ${value}`);
+        checkedMonochrome.add(value);
+      }
+    }
+
 
   };
   // Check covers on every built page; other body pictures keep their own
@@ -68,6 +94,8 @@ async (page, ctx) => {
           const doc = new DOMParser().parseFromString(html, 'text/html');
           return [...doc.querySelectorAll('img[data-original-src]')].map(image => ({
             src: image.getAttribute('src'),
+            srcset: image.getAttribute('srcset') || '',
+            monochrome: image.dataset.monochrome === 'true',
             listing: !!image.closest('.list-thumbnails'),
             cover: image.matches('.article-cover') || (!doc.querySelector('.article-cover') && image === doc.querySelector('.reading-page .prose img')),
             originalSrc: image.dataset.originalSrc,
@@ -324,6 +352,7 @@ async (page, ctx) => {
   assert(await avatar.evaluate(node => node.complete && node.naturalWidth > 0), `the avatar did not load: ${avatarSrc}`);
   assert(await avatar.getAttribute('width') === '120' && await avatar.getAttribute('height') === '120', 'the avatar must reserve its rendered square');
   report.push('About intro renders the pipelined avatar through aboutIntro');
+  report.push(`${checkedMonochrome.size} opt-in source and generated image candidates preserve exact neutral RGB`);
   report.push(`${blogImageReports.join('; ')}; ${checkedSources.size} distinct original source(s) decoded with preserved proportions; every cover is 900x383`);
   return report;
 }

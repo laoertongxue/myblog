@@ -1,4 +1,7 @@
 {{- $source := .Destination -}}
+{{- $monochrome := .Page.Params.monochromeimages | default false -}}
+{{- $encoding := "webp q85" -}}
+{{- if $monochrome }}{{ $encoding = "webp lossless" }}{{ end -}}
 {{- $image := partial "lab/image-resource.html" (dict "page" .Page "src" $source) -}}
 {{- $srcset := slice -}}
 {{- $originalSource := $source -}}
@@ -8,10 +11,12 @@
   {{- $originalSource = .RelPermalink -}}
   {{- if and (eq .ResourceType "image") (ne .MediaType.SubType "svg") -}}
     {{- $originalWidth = .Width -}}{{- $originalHeight = .Height -}}
-    {{- if gt .Width 1440 }}{{ $image = .Resize "1440x webp q85" }}{{ else }}{{ $image = .Process "webp q85" }}{{ end -}}
+    {{- /* Normalize grayscale PNGs to RGB before Hugo's WebP codec. */ -}}
+    {{- if $monochrome }}{{ $image = .Process "bmp" }}{{ end -}}
+    {{- if gt .Width 1440 }}{{ $image = $image.Resize (printf "1440x %s" $encoding) }}{{ else }}{{ $image = $image.Process $encoding }}{{ end -}}
     {{- range slice 480 960 -}}
       {{- if lt . $image.Width -}}
-        {{- $variant := $image.Resize (printf "%dx webp q85" .) -}}
+        {{- $variant := $image.Resize (printf "%dx %s" . $encoding) -}}
         {{- $srcset = $srcset | append (printf "%s %dw" $variant.RelPermalink $variant.Width) -}}
       {{- end -}}
     {{- end -}}
@@ -25,4 +30,4 @@
   {{- end -}}
   {{- $source = $image.RelPermalink -}}
 {{- end -}}
-<img src="{{ $source | safeURL }}" data-original-src="{{ $originalSource | safeURL }}"{{ if $originalWidth }} data-original-width="{{ $originalWidth }}" data-original-height="{{ $originalHeight }}"{{ end }} alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $width }} width="{{ $width }}" height="{{ $height }}"{{ end }} {{ with $srcset }}srcset="{{ delimit . ", " }}" sizes="(max-width:760px) calc(100vw - 40px), (max-width:1800px) 80vw, 1440px"{{ end }} {{ if eq .Ordinal 0 }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async">
+<img src="{{ $source | safeURL }}" data-original-src="{{ $originalSource | safeURL }}"{{ if $monochrome }} data-monochrome="true"{{ end }}{{ if $originalWidth }} data-original-width="{{ $originalWidth }}" data-original-height="{{ $originalHeight }}"{{ end }} alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $width }} width="{{ $width }}" height="{{ $height }}"{{ end }} {{ with $srcset }}srcset="{{ delimit . ", " }}" sizes="(max-width:760px) calc(100vw - 40px), (max-width:1800px) 80vw, 1440px"{{ end }} {{ if eq .Ordinal 0 }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async">

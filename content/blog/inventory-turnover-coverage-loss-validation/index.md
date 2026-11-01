@@ -9,6 +9,7 @@ categories: ["供应链"]
 tags: ["供应链", "指标验收", "库存周转", "库存覆盖", "损耗"]
 images:
   - images/d7-00_cover.png
+monochromeImages: true
 ---
 
 ![履约验收通过以后，分清库存的三个问题](images/d7-00_cover.png)

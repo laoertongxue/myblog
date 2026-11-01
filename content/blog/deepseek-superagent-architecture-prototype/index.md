@@ -8,6 +8,7 @@ categories: ["AI"]
 images: ["images/cover-superagent.png"]
 draft: false
 tags: ["AI", "Agent", "DeepSeek", "Python"]
+monochromeImages: true
 ---
 
 ![DeepSeek Super-agent 分层协作架构解读](images/cover-superagent.png)
@@ -79,6 +80,10 @@ tags: ["AI", "Agent", "DeepSeek", "Python"]
 * **主动执行不是默认无条件监听后行动**：推断候选默认处于 `observe` 模式，只记录判断；切换到 `auto` 后仍需评估并匹配启用的规则。
 * **Thread 订阅绑定**：相关后续消息可进入已有任务。订阅提供上下文，不自动增加权限；超出范围的请求要交回路由处理。[授权文档](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/002-authorization.md)
 
+[![新任务候选的授权路径](images/authorization_modes.png)](images/authorization_modes.png)
+
+简化的新任务授权路径：显式请求经来源策略与身份检查后交由 Router 路由，在三种模式下均可处理；推断候选只有在 `auto` 下评估通过且匹配启用规则才可接单。已有任务的后续消息另循订阅规则。[官方授权文档](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/002-authorization.md)
+
 #### 模块三：面向人类的交互与异步 ReAct 循环
 在一个工作会话中，思考与调用工具仍需要有序衔接，但耗时工具不必锁住全部交互。公开原型的 Router 和 Worker preset 会将超过 5 秒的前台 shell 命令转为后台任务，使会话能在后续步骤接收消息。
 
@@ -91,6 +96,10 @@ tags: ["AI", "Agent", "DeepSeek", "Python"]
 原型以 DeepSeek Harness (`dsh`) bundle 形式运行，并通过插件组织能力。工程上，插件生命周期与持久状态需要分别设计：组件可替换，不代表业务副作用可以任意撤销，也不意味着零停机。
 
 官方文档描述了 session、目录、订阅、待处理消息及已存储工作的恢复。宿主重启会结束正在运行的后台工作，中断的 Assignment 会带恢复说明重新开始；执行体需核对目录、Git 历史和远端状态，避免重复外部操作。**这不是运行中进程的快照迁移，也没有数秒无损恢复的保证。**
+
+[![宿主重启时的状态恢复边界](images/recovery_boundary.png)](images/recovery_boundary.png)
+
+恢复保留的会话、目录和任务记录，不等于恢复运行中进程。中断任务带恢复说明重新开始，并检查已有副作用；独立工作目录也不等于安全沙盒。[官方执行与恢复文档](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/003-execution.md)
 
 #### 模块五：看门狗与异常恢复的设计边界
 独立监控有助于发现挂起命令、反复失败和异常资源消耗，这是长程 Agent 值得考虑的工程手段。外部指标只能提供线索：没有日志可能只是正常等待，重复调用也不一定是失控；目标漂移尤其不能靠 CPU 或日志间隔可靠判断。
@@ -135,6 +144,10 @@ tags: ["AI", "Agent", "DeepSeek", "Python"]
 通过 **Router-Worker** 架构：
 * **Router** 承担了“贴身技术主管（Tech Lead）”的角色：过滤噪音、控制汇报颗粒度、保护人类专注力；
 * **Worker** 则是“机房里的自动化工蜂”：在各自的执行会话和目录中工作，只把最终的排查结果以最小必要形式呈递上来。
+
+[![从会话切换到分层协作](images/session_comparison.png)](images/session_comparison.png)
+
+分层协作将任务执行与结果沟通分开，让工程师集中处理关键决策。这是交互组织方式的对比，不表示所有现有工具都缺少后台能力。
 
 ---
 
@@ -275,6 +288,10 @@ async def test_concurrent_transfer_deadlock():
 ### 3.5 锁排序修复与可复现回归测试
 
 对于这个单事件循环示例，**全局锁排序（Lock Ordering）**可避免两个不同账户交叉获取锁造成循环等待。还需拒绝同账户请求，以免重复获取同一把非重入锁，并校验金额与账户。这里没有使用 CAS。
+
+[![交叉死锁与固定锁序对比](images/lock_order.png)](images/lock_order.png)
+
+相反锁序可能形成循环等待；固定锁序让任务先竞争同一把锁。示例还拒绝同账户、未知账户及非正整数金额，适用边界仍是单进程、单事件循环的内存模型。
 
 ```python
 """Teaching example only: one process, one event loop, in-memory balances."""
