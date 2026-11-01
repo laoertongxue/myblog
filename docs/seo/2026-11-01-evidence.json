@@ -1,0 +1,276 @@
+{
+  "baseline_sha": "2ebbe986af7aba89765e31f7afa1ebd25d162b73",
+  "before_live_at": "2026-11-01T02:47:22.046187+00:00",
+  "after_local_at": "2026-11-01T02:57:21.726407+00:00",
+  "html_urls": 75,
+  "primary_pages": 48,
+  "aliases": 27,
+  "article_schemas": 11,
+  "broken_links": [],
+  "broken_fragments": [],
+  "incoming_link_orphans": [],
+  "before_duplicates": {
+    "title_duplicates": {
+      "AI – 拾贰画生 · 有那么点儿追求的中年男人": [
+        "https://12lab.cn/categories/ai/",
+        "https://12lab.cn/tags/ai/"
+      ],
+      "供应链 – 拾贰画生 · 有那么点儿追求的中年男人": [
+        "https://12lab.cn/categories/供应链/",
+        "https://12lab.cn/tags/供应链/"
+      ]
+    },
+    "description_duplicates": {
+      "有那么点儿追求的中年男人": [
+        "https://12lab.cn/404.html",
+        "https://12lab.cn/categories/ai/",
+        "https://12lab.cn/categories/",
+        "https://12lab.cn/categories/供应链/",
+        "https://12lab.cn/",
+        "https://12lab.cn/page/2/",
+        "https://12lab.cn/search/",
+        "https://12lab.cn/tags/agent/",
+        "https://12lab.cn/tags/ai/",
+        "https://12lab.cn/tags/deepseek/",
+        "https://12lab.cn/tags/",
+        "https://12lab.cn/tags/otif/",
+        "https://12lab.cn/tags/python/",
+        "https://12lab.cn/tags/sql/",
+        "https://12lab.cn/tags/供应链/",
+        "https://12lab.cn/tags/库存周转/",
+        "https://12lab.cn/tags/库存覆盖/",
+        "https://12lab.cn/tags/指标口径/",
+        "https://12lab.cn/tags/指标字典/",
+        "https://12lab.cn/tags/指标验收/",
+        "https://12lab.cn/tags/损耗/",
+        "https://12lab.cn/tags/数据分析/",
+        "https://12lab.cn/tags/数据建模/",
+        "https://12lab.cn/tags/数据粒度/",
+        "https://12lab.cn/tags/数据质量/",
+        "https://12lab.cn/tags/数量满足率/",
+        "https://12lab.cn/tags/算法实践/",
+        "https://12lab.cn/tags/连接扇出/"
+      ]
+    }
+  },
+  "after_duplicates": {
+    "title_duplicates": {},
+    "description_duplicates": {
+      "拾贰画生的个人博客，记录供应链与产品实践、SQL 数据分析和 AI Agent 学习，整理可复核的案例、方法与专题文章。": [
+        "https://12lab.cn/",
+        "https://12lab.cn/page/2/"
+      ]
+    }
+  },
+  "http_probes": [
+    {
+      "url": "https://12lab.cn/robots.txt",
+      "status": 200,
+      "final_url": "https://12lab.cn/robots.txt",
+      "bytes": 61,
+      "seconds": 0.159,
+      "body": "User-agent: *\nAllow: /\nSitemap: https://12lab.cn/sitemap.xml\n"
+    },
+    {
+      "url": "https://12lab.cn/sitemap.xml",
+      "status": 200,
+      "final_url": "https://12lab.cn/sitemap.xml",
+      "bytes": 4831,
+      "seconds": 0.149,
+      "body": "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><url><loc>https://12lab.cn/topics/agent-engineering/</loc><lastmod>2026-10-12T14:26:33+08:00</lastmod></url><url><loc>https://12lab.cn/topics/agent-engineering/01-agent-framework/</loc><lastmod>2026-10-12T14:26:33+08:00</lastmod></url><url><loc>https://12lab.cn/topics/agent-engineering/02-harness/</loc><lastmod>2026-10-12T14:26:33+08:00</lastmod></url><url><loc>https://12lab.cn/blog/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/categories/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/otif/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/supply-chain-metrics-evidence-package/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/categories/%E4%BE%9B%E5%BA%94%E9%93%BE/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E4%BE%9B%E5%BA%94%E9%93%BE/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E7%AE%97%E6%B3%95%E5%AE%9E%E8%B7%B5/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%8C%87%E6%A0%87%E5%AD%97%E5%85%B8/</loc><lastmod>2026-11-01T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/agent/</loc><lastmod>2026-11-01T07:45:00+08:00</lastmod></url><url><loc>https://12lab.cn/categories/ai/</loc><lastmod>2026-11-01T07:45:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/ai/</loc><lastmod>2026-11-01T07:45:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/deepseek/</loc><lastmod>2026-11-01T07:45:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/python/</loc><lastmod>2026-11-01T07:45:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/deepseek-superagent-architecture-prototype/</loc><lastmod>2026-11-01T07:45:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E5%BA%93%E5%AD%98%E8%A6%86%E7%9B%96/</loc><lastmod>2026-10-31T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E5%BA%93%E5%AD%98%E5%91%A8%E8%BD%AC/</loc><lastmod>2026-10-31T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/inventory-turnover-coverage-loss-validation/</loc><lastmod>2026-10-31T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%8D%9F%E8%80%97/</loc><lastmod>2026-10-31T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%8C%87%E6%A0%87%E9%AA%8C%E6%94%B6/</loc><lastmod>2026-10-31T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/sql/</loc><lastmod>2026-10-30T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/sql-supply-chain-metrics-boundary-tests/</loc><lastmod>2026-10-30T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc><lastmod>2026-10-30T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/supply-chain-data-quality-vs-performance/</loc><lastmod>2026-10-29T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%8C%87%E6%A0%87%E5%8F%A3%E5%BE%84/</loc><lastmod>2026-10-29T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E8%BF%9E%E6%8E%A5%E6%89%87%E5%87%BA/</loc><lastmod>2026-10-28T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/sql-join-fanout-preaggregation/</loc><lastmod>2026-10-28T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%95%B0%E9%87%8F%E6%BB%A1%E8%B6%B3%E7%8E%87/</loc><lastmod>2026-10-27T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/supply-chain-fulfillment-otif-stockout/</loc><lastmod>2026-10-27T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/sql-filter-group-supply-chain/</loc><lastmod>2026-10-26T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/blog/supply-chain-data-grain/</loc><lastmod>2026-10-25T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/</loc><lastmod>2026-10-25T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/tags/%E6%95%B0%E6%8D%AE%E7%B2%92%E5%BA%A6/</loc><lastmod>2026-10-25T09:00:00+08:00</lastmod></url><url><loc>https://12lab.cn/topics/</loc><lastmod>2026-10-12T14:26:33+08:00</lastmod></url><url><loc>https://12lab.cn/now/</loc></url><url><loc>https://12lab.cn/weekly/</loc></url><url><loc>https://12lab.cn/copyright/</loc></url><url><loc>https://12lab.cn/about/</loc></url><url><loc>https://12lab.cn/archive/</loc></url><url><loc>https://12lab.cn/links/</loc></url></urlset>"
+    },
+    {
+      "url": "https://12lab.cn/this-page-does-not-exist-seo-audit/",
+      "status": 404,
+      "final_url": "https://12lab.cn/this-page-does-not-exist-seo-audit/",
+      "canonical": "https://12lab.cn/404.html"
+    },
+    {
+      "url": "https://12lab.cn/blog",
+      "status": 200,
+      "final_url": "https://12lab.cn/blog/",
+      "bytes": 21103,
+      "seconds": 0.643,
+      "canonical": "https://12lab.cn/blog/"
+    },
+    {
+      "url": "https://12lab.cn/index.html",
+      "status": 200,
+      "final_url": "https://12lab.cn/index.html",
+      "bytes": 23349,
+      "seconds": 0.444,
+      "canonical": "https://12lab.cn/"
+    },
+    {
+      "url": "https://12lab.cn/?q=seo",
+      "status": 200,
+      "final_url": "https://12lab.cn/?q=seo",
+      "bytes": 23349,
+      "seconds": 0.493,
+      "canonical": "https://12lab.cn/"
+    },
+    {
+      "url": "http://12lab.cn/",
+      "status": 200,
+      "final_url": "https://12lab.cn/",
+      "bytes": 23349,
+      "seconds": 0.527,
+      "canonical": "https://12lab.cn/"
+    },
+    {
+      "url": "https://www.12lab.cn/",
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1077)>"
+    }
+  ],
+  "external_links": [
+    {
+      "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1077)>"
+    },
+    {
+      "url": "https://developers.google.com/optimization/routing/cvrp",
+      "status": 200,
+      "final_url": "https://developers.google.com/optimization/routing/cvrp",
+      "bytes": 452764,
+      "seconds": 1.372
+    },
+    {
+      "url": "https://docs.infor.com/lncs/latest/en-us/lncslib/ln_industry_content_user_guide/njd1742535354522.html",
+      "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1077)>"
+    },
+    {
+      "url": "https://docs.oracle.com/en/cloud/saas/supply-chain-and-manufacturing/26b/faurp/how-average-daily-demand-is-calculated-in-oracle-replenishment-planning.html",
+      "status": 200,
+      "final_url": "https://docs.oracle.com/en/cloud/saas/supply-chain-and-manufacturing/26b/faurp/how-average-daily-demand-is-calculated-in-oracle-replenishment-planning.html",
+      "bytes": 14105,
+      "seconds": 1.334
+    },
+    {
+      "url": "https://docs.python.org/3/library/asyncio-sync.html",
+      "status": 200,
+      "final_url": "https://docs.python.org/3/library/asyncio-sync.html",
+      "bytes": 61935,
+      "seconds": 1.141
+    },
+    {
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype",
+      "status": 200,
+      "final_url": "https://github.com/deepseek-ai/dsh-superagent-prototype",
+      "bytes": 249293,
+      "seconds": 0.872
+    },
+    {
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/002-authorization.md",
+      "status": 200,
+      "final_url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/002-authorization.md",
+      "bytes": 259611,
+      "seconds": 0.782
+    },
+    {
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/003-execution.md",
+      "status": 200,
+      "final_url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/003-execution.md",
+      "bytes": 287077,
+      "seconds": 0.851
+    },
+    {
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/007-architecture.md",
+      "status": 200,
+      "final_url": "https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/007-architecture.md",
+      "bytes": 621470,
+      "seconds": 0.973
+    },
+    {
+      "url": "https://github.com/laoertongxue",
+      "status": 200,
+      "final_url": "https://github.com/laoertongxue",
+      "bytes": 163107,
+      "seconds": 0.699
+    },
+    {
+      "url": "https://gohugo.io/",
+      "status": 200,
+      "final_url": "https://gohugo.io/",
+      "bytes": 91328,
+      "seconds": 0.452
+    },
+    {
+      "url": "https://help.sap.com/saphelp_scm700_ehp02/helpdata/en/86/4a7053bbe77c1ee10000000a174cb4/content.htm?no_cache=true",
+      "status": 200,
+      "final_url": "https://help.sap.com/saphelp_scm700_ehp02/helpdata/en/86/4a7053bbe77c1ee10000000a174cb4/content.htm?no_cache=true",
+      "bytes": 17028,
+      "seconds": 1.276
+    },
+    {
+      "url": "https://nownownow.com",
+      "status": 200,
+      "final_url": "https://nownownow.com",
+      "bytes": 10344,
+      "seconds": 0.916
+    },
+    {
+      "url": "https://otexts.com/fpp3/toolbox.html",
+      "status": 200,
+      "final_url": "https://otexts.com/fpp3/toolbox.html",
+      "bytes": 270019,
+      "seconds": 1.671
+    },
+    {
+      "url": "https://weekly.tw93.fun/",
+      "status": 200,
+      "final_url": "https://weekly.tw93.fun/",
+      "bytes": 488618,
+      "seconds": 0.475
+    },
+    {
+      "url": "https://www.deepseek.com/en/harness/",
+      "status": 200,
+      "final_url": "https://www.deepseek.com/en/harness/",
+      "bytes": 204266,
+      "seconds": 0.345
+    },
+    {
+      "url": "https://www.kimballgroup.com/2003/03/declaring-the-grain/",
+      "status": 200,
+      "final_url": "https://www.kimballgroup.com/2003/03/declaring-the-grain/",
+      "bytes": 181676,
+      "seconds": 1.487
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+      "bytes": 46639,
+      "seconds": 2.113
+    },
+    {
+      "url": "https://www.sqlite.org/datatype3.html",
+      "status": 200,
+      "final_url": "https://www.sqlite.org/datatype3.html",
+      "bytes": 38701,
+      "seconds": 1.61
+    },
+    {
+      "url": "https://www.sqlite.org/lang_aggfunc.html",
+      "status": 200,
+      "final_url": "https://www.sqlite.org/lang_aggfunc.html",
+      "bytes": 307827,
+      "seconds": 1.679
+    },
+    {
+      "url": "https://www.sqlite.org/lang_expr.html",
+      "status": 200,
+      "final_url": "https://www.sqlite.org/lang_expr.html",
+      "bytes": 379232,
+      "seconds": 2.027
+    },
+    {
+      "url": "https://www.sqlite.org/lang_select.html",
+      "status": 200,
+      "final_url": "https://www.sqlite.org/lang_select.html",
+      "bytes": 2033807,
+      "seconds": 2.467
+    }
+  ],
+  "note": "After values are the verified local release candidate. Live release evidence is saved separately after the exact-SHA CI deployment."
+}

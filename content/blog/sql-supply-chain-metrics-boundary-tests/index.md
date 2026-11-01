@@ -1,6 +1,7 @@
 ---
 title: "三条SQL跑通以后 怎样证明供应链指标算对了"
 date: 2026-10-30T09:00:00+08:00
+lastmod: 2026-10-30T17:22:56+08:00
 draft: false
 slug: "sql-supply-chain-metrics-boundary-tests"
 description: "用匿名服装与禾味模拟案例，将数量满足率、整单OTIF和快照缺货率写成SQL，并用手算、边界测试和中间结果验证。"

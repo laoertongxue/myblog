@@ -2,4 +2,9 @@
 {{- if eq .Kind "term" -}}
   {{- $allowed = and $allowed (gt (len (where (where .RegularPages "Params.testContent" "ne" true) "Params.noindex" "ne" true)) 0) -}}
 {{- end -}}
+{{- /* Empty listings have no search landing-page content yet. An authored
+     section overview remains eligible even before its first child is published. */ -}}
+{{- if and .IsSection (not (.Plain | strings.TrimSpace)) -}}
+  {{- $allowed = and $allowed (gt (len (where (where .RegularPagesRecursive "Params.testContent" "ne" true) "Params.noindex" "ne" true)) 0) -}}
+{{- end -}}
 {{- return $allowed -}}

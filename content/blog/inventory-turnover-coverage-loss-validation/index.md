@@ -1,6 +1,7 @@
 ---
 title: "履约验收通过以后 库存周转、覆盖和损耗该怎样分开算"
 date: 2026-10-31T09:00:00+08:00
+lastmod: 2026-11-01T09:14:36+08:00
 draft: false
 slug: "inventory-turnover-coverage-loss-validation"
 description: "用六类履约边界测试、匿名服装生产协同案例和禾味模拟台账，分清历史周转、未来覆盖与损耗的计算边界。"

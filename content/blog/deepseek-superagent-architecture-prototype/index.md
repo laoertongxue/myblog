@@ -1,6 +1,7 @@
 ---
 title: "迈向更自主的 Agent 系统：DeepSeek Super-agent 架构与开源原型深度解读"
 date: 2026-11-01T07:45:00+08:00
+lastmod: 2026-11-01T09:14:36+08:00
 slug: deepseek-superagent-architecture-prototype
 description: "解读 DeepSeek Super-agent 的分层协作、事件授权与任务恢复，区分公开原型与设计愿景，并用可复现 Python 示例说明并发锁排序。"
 summary: "从单会话跟进到持续协作，DeepSeek Super-agent 如何把人的注意力留给关键决策？本文沿着分层路由、事件授权、异步执行与任务恢复梳理公开研究原型，区分已实现行为、设计愿景与教学情境，再用 Python 内存账户示例解释交叉死锁、固定锁序和输入校验，并提供可复现测试，说明隔离、恢复与自动化验证的边界。"

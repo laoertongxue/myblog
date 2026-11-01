@@ -1,6 +1,7 @@
 ---
 title: "理解 Harness：从模型回答到 Agent 执行"
 date: 2026-10-12T14:26:33+08:00
+lastmod: 2026-10-30T17:22:56+08:00
 weight: 20
 draft: false
 thumbnailFit: contain

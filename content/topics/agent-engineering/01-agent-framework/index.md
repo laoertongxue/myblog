@@ -1,6 +1,7 @@
 ---
 title: "理解 Agent：从核心构成到工程全景"
 date: 2026-10-12T14:26:33+08:00
+lastmod: 2026-10-28T12:10:45+08:00
 weight: 10
 draft: false
 thumbnailFit: contain

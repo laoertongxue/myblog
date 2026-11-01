@@ -131,10 +131,17 @@ def check(destination=None):
                         '摘要独立于搜索引擎描述保存，不能因为页面宽度变化而被省略、截断或替换；'
                         '不同栏目共用同一套列表模板，短摘要和没有填写摘要的旧文章也应保持正常展示。')
         short_summary = '短摘要仍应完整显示。'
-        for section, title in [('topics', '测试专题'), ('topics/example', '章节分页测试')]:
+        for section, title in [('topics', '测试专题'), ('topics/example', '章节分页测试'), ('empty', '空栏目'), ('overview', '有独立内容的栏目')]:
             directory = content / section
             directory.mkdir(parents=True, exist_ok=True)
             (directory / '_index.md').write_text(f'---\ntitle: "{title}"\ndescription: "仅用于临时分页验收"\n---\n')
+            if section == 'overview':
+                with (directory / '_index.md').open('a') as overview:
+                    overview.write('这是已完成的栏目介绍，尚无子文章也可以阅读。\n')
+        for flag in ('noindex', 'testContent'):
+            directory = content / 'excluded' / flag
+            directory.mkdir(parents=True)
+            (directory / 'index.md').write_text(f'---\ntitle: "排除索引的页面"\n{flag}: true\ntags: ["excluded-{flag}"]\n---\n临时内容。\n')
         for i in range(1, 44):
             section = ('blog', 'weekly', 'topics/example')[i % 3]
             name = f'{i:03d}'
@@ -169,6 +176,13 @@ def check(destination=None):
             article.write_text(f'---\ntitle: "不应发布"\nslug: {name}\n{metadata}\n---\n')
         subprocess.run(['hugo', '--gc', '--minify', '--contentDir', str(content), '--destination', str(output)], cwd=root, check=True, capture_output=True)
         first_page = (output / 'index.html').read_text()
+        for route in ['empty', 'excluded/noindex', 'excluded/testContent', 'tags/excluded-noindex', 'tags/excluded-testcontent']:
+            head = SummaryParser((output / route / 'index.html').read_text())
+            assert head.meta['robots'] == 'noindex, follow', f'{route}: empty/excluded content must stay out of the index'
+            assert f'https://12lab.cn/{route}/' not in (output / 'sitemap.xml').read_text()
+        assert SummaryParser((output / 'weekly/index.html').read_text()).meta['robots'] == 'index, follow', 'A populated section must become indexable automatically'
+        assert SummaryParser((output / 'overview/index.html').read_text()).meta['robots'] == 'index, follow', 'An authored section overview must remain indexable without children'
+        print('ok    indexing fixtures: empty sections, explicit noindex/testContent and their exclusive tags excluded; populated sections indexable')
         assert first_page.count('class=list-thumbnails') + first_page.count('class="list-thumbnails"') == 3
         assert '--thumbnail-count' not in first_page, 'A single cover must not retain the multi-image layout variable'
         summaries = SummaryParser(first_page)

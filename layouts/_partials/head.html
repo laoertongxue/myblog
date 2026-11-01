@@ -2,12 +2,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{ $url := .Permalink }}{{ $title := .Title }}
-{{ if .IsHome }}{{ $title = .Site.Title }}{{ else }}{{ $title = printf "%s – %s" .Title .Site.Title }}{{ end }}
+{{ if not .IsHome }}
+  {{ if eq .Kind "term" }}{{ $title = printf "%s%s" .Title (cond (eq .Data.Singular "tag") "标签" "分类") }}{{ end }}
+  {{ $title = printf "%s – %s" $title .Site.Params.author.name }}
+{{ end }}
 {{ if and .IsBranch (ne .Kind "404") (ne .Kind "taxonomy") }}
   {{ $pager := partial "lab/pager.html" . }}
   {{ if gt $pager.PageNumber 1 }}{{ $url = $pager.URL | absURL }}{{ $title = printf "%s · 第 %d 页" $title $pager.PageNumber }}{{ end }}
 {{ end }}
-{{ $description := (.Description | default (.Summary | plainify) | default .Site.Params.description) | plainify | strings.TrimSpace | truncate 160 }}
+{{ $description := .Description }}
+{{ if and (not $description) (eq .Kind "term") }}
+  {{ $titles := slice }}{{ range first 2 .RegularPages.ByDate.Reverse }}{{ $titles = $titles | append (printf "《%s》" .Title) }}{{ end }}
+  {{ $description = printf "浏览“%s”%s下的文章，包括%s。" .Title (cond (eq .Data.Singular "tag") "标签" "分类") (delimit $titles "、") }}
+{{ end }}
+{{ $description = ($description | default (.Summary | plainify | truncate 160) | default .Site.Params.description) | plainify | strings.TrimSpace }}
+{{ .Store.Set "seoDescription" $description }}
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $description }}">
 <meta name="robots" content="{{ if and hugo.IsProduction (partial "lab/indexable.html" .) }}index, follow{{ else }}noindex, follow{{ end }}">
@@ -16,13 +25,14 @@
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:url" content="{{ $url }}">
-<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:site_name" content="{{ .Site.Params.author.name }}">
 <meta property="og:locale" content="zh_CN">
 {{ $article := and .IsPage (in (slice "blog" "weekly" "topics") .Section) }}
 <meta property="og:type" content="{{ if $article }}article{{ else }}website{{ end }}">
 {{ $social := resources.Get .Site.Params.avatar }}
+{{ $socialAlt := printf "%s的头像" .Site.Params.author.name }}
 {{ range first 1 (partial "lab/image-sources.html" .) }}
-  {{ with partial "lab/image-resource.html" (dict "page" $ "src" .) }}{{ if ne .MediaType.SubType "svg" }}{{ $social = . }}{{ end }}{{ end }}
+  {{ with partial "lab/image-resource.html" (dict "page" $ "src" .) }}{{ if ne .MediaType.SubType "svg" }}{{ $social = . }}{{ $socialAlt = printf "%s 封面" $.Title }}{{ end }}{{ end }}
 {{ end }}
 {{ with $social }}
   {{ $preview := . }}
@@ -31,7 +41,7 @@
   <meta property="og:image" content="{{ $preview.Permalink }}">
   <meta property="og:image:width" content="{{ $preview.Width }}">
   <meta property="og:image:height" content="{{ $preview.Height }}">
-  <meta property="og:image:alt" content="{{ $.Title }}">
+  <meta property="og:image:alt" content="{{ $socialAlt }}">
   <meta name="twitter:image" content="{{ $preview.Permalink }}">
 {{ end }}
 <meta name="twitter:card" content="summary_large_image">

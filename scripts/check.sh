@@ -71,6 +71,7 @@ ok "$IMAGES processed image(s) emitted"
 python3 scripts/check-home-pagination.py
 python3 scripts/check-static-output.py "$OUT"
 python3 scripts/check-seo.py "$OUT"
+python3 scripts/check-seo-regressions.py "$OUT"
 python3 scripts/check-agent-series.py "$OUT"
 
 python3 scripts/check-content-workflow.py
