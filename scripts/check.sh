@@ -11,6 +11,10 @@
 # BROWSER_CHECKS=require (CI) fails instead of skipping, BROWSER_CHECKS=0 skips.
 set -euo pipefail
 
+# Windows Python decodes subprocess output with the locale codec (GBK), which
+# turns Hugo's UTF-8 listing into an empty inventory and reports a false failure.
+export PYTHONUTF8=1
+
 cd "$(dirname "$0")/.."
 OUT=${OUT:-.hugo-check}
 # Validate published routes against Hugo's current inventory, so intentional

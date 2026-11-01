@@ -24,6 +24,15 @@ rsync 到单机 Caddy。
 `BROWSER_CHECKS=0 make check` 可临时跳过浏览器检查；`BROWSER_CHECKS=require` 让缺少
 playwright 变成失败（CI 用的就是它，见下）。
 
+## 平台差异
+
+- 三台机器共同的前提：Hugo 必须是 **extended**，且与 `deploy.yml` 的 `HUGO_VERSION` 同版本——非 extended
+  会让 `.Fit`/`.Fill` 直接报错，版本不同则"本地全绿"与 CI 不同源。
+- Windows：`check.sh` 已自带 `export PYTHONUTF8=1`（否则 Python 按 GBK 解码 Hugo 的 UTF-8 输出，
+  `check-published-pages.py` 会假报 inventory 为空）；`check-deploy-release.py` 的 5 个切换/回滚用例在
+  `os.name == 'nt'` 时自动跳过——`current` 是相对目标的符号链接，Windows 的 `realpath(strict=True)`
+  解析不了（WinError 123），未开开发者模式时连建链都要管理员权限（WinError 1314）。Linux/macOS 全跑。
+
 ## 内容契约
 
 三条内容类型字段不同，用 `hugo new <section>/...` 会按 `archetypes/` 生成对应骨架。
