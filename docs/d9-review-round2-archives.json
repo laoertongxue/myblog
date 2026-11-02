@@ -1,0 +1,97 @@
+[
+  {
+    "name": "d9-seasonal-naive-article.zip",
+    "sha256": "565dea2a196f4173fabe38c46ff2dcf149253e2f077a695ab88435f4a2d46d77",
+    "entries": 8,
+    "crc": "passed",
+    "manifest": "all entries passed",
+    "article_matches_current_source": {
+      "images/d9-00_cover.png": true,
+      "images/d9-01_split.png": true,
+      "images/d9-02_weekdays.png": true,
+      "images/d9-03_cases.png": true,
+      "images/d9-04_boundaries.png": true,
+      "index.md": true
+    }
+  },
+  {
+    "name": "d9-seasonal-naive-images.zip",
+    "sha256": "267bb9a5cb5b04eccfe64ec3727ea2435f4b898342836161d64b1f33215416c9",
+    "entries": 12,
+    "crc": "passed",
+    "manifest": "all entries passed",
+    "png_matches_current_source": {
+      "png/d9-00_cover.png": true,
+      "png/d9-01_split.png": true,
+      "png/d9-02_weekdays.png": true,
+      "png/d9-03_cases.png": true,
+      "png/d9-04_boundaries.png": true
+    }
+  },
+  {
+    "name": "d9-seasonal-naive-practice.zip",
+    "sha256": "0063b6ddae7459eff9dc7779c0a0a6c9ecef8d0bd48320c653eae1c072ce1c31",
+    "entries": 31,
+    "crc": "passed",
+    "manifest": "all entries passed",
+    "commands": [
+      {
+        "args": [
+          "-m",
+          "unittest",
+          "-v"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_bad_controls (test_baseline.BaselineTests.test_bad_controls) ... ok\ntest_bad_dates (test_baseline.BaselineTests.test_bad_dates) ... ok\ntest_bad_values (test_baseline.BaselineTests.test_bad_values) ... ok\ntest_blocks (test_baseline.BaselineTests.test_blocks) ... ok\ntest_csv_metadata (test_baseline.BaselineTests.test_csv_metadata) ... ok\ntest_future_poison (test_baseline.BaselineTests.test_future_poison) ... ok\ntest_generator (test_baseline.BaselineTests.test_generator) ... ok\ntest_hand_and_multiple_weeks (test_baseline.BaselineTests.test_hand_and_multiple_weeks) ... ok\ntest_insufficient_history (test_baseline.BaselineTests.test_insufficient_history) ... ok\ntest_portable_lf_output (test_baseline.BaselineTests.test_portable_lf_output) ... ok\ntest_prepare_rejects_old_candidate (test_baseline.BaselineTests.test_prepare_rejects_old_candidate) ... ok\ntest_zero_is_valid (test_baseline.BaselineTests.test_zero_is_valid) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.032s\n\nOK\n"
+      },
+      {
+        "args": [
+          "run.py",
+          "finalize"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"hewei\": {\n    \"days\": 40,\n    \"mae\": 2.175,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 4.111111111111111\n  },\n  \"apparel\": {\n    \"days\": 40,\n    \"mae\": 2.925,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 5.916666666666667\n  }\n}\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "run.py",
+          "prepare"
+        ],
+        "returncode": 0,
+        "stdout": "Prepared development data and separate test labels; test scores not read.\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "-m",
+          "unittest",
+          "-v"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "test_bad_controls (test_baseline.BaselineTests.test_bad_controls) ... ok\ntest_bad_dates (test_baseline.BaselineTests.test_bad_dates) ... ok\ntest_bad_values (test_baseline.BaselineTests.test_bad_values) ... ok\ntest_blocks (test_baseline.BaselineTests.test_blocks) ... ok\ntest_csv_metadata (test_baseline.BaselineTests.test_csv_metadata) ... ok\ntest_future_poison (test_baseline.BaselineTests.test_future_poison) ... ok\ntest_generator (test_baseline.BaselineTests.test_generator) ... ok\ntest_hand_and_multiple_weeks (test_baseline.BaselineTests.test_hand_and_multiple_weeks) ... ok\ntest_insufficient_history (test_baseline.BaselineTests.test_insufficient_history) ... ok\ntest_portable_lf_output (test_baseline.BaselineTests.test_portable_lf_output) ... ok\ntest_prepare_rejects_old_candidate (test_baseline.BaselineTests.test_prepare_rejects_old_candidate) ... ok\ntest_zero_is_valid (test_baseline.BaselineTests.test_zero_is_valid) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.035s\n\nOK\n"
+      },
+      {
+        "args": [
+          "run.py",
+          "freeze"
+        ],
+        "returncode": 0,
+        "stdout": "Frozen code, policy and data hashes before test evaluation.\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "run.py",
+          "finalize"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"hewei\": {\n    \"days\": 40,\n    \"mae\": 2.175,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 4.111111111111111\n  },\n  \"apparel\": {\n    \"days\": 40,\n    \"mae\": 2.925,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 5.916666666666667\n  }\n}\n",
+        "stderr": ""
+      }
+    ],
+    "actual_zip_rebuild": "passed; original final scores byte identical"
+  }
+]

@@ -1,0 +1,227 @@
+{
+  "reviewer": "independent child d9_review2",
+  "candidate_sha256": {
+    "baseline.py": "ce9c3fa8892fdd76f26fe6f2cacad899f334cccd94b5840cbcefb1f26b4a3340",
+    "freeze.json": "273f1a5c13363109660030e3df6c618d601759c3db08c0b65ea6ea0c3f469d0e",
+    "generate.py": "e96b36cb0e53ebd21517db256404ecff51b00deb2aba451ee1c234891c846fb5",
+    "policy.json": "27d5bfd7256521cc1a993a9b03f35ffbb13229b22eb945f0cf6f12d83a3e50b8",
+    "README.md": "cdeb6364478891bee64b106f774eb734a12004e199bf2c96d6bb064d86bafee5",
+    "run.py": "00cd97e063be4c393192a782523018205bdcb013d6395ea5f382e77c6cea34a1",
+    "test_baseline.py": "ce2f1c901903d623fc5dd367b8cac0f9b4864080191582b4481f966619a2c568",
+    "data/apparel-development.csv": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5",
+    "data/hewei-development.csv": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407",
+    "results/apparel-validation.json": "c02e5c727a621b4d26e3433f1d2ae9db401c0fcbec6bc061689e4516dc226877",
+    "results/hand.json": "e934e622d0cf4187c31c0da156fff6f7ac9faa802d9f65ac48e25682749b1583",
+    "results/hewei-validation.json": "5d593b63244949012cd2856e39a266fa33502c98266712b593d3794dae936276",
+    "results/test.json": "cb23f87f5c63145f264845836259a7d0c313c6dfe73f58d1ae0bfa69fa4eeb0d",
+    "sealed/apparel-test.csv": "09db02e8c83717cd2984a3866ab0e87d89499198b327b4861adf1b56179649ae",
+    "sealed/hewei-test.csv": "13f75d6ab98de450dbed98663f16b935232a20fe2357df17da9b3c583deb0e5c"
+  },
+  "checks": {
+    "independent_formula_and_future_poison_groups": 1392,
+    "hand": [
+      19,
+      25,
+      19,
+      22,
+      28,
+      38,
+      29
+    ],
+    "scores": {
+      "hewei": {
+        "validation": {
+          "days": 28,
+          "mae": 1.7857142857142858,
+          "five_day_windows": 24,
+          "five_day_sum_mae": 3.2916666666666665
+        },
+        "test": {
+          "days": 40,
+          "mae": 2.175,
+          "five_day_windows": 36,
+          "five_day_sum_mae": 4.111111111111111
+        }
+      },
+      "apparel": {
+        "validation": {
+          "days": 28,
+          "mae": 21.107142857142858,
+          "five_day_windows": 24,
+          "five_day_sum_mae": 115.875
+        },
+        "test": {
+          "days": 40,
+          "mae": 2.925,
+          "five_day_windows": 36,
+          "five_day_sum_mae": 5.916666666666667
+        }
+      }
+    },
+    "blocks": "24 validation,36 test; no crossing,full40 test days",
+    "additional_boundary_rejections": [
+      "horizon:0",
+      "period:0",
+      "horizon:-7",
+      "period:-7",
+      "horizon:7.0",
+      "period:7.0",
+      "horizon:False",
+      "period:False",
+      "horizon:True",
+      "period:True",
+      "horizon:7",
+      "period:7",
+      "horizon:None",
+      "period:None",
+      "horizon:nan",
+      "period:nan",
+      "short:0",
+      "short:1",
+      "short:2",
+      "short:3",
+      "short:4",
+      "short:5",
+      "short:6",
+      "demand:-1",
+      "demand:None",
+      "demand:False",
+      "demand:True",
+      "demand:nan",
+      "demand:inf",
+      "demand:-inf",
+      "demand:0"
+    ],
+    "freeze_tamper_rejected": [
+      "baseline.py",
+      "generate.py",
+      "run.py",
+      "policy.json",
+      "data/hewei-development.csv",
+      "sealed/apparel-test.csv"
+    ],
+    "documented_full_rebuild": "byte-identical data,results,freeze receipt",
+    "production_unchanged": true
+  },
+  "commands": [
+    {
+      "args": [
+        "-m",
+        "unittest",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_bad_controls (test_baseline.BaselineTests.test_bad_controls) ... ok\ntest_bad_dates (test_baseline.BaselineTests.test_bad_dates) ... ok\ntest_bad_values (test_baseline.BaselineTests.test_bad_values) ... ok\ntest_blocks (test_baseline.BaselineTests.test_blocks) ... ok\ntest_csv_metadata (test_baseline.BaselineTests.test_csv_metadata) ... ok\ntest_future_poison (test_baseline.BaselineTests.test_future_poison) ... ok\ntest_generator (test_baseline.BaselineTests.test_generator) ... ok\ntest_hand_and_multiple_weeks (test_baseline.BaselineTests.test_hand_and_multiple_weeks) ... ok\ntest_insufficient_history (test_baseline.BaselineTests.test_insufficient_history) ... ok\ntest_portable_lf_output (test_baseline.BaselineTests.test_portable_lf_output) ... ok\ntest_prepare_rejects_old_candidate (test_baseline.BaselineTests.test_prepare_rejects_old_candidate) ... ok\ntest_zero_is_valid (test_baseline.BaselineTests.test_zero_is_valid) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.053s\n\nOK\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"hewei\": {\n    \"days\": 40,\n    \"mae\": 2.175,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 4.111111111111111\n  },\n  \"apparel\": {\n    \"days\": 40,\n    \"mae\": 2.925,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 5.916666666666667\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "run.py",
+        "prepare"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 113, in <module>\n    {'prepare':prepare,'freeze':freeze,'finalize':finalize}[parser.parse_args().phase]()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 71, in prepare\n    raise ValueError('existing frozen/test candidate: use a fresh directory to prepare a new candidate')\nValueError: existing frozen/test candidate: use a fresh directory to prepare a new candidate\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 113, in <module>\n    {'prepare':prepare,'freeze':freeze,'finalize':finalize}[parser.parse_args().phase]()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 97, in finalize\n    raise ValueError('frozen candidate changed; review and freeze a new candidate explicitly')\nValueError: frozen candidate changed; review and freeze a new candidate explicitly\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 113, in <module>\n    {'prepare':prepare,'freeze':freeze,'finalize':finalize}[parser.parse_args().phase]()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 97, in finalize\n    raise ValueError('frozen candidate changed; review and freeze a new candidate explicitly')\nValueError: frozen candidate changed; review and freeze a new candidate explicitly\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 113, in <module>\n    {'prepare':prepare,'freeze':freeze,'finalize':finalize}[parser.parse_args().phase]()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 97, in finalize\n    raise ValueError('frozen candidate changed; review and freeze a new candidate explicitly')\nValueError: frozen candidate changed; review and freeze a new candidate explicitly\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 113, in <module>\n    {'prepare':prepare,'freeze':freeze,'finalize':finalize}[parser.parse_args().phase]()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 97, in finalize\n    raise ValueError('frozen candidate changed; review and freeze a new candidate explicitly')\nValueError: frozen candidate changed; review and freeze a new candidate explicitly\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 113, in <module>\n    {'prepare':prepare,'freeze':freeze,'finalize':finalize}[parser.parse_args().phase]()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 97, in finalize\n    raise ValueError('frozen candidate changed; review and freeze a new candidate explicitly')\nValueError: frozen candidate changed; review and freeze a new candidate explicitly\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 113, in <module>\n    {'prepare':prepare,'freeze':freeze,'finalize':finalize}[parser.parse_args().phase]()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-round2-u9hgxr4o\\copy\\run.py\", line 97, in finalize\n    raise ValueError('frozen candidate changed; review and freeze a new candidate explicitly')\nValueError: frozen candidate changed; review and freeze a new candidate explicitly\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "stdout": "Prepared development data and separate test labels; test scores not read.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-m",
+        "unittest",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_bad_controls (test_baseline.BaselineTests.test_bad_controls) ... ok\ntest_bad_dates (test_baseline.BaselineTests.test_bad_dates) ... ok\ntest_bad_values (test_baseline.BaselineTests.test_bad_values) ... ok\ntest_blocks (test_baseline.BaselineTests.test_blocks) ... ok\ntest_csv_metadata (test_baseline.BaselineTests.test_csv_metadata) ... ok\ntest_future_poison (test_baseline.BaselineTests.test_future_poison) ... ok\ntest_generator (test_baseline.BaselineTests.test_generator) ... ok\ntest_hand_and_multiple_weeks (test_baseline.BaselineTests.test_hand_and_multiple_weeks) ... ok\ntest_insufficient_history (test_baseline.BaselineTests.test_insufficient_history) ... ok\ntest_portable_lf_output (test_baseline.BaselineTests.test_portable_lf_output) ... ok\ntest_prepare_rejects_old_candidate (test_baseline.BaselineTests.test_prepare_rejects_old_candidate) ... ok\ntest_zero_is_valid (test_baseline.BaselineTests.test_zero_is_valid) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.049s\n\nOK\n"
+    },
+    {
+      "args": [
+        "run.py",
+        "freeze"
+      ],
+      "returncode": 0,
+      "stdout": "Frozen code, policy and data hashes before test evaluation.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"hewei\": {\n    \"days\": 40,\n    \"mae\": 2.175,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 4.111111111111111\n  },\n  \"apparel\": {\n    \"days\": 40,\n    \"mae\": 2.925,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 5.916666666666667\n  }\n}\n",
+      "stderr": ""
+    }
+  ]
+}

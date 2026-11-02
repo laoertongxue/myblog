@@ -1,0 +1,28 @@
+{
+  "version": "D9-v1",
+  "seed": 20261102,
+  "period": 7,
+  "splits": {
+    "train": [
+      1,
+      112
+    ],
+    "validation": [
+      113,
+      140
+    ],
+    "test": [
+      141,
+      180
+    ]
+  },
+  "core": "hewei/A/SKU01",
+  "units": {
+    "hewei": "kg/day",
+    "apparel": "pieces/day"
+  },
+  "daily": "rolling origin, horizon=1, all days in block",
+  "five_day": "rolling origin, horizon=5, full target window inside block",
+  "selection": "period=7 fixed by weekly teaching hypothesis; no tuning",
+  "test_history": "past observed test days may update history; policy fixed"
+}

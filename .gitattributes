@@ -1,0 +1,2 @@
+# Frozen D9 source/data hashes must survive Windows and Linux checkouts.
+examples/d9-seasonal-naive/** text eol=lf

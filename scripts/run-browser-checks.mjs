@@ -38,6 +38,7 @@ const CHECKS = [
   { name: 'agent-series', file: 'check-agent-series-browser.js', description: 'Agent/Harness series structure end to end' },
   { name: 'thumbnail-fit', file: 'check-thumbnail-fit-browser.js', description: '900:383 thumbnail frames, complete images and responsive widths' },
   { name: 'resource-loading', file: 'check-resource-loading.js', description: 'chosen image candidates, lazy search index, no hidden avatar' },
+  { name: 'd9', file: 'check-d9-browser.js', description: 'D9 images grayscale, downloads, metadata and mobile tables' },
 ];
 
 const MIME = {

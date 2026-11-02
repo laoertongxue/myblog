@@ -1,0 +1,304 @@
+{
+  "reviewer": "independent d9_review2 LF supplement",
+  "commands": [
+    {
+      "args": [
+        "git",
+        "init",
+        "C:\\Users\\qiuch\\AppData\\Local\\Temp\\d9-lf-git-o7ebb13j\\repository"
+      ],
+      "returncode": 0,
+      "stdout": "Initialized empty Git repository in C:/Users/qiuch/AppData/Local/Temp/d9-lf-git-o7ebb13j/repository/.git/\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "config",
+        "core.autocrlf",
+        "true"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "config",
+        "user.name",
+        "D9 independent review"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "config",
+        "user.email",
+        "d9-review@example.invalid"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "add",
+        "--",
+        ".gitattributes",
+        "examples/d9-seasonal-naive"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of '.gitattributes', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "args": [
+        "git",
+        "commit",
+        "-m",
+        "Independent LF candidate checkout test"
+      ],
+      "returncode": 0,
+      "stdout": "[master (root-commit) a10b3db] Independent LF candidate checkout test\n 16 files changed, 2341 insertions(+)\n create mode 100644 .gitattributes\n create mode 100644 examples/d9-seasonal-naive/README.md\n create mode 100644 examples/d9-seasonal-naive/baseline.py\n create mode 100644 examples/d9-seasonal-naive/data/apparel-development.csv\n create mode 100644 examples/d9-seasonal-naive/data/hewei-development.csv\n create mode 100644 examples/d9-seasonal-naive/freeze.json\n create mode 100644 examples/d9-seasonal-naive/generate.py\n create mode 100644 examples/d9-seasonal-naive/policy.json\n create mode 100644 examples/d9-seasonal-naive/results/apparel-validation.json\n create mode 100644 examples/d9-seasonal-naive/results/hand.json\n create mode 100644 examples/d9-seasonal-naive/results/hewei-validation.json\n create mode 100644 examples/d9-seasonal-naive/results/test.json\n create mode 100644 examples/d9-seasonal-naive/run.py\n create mode 100644 examples/d9-seasonal-naive/sealed/apparel-test.csv\n create mode 100644 examples/d9-seasonal-naive/sealed/hewei-test.csv\n create mode 100644 examples/d9-seasonal-naive/test_baseline.py\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "config",
+        "core.autocrlf",
+        "true"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "checkout-index",
+        "--all",
+        "--force",
+        "--prefix=C:/Users/qiuch/AppData/Local/Temp/d9-lf-git-o7ebb13j/checkout-true/"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "ls-files",
+        "--eol",
+        "--",
+        "examples/d9-seasonal-naive"
+      ],
+      "returncode": 0,
+      "stdout": "i/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/README.md\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/baseline.py\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/data/apparel-development.csv\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/data/hewei-development.csv\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/freeze.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/generate.py\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/policy.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/results/apparel-validation.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/results/hand.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/results/hewei-validation.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/results/test.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/run.py\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/sealed/apparel-test.csv\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/sealed/hewei-test.csv\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/test_baseline.py\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_bad_controls (test_baseline.BaselineTests.test_bad_controls) ... ok\ntest_bad_dates (test_baseline.BaselineTests.test_bad_dates) ... ok\ntest_bad_values (test_baseline.BaselineTests.test_bad_values) ... ok\ntest_blocks (test_baseline.BaselineTests.test_blocks) ... ok\ntest_csv_metadata (test_baseline.BaselineTests.test_csv_metadata) ... ok\ntest_future_poison (test_baseline.BaselineTests.test_future_poison) ... ok\ntest_generator (test_baseline.BaselineTests.test_generator) ... ok\ntest_hand_and_multiple_weeks (test_baseline.BaselineTests.test_hand_and_multiple_weeks) ... ok\ntest_insufficient_history (test_baseline.BaselineTests.test_insufficient_history) ... ok\ntest_portable_lf_output (test_baseline.BaselineTests.test_portable_lf_output) ... ok\ntest_prepare_rejects_old_candidate (test_baseline.BaselineTests.test_prepare_rejects_old_candidate) ... ok\ntest_zero_is_valid (test_baseline.BaselineTests.test_zero_is_valid) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.057s\n\nOK\n"
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"hewei\": {\n    \"days\": 40,\n    \"mae\": 2.175,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 4.111111111111111\n  },\n  \"apparel\": {\n    \"days\": 40,\n    \"mae\": 2.925,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 5.916666666666667\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "run.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "stdout": "Prepared development data and separate test labels; test scores not read.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "run.py",
+        "freeze"
+      ],
+      "returncode": 0,
+      "stdout": "Frozen code, policy and data hashes before test evaluation.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"hewei\": {\n    \"days\": 40,\n    \"mae\": 2.175,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 4.111111111111111\n  },\n  \"apparel\": {\n    \"days\": 40,\n    \"mae\": 2.925,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 5.916666666666667\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "checkout-index",
+        "--all",
+        "--force",
+        "--prefix=C:/Users/qiuch/AppData/Local/Temp/d9-lf-git-o7ebb13j/checkout-false/"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "git",
+        "ls-files",
+        "--eol",
+        "--",
+        "examples/d9-seasonal-naive"
+      ],
+      "returncode": 0,
+      "stdout": "i/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/README.md\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/baseline.py\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/data/apparel-development.csv\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/data/hewei-development.csv\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/freeze.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/generate.py\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/policy.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/results/apparel-validation.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/results/hand.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/results/hewei-validation.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/results/test.json\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/run.py\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/sealed/apparel-test.csv\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/sealed/hewei-test.csv\ni/lf    w/lf    attr/text eol=lf      \texamples/d9-seasonal-naive/test_baseline.py\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_bad_controls (test_baseline.BaselineTests.test_bad_controls) ... ok\ntest_bad_dates (test_baseline.BaselineTests.test_bad_dates) ... ok\ntest_bad_values (test_baseline.BaselineTests.test_bad_values) ... ok\ntest_blocks (test_baseline.BaselineTests.test_blocks) ... ok\ntest_csv_metadata (test_baseline.BaselineTests.test_csv_metadata) ... ok\ntest_future_poison (test_baseline.BaselineTests.test_future_poison) ... ok\ntest_generator (test_baseline.BaselineTests.test_generator) ... ok\ntest_hand_and_multiple_weeks (test_baseline.BaselineTests.test_hand_and_multiple_weeks) ... ok\ntest_insufficient_history (test_baseline.BaselineTests.test_insufficient_history) ... ok\ntest_portable_lf_output (test_baseline.BaselineTests.test_portable_lf_output) ... ok\ntest_prepare_rejects_old_candidate (test_baseline.BaselineTests.test_prepare_rejects_old_candidate) ... ok\ntest_zero_is_valid (test_baseline.BaselineTests.test_zero_is_valid) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.055s\n\nOK\n"
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"hewei\": {\n    \"days\": 40,\n    \"mae\": 2.175,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 4.111111111111111\n  },\n  \"apparel\": {\n    \"days\": 40,\n    \"mae\": 2.925,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 5.916666666666667\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "run.py",
+        "prepare"
+      ],
+      "returncode": 0,
+      "stdout": "Prepared development data and separate test labels; test scores not read.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "run.py",
+        "freeze"
+      ],
+      "returncode": 0,
+      "stdout": "Frozen code, policy and data hashes before test evaluation.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "C:\\Users\\qiuch\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "run.py",
+        "finalize"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"hewei\": {\n    \"days\": 40,\n    \"mae\": 2.175,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 4.111111111111111\n  },\n  \"apparel\": {\n    \"days\": 40,\n    \"mae\": 2.925,\n    \"five_day_windows\": 36,\n    \"five_day_sum_mae\": 5.916666666666667\n  }\n}\n",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": {
+    "baseline.py": "ce9c3fa8892fdd76f26fe6f2cacad899f334cccd94b5840cbcefb1f26b4a3340",
+    "freeze.json": "273f1a5c13363109660030e3df6c618d601759c3db08c0b65ea6ea0c3f469d0e",
+    "generate.py": "e96b36cb0e53ebd21517db256404ecff51b00deb2aba451ee1c234891c846fb5",
+    "policy.json": "27d5bfd7256521cc1a993a9b03f35ffbb13229b22eb945f0cf6f12d83a3e50b8",
+    "README.md": "cdeb6364478891bee64b106f774eb734a12004e199bf2c96d6bb064d86bafee5",
+    "run.py": "00cd97e063be4c393192a782523018205bdcb013d6395ea5f382e77c6cea34a1",
+    "test_baseline.py": "ce2f1c901903d623fc5dd367b8cac0f9b4864080191582b4481f966619a2c568",
+    "data/apparel-development.csv": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5",
+    "data/hewei-development.csv": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407",
+    "results/apparel-validation.json": "c02e5c727a621b4d26e3433f1d2ae9db401c0fcbec6bc061689e4516dc226877",
+    "results/hand.json": "e934e622d0cf4187c31c0da156fff6f7ac9faa802d9f65ac48e25682749b1583",
+    "results/hewei-validation.json": "5d593b63244949012cd2856e39a266fa33502c98266712b593d3794dae936276",
+    "results/test.json": "cb23f87f5c63145f264845836259a7d0c313c6dfe73f58d1ae0bfa69fa4eeb0d",
+    "sealed/apparel-test.csv": "09db02e8c83717cd2984a3866ab0e87d89499198b327b4861adf1b56179649ae",
+    "sealed/hewei-test.csv": "13f75d6ab98de450dbed98663f16b935232a20fe2357df17da9b3c583deb0e5c"
+  },
+  "checks": {
+    "all_current_experiment_files_lf": true,
+    "gitattributes_pattern": "examples/d9-seasonal-naive/** text eol=lf",
+    "test_results_before_after": "all JSON values identical, both cases and all40 daily/36 cumulative records",
+    "policy_before_after": "identical; seed/period/splits/generation scenario unchanged",
+    "old_test_file_sha256": "f963dd5ba824628c2a3c8d2a3f812dae9ad32859ad12d6b066c3b6232697ea3d",
+    "new_test_file_sha256": "cb23f87f5c63145f264845836259a7d0c313c6dfe73f58d1ae0bfa69fa4eeb0d",
+    "staged_blob_matches_source": [
+      "baseline.py",
+      "freeze.json",
+      "generate.py",
+      "policy.json",
+      "README.md",
+      "run.py",
+      "test_baseline.py",
+      "data/apparel-development.csv",
+      "data/hewei-development.csv",
+      "results/apparel-validation.json",
+      "results/hand.json",
+      "results/hewei-validation.json",
+      "results/test.json",
+      "sealed/apparel-test.csv",
+      "sealed/hewei-test.csv"
+    ],
+    "real_git_checkout_index": [
+      {
+        "core.autocrlf": "true",
+        "checkout_bytes": "identical all files",
+        "tests": 12,
+        "finalize": "passed",
+        "fresh_rebuild": "all files byte identical; LF preserved"
+      },
+      {
+        "core.autocrlf": "false",
+        "checkout_bytes": "identical all files",
+        "tests": 12,
+        "finalize": "passed",
+        "fresh_rebuild": "all files byte identical; LF preserved"
+      }
+    ],
+    "local_clone_attempt": "An earlier local clone attempt failed with Could not read from remote repository; no clone completed. Actual stage+checkout-index is the verified route; no remote/network repository used.",
+    "mobile_table_layout": "horizontal scroll and nowrap present; seven-value hand table and final scores retained",
+    "main_experiment_unchanged_by_review": true
+  }
+}

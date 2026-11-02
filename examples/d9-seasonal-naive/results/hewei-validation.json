@@ -1,0 +1,318 @@
+{
+  "days": 28,
+  "mae": 1.7857142857142858,
+  "five_day_windows": 24,
+  "five_day_sum_mae": 3.2916666666666665,
+  "daily": [
+    {
+      "day": 113,
+      "actual": 18,
+      "forecast": 19
+    },
+    {
+      "day": 114,
+      "actual": 20,
+      "forecast": 25
+    },
+    {
+      "day": 115,
+      "actual": 24,
+      "forecast": 19
+    },
+    {
+      "day": 116,
+      "actual": 24,
+      "forecast": 22
+    },
+    {
+      "day": 117,
+      "actual": 30,
+      "forecast": 28
+    },
+    {
+      "day": 118,
+      "actual": 37,
+      "forecast": 38
+    },
+    {
+      "day": 119,
+      "actual": 31,
+      "forecast": 29
+    },
+    {
+      "day": 120,
+      "actual": 19,
+      "forecast": 18
+    },
+    {
+      "day": 121,
+      "actual": 22,
+      "forecast": 20
+    },
+    {
+      "day": 122,
+      "actual": 23,
+      "forecast": 24
+    },
+    {
+      "day": 123,
+      "actual": 26,
+      "forecast": 24
+    },
+    {
+      "day": 124,
+      "actual": 29,
+      "forecast": 30
+    },
+    {
+      "day": 125,
+      "actual": 34,
+      "forecast": 37
+    },
+    {
+      "day": 126,
+      "actual": 32,
+      "forecast": 31
+    },
+    {
+      "day": 127,
+      "actual": 20,
+      "forecast": 19
+    },
+    {
+      "day": 128,
+      "actual": 22,
+      "forecast": 22
+    },
+    {
+      "day": 129,
+      "actual": 20,
+      "forecast": 23
+    },
+    {
+      "day": 130,
+      "actual": 23,
+      "forecast": 26
+    },
+    {
+      "day": 131,
+      "actual": 31,
+      "forecast": 29
+    },
+    {
+      "day": 132,
+      "actual": 33,
+      "forecast": 34
+    },
+    {
+      "day": 133,
+      "actual": 34,
+      "forecast": 32
+    },
+    {
+      "day": 134,
+      "actual": 19,
+      "forecast": 20
+    },
+    {
+      "day": 135,
+      "actual": 22,
+      "forecast": 22
+    },
+    {
+      "day": 136,
+      "actual": 20,
+      "forecast": 20
+    },
+    {
+      "day": 137,
+      "actual": 24,
+      "forecast": 23
+    },
+    {
+      "day": 138,
+      "actual": 31,
+      "forecast": 31
+    },
+    {
+      "day": 139,
+      "actual": 38,
+      "forecast": 33
+    },
+    {
+      "day": 140,
+      "actual": 32,
+      "forecast": 34
+    }
+  ],
+  "five_day": [
+    {
+      "origin": 112,
+      "first": 113,
+      "last": 117,
+      "actual": 116,
+      "forecast": 113
+    },
+    {
+      "origin": 113,
+      "first": 114,
+      "last": 118,
+      "actual": 135,
+      "forecast": 132
+    },
+    {
+      "origin": 114,
+      "first": 115,
+      "last": 119,
+      "actual": 146,
+      "forecast": 136
+    },
+    {
+      "origin": 115,
+      "first": 116,
+      "last": 120,
+      "actual": 141,
+      "forecast": 135
+    },
+    {
+      "origin": 116,
+      "first": 117,
+      "last": 121,
+      "actual": 139,
+      "forecast": 133
+    },
+    {
+      "origin": 117,
+      "first": 118,
+      "last": 122,
+      "actual": 132,
+      "forecast": 129
+    },
+    {
+      "origin": 118,
+      "first": 119,
+      "last": 123,
+      "actual": 121,
+      "forecast": 115
+    },
+    {
+      "origin": 119,
+      "first": 120,
+      "last": 124,
+      "actual": 119,
+      "forecast": 116
+    },
+    {
+      "origin": 120,
+      "first": 121,
+      "last": 125,
+      "actual": 134,
+      "forecast": 135
+    },
+    {
+      "origin": 121,
+      "first": 122,
+      "last": 126,
+      "actual": 144,
+      "forecast": 146
+    },
+    {
+      "origin": 122,
+      "first": 123,
+      "last": 127,
+      "actual": 141,
+      "forecast": 141
+    },
+    {
+      "origin": 123,
+      "first": 124,
+      "last": 128,
+      "actual": 137,
+      "forecast": 139
+    },
+    {
+      "origin": 124,
+      "first": 125,
+      "last": 129,
+      "actual": 128,
+      "forecast": 132
+    },
+    {
+      "origin": 125,
+      "first": 126,
+      "last": 130,
+      "actual": 117,
+      "forecast": 121
+    },
+    {
+      "origin": 126,
+      "first": 127,
+      "last": 131,
+      "actual": 116,
+      "forecast": 119
+    },
+    {
+      "origin": 127,
+      "first": 128,
+      "last": 132,
+      "actual": 129,
+      "forecast": 134
+    },
+    {
+      "origin": 128,
+      "first": 129,
+      "last": 133,
+      "actual": 141,
+      "forecast": 144
+    },
+    {
+      "origin": 129,
+      "first": 130,
+      "last": 134,
+      "actual": 140,
+      "forecast": 141
+    },
+    {
+      "origin": 130,
+      "first": 131,
+      "last": 135,
+      "actual": 139,
+      "forecast": 137
+    },
+    {
+      "origin": 131,
+      "first": 132,
+      "last": 136,
+      "actual": 128,
+      "forecast": 128
+    },
+    {
+      "origin": 132,
+      "first": 133,
+      "last": 137,
+      "actual": 119,
+      "forecast": 117
+    },
+    {
+      "origin": 133,
+      "first": 134,
+      "last": 138,
+      "actual": 116,
+      "forecast": 116
+    },
+    {
+      "origin": 134,
+      "first": 135,
+      "last": 139,
+      "actual": 135,
+      "forecast": 129
+    },
+    {
+      "origin": 135,
+      "first": 136,
+      "last": 140,
+      "actual": 145,
+      "forecast": 141
+    }
+  ]
+}

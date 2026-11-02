@@ -1,0 +1,42 @@
+[
+  {
+    "name": "d9-00_cover.png",
+    "width": 900,
+    "height": 383,
+    "pixels": 344700,
+    "rgb_unequal": 0,
+    "sha256": "67ef78f7e9c1bed0dcd1f7b7f746ffa3b135fb1a4634aa614965cfe40feac5ce"
+  },
+  {
+    "name": "d9-01_split.png",
+    "width": 1000,
+    "height": 580,
+    "pixels": 580000,
+    "rgb_unequal": 0,
+    "sha256": "51d092fb98b17cb5912db56c7a1e0c72e454b593611349a38fced34961870e86"
+  },
+  {
+    "name": "d9-02_weekdays.png",
+    "width": 1000,
+    "height": 540,
+    "pixels": 540000,
+    "rgb_unequal": 0,
+    "sha256": "8cd5e59951e0050f5cb00ed51464828ca8b7ee69bcd0606f0acd451f1e867ac8"
+  },
+  {
+    "name": "d9-03_cases.png",
+    "width": 1000,
+    "height": 850,
+    "pixels": 850000,
+    "rgb_unequal": 0,
+    "sha256": "00f27e069aed6e575dfbf14fb47f20265585b615a60d2eb96bb2e0d48cd44c7a"
+  },
+  {
+    "name": "d9-04_boundaries.png",
+    "width": 1000,
+    "height": 570,
+    "pixels": 570000,
+    "rgb_unequal": 0,
+    "sha256": "f7d0054ee4bc31093f37f459e25160a22ca79c83c43d186cc05e5ff69d279887"
+  }
+]
