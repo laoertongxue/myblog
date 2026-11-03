@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "scope": "Only copied scripts and 140-day development CSVs; no source directory, original ZIP, sealed labels, or test results copied.",
+  "default_data_dir_passed": true,
+  "custom_data_dir_and_font_args_passed": true,
+  "changed_csv_rejected": true,
+  "absent_zip_status": "archive_not_bundled_declared_hash_only",
+  "source_zip_verified_hash_when_absent": null,
+  "png_checks": [
+    {
+      "file": "images/d10-00_cover.png",
+      "sha256": "d79c18ebd5fa8f64774ce0bdf2427005674b3e546ff36c56cb01f2cc6e8a0223",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/d10-01_alignment.png",
+      "sha256": "c6d6e218a2abeead1a80ef5e8b9b05834fb5f1e4b6bfa98e723006bd412e4deb",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/d10-02_split.png",
+      "sha256": "f3a4cf9ff5b1078ad907495a85798f3d743ed54721f07b640cf23702982d2d0a",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/d10-03_hewei.png",
+      "sha256": "23f4d636e39c439a502fc95bfea148ad291d71c383d323109951390138bc3406",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/d10-04_apparel.png",
+      "sha256": "cc3e1d780288f4232ceb3883ff942b2ea73c513e596b149848b7504efcc5f074",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile/d10-00_cover.png",
+      "sha256": "a5990adabb51692ec09c9d57a0c8483b6ac446ed9dd0024ec3f7be1e32f2576a",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile/d10-01_alignment.png",
+      "sha256": "93a6557dd66acf3804410207704379232400341a3fc4a48abfed20cba72b5306",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile/d10-02_split.png",
+      "sha256": "0b196a4486a0327e1edbfc5a0a4b2ab25827b01c35041842a278801a640cc365",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile/d10-03_hewei.png",
+      "sha256": "6e5c39f038504f7812d962720a9213feb8e7b0f4ff396726f8a13f2ac61ea707",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile/d10-04_apparel.png",
+      "sha256": "631a2ca4f9620a794450d4655e6cbccfedfbd2f0d42d1a21b6d08e94fdbe6ab6",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile-320/d10-00_cover.png",
+      "sha256": "e20a1a3e571d136fd39f5ebe3dbf7fc4213f634d4d1254fd523e74e67825654c",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile-320/d10-01_alignment.png",
+      "sha256": "5e1020f5a804808529e376dd4f90affb5d31e510c92285019b63d92af4154ac8",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile-320/d10-02_split.png",
+      "sha256": "7ea16c44fc364459cad7177e3de0481a84f06892d1e99cffe7edfc8d6d14bde3",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile-320/d10-03_hewei.png",
+      "sha256": "3c2d5e865af7b4a12f2c6570d18847e375300e5e9146674fba704396366779b5",
+      "portable_without_zip_byte_identical": true
+    },
+    {
+      "file": "images/mobile-320/d10-04_apparel.png",
+      "sha256": "592e6eb89081295dba4c90edea0a39badedd302b9f59cea3e28c08518c90e650",
+      "portable_without_zip_byte_identical": true
+    }
+  ],
+  "temporary_test_directory": "/tmp/d10-portability-l4ajqtpu"
+}

@@ -1,0 +1,21 @@
+{
+  "version": "D10-v1",
+  "source_version": "D9-v1",
+  "source_public_url": "https://12lab.cn/downloads/d9-seasonal-naive-practice.zip",
+  "source_zip_sha256": "0063b6ddae7459eff9dc7779c0a0a6c9ecef8d0bd48320c653eae1c072ce1c31",
+  "series": {
+    "hewei": {"identity": "hewei/A/SKU01", "daily_unit": "kg/day", "total_unit": "kg"},
+    "apparel": {"identity": "anonymous-apparel/terminal-order-demand", "daily_unit": "pieces/day", "total_unit": "pieces"}
+  },
+  "splits": {"train": [1, 112], "validation": [113, 140], "test": [141, 180]},
+  "moving_average_candidates": [3, 7, 14],
+  "comparator": "weekly seasonal naive, period 7",
+  "daily": "28 rolling-origin one-step forecasts, origins 112..139",
+  "five_day": "24 rolling-origin fixed-origin five-step forecasts, origins 112..135, targets fully inside validation",
+  "fixed_origin": "last k observed values only; same mean for every horizon; no future actual or predicted-value updates",
+  "daily_metric": "mean absolute daily prediction error",
+  "five_day_metric": "mean absolute error of five-day totals; overlapping windows are not independent",
+  "selection": "validation comparison only; no final model selected and no test performance claimed",
+  "sealed_test": "40 original D9 labels omitted entirely; D10 has no test reader or unseal command",
+  "simulation": "both series are teaching simulations; hewei is fictional; no measured business benefit"
+}

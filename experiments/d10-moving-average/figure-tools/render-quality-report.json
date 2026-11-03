@@ -1,0 +1,1396 @@
+{
+  "source_zip_sha256_declared": "0063b6ddae7459eff9dc7779c0a0a6c9ecef8d0bd48320c653eae1c072ce1c31",
+  "source_zip_sha256_verified": "0063b6ddae7459eff9dc7779c0a0a6c9ecef8d0bd48320c653eae1c072ce1c31",
+  "source_zip_verification_status": "verified_from_optional_archive",
+  "development_csv_hash_validation": "Both input files matched the fixed original D9-v1 development CSV hashes.",
+  "source_development_csv_sha256": {
+    "practice/data/hewei-development.csv": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407",
+    "practice/data/apparel-development.csv": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5"
+  },
+  "data_boundary": "Only 140-row development CSVs read; no sealed paths or test results read.",
+  "font": {
+    "path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "collection_face": 2,
+    "family": "Noto Sans CJK SC",
+    "missing_glyphs": [],
+    "unique_nonspace_characters": 187
+  },
+  "rendering": "Pillow L at 2x, downsample LANCZOS, convert RGB; all plot coordinates use raw daily data.",
+  "plotted_protocol": {
+    "targets": [
+      113,
+      140
+    ],
+    "rolling_origins": [
+      112,
+      139
+    ],
+    "horizon": 1,
+    "candidates": [
+      3,
+      7,
+      14
+    ],
+    "fixed_origin_h5_not_plotted": true
+  },
+  "practice_daily_predictions_comparison": {
+    "status": "matched",
+    "rows_compared": 168,
+    "sha256": "a828db575289780a35730e7c4734b549ad09789a900b04613d88f08abdb4fd0f"
+  },
+  "pixel_checks": [
+    {
+      "file": "images/d10-00_cover.png",
+      "mode": "RGB",
+      "channels_equal_every_pixel": true,
+      "sha256": "d79c18ebd5fa8f64774ce0bdf2427005674b3e546ff36c56cb01f2cc6e8a0223",
+      "mobile_preview": "images/mobile/d10-00_cover.png",
+      "mobile_preview_320": "images/mobile-320/d10-00_cover.png"
+    },
+    {
+      "file": "images/d10-01_alignment.png",
+      "mode": "RGB",
+      "channels_equal_every_pixel": true,
+      "sha256": "c6d6e218a2abeead1a80ef5e8b9b05834fb5f1e4b6bfa98e723006bd412e4deb",
+      "mobile_preview": "images/mobile/d10-01_alignment.png",
+      "mobile_preview_320": "images/mobile-320/d10-01_alignment.png"
+    },
+    {
+      "file": "images/d10-02_split.png",
+      "mode": "RGB",
+      "channels_equal_every_pixel": true,
+      "sha256": "f3a4cf9ff5b1078ad907495a85798f3d743ed54721f07b640cf23702982d2d0a",
+      "mobile_preview": "images/mobile/d10-02_split.png",
+      "mobile_preview_320": "images/mobile-320/d10-02_split.png"
+    },
+    {
+      "file": "images/d10-03_hewei.png",
+      "mode": "RGB",
+      "channels_equal_every_pixel": true,
+      "sha256": "23f4d636e39c439a502fc95bfea148ad291d71c383d323109951390138bc3406",
+      "mobile_preview": "images/mobile/d10-03_hewei.png",
+      "mobile_preview_320": "images/mobile-320/d10-03_hewei.png"
+    },
+    {
+      "file": "images/d10-04_apparel.png",
+      "mode": "RGB",
+      "channels_equal_every_pixel": true,
+      "sha256": "cc3e1d780288f4232ceb3883ff942b2ea73c513e596b149848b7504efcc5f074",
+      "mobile_preview": "images/mobile/d10-04_apparel.png",
+      "mobile_preview_320": "images/mobile-320/d10-04_apparel.png"
+    }
+  ],
+  "figures": [
+    {
+      "file": "images/d10-00_cover.png",
+      "width": 900,
+      "height": 383,
+      "minimum_text_font_px": 23,
+      "minimum_essential_text_font_px": 23,
+      "text_boxes": [
+        {
+          "text": "D10  /  MOVING AVERAGE",
+          "font_px": 23,
+          "bbox": [
+            44.0,
+            25.0,
+            306.0,
+            47.5
+          ],
+          "role": "cover"
+        },
+        {
+          "text": "移动平均：先把预测对齐",
+          "font_px": 49,
+          "bbox": [
+            44.0,
+            71.0,
+            583.0,
+            117.5
+          ],
+          "role": "cover"
+        },
+        {
+          "text": "只看已知历史，不把未来混进窗口",
+          "font_px": 30,
+          "bbox": [
+            44.0,
+            145.0,
+            494.0,
+            174.5
+          ],
+          "role": "cover"
+        },
+        {
+          "text": "已知的最近 k 天",
+          "font_px": 26,
+          "bbox": [
+            137.0,
+            299.0,
+            319.0,
+            324.0
+          ],
+          "role": "cover"
+        },
+        {
+          "text": "未来 5 天：同一个均值",
+          "font_px": 26,
+          "bbox": [
+            509.0,
+            299.0,
+            769.0,
+            324.0
+          ],
+          "role": "cover"
+        },
+        {
+          "text": "固定起点：平均一次，复制五次。",
+          "font_px": 26,
+          "bbox": [
+            44.0,
+            350.0,
+            434.0,
+            375.5
+          ],
+          "role": "cover"
+        }
+      ],
+      "text_box_overlaps": []
+    },
+    {
+      "file": "images/d10-01_alignment.png",
+      "width": 1200,
+      "height": 1680,
+      "minimum_text_font_px": 32,
+      "minimum_essential_text_font_px": 46,
+      "text_boxes": [
+        {
+          "text": "01  /  对齐机制",
+          "font_px": 32,
+          "bbox": [
+            68.0,
+            40.0,
+            273.0,
+            73.5
+          ],
+          "role": "kicker"
+        },
+        {
+          "text": "一个均值，两个日期",
+          "font_px": 54,
+          "bbox": [
+            68.0,
+            100.0,
+            554.0,
+            152.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "历史为 10、20、30；均值为 20",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            187.0,
+            707.0,
+            234.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "10",
+          "font_px": 52,
+          "bbox": [
+            181.0,
+            343.0,
+            238.5,
+            382.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "第 1 天",
+          "font_px": 46,
+          "bbox": [
+            141.0,
+            452.0,
+            279.0,
+            495.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "20",
+          "font_px": 52,
+          "bbox": [
+            441.0,
+            343.0,
+            498.5,
+            382.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "第 2 天",
+          "font_px": 46,
+          "bbox": [
+            401.0,
+            452.0,
+            539.0,
+            495.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "30",
+          "font_px": 52,
+          "bbox": [
+            701.0,
+            343.0,
+            758.5,
+            382.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "第 3 天",
+          "font_px": 46,
+          "bbox": [
+            661.0,
+            452.0,
+            799.0,
+            495.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "？",
+          "font_px": 52,
+          "bbox": [
+            964.0,
+            343.0,
+            1016.0,
+            383.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "第 4 天",
+          "font_px": 46,
+          "bbox": [
+            921.0,
+            452.0,
+            1059.0,
+            495.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "（10＋20＋30）÷3＝20",
+          "font_px": 46,
+          "bbox": [
+            88.0,
+            555.0,
+            594.0,
+            599.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "平滑：记在第 3 天",
+          "font_px": 46,
+          "bbox": [
+            88.0,
+            643.0,
+            456.0,
+            686.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "预测：对齐第 4 天",
+          "font_px": 46,
+          "bbox": [
+            88.0,
+            720.0,
+            456.0,
+            763.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "20",
+          "font_px": 48,
+          "bbox": [
+            703.5,
+            639.0,
+            757.0,
+            675.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "平滑值",
+          "font_px": 46,
+          "bbox": [
+            661.0,
+            696.0,
+            799.0,
+            739.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "20",
+          "font_px": 48,
+          "bbox": [
+            963.5,
+            639.0,
+            1017.0,
+            675.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "预测值",
+          "font_px": 46,
+          "bbox": [
+            921.0,
+            696.0,
+            1059.0,
+            739.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "后移 1 天",
+          "font_px": 46,
+          "bbox": [
+            766.0,
+            778.0,
+            950.0,
+            821.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "窗口取舍：平滑，也会滞后",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            895.0,
+            620.0,
+            940.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "合成阶跃｜滚动一步预测",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            970.0,
+            574.0,
+            1016.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "合成实际",
+          "font_px": 46,
+          "bbox": [
+            192.0,
+            1049.0,
+            376.0,
+            1093.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "k＝3",
+          "font_px": 46,
+          "bbox": [
+            590.0,
+            1049.0,
+            687.0,
+            1086.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "k＝7",
+          "font_px": 46,
+          "bbox": [
+            931.0,
+            1049.0,
+            1028.0,
+            1086.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "时间 →",
+          "font_px": 46,
+          "bbox": [
+            961.5,
+            1483.0,
+            1110.0,
+            1526.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "机制示意，不是验证结果。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1554.0,
+            620.0,
+            1599.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "不能据此选出更好的 k。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1610.0,
+            563.5,
+            1654.0
+          ],
+          "role": "body"
+        }
+      ],
+      "text_box_overlaps": []
+    },
+    {
+      "file": "images/d10-02_split.png",
+      "width": 1200,
+      "height": 1620,
+      "minimum_text_font_px": 32,
+      "minimum_essential_text_font_px": 46,
+      "text_boxes": [
+        {
+          "text": "02  /  评估边界",
+          "font_px": 32,
+          "bbox": [
+            68.0,
+            40.0,
+            273.0,
+            73.0
+          ],
+          "role": "kicker"
+        },
+        {
+          "text": "先切分，再滚动",
+          "font_px": 54,
+          "bbox": [
+            68.0,
+            100.0,
+            446.0,
+            152.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "本篇只读前 140 天的开发集",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            187.0,
+            625.0,
+            231.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "D9 已公开原测试汇总；D10 不再评分。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            318.0,
+            872.5,
+            365.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "训练段",
+          "font_px": 46,
+          "bbox": [
+            169.5,
+            420.0,
+            307.5,
+            464.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "第 1–112 天",
+          "font_px": 46,
+          "bbox": [
+            119.0,
+            488.0,
+            358.5,
+            531.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "验证段",
+          "font_px": 46,
+          "bbox": [
+            531.0,
+            420.0,
+            669.0,
+            464.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "第 113–140 天",
+          "font_px": 46,
+          "bbox": [
+            455.0,
+            488.0,
+            745.5,
+            531.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "D10 不评分",
+          "font_px": 46,
+          "bbox": [
+            846.0,
+            420.0,
+            1077.0,
+            462.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "第 141–180 天",
+          "font_px": 46,
+          "bbox": [
+            816.5,
+            488.0,
+            1107.0,
+            531.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "区间长度示意，不按比例。",
+          "font_px": 34,
+          "bbox": [
+            68.0,
+            590.0,
+            476.0,
+            623.5
+          ],
+          "role": "secondary"
+        },
+        {
+          "text": "28 次日预测",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            672.0,
+            313.5,
+            715.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "起点 112–139 → 目标 113–140",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            747.0,
+            695.0,
+            790.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "113",
+          "font_px": 46,
+          "bbox": [
+            70.5,
+            890.0,
+            147.0,
+            925.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "117",
+          "font_px": 46,
+          "bbox": [
+            216.0,
+            890.0,
+            292.5,
+            923.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "124",
+          "font_px": 46,
+          "bbox": [
+            470.5,
+            890.0,
+            547.0,
+            924.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "131",
+          "font_px": 46,
+          "bbox": [
+            725.0,
+            890.0,
+            801.5,
+            925.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "140",
+          "font_px": 46,
+          "bbox": [
+            1052.5,
+            890.0,
+            1129.0,
+            925.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "首个 5 日窗：113–117",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            994.0,
+            522.0,
+            1037.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "起点 112",
+          "font_px": 46,
+          "bbox": [
+            941.0,
+            994.0,
+            1120.0,
+            1037.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "末个 5 日窗：136–140",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1200.0,
+            522.0,
+            1243.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "起点 135",
+          "font_px": 46,
+          "bbox": [
+            941.0,
+            1200.0,
+            1120.0,
+            1243.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "24 个重叠的 5 日窗",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1411.0,
+            451.5,
+            1454.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "完整落在验证段，不跨边界。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1486.0,
+            666.0,
+            1531.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "重叠窗口不是独立样本。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1557.0,
+            574.0,
+            1600.5
+          ],
+          "role": "body"
+        }
+      ],
+      "text_box_overlaps": []
+    },
+    {
+      "file": "images/d10-03_hewei.png",
+      "width": 1200,
+      "height": 1370,
+      "minimum_text_font_px": 32,
+      "minimum_essential_text_font_px": 46,
+      "text_boxes": [
+        {
+          "text": "03  /  模拟结果",
+          "font_px": 32,
+          "bbox": [
+            68.0,
+            40.0,
+            273.0,
+            73.0
+          ],
+          "role": "kicker"
+        },
+        {
+          "text": "禾味 A 店 SKU01｜验证段",
+          "font_px": 50,
+          "bbox": [
+            68.0,
+            105.0,
+            635.0,
+            155.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "教学模拟｜滚动一步（h＝1）",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            187.0,
+            673.5,
+            233.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "模拟实际",
+          "font_px": 46,
+          "bbox": [
+            189.0,
+            284.0,
+            373.0,
+            328.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "MA3",
+          "font_px": 46,
+          "bbox": [
+            756.0,
+            284.0,
+            847.0,
+            318.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "MA7",
+          "font_px": 46,
+          "bbox": [
+            189.0,
+            362.0,
+            280.0,
+            395.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "MA14",
+          "font_px": 46,
+          "bbox": [
+            756.0,
+            362.0,
+            872.5,
+            395.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "需求（kg/日）",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            452.0,
+            369.5,
+            503.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "0",
+          "font_px": 46,
+          "bbox": [
+            106.5,
+            970.5,
+            132.0,
+            1005.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "10",
+          "font_px": 46,
+          "bbox": [
+            81.0,
+            883.5,
+            132.0,
+            918.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "20",
+          "font_px": 46,
+          "bbox": [
+            81.0,
+            796.5,
+            132.0,
+            831.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "30",
+          "font_px": 46,
+          "bbox": [
+            81.0,
+            709.5,
+            132.0,
+            744.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "40",
+          "font_px": 46,
+          "bbox": [
+            81.0,
+            622.5,
+            132.0,
+            657.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "50",
+          "font_px": 46,
+          "bbox": [
+            81.0,
+            535.5,
+            132.0,
+            570.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "113",
+          "font_px": 46,
+          "bbox": [
+            111.5,
+            1008.0,
+            188.0,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "117",
+          "font_px": 46,
+          "bbox": [
+            256.5,
+            1008.0,
+            333.0,
+            1041.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "121",
+          "font_px": 46,
+          "bbox": [
+            401.5,
+            1008.0,
+            478.0,
+            1042.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "125",
+          "font_px": 46,
+          "bbox": [
+            546.0,
+            1008.0,
+            622.5,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "129",
+          "font_px": 46,
+          "bbox": [
+            691.0,
+            1008.0,
+            767.5,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "133",
+          "font_px": 46,
+          "bbox": [
+            836.0,
+            1008.0,
+            912.5,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "137",
+          "font_px": 46,
+          "bbox": [
+            981.0,
+            1008.0,
+            1057.5,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "140",
+          "font_px": 46,
+          "bbox": [
+            1089.5,
+            1008.0,
+            1166.0,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "目标日",
+          "font_px": 46,
+          "bbox": [
+            990.0,
+            1081.0,
+            1128.0,
+            1124.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "只用此前 k 天的已知值。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1170.0,
+            574.0,
+            1214.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "不是固定起点 5 步预测。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1240.0,
+            574.0,
+            1284.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "仅用于教学，不是真实经营数据。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1310.0,
+            758.0,
+            1355.0
+          ],
+          "role": "body"
+        }
+      ],
+      "text_box_overlaps": []
+    },
+    {
+      "file": "images/d10-04_apparel.png",
+      "width": 1200,
+      "height": 1370,
+      "minimum_text_font_px": 32,
+      "minimum_essential_text_font_px": 46,
+      "text_boxes": [
+        {
+          "text": "04  /  模拟结果",
+          "font_px": 32,
+          "bbox": [
+            68.0,
+            40.0,
+            273.0,
+            73.0
+          ],
+          "role": "kicker"
+        },
+        {
+          "text": "匿名服饰订单｜验证段",
+          "font_px": 50,
+          "bbox": [
+            68.0,
+            105.0,
+            568.0,
+            155.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "教学模拟｜滚动一步（h＝1）",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            187.0,
+            673.5,
+            233.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "模拟实际",
+          "font_px": 46,
+          "bbox": [
+            189.0,
+            284.0,
+            373.0,
+            328.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "MA3",
+          "font_px": 46,
+          "bbox": [
+            756.0,
+            284.0,
+            847.0,
+            318.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "MA7",
+          "font_px": 46,
+          "bbox": [
+            189.0,
+            362.0,
+            280.0,
+            395.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "MA14",
+          "font_px": 46,
+          "bbox": [
+            756.0,
+            362.0,
+            872.5,
+            395.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "需求（件/日）",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            452.0,
+            362.0,
+            500.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "0",
+          "font_px": 46,
+          "bbox": [
+            106.5,
+            970.5,
+            132.0,
+            1005.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "50",
+          "font_px": 46,
+          "bbox": [
+            81.0,
+            893.0,
+            132.0,
+            928.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "100",
+          "font_px": 46,
+          "bbox": [
+            55.5,
+            815.0,
+            132.0,
+            850.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "150",
+          "font_px": 46,
+          "bbox": [
+            55.5,
+            737.5,
+            132.0,
+            772.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "200",
+          "font_px": 46,
+          "bbox": [
+            55.5,
+            660.0,
+            132.0,
+            695.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "250",
+          "font_px": 46,
+          "bbox": [
+            55.5,
+            582.0,
+            132.0,
+            617.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "113",
+          "font_px": 46,
+          "bbox": [
+            111.5,
+            1008.0,
+            188.0,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "117",
+          "font_px": 46,
+          "bbox": [
+            256.5,
+            1008.0,
+            333.0,
+            1041.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "121",
+          "font_px": 46,
+          "bbox": [
+            401.5,
+            1008.0,
+            478.0,
+            1042.5
+          ],
+          "role": "body"
+        },
+        {
+          "text": "125",
+          "font_px": 46,
+          "bbox": [
+            546.0,
+            1008.0,
+            622.5,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "129",
+          "font_px": 46,
+          "bbox": [
+            691.0,
+            1008.0,
+            767.5,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "133",
+          "font_px": 46,
+          "bbox": [
+            836.0,
+            1008.0,
+            912.5,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "137",
+          "font_px": 46,
+          "bbox": [
+            981.0,
+            1008.0,
+            1057.5,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "140",
+          "font_px": 46,
+          "bbox": [
+            1089.5,
+            1008.0,
+            1166.0,
+            1043.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "目标日",
+          "font_px": 46,
+          "bbox": [
+            990.0,
+            1081.0,
+            1128.0,
+            1124.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "只用此前 k 天的已知值。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1170.0,
+            574.0,
+            1214.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "不是固定起点 5 步预测。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1240.0,
+            574.0,
+            1284.0
+          ],
+          "role": "body"
+        },
+        {
+          "text": "118–120 天人为加量（模拟设定）。",
+          "font_px": 46,
+          "bbox": [
+            68.0,
+            1310.0,
+            808.0,
+            1354.0
+          ],
+          "role": "body"
+        }
+      ],
+      "text_box_overlaps": []
+    }
+  ],
+  "mobile_visual_review": {
+    "reviewer": "authoring agent visual inspection after R1 (not adversarial review)",
+    "preview_widths_px": [
+      320,
+      390
+    ],
+    "status": "reviewed",
+    "findings": "All ten native-width previews inspected. Essential body text is at least 46 px at 1200 px source width (12.27 px at 320 px). No overlapping or clipped text observed; line styles remain distinguishable. D9 published-test context and D10 no-scoring boundary are essential text, not a small footnote. Daily h=1 versus fixed-origin 5-step distinction is essential text. Cover remains the exact requested size and unchanged.",
+    "images": [
+      {
+        "file": "images/mobile/d10-00_cover.png",
+        "sha256": "a5990adabb51692ec09c9d57a0c8483b6ac446ed9dd0024ec3f7be1e32f2576a"
+      },
+      {
+        "file": "images/mobile/d10-01_alignment.png",
+        "sha256": "93a6557dd66acf3804410207704379232400341a3fc4a48abfed20cba72b5306"
+      },
+      {
+        "file": "images/mobile/d10-02_split.png",
+        "sha256": "0b196a4486a0327e1edbfc5a0a4b2ab25827b01c35041842a278801a640cc365"
+      },
+      {
+        "file": "images/mobile/d10-03_hewei.png",
+        "sha256": "6e5c39f038504f7812d962720a9213feb8e7b0f4ff396726f8a13f2ac61ea707"
+      },
+      {
+        "file": "images/mobile/d10-04_apparel.png",
+        "sha256": "631a2ca4f9620a794450d4655e6cbccfedfbd2f0d42d1a21b6d08e94fdbe6ab6"
+      },
+      {
+        "file": "images/mobile-320/d10-00_cover.png",
+        "sha256": "e20a1a3e571d136fd39f5ebe3dbf7fc4213f634d4d1254fd523e74e67825654c"
+      },
+      {
+        "file": "images/mobile-320/d10-01_alignment.png",
+        "sha256": "5e1020f5a804808529e376dd4f90affb5d31e510c92285019b63d92af4154ac8"
+      },
+      {
+        "file": "images/mobile-320/d10-02_split.png",
+        "sha256": "7ea16c44fc364459cad7177e3de0481a84f06892d1e99cffe7edfc8d6d14bde3"
+      },
+      {
+        "file": "images/mobile-320/d10-03_hewei.png",
+        "sha256": "3c2d5e865af7b4a12f2c6570d18847e375300e5e9146674fba704396366779b5"
+      },
+      {
+        "file": "images/mobile-320/d10-04_apparel.png",
+        "sha256": "592e6eb89081295dba4c90edea0a39badedd302b9f59cea3e28c08518c90e650"
+      }
+    ]
+  }
+}

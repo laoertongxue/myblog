@@ -1,0 +1,23 @@
+{
+  "status": "review_and_presentation_supplement_passed_pending_local_live_checks",
+  "rounds": 2,
+  "r1": "Findings fixed and independently closed in R2; not two initially clean rounds.",
+  "supplement": "Native-theme table wrapping found after R2; presentation-only fix independently rechecked.",
+  "article_sha256": "35ec4b447988aae680d85fd5ea81ce777cbc746a1b3260871f4871ff1a22a978",
+  "integration_zip_sha256": "23eaa335ec65779a5192c8516754a5d6171213dfcbf565d6204dba14a5686947",
+  "article_zip_sha256": "ffdb1f4a043a7212f39138d94472c251c1d9a94beb7b667f214c97923c37520d",
+  "practice_zip_sha256": "53f2692e0f934d7717ceb2d02b3433a53e1f7eeca04c661445f530adf9b4c949",
+  "images_zip_sha256": "6428e98c7f7d08bada7436a54803b2b72f1793e8e967a9fe049524f282a53856",
+  "reports": {
+    "r2-math": "bdfa3b0fb579c936211528be9d59a40595894fede922ad73b2b424514187fbc7",
+    "r2-editorial": "90b1b21916250dc210b9d64a027bc3dafd5f6991d606728ec8bc70fa05bbfae6",
+    "r2-math-supplement": "b8b10f115360c1c112ca85b497ba8b6d4ad3ac476b946d789956684abeca9712",
+    "r2-editorial-supplement": "cbe12acf439eb7508abf3b85d089b4de96029f9fe798f4daf40df7433a8edddc"
+  },
+  "remaining": [
+    "Final native Hugo checks",
+    "Actual-theme desktop/mobile scrolling verification",
+    "Push exact commit and verify CI",
+    "Live article/assets/download verification"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "retrieved_utc": "2026-11-03",
+  "sources": [
+    {
+      "url": "https://12lab.cn/downloads/d9-seasonal-naive-practice.zip",
+      "file": "source/d9-seasonal-naive-practice.zip",
+      "sha256": "0063b6ddae7459eff9dc7779c0a0a6c9ecef8d0bd48320c653eae1c072ce1c31"
+    },
+    {
+      "url": "https://12lab.cn/blog/seasonal-naive-demand-forecast/",
+      "file": "source/d9-public.html",
+      "sha256": "0118d3c34bcaa3244ec81cc52f9cff11b9d46d1ce8ae980499e289af043e8454"
+    }
+  ],
+  "version": "D9-v1",
+  "scope": "Only development CSV labels inspected for D10; no sealed CSV or test results file read; D9 public article already exposed aggregate original test results, so original test is not a fresh blind holdout."
+}

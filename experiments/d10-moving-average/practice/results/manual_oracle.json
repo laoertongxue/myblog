@@ -1,0 +1,18 @@
+{
+  "description": "Hand-calculated independent expectation, not fitted business data.",
+  "observed": [
+    10,
+    20,
+    30
+  ],
+  "k": 3,
+  "expected_next_day": 20,
+  "expected_fixed_origin_five_day": [
+    20,
+    20,
+    20,
+    20,
+    20
+  ],
+  "expected_five_day_total": 100
+}

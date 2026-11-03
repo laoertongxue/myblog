@@ -1,0 +1,86 @@
+{
+  "hewei": [
+    {
+      "method": "MA3",
+      "k_or_period": 3,
+      "daily_count": 28,
+      "daily_mae": 6.714285714285714,
+      "daily_unit": "kg/day",
+      "five_day_window_count": 24,
+      "five_day_total_mae": 24.708333333333332,
+      "five_day_total_unit": "kg"
+    },
+    {
+      "method": "MA7",
+      "k_or_period": 7,
+      "daily_count": 28,
+      "daily_mae": 5.321428571428571,
+      "daily_unit": "kg/day",
+      "five_day_window_count": 24,
+      "five_day_total_mae": 9.375,
+      "five_day_total_unit": "kg"
+    },
+    {
+      "method": "MA14",
+      "k_or_period": 14,
+      "daily_count": 28,
+      "daily_mae": 5.3852040816326525,
+      "daily_unit": "kg/day",
+      "five_day_window_count": 24,
+      "five_day_total_mae": 9.151785714285715,
+      "five_day_total_unit": "kg"
+    },
+    {
+      "method": "SNaive7",
+      "k_or_period": 7,
+      "daily_count": 28,
+      "daily_mae": 1.7857142857142858,
+      "daily_unit": "kg/day",
+      "five_day_window_count": 24,
+      "five_day_total_mae": 3.2916666666666665,
+      "five_day_total_unit": "kg"
+    }
+  ],
+  "apparel": [
+    {
+      "method": "MA3",
+      "k_or_period": 3,
+      "daily_count": 28,
+      "daily_mae": 35.523809523809526,
+      "daily_unit": "pieces/day",
+      "five_day_window_count": 24,
+      "five_day_total_mae": 169.23611111111111,
+      "five_day_total_unit": "pieces"
+    },
+    {
+      "method": "MA7",
+      "k_or_period": 7,
+      "daily_count": 28,
+      "daily_mae": 30.153061224489797,
+      "daily_unit": "pieces/day",
+      "five_day_window_count": 24,
+      "five_day_total_mae": 120.19642857142857,
+      "five_day_total_unit": "pieces"
+    },
+    {
+      "method": "MA14",
+      "k_or_period": 14,
+      "daily_count": 28,
+      "daily_mae": 30.214285714285715,
+      "daily_unit": "pieces/day",
+      "five_day_window_count": 24,
+      "five_day_total_mae": 109.45238095238095,
+      "five_day_total_unit": "pieces"
+    },
+    {
+      "method": "SNaive7",
+      "k_or_period": 7,
+      "daily_count": 28,
+      "daily_mae": 21.107142857142858,
+      "daily_unit": "pieces/day",
+      "five_day_window_count": 24,
+      "five_day_total_mae": 115.875,
+      "five_day_total_unit": "pieces"
+    }
+  ]
+}

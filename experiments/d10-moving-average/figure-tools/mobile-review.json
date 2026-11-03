@@ -1,0 +1,51 @@
+{
+  "reviewer": "authoring agent visual inspection after R1 (not adversarial review)",
+  "preview_widths_px": [
+    320,
+    390
+  ],
+  "status": "reviewed",
+  "findings": "All ten native-width previews inspected. Essential body text is at least 46 px at 1200 px source width (12.27 px at 320 px). No overlapping or clipped text observed; line styles remain distinguishable. D9 published-test context and D10 no-scoring boundary are essential text, not a small footnote. Daily h=1 versus fixed-origin 5-step distinction is essential text. Cover remains the exact requested size and unchanged.",
+  "images": [
+    {
+      "file": "images/mobile/d10-00_cover.png",
+      "sha256": "a5990adabb51692ec09c9d57a0c8483b6ac446ed9dd0024ec3f7be1e32f2576a"
+    },
+    {
+      "file": "images/mobile/d10-01_alignment.png",
+      "sha256": "93a6557dd66acf3804410207704379232400341a3fc4a48abfed20cba72b5306"
+    },
+    {
+      "file": "images/mobile/d10-02_split.png",
+      "sha256": "0b196a4486a0327e1edbfc5a0a4b2ab25827b01c35041842a278801a640cc365"
+    },
+    {
+      "file": "images/mobile/d10-03_hewei.png",
+      "sha256": "6e5c39f038504f7812d962720a9213feb8e7b0f4ff396726f8a13f2ac61ea707"
+    },
+    {
+      "file": "images/mobile/d10-04_apparel.png",
+      "sha256": "631a2ca4f9620a794450d4655e6cbccfedfbd2f0d42d1a21b6d08e94fdbe6ab6"
+    },
+    {
+      "file": "images/mobile-320/d10-00_cover.png",
+      "sha256": "e20a1a3e571d136fd39f5ebe3dbf7fc4213f634d4d1254fd523e74e67825654c"
+    },
+    {
+      "file": "images/mobile-320/d10-01_alignment.png",
+      "sha256": "5e1020f5a804808529e376dd4f90affb5d31e510c92285019b63d92af4154ac8"
+    },
+    {
+      "file": "images/mobile-320/d10-02_split.png",
+      "sha256": "7ea16c44fc364459cad7177e3de0481a84f06892d1e99cffe7edfc8d6d14bde3"
+    },
+    {
+      "file": "images/mobile-320/d10-03_hewei.png",
+      "sha256": "3c2d5e865af7b4a12f2c6570d18847e375300e5e9146674fba704396366779b5"
+    },
+    {
+      "file": "images/mobile-320/d10-04_apparel.png",
+      "sha256": "592e6eb89081295dba4c90edea0a39badedd302b9f59cea3e28c08518c90e650"
+    }
+  ]
+}
