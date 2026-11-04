@@ -77,9 +77,9 @@ python3 scripts/check-agent-series.py "$OUT"
 python3 scripts/check-content-workflow.py
 python3 scripts/check-deploy-release.py
 
-# D9's published numerical claims must remain reproducible in CI.
+# Preserve D9's published test artifact; recompute only development validation.
 python3 -m unittest discover -s examples/d9-seasonal-naive -v
-python3 examples/d9-seasonal-naive/run.py finalize
+python3 examples/d9-seasonal-naive/check_regression.py
 
 # Real browser checks against the build that was just produced. They are never
 # silently skipped: with BROWSER_CHECKS=require (CI) a missing playwright is a

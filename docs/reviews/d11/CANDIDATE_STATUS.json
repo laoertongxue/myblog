@@ -1,0 +1,10 @@
+{
+  "version": "D11-v2",
+  "status": "revised_candidate_pending_round_2",
+  "round_1": "Parent relayed math and editorial findings; v2 addresses manifest completeness, CSV blank lines and 14/180-day continuity. No algorithm error reported.",
+  "round_2": "pending",
+  "publication_authorized_by_parent": false,
+  "original_repository_head": "6e78881ec5cace564c101ca4dca85cb58254dfae",
+  "slug": "simple-exponential-smoothing-demand-forecast",
+  "article_date": "2026-11-04T09:00:00+08:00"
+}

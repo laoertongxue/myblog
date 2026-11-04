@@ -2,7 +2,18 @@
 
 全部情景为教学模拟；禾味为虚构餐饮连锁。核心只生成 A店 SKU01 一条公斤/日需求；其余15条没有运行。服装为匿名协同背景的独立件/日终端订单需求，不是生产排程；SIM-LIVE-001为虚构单号。没有真实品牌、业务收益或生产连接。
 
-Python >=3.10，标准库，无需Docker。直接核对原候选：`python -m unittest -v` 后 `python run.py finalize`。完整重建：先保存原包，将 `freeze.json` 与 `results/test.json` 移至包外备份（否则prepare拒绝旧候选），再运行（会覆盖其余同名CSV与JSON）：
+Python >=3.10，标准库，无需Docker。日常仓库回归执行：
+
+```sh
+python -m unittest -v
+python check_regression.py
+```
+
+日常检查只用前140天开发数据运行模型与输入边界测试，并复算第113—140天验证结果。既有`results/test.json`只按已提交版本的固定SHA-256核验完整性，不解析其中标签、不重新评分、不改写结果。冻结回执、六个代码/政策/开发文件也需哈希一致；`sealed/`无需存在。它不证明旧测试结论有效性或历史访问情况，也不再验证原测试CSV的完整性。
+
+`python run.py finalize`仍保留为**单独的显式测试集重评操作**，会读取`sealed/`第141—180天并覆盖`results/test.json`；它不属于`make check`或自动发布步骤。确需重评时须另行明确授权，不能在日常检查失败后自动刷新固定哈希。固定哈希基于提交`6e78881ec5cace564c101ca4dca85cb58254dfae`中的既有产物；任何有意更新须审查。
+
+以下是历史完整重建流程，会重新生成全部180天并评分原测试段，**不作为日常发布检查执行**。完整重建：先保存原包，将 `freeze.json` 与 `results/test.json` 移至包外备份（否则prepare拒绝旧候选），再运行（会覆盖其余同名CSV与JSON）：
 
 ```sh
 python run.py prepare

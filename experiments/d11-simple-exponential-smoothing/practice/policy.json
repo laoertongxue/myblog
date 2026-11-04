@@ -1,0 +1,47 @@
+{
+  "version": "D11-v2",
+  "source_version": "D9-v1",
+  "source_public_url": "https://12lab.cn/downloads/d9-seasonal-naive-practice.zip",
+  "source_zip_sha256": "0063b6ddae7459eff9dc7779c0a0a6c9ecef8d0bd48320c653eae1c072ce1c31",
+  "series": {
+    "hewei": {
+      "identity": "hewei/A/SKU01",
+      "daily_unit": "kg/day",
+      "total_unit": "kg"
+    },
+    "apparel": {
+      "identity": "anonymous-apparel/terminal-order-demand",
+      "daily_unit": "pieces/day",
+      "total_unit": "pieces"
+    }
+  },
+  "splits": {
+    "train": [
+      1,
+      112
+    ],
+    "validation": [
+      113,
+      140
+    ],
+    "test": [
+      141,
+      180
+    ]
+  },
+  "comparator": "weekly seasonal naive, period 7",
+  "daily": "28 rolling-origin one-step forecasts, origins 112..139",
+  "five_day": "24 rolling-origin fixed-origin five-step forecasts, origins 112..135, targets fully inside validation",
+  "fixed_origin": "post-observation level at origin repeated for every horizon; no future actual updates",
+  "daily_metric": "mean absolute daily prediction error",
+  "five_day_metric": "mean absolute error of five-day totals; overlapping windows are not independent",
+  "selection": "validation comparison only; no final model selected and no test performance claimed",
+  "simulation": "both series are teaching simulations; hewei is fictional; no measured business benefit",
+  "alpha_candidates": [
+    0.2,
+    0.5,
+    0.8
+  ],
+  "initialization": "first observation",
+  "original_test": "D9 already published test summaries; original 40 days are not an untouched holdout. No labels, reader or scoring in D11."
+}

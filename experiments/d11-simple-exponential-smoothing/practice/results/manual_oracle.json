@@ -1,0 +1,31 @@
+{
+  "description": "Independent literal hand expectations, not business observations.",
+  "two_observations": {
+    "observed": [
+      10,
+      20
+    ],
+    "alpha": 0.5,
+    "level": 15,
+    "fixed_origin_five_day": [
+      15,
+      15,
+      15,
+      15,
+      15
+    ],
+    "total": 75
+  },
+  "three_observations": {
+    "observed": [
+      10,
+      20,
+      10
+    ],
+    "expected_levels": {
+      "0.2": 11.6,
+      "0.5": 12.5,
+      "0.8": 11.6
+    }
+  }
+}
