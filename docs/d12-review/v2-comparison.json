@@ -1,0 +1,12 @@
+{
+  "v1_zip_sha256": "d86b01c53bb1cbad648161e6b5117715e5de6d0c41d2bcfef06826bdfa35c01a",
+  "metric_rows": 42,
+  "displayed_numeric_values_verified": 210,
+  "all_displayed_values_unchanged": true,
+  "maximum_metric_float_delta": 7.105427357601002e-15,
+  "unchanged_results": [
+    "daily_predictions.csv",
+    "five_day_windows.csv",
+    "manual_oracle.json"
+  ]
+}

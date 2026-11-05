@@ -1,0 +1,86 @@
+==> hugo --gc --minify (same flags as CI)
+ok    built 94 pages
+ok    all 29 required routes exist (28 published content entries plus home/404)
+ok    parsed content: 15 published/scheduled articles; 0 drafts excluded from required-field checks
+ok    no year-1 dates
+ok    date layout tokens valid
+ok    no localhost URLs
+ok    no template escaping placeholders
+ok    2 processed image(s) emitted
+ok    indexing fixtures: empty sections, explicit noindex/testContent and their exclusive tags excluded; populated sections indexable
+ok    summaries: complete explicit text, short-summary support, description fallback and independent SEO metadata
+ok    thumbnails: cover over images, first explicit image, bundle discovery; exactly one cover per row
+ok    900x383 covers: 540x230 previews, 540/900 responsive widths
+ok    body images: portrait source keeps its independent original proportions
+ok    homepage pagination: 10 + 10 + 10 + 10 + 3, date order, no duplicates, drafts/future excluded
+ok    topic pagination fixture: 10 + 4 chapters, weight order, no duplicates
+ok    all local image/article links resolve; 0 test articles and 201 image references
+ok    SEO: 61 pages, self canonicals, crawlable graph/fragments, robots, contextual metadata, visible authors and Article schema; 54 sitemap URLs and 101 RSS items
+ok    SEO fault injection: accidental noindex, wrong canonical host, blocked robots, broken fragments, sitemap omission and invisible author all rejected
+ok    series: 2 chapters in weight order (12 pictures, 5 pictures); sizes, TOC, tables, references, previews, search, sitemap and RSS all derived from content and templates
+ok    parsed content: 3 published/scheduled articles; 0 drafts excluded from required-field checks
+ok    parsed content: 3 published/scheduled articles; 1 drafts excluded from required-field checks
+ok    authoring: three archetypes, quoted dates, incomplete drafts, published/scheduled metadata rejection
+Manifest: 12 files, 16 HTTP probes
+Health attempt 1/1: /index.html: served bytes differ from release
+ROLLED BACK to releases/20261001-000000
+....Manifest: 12 files, 16 HTTP probes
+Manifest: 12 files, 16 HTTP probes
+Manifest: 12 files, 16 HTTP probes
+Manifest: 12 files, 16 HTTP probes
+Health attempt 1/1: /index.html: HTTP 500, expected 200
+ROLLED BACK to releases/20261001-000000
+..Manifest: 12 files, 16 HTTP probes
+Manifest: 12 files, 16 HTTP probes
+Health attempt 1/3: <urlopen error connection refused>
+Health attempt 2/3: <urlopen error connection refused>
+Health attempt 3/3: <urlopen error connection refused>
+ROLLED BACK to releases/20261001-000000
+..Manifest: 12 files, 16 HTTP probes
+Manifest: 12 files, 16 HTTP probes
+ROLLED BACK to releases/20261001-000000
+..Manifest: 12 files, 16 HTTP probes
+Manifest: 12 files, 16 HTTP probes
+Deployed 20261007-000000-123-1: 12 checksums and 16 HTTP probes passed
+.
+----------------------------------------------------------------------
+Ran 11 tests in 0.211s
+
+OK
+test_bad_controls (test_baseline.BaselineTests.test_bad_controls) ... ok
+test_bad_dates (test_baseline.BaselineTests.test_bad_dates) ... ok
+test_bad_values (test_baseline.BaselineTests.test_bad_values) ... ok
+test_blocks (test_baseline.BaselineTests.test_blocks) ... ok
+test_csv_metadata (test_baseline.BaselineTests.test_csv_metadata) ... ok
+test_development_fixture (test_baseline.BaselineTests.test_development_fixture) ... ok
+test_future_poison (test_baseline.BaselineTests.test_future_poison) ... ok
+test_hand_and_multiple_weeks (test_baseline.BaselineTests.test_hand_and_multiple_weeks) ... ok
+test_insufficient_history (test_baseline.BaselineTests.test_insufficient_history) ... ok
+test_portable_lf_output (test_baseline.BaselineTests.test_portable_lf_output) ... ok
+test_prepare_rejects_old_candidate (test_baseline.BaselineTests.test_prepare_rejects_old_candidate) ... ok
+test_synthetic_weekly_profile (test_baseline.BaselineTests.test_synthetic_weekly_profile) ... ok
+test_zero_is_valid (test_baseline.BaselineTests.test_zero_is_valid) ... ok
+test_changed_development_and_source_rejected (test_regression.DailyRegressionTests.test_changed_development_and_source_rejected) ... ok
+test_changed_receipt_rejected (test_regression.DailyRegressionTests.test_changed_receipt_rejected) ... ok
+test_checks_do_not_modify_any_input_or_result (test_regression.DailyRegressionTests.test_checks_do_not_modify_any_input_or_result) ... ok
+test_missing_published_result_rejected (test_regression.DailyRegressionTests.test_missing_published_result_rejected) ... ok
+test_passes_without_sealed_and_never_generates_or_finalizes (test_regression.DailyRegressionTests.test_passes_without_sealed_and_never_generates_or_finalizes) ... ok
+test_published_result_tampering_rejected_before_scoring (test_regression.DailyRegressionTests.test_published_result_tampering_rejected_before_scoring) ... ok
+test_validation_mismatch_rejected (test_regression.DailyRegressionTests.test_validation_mismatch_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.051s
+
+OK
+ok    D9: published test artifact and frozen development sources intact; 2 validation regressions passed; no sealed labels read or test scores recomputed
+ok    browser/design: 17 assertion group(s), 1440px: 13 blog article(s), 71 inline image(s) preserve intrinsic proportions, 50 source link(s), no overflow; 390px: 13 blog article(s), 71 inline image(s) preserve intrinsic proportions, 50 source link(s), no overflow; 320px: 13 blog article(s), 71 inline image(s) preserve intrinsic proportions, 50 source link(s), no overflow; 88 distinct original source(s) decoded with preserved proportions; every cover is 900x383
+ok    browser/mobile-navigation: 3 assertion group(s), 760px: menu open/close, Escape, backdrop, focus return, navigation, resize reset, reading stats and TOC passed
+ok    browser/adversarial-ui: 5 assertion group(s), Exactly the first preview of each listing is prioritized, exactly one cover per row, the rest lazy
+ok    browser/agent-series: 9 assertion group(s), 320px: series and every chapter are searchable under the topics filter
+ok    browser/thumbnail-fit: 13 assertion group(s), Blog/Weekly/topic rows show one 900:383 cover; body-picture dimensions remain independent
+ok    browser/resource-loading: 3 assertion group(s), Search code only on the search page; the fingerprinted index is fetched on demand and finds "理解 Agent：从核心构成到工程全景"
+ok    browser/d9: 4 assertion group(s), 21 original/responsive image candidates: R=G=B; 3 ZIPs; home/category navigation
+
+All 7 browser checks passed (/Users/laoer/Documents/Codex/2026-11-05/task/d12-candidate/.hugo-check served on http://127.0.0.1:1316).
+
+All checks passed.

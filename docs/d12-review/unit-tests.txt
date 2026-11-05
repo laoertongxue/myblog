@@ -1,0 +1,29 @@
+test_fixed_origin_hand_predictions (test_metrics.ForecastTests.test_fixed_origin_hand_predictions) ... ok
+test_fraction_oracle_all_targets_and_metrics (test_metrics.ForecastTests.test_fraction_oracle_all_targets_and_metrics) ... ok
+test_future_poison_does_not_change_predictions (test_metrics.ForecastTests.test_future_poison_does_not_change_predictions) ... ok
+test_source_hashes_and_development_contract (test_metrics.ForecastTests.test_source_hashes_and_development_contract) ... ok
+test_windows_do_not_cross_boundaries (test_metrics.ForecastTests.test_windows_do_not_cross_boundaries) ... ok
+test_absolute_error_aggregate_overflow_rejected (test_metrics.MetricsTests.test_absolute_error_aggregate_overflow_rejected) ... ok
+test_asymmetric_error_and_order_reversal (test_metrics.MetricsTests.test_asymmetric_error_and_order_reversal) ... ok
+test_finite_large_values_without_squared_overflow (test_metrics.MetricsTests.test_finite_large_values_without_squared_overflow) ... ok
+test_group_aggregation (test_metrics.MetricsTests.test_group_aggregation) ... ok
+test_hand_example (test_metrics.MetricsTests.test_hand_example) ... ok
+test_invalid_inputs (test_metrics.MetricsTests.test_invalid_inputs) ... ok
+test_large_finite_rmse (test_metrics.MetricsTests.test_large_finite_rmse) ... ok
+test_negative_predictions_remain_errors (test_metrics.MetricsTests.test_negative_predictions_remain_errors) ... ok
+test_overflow_fails (test_metrics.MetricsTests.test_overflow_fails) ... ok
+test_rmse_penalizes_large_miss (test_metrics.MetricsTests.test_rmse_penalizes_large_miss) ... ok
+test_scale_and_order_identity (test_metrics.MetricsTests.test_scale_and_order_identity) ... ok
+test_sign_and_cancellation (test_metrics.MetricsTests.test_sign_and_cancellation) ... ok
+test_smallest_subnormal_mean_survives (test_metrics.MetricsTests.test_smallest_subnormal_mean_survives) ... ok
+test_subnormal_cancellation_is_legitimate (test_metrics.MetricsTests.test_subnormal_cancellation_is_legitimate) ... ok
+test_unrepresentable_nonzero_means_rejected (test_metrics.MetricsTests.test_unrepresentable_nonzero_means_rejected) ... ok
+test_wape_can_exceed_one (test_metrics.MetricsTests.test_wape_can_exceed_one) ... ok
+test_wape_range_checks (test_metrics.MetricsTests.test_wape_range_checks) ... ok
+test_zero_rows_not_dropped (test_metrics.MetricsTests.test_zero_rows_not_dropped) ... ok
+test_zero_total_is_undefined_even_if_perfect (test_metrics.MetricsTests.test_zero_total_is_undefined_even_if_perfect) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.119s
+
+OK

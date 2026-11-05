@@ -1,0 +1,19 @@
+{
+  "d12-forecast-errors-article.zip": {
+    "sha256": "553c0947d52f62497806cccf8fc76302f8e1757e8eb584a00696176db1c6d4b6",
+    "members": 7,
+    "manifest": "complete and verified"
+  },
+  "d12-forecast-errors-images.zip": {
+    "sha256": "04ad8d145a00d12651ab73dc1398a90f6a3e0f838d42712a99483bfd0c7cadae",
+    "members": 33,
+    "manifest": "complete and verified"
+  },
+  "d12-forecast-errors-practice.zip": {
+    "sha256": "eb78f447113700cf2d0278cf8bab6a4cdc89fdfe7f2364037b4ca97fb40cc5c7",
+    "members": 14,
+    "manifest": "complete and verified",
+    "fresh_extract_tests": "test_fixed_origin_hand_predictions (test_metrics.ForecastTests.test_fixed_origin_hand_predictions) ... ok\ntest_fraction_oracle_all_targets_and_metrics (test_metrics.ForecastTests.test_fraction_oracle_all_targets_and_metrics) ... ok\ntest_future_poison_does_not_change_predictions (test_metrics.ForecastTests.test_future_poison_does_not_change_predictions) ... ok\ntest_source_hashes_and_development_contract (test_metrics.ForecastTests.test_source_hashes_and_development_contract) ... ok\ntest_windows_do_not_cross_boundaries (test_metrics.ForecastTests.test_windows_do_not_cross_boundaries) ... ok\ntest_absolute_error_aggregate_overflow_rejected (test_metrics.MetricsTests.test_absolute_error_aggregate_overflow_rejected) ... ok\ntest_asymmetric_error_and_order_reversal (test_metrics.MetricsTests.test_asymmetric_error_and_order_reversal) ... ok\ntest_finite_large_values_without_squared_overflow (test_metrics.MetricsTests.test_finite_large_values_without_squared_overflow) ... ok\ntest_group_aggregation (test_metrics.MetricsTests.test_group_aggregation) ... ok\ntest_hand_example (test_metrics.MetricsTests.test_hand_example) ... ok\ntest_invalid_inputs (test_metrics.MetricsTests.test_invalid_inputs) ... ok\ntest_large_finite_rmse (test_metrics.MetricsTests.test_large_finite_rmse) ... ok\ntest_negative_predictions_remain_errors (test_metrics.MetricsTests.test_negative_predictions_remain_errors) ... ok\ntest_overflow_fails (test_metrics.MetricsTests.test_overflow_fails) ... ok\ntest_rmse_penalizes_large_miss (test_metrics.MetricsTests.test_rmse_penalizes_large_miss) ... ok\ntest_scale_and_order_identity (test_metrics.MetricsTests.test_scale_and_order_identity) ... ok\ntest_sign_and_cancellation (test_metrics.MetricsTests.test_sign_and_cancellation) ... ok\ntest_smallest_subnormal_mean_survives (test_metrics.MetricsTests.test_smallest_subnormal_mean_survives) ... ok\ntest_subnormal_cancellation_is_legitimate (test_metrics.MetricsTests.test_subnormal_cancellation_is_legitimate) ... ok\ntest_unrepresentable_nonzero_means_rejected (test_metrics.MetricsTests.test_unrepresentable_nonzero_means_rejected) ... ok\ntest_wape_can_exceed_one (test_metrics.MetricsTests.test_wape_can_exceed_one) ... ok\ntest_wape_range_checks (test_metrics.MetricsTests.test_wape_range_checks) ... ok\ntest_zero_rows_not_dropped (test_metrics.MetricsTests.test_zero_rows_not_dropped) ... ok\ntest_zero_total_is_undefined_even_if_perfect (test_metrics.MetricsTests.test_zero_total_is_undefined_even_if_perfect) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 0.124s\n\nOK\n",
+    "rerun": "all five result files byte-identical; all manifest files unchanged"
+  }
+}

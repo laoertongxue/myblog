@@ -1,0 +1,16 @@
+{
+  "source_repository": "https://github.com/laoertongxue/myblog",
+  "source_commit": "c9ece37ebc1a54066642b3ff329ccc6948687948",
+  "copied_development_files": {
+    "experiments/d11-simple-exponential-smoothing/practice/data/hewei-development.csv": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407",
+    "experiments/d11-simple-exponential-smoothing/practice/data/apparel-development.csv": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5"
+  },
+  "reused_implementation_sources": {
+    "experiments/d11-simple-exponential-smoothing/practice/baseline.py": "8ef34d818fef4073361d606c15de733e0db35cc8c46d0aa61d139ba3fde5c697",
+    "experiments/d10-moving-average/practice/baseline.py": "9e567490e2674f7f175531cf1fca838d53a41467d8ba2153c4007ac1bf83190d",
+    "scripts/package-d11.py": "b56aed4a56350b3b3289b476d342f6e494234c0d30fb1fb6c6d0400b5a07f43d"
+  },
+  "excluded_labels": "D141..180; sealed excluded from workspace copy; no test reevaluation",
+  "candidate_version": "D12-v2-round2",
+  "candidate_slug": "forecast-error-bias-metrics"
+}

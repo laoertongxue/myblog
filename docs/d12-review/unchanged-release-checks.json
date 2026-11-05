@@ -1,0 +1,14 @@
+{
+  "AGENTS.md": {
+    "sha256": "159afcc0d579cdfc8f4c822ab555887404e6b64711493abab4539fd2ff8a187f",
+    "unchanged_from_original": true
+  },
+  "scripts/check.sh": {
+    "sha256": "21240846188959b9241c85dcf29bda0a6d939b810dc180860d6ef26ab717a580",
+    "unchanged_from_original": true
+  },
+  "examples/d9-seasonal-naive/check_regression.py": {
+    "sha256": "478aca7a372d2879a7590d8162b0e0d612c414a99bb47f0939f85b0a007af930",
+    "unchanged_from_original": true
+  }
+}
