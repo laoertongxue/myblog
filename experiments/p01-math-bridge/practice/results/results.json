@@ -1,0 +1,60 @@
+{
+  "simulation_only": true,
+  "hewei": {
+    "series": "hewei_A_chicken",
+    "unit": "kg",
+    "sum": 36.0,
+    "n": 3,
+    "mean": 12.0,
+    "weighted_mean": 12.6,
+    "population_variance": 2.6666666666666665,
+    "population_sd": 1.632993161855452,
+    "sample_variance": 4.0,
+    "sample_sd": 2.0,
+    "mae": 1.0,
+    "rmse": 1.0
+  },
+  "apparel": {
+    "series": "apparel_S01_M",
+    "unit": "order",
+    "risk_start": [
+      100,
+      90
+    ],
+    "cancel": [
+      10,
+      9
+    ],
+    "remaining": [
+      90,
+      81
+    ],
+    "conditional_cancel_rate": [
+      0.1,
+      0.1
+    ],
+    "day2_cancel_share_of_initial": 0.09,
+    "survival_probability_assumed_for_new_batch": 0.81,
+    "new_batch_size": 30,
+    "expected_remaining_new_batch": 24.3
+  },
+  "definitions": {
+    "error_demo_unit": "kg",
+    "error_demo": {
+      "error": [
+        -3.0,
+        1.0
+      ],
+      "mae": 2.0,
+      "rmse": 2.23606797749979
+    },
+    "f_of_4_for_f_2x_plus_3": 11,
+    "two_cubed": 8,
+    "log2_8": 3.0,
+    "ln1": 0.0,
+    "logit_0_5": 0.0,
+    "logit_0_8": 1.3862943611198908,
+    "sigmoid_0": 0.5,
+    "sigmoid_log4": 0.8
+  }
+}

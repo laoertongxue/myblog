@@ -94,6 +94,11 @@ h3 { font-size:21px; }
 /* Historical diagrams keep their full column width so dense labels remain readable. */
 .prose img { display:block; width:100%; max-width:100%; height:auto; object-fit:contain; margin:26px 0; }
 .prose table { display:block; max-width:100%; overflow:auto; border-collapse:collapse; margin:28px 0; }
+/* Keep the math bridge's seven-column hand calculation readable on phones. */
+.prose .math-bridge-error-table { max-width:100%; overflow-x:auto; }
+.prose .math-bridge-error-table table { display:table; min-width:760px; max-width:none; }
+.prose .math-bridge-error-table th,.prose .math-bridge-error-table td { min-width:90px; }
+.prose .math-bridge-error-table td { white-space:nowrap; }
 .prose th,.prose td { border:1px solid #ddd8cc; padding:9px 15px; }
 .prose hr { border:0; border-top:1px solid var(--lab-line); margin:40px 0; }
 .article-pager { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; margin-top:70px; padding-top:32px; border-top:1px solid var(--lab-line); }

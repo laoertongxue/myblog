@@ -1,0 +1,42 @@
+[
+  {
+    "file": "p01-00_cover.png",
+    "size": [
+      900,
+      383
+    ],
+    "equal_rgb_all_pixels": true
+  },
+  {
+    "file": "p01-01_time.png",
+    "size": [
+      900,
+      650
+    ],
+    "equal_rgb_all_pixels": true
+  },
+  {
+    "file": "p01-02_errors.png",
+    "size": [
+      900,
+      850
+    ],
+    "equal_rgb_all_pixels": true
+  },
+  {
+    "file": "p01-03_risk.png",
+    "size": [
+      900,
+      820
+    ],
+    "equal_rgb_all_pixels": true
+  },
+  {
+    "file": "p01-04_logit.png",
+    "size": [
+      900,
+      815
+    ],
+    "equal_rgb_all_pixels": true
+  }
+]

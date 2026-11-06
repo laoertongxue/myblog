@@ -1,0 +1,3 @@
+day,series,unit,risk_start,cancel,remaining
+1,apparel_S01_M,order,100,10,90
+2,apparel_S01_M,order,90,9,81

@@ -1,0 +1,4 @@
+day,series,unit,actual,forecast,weight
+1,hewei_A_chicken,kg,10,11,0.2
+2,hewei_A_chicken,kg,12,11,0.3
+3,hewei_A_chicken,kg,14,13,0.5
