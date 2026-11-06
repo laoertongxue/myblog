@@ -1,0 +1,18 @@
+<details id="course-tools" class="course-tools">
+  <summary id="menu" aria-controls="side">课程目录与学习记录 <span id="count">0 / {{ len hugo.Data.forecast.course }}</span></summary>
+  <div id="side">
+    <div class="course-filters"><div><label for="search">查找课程</label><input id="search" placeholder="搜索：回归、取消率、COD…" type="search"></div><div><label for="scope">内容分区</label><select id="scope"><option value="">全部内容</option><option>基础教程</option><option>白皮书进阶</option><option>行业案例</option><option>专项工程</option><option>资料与项目</option></select></div></div>
+    <progress id="progress" aria-label="自报学习进度" value="0" max="{{ len hugo.Data.forecast.course }}"></progress>
+    <nav id="nav" aria-label="课程目录">{{ partial "forecast/links.html" . }}</nav>
+    <button id="export" type="button">导出学习记录</button>
+    <p class="course-muted">学习进度仅存于本机浏览器。原教程站的记录不会跨域自动迁移；可先在原站导出留存，新站按实际完成情况重新勾选。</p>
+    <details class="course-downloads"><summary>入门数据与作业包</summary><ul>
+      <li><a href="/forecast/hewei-180d.csv" download>禾味 180 天模拟数据</a> · <a href="/forecast/dataset-readme.txt" download>数据字典与生成说明</a></li>
+      <li><a href="/forecast/industry-lab-starter.zip" download>六行业模拟数据起步包</a></li>
+      <li><a href="/forecast/forecast-industry-project-data.zip" download>六行业手算题输入与说明</a></li>
+      <li><a href="/forecast/specialized-handcalc.zip" download>六专项逐步手算数据与检验</a></li>
+      <li><a href="/forecast/data-quality-backtest.zip" download>P01/P03 数据体检与回测作业包</a></li>
+    </ul><p class="course-muted">禾味数据为 2 店 × 8 SKU × 180 天，共 2,880 行，是可见教学数据，不是封存盲测集。起步包是模拟夹具，不表示已完成六行业预测实验。<a href="/forecast/resource-center/">资源中心</a>另有四专项工程、模型实验和计划实验，使用前请阅读各自能力边界。</p></details>
+    <noscript><p>课程正文和目录可以直接阅读；全文搜索、计算器和学习记录需要启用 JavaScript。</p></noscript>
+  </div>
+</details>

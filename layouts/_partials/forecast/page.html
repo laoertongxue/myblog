@@ -1,0 +1,25 @@
+{{ $index := resources.FromString "forecast/course.json" (hugo.Data.forecast.course | jsonify) | fingerprint }}
+<div class="forecast-app" id="main" tabindex="-1" data-unit="{{ .Params.unit }}" data-index="{{ $index.RelPermalink }}">
+  {{ partial "lab/breadcrumb.html" . }}
+  <header class="article-heading">
+    <h1>{{ .Title }}</h1>
+    {{ if .Params.unit }}
+    <p class="reading-stats">全文共 {{ .WordCount }} 字，阅读约需 {{ .ReadingTime }} 分钟</p>
+    {{ else }}
+    <p class="reading-stats">{{ len hugo.Data.forecast.course }} 个学习模块 · 六行业 30 个教学案例 · 模拟数据与可执行项目</p>
+    {{ end }}
+    <p class="article-description">{{ .Description }}</p>
+    {{ with .Params.unit }}<div class="article-meta">{{ range where hugo.Data.forecast.course "id" . }}{{ .group }} · {{ .kicker }}{{ end }}</div>{{ end }}
+  </header>
+  <div class="lessonbar">{{ if .Params.unit }}<a href="/forecast/">← 学习路线</a><button id="print" type="button">打印本课</button>{{ else }}<a id="start" href="/forecast/legacy-0/">从数学桥梁开始 →</a><a href="/forecast/resource-center/">项目与数据下载</a><a href="/topics/forecasting/">预测专题文章</a>{{ end }}</div>
+  {{ partial "forecast/tools.html" . }}
+  <p id="storage-status" class="storage-notice" role="status" aria-live="polite"></p>
+  {{ if .Params.unit }}{{ partial "forecast/lesson.html" . }}{{ else }}
+  <div id="home">
+    <section class="course-intro prose"><h2>从理解问题，到解释结果</h2><p>无需高等数学。从平均数出发，逐步理解多特征模型、概率预测与供应链计划。每一阶段都有手算例题、小项目和明确验收；建议单次学习约 120 分钟。</p><p>先完成数学桥梁和基础阶段，再进入数学与计划课程、六行业案例和专项工程。<a href="/forecast/whitepaper-trace/">白皮书 91 项对照</a>说明了已经完成和尚未闭合的范围。这里提供课程与实验，<a href="/topics/forecasting/">预测专题</a>另行整理为独立博客文章。</p></section>
+    <section class="forecast-lab" aria-labelledby="lab-title"><div><h2 id="lab-title">先算一道平均数</h2><p>输入 3 天需求，比较平均值与更重视最近一天的加权平均。权重固定为 0.2、0.3、0.5，仅作教学示例，不是已验证参数。</p><label for="numbers">3 天需求（用逗号分隔，单位 kg）</label><div class="course-input-row"><input id="numbers" value="10,12,14"><button id="calc" type="button">逐步计算</button></div></div><output id="result" aria-live="polite"></output></section>
+    <section class="course-catalog" aria-labelledby="catalog-title"><h2 id="catalog-title">学习路线与案例库</h2><p class="course-muted">按顺序学习，也可以展开上方目录，搜索关键词或筛选内容分区。</p><div id="cards">{{ partial "forecast/cards.html" . }}</div></section>
+  </div>
+  {{ end }}
+  <p class="course-disclaimer">所有数据、系数与业务场景均为教学模拟。预测不等于采购或排产指令。<a href="/forecast/legacy-18/">来源与修订说明</a>。</p>
+</div>

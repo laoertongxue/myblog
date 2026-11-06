@@ -53,10 +53,10 @@ el('export').onclick=()=>{
  const blob=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),progress:anchors.map(a=>({id:a.dataset.unit,title:a.dataset.title,selfReportedComplete:!!done[a.dataset.unit]}))},null,2)],{type:'application/json'});
  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='forecast-learning-progress.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 };
-function closeMenu(){el('side').classList.remove('open');el('menu').setAttribute('aria-expanded','false');}
-el('menu').onclick=()=>{el('side').style.setProperty('--course-menu-top',document.querySelector('.forecast-app>header').getBoundingClientRect().bottom+'px');const open=el('side').classList.toggle('open');el('menu').setAttribute('aria-expanded',String(open));if(open)el('search').focus();};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&el('side').classList.contains('open')){closeMenu();el('menu').focus();}});
-window.addEventListener('resize',()=>{if(window.innerWidth>680)closeMenu();});
+const courseTools=el('course-tools');
+courseTools.addEventListener('toggle',()=>el('menu').setAttribute('aria-expanded',String(courseTools.open)));
+el('menu').setAttribute('aria-expanded',String(courseTools.open));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&courseTools.open){courseTools.open=false;el('menu').focus();}});
 function calc(){const nums=el('numbers').value.split(/[,，]/).map(v=>v.trim()).filter(Boolean).map(Number);if(nums.length!==3||nums.some(x=>!Number.isFinite(x)||x<0||x>1e9)){el('result').textContent='请输入3个0至10亿之间的非负数，例如10,12,14。';return}const sum=nums.reduce((a,b)=>a+b,0),w=[.2,.3,.5];const weighted=nums.reduce((a,b,i)=>a+b*w[i],0);el('result').textContent=`① 先相加\n${nums.join(' + ')} = ${sum.toFixed(2)} kg\n\n② 再除以天数\n${sum.toFixed(2)} ÷ 3 = ${(sum/3).toFixed(2)} kg\n\n③ 按权重计算\n${nums.map((n,i)=>`${w[i]} × ${n}`).join(' + ')}\n= ${weighted.toFixed(2)} kg\n\n这里是预测示范，不是订货量。`}
 
 if(el('calc')){el('calc').onclick=calc;calc();}
