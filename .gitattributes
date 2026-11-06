@@ -1,2 +1,5 @@
 # Frozen D9 source/data hashes must survive Windows and Linux checkouts.
 examples/d9-seasonal-naive/** text eol=lf
+
+# Published classroom downloads are byte-preserved, including CSV CRLF endings.
+static/forecast/** -text

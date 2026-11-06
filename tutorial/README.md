@@ -8,6 +8,7 @@
 - 公开版本：3；源提交：`a106275804a20f2598bfd142868a1e68731d5359`
 - `data/forecast/course.json` 保存该版本的完整课程数据；`upstream/` 保存编辑用 Markdown 与原构建脚本。
 - `static/forecast/` 保存 68 个原始资源；`upstream-manifest.json` 记录课程数据与资源 SHA-256。日常校验不重新执行下载包里的实验或重算测试结果。
+- `.gitattributes` 对这些下载资源禁用换行转换，保证 Windows、macOS 和 CI 的签出都保留原始字节；不通过修改哈希来适应换行损坏。
 - 原站构建需要 Python 3 与 Pandoc；如需重新构建，将本仓库 `static/forecast/` 的内容复制至临时上游源码目录的 `dist/`，再执行该目录内 `build.py`。审查构建差异后才更新课程数据、资源和来源清单，不能为通过校验自动刷新哈希。
 
 ## 维护与校验
