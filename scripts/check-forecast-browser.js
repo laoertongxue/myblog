@@ -15,6 +15,7 @@ async (page, ctx) => {
     for(const width of [1440,390,320]){
       await page.setViewportSize({width,height:900});
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${width}px overflow: ${route}`);
+      assert(await page.locator('#print').evaluate(n=>n.getBoundingClientRect().height<65),`${width}px print label wraps vertically: ${route}`);
     }
     if(++visited%20===0)console.log(`      forecast: ${visited}/${paths.length} lessons checked`);
     for(const img of await page.locator('.lesson-content img').all()){

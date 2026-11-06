@@ -223,4 +223,8 @@ html.navigation-open { overflow:hidden; }
 .forecast-app .bottomnav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
 @media(max-width:680px) {
   .forecast-app aside { top:var(--course-menu-top,66px); height:calc(100dvh - var(--course-menu-top,66px)); }
+  .forecast-app .lessonbar { display:grid; grid-template-columns:minmax(0,1fr) auto; }
+  .forecast-app .lessonbar>a { grid-column:1; grid-row:1; }
+  .forecast-app .lessonbar>button { grid-column:2; grid-row:1; white-space:nowrap; }
+  .forecast-app .lessonbar>span { grid-column:1 / -1; grid-row:2; }
 }
