@@ -4,7 +4,7 @@
   const input = document.querySelector('#search-query');
   const results = document.querySelector('#search-results');
   const status = document.querySelector('#search-status');
-  const labels = { blog: '博客', weekly: 'Weekly', topics: '专题' };
+  const labels = { blog: '博客', weekly: 'Weekly', topics: '专题', forecast: '预测课堂' };
   let filter = 'all';
   let indexPromise;
   let revision = 0;
@@ -27,7 +27,7 @@
     history.replaceState(null, '', url);
     results.replaceChildren();
     document.querySelectorAll('[data-count]').forEach(node => { node.textContent = '0'; });
-    if (!query) { status.textContent = '输入关键词，查找博客、Weekly 和专题文章。'; return; }
+    if (!query) { status.textContent = '输入关键词，查找博客、Weekly、专题文章和预测课程。'; return; }
     status.textContent = '正在搜索…';
     try {
       const index = await getIndex();

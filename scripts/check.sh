@@ -24,6 +24,7 @@ fail() { printf 'FAIL  %s\n' "$1" >&2; exit 1; }
 ok()   { printf 'ok    %s\n' "$1"; }
 
 printf '==> hugo --gc --minify (same flags as CI)\n'
+python3 scripts/generate-forecast.py --check
 # Only disposable build destinations inside this repository may be cleared.
 case "$OUT" in .hugo-check|public) ;; *) fail "unsupported build output: $OUT" ;; esac
 [ ! -L "$OUT" ] || fail "build output must not be a symlink"
@@ -72,6 +73,7 @@ ok "$IMAGES processed image(s) emitted"
 python3 scripts/check-home-pagination.py
 python3 scripts/check-static-output.py "$OUT"
 python3 scripts/check-seo.py "$OUT"
+python3 scripts/check-forecast.py "$OUT"
 python3 scripts/check-seo-regressions.py "$OUT"
 python3 scripts/check-agent-series.py "$OUT"
 

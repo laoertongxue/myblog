@@ -1,0 +1,119 @@
+{
+  "scope": "Added teaching subscopes only; not whole-whitepaper completion",
+  "evidence_layers": {
+    "explanation": true,
+    "hand_calculation": true,
+    "input_data_delivered": true,
+    "program_executed": true,
+    "model_trained": false,
+    "out_of_sample_model_evaluation": false,
+    "real_business_effect": false
+  },
+  "author_tests": 71,
+  "negative_input_tests": 31,
+  "items": [
+    {
+      "unit_id": "PR01",
+      "whitepaper_ids": [
+        "B03"
+      ],
+      "title": "12个月S&OP/CPFR双版本、截止和滚动",
+      "lesson": "lesson.md",
+      "dataset": "data/sop.json",
+      "command": "python run.py && python test_labs.py",
+      "outputs": [
+        "outputs/sop_base.csv",
+        "outputs/sop_rolling.csv"
+      ],
+      "functions": "sop / plan_version",
+      "scope_limit": "并列需求供应财务；非真实协同或预测训练",
+      "status": "author-tested synthetic teaching implementation; independent audit pending"
+    },
+    {
+      "unit_id": "PR02",
+      "whitepaper_ids": [
+        "B04",
+        "C15",
+        "K07"
+      ],
+      "title": "两层BOM、央厨日历与3周制造排程",
+      "lesson": "lesson.md",
+      "dataset": "data/production.json",
+      "command": "python run.py && python test_labs.py",
+      "outputs": [
+        "outputs/kitchen.csv",
+        "outputs/manufacturing.csv"
+      ],
+      "functions": "production / kitchen / manufacturing",
+      "scope_limit": "固定优先级启发式；无通用APS最优证明",
+      "status": "author-tested synthetic teaching implementation; independent audit pending"
+    },
+    {
+      "unit_id": "PR03",
+      "whitepaper_ids": [
+        "C12"
+      ],
+      "title": "五节点多期台账、情景相关性、有限配置比较",
+      "lesson": "lesson.md",
+      "dataset": "data/network.json",
+      "command": "python run.py && python test_labs.py",
+      "outputs": [
+        "outputs/network_ledger.csv"
+      ],
+      "functions": "network / simulate_network",
+      "scope_limit": "210起始配置精确搜索；固定调拨启发式；非通用MEIO全局最优",
+      "status": "author-tested synthetic teaching implementation; independent audit pending"
+    },
+    {
+      "unit_id": "PR04",
+      "whitepaper_ids": [
+        "L04"
+      ],
+      "title": "双供应商容量、MOQ、承诺订单与分单",
+      "lesson": "lesson.md",
+      "dataset": "data/sourcing.json",
+      "command": "python run.py && python test_labs.py",
+      "outputs": [
+        "outputs/sourcing_candidates.csv"
+      ],
+      "functions": "sourcing",
+      "scope_limit": "7种候选全量枚举；固定下单日；未执行采购",
+      "status": "author-tested synthetic teaching implementation; independent audit pending"
+    },
+    {
+      "unit_id": "PR05",
+      "whitepaper_ids": [
+        "D04"
+      ],
+      "title": "双程费、拒收残值、应收和回款日账",
+      "lesson": "lesson.md",
+      "dataset": "data/cash.json",
+      "command": "python run.py && python test_labs.py",
+      "outputs": [
+        "outputs/cash_ledger.csv"
+      ],
+      "functions": "cash",
+      "scope_limit": "单币种简化账；无税、利息、坏账或真实回款",
+      "status": "author-tested synthetic teaching implementation; independent audit pending"
+    },
+    {
+      "unit_id": "PR06",
+      "whitepaper_ids": [
+        "K05",
+        "K06",
+        "K08",
+        "K09"
+      ],
+      "title": "DOI、报损/折价/减值、强关、双轨指标",
+      "lesson": "lesson.md",
+      "dataset": "data/metrics.json",
+      "command": "python run.py && python test_labs.py",
+      "outputs": [
+        "outputs/monthly_kpi_ledger.csv"
+      ],
+      "functions": "metrics",
+      "scope_limit": "合成月账及单独服务/队列教学表；非财务认证或真实业务效果",
+      "status": "author-tested synthetic teaching implementation; independent audit pending"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+<div class="lessonbar"><a href="/forecast/">← 学习路线</a><span>{{ range where hugo.Data.forecast.course "id" $.Params.unit }}{{ .kicker }}{{ end }}</span><button id="print" type="button">打印本课</button></div>
+<h1>{{ .Title }}</h1>
+<div class="lesson-content">{{ .RawContent | safeHTML }}</div>
+<div class="check"><label><input id="complete" type="checkbox">我已完成练习，并逐条对照验收</label><p>仅保存在本机当前浏览器，无账号云同步；清除浏览器数据会丢失。不自动认定你通过测试。建议先保留输出文件和计算过程。</p></div>
+<div class="bottomnav"><div>{{ with .NextInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}</div><div>{{ with .PrevInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}</div></div>

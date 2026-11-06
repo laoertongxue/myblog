@@ -1,0 +1,2 @@
+<a href="/forecast/">⌂ 学习首页</a>
+{{ range hugo.Data.forecast.course }}<a href="/forecast/{{ .id }}/" data-unit="{{ .id }}" data-title="{{ .title }}"{{ if eq $.Params.unit .id }} class="active" aria-current="page"{{ end }}><small>{{ .kicker }}</small>{{ .title }}</a>{{ end }}

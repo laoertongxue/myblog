@@ -1,0 +1,38 @@
+{
+  "calibration_created_days": [
+    90,
+    99
+  ],
+  "cost_assumptions": {
+    "assumed_review_effectiveness": 0.6,
+    "missed_refusal_loss_yuan_per_unit": 25,
+    "review_yuan_per_parcel": 2
+  },
+  "feature_allowlist": [
+    "intercept",
+    "distance_km/100",
+    "units/4",
+    "planned_delivery_days/10",
+    "route_R1",
+    "route_R2"
+  ],
+  "intercept_calibration_offset": -0.2048204259894761,
+  "l2": 0.01,
+  "logistic_steps": 500,
+  "selected_threshold": 0.0,
+  "test_used_for_selection": false,
+  "threshold_selection_created_days": [
+    100,
+    109
+  ],
+  "train_event_cutoff": 89,
+  "warning": "Review effectiveness is a hypothetical constant, not an identified causal effect. No orders are changed.",
+  "weights": [
+    -2.339980934627918,
+    0.38018653552067394,
+    0.09189837244371868,
+    -0.09193588633521693,
+    -0.09053094816677866,
+    0.14632074221335617
+  ]
+}

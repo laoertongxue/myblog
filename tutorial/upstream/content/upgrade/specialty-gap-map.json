@@ -1,0 +1,109 @@
+{
+  "source_review": "whitepaper-82-scope-review.json",
+  "scope": "Five new bounded pedagogic modules. No production execution and no causal effect claim.",
+  "modules": [
+    {
+      "id": "specialty-gap-hazard",
+      "label": "SG01",
+      "title": "从订单展开为年龄 hazard 的实际拟合",
+      "items": [
+        "P14"
+      ],
+      "inputs": [
+        "hazard_orders.csv",
+        "hazard_events.csv"
+      ],
+      "outputs": [
+        "hazard_coefficients.csv",
+        "hazard_test_predictions.csv",
+        "hazard_age_calibration.csv"
+      ],
+      "implemented": "Actual order-separated time blocks, person-day construction, 11 age dummies, price/warehouse/promotion logistic fit, validation C selection, test Brier and age-only baseline.",
+      "limits": "Discrete logistic hazard, not Cox. Conditional independent censoring is a simulation assumption, not causal identification."
+    },
+    {
+      "id": "specialty-gap-presale-plan",
+      "label": "SG02",
+      "title": "24小时静默与受约束的裁剪和超卖",
+      "items": [
+        "P15"
+      ],
+      "inputs": [
+        "hazard_example_curve.csv",
+        "planning() explicit scenario constants"
+      ],
+      "outputs": [
+        "presale_silent_gate.csv",
+        "presale_hedge_cost_grid.csv",
+        "presale_service_constrained_best.csv",
+        "presale_overbooking_grid.csv"
+      ],
+      "implemented": "24h gate, lead-time mixture, net retention, BOM/late capacity, fixed-action costs, per-scenario shortfall risk and required supply for each commitment quantity.",
+      "limits": "Single-SKU fixed-policy scenario, no recourse value, no general APS/MRP or production actions. New added orders assumed same age/features for this exercise only."
+    },
+    {
+      "id": "specialty-gap-returns-atp",
+      "label": "SG03",
+      "title": "退货 GBDT 时滞回流与 ATP 采购分账",
+      "items": [
+        "R01",
+        "R04"
+      ],
+      "inputs": [
+        "return_order_cohorts.csv"
+      ],
+      "outputs": [
+        "return_test_predictions.csv",
+        "return_gamma_by_category.csv",
+        "return_expected_restock_new100.csv",
+        "return_atp_procurement_comparison.csv",
+        "return_physical_ledger.csv"
+      ],
+      "implemented": "Actual order-feature GBDT, mature 30-day labels, category good-yield and conditional lag, separate physical stock, firm inbound, order reservations, ATP and two procurement suggestions.",
+      "limits": "Single due-date ATP and expected-value planning. No risk-aware multiperiod ATP guarantee or supplier purchase."
+    },
+    {
+      "id": "specialty-gap-cod-review",
+      "label": "SG04",
+      "title": "COD 订单风险与有限人审状态机",
+      "items": [
+        "D01",
+        "D02"
+      ],
+      "inputs": [
+        "cod_orders.csv"
+      ],
+      "outputs": [
+        "cod_test_scoring.csv",
+        "cod_threshold_capacity_scenarios.csv",
+        "cod_state_machine_trace.csv"
+      ],
+      "implemented": "Address/hour/pieces/basket/history/region feature contract, actual logistic fit with separate calibration/threshold/test, review capacity, explicit confirm/deny/timeout/manual approval transitions and causal trial design.",
+      "limits": "Local scoring contract, not a real-time online service. No actual work orders or randomized intervention experiment. Assumed 30% risk reduction is not measured effect."
+    },
+    {
+      "id": "specialty-gap-lead-po",
+      "label": "SG05",
+      "title": "交期波动敏感性与未完成 PO",
+      "items": [
+        "L02",
+        "L03"
+      ],
+      "inputs": [
+        "po_release_features.csv",
+        "po_receipt_events.csv"
+      ],
+      "outputs": [
+        "lead_variance_sensitivity.csv",
+        "po_quantile_test.csv",
+        "po_pending_snapshot360_predictions.csv",
+        "po_otd_asof360.csv",
+        "po_future_only_evaluation.csv",
+        "po_quantile_group_calibration.csv"
+      ],
+      "implemented": "12-cell variance/SS sensitivity; actual quantile GBDT on mature vintages with as-of WIP and receipt progress; next-receipt discrete hazard using censored episodes; pending partial receipts; OTD against promised dates; explicit support abstention. Strict seasonal/numeric support checks; stage-specific next-event elapsed support; separate pending-cohort future-only diagnostics.",
+      "limits": "No LightGBM/AFT. Mature-vintage full-completion quantile loss is not censor-aware. Separate censored next-event model does not remove that limitation. Raw full test P50 coverage 58.67% fails teaching calibration warning band."
+    }
+  ],
+  "version": "specialty-gap-r3"
+}

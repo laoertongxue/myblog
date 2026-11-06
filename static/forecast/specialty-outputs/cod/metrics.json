@@ -1,0 +1,56 @@
+{
+  "frozen_threshold": 0.0,
+  "model_selection_sha256": "ac773572891db6f59edb2e49ba201812246bbd56804dbdc363b63a37f15e5a01",
+  "n_test": 2194,
+  "n_train": 3303,
+  "n_validation_calibration": 563,
+  "n_validation_threshold": 552,
+  "test_global_mean": {
+    "brier": 0.153946622066003,
+    "log_loss": 0.48975016973305424,
+    "mean_probability": 0.1386618225855283,
+    "n": 2194,
+    "observed_rate": 0.18641750227894258
+  },
+  "test_intercept_calibrated_logistic": {
+    "brier": 0.15252396928508752,
+    "log_loss": 0.4849640770662402,
+    "mean_probability": 0.12029941512628457,
+    "n": 2194,
+    "observed_rate": 0.18641750227894258
+  },
+  "test_no_review_cost": {
+    "actual_refused_units": 1118,
+    "cost_per_parcel_yuan": 12.739288969917958,
+    "n": 2194,
+    "review_count": 0,
+    "review_fraction": 0.0,
+    "simulated_cost_yuan": 27950.0,
+    "threshold": 1.01
+  },
+  "test_raw_logistic": {
+    "brier": 0.14960583927831403,
+    "log_loss": 0.4737376069597129,
+    "mean_probability": 0.143485329505541,
+    "n": 2194,
+    "observed_rate": 0.18641750227894258
+  },
+  "test_review_all_cost": {
+    "actual_refused_units": 1118,
+    "cost_per_parcel_yuan": 7.095715587967184,
+    "n": 2194,
+    "review_count": 2194,
+    "review_fraction": 1.0,
+    "simulated_cost_yuan": 15568.0,
+    "threshold": 0
+  },
+  "test_selected_threshold_cost": {
+    "actual_refused_units": 1118,
+    "cost_per_parcel_yuan": 7.095715587967184,
+    "n": 2194,
+    "review_count": 2194,
+    "review_fraction": 1.0,
+    "simulated_cost_yuan": 15568.0,
+    "threshold": 0.0
+  }
+}

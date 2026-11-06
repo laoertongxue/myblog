@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "raw_files_byte_identical_by_project": {
+    "cod": true,
+    "po": true,
+    "presale": true,
+    "returns": true
+  },
+  "scope": "Independent temporary-directory regeneration; all 12 raw CSV byte hashes compared. Same Python runtime.",
+  "seed": 20261106
+}

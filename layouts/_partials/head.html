@@ -6,7 +6,7 @@
   {{ if eq .Kind "term" }}{{ $title = printf "%s%s" .Title (cond (eq .Data.Singular "tag") "标签" "分类") }}{{ end }}
   {{ $title = printf "%s – %s" $title .Site.Params.author.name }}
 {{ end }}
-{{ if and .IsBranch (ne .Kind "404") (ne .Kind "taxonomy") }}
+{{ if and .IsBranch (ne .Kind "404") (ne .Kind "taxonomy") (ne .Section "forecast") }}
   {{ $pager := partial "lab/pager.html" . }}
   {{ if gt $pager.PageNumber 1 }}{{ $url = $pager.URL | absURL }}{{ $title = printf "%s · 第 %d 页" $title $pager.PageNumber }}{{ end }}
 {{ end }}

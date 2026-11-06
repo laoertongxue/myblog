@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "duplicate_extra_rows": 3,
+    "unknown_sku_cells": 2,
+    "wrong_unit_cells": 2,
+    "invalid_order_events": 1
+  },
+  "total_defects": 8,
+  "dirty_daily_rows": 227,
+  "clean_daily_rows": 224,
+  "order_event_rows": 24,
+  "repair": "Use correction_evidence; de-duplicate identical keys; quarantine invalid O01 cancellation. Do not invent its true final state."
+}

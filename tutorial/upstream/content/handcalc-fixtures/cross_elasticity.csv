@@ -1,0 +1,3 @@
+﻿outcome_sku,changed_price_sku,price_change_fraction,demand_change_fraction
+B,A,0.1,0.05
+C,A,0.1,-0.03

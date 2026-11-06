@@ -1,0 +1,27 @@
+{
+  "candidates": [
+    {
+      "m": 0,
+      "validation_return_brier": 0.14567550541276722
+    },
+    {
+      "m": 20,
+      "validation_return_brier": 0.14565091854361947
+    },
+    {
+      "m": 100,
+      "validation_return_brier": 0.14562197565877114
+    },
+    {
+      "m": 500,
+      "validation_return_brier": 0.14623700804851764
+    }
+  ],
+  "chosen_m": 100,
+  "features": [
+    "category"
+  ],
+  "return_maturity_rule": "All simulated paths end within 29 days; wait 30 days for a negative label.",
+  "test_used_for_selection": false,
+  "train_event_cutoff": 89
+}

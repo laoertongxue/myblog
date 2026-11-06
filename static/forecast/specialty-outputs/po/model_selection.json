@@ -1,0 +1,14 @@
+{
+  "candidate_validation_brier_complete_by30": {
+    "pooled": 0.2207853583089878,
+    "supplier": 0.19835971750265155
+  },
+  "chosen_km_grouping": "supplier",
+  "features": [
+    "supplier"
+  ],
+  "selection_endpoint": "full receipt by 30 days, observed for every validation PO",
+  "test_used_for_selection": false,
+  "train_event_cutoff": 179,
+  "warning": "KM assumes censoring independent of event time within strata. Undefined tail quantiles remain blank."
+}

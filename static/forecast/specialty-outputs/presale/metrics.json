@@ -1,0 +1,22 @@
+{
+  "independent": {
+    "n_test_orders": 4907,
+    "n_train_orders": 6858,
+    "n_validation_orders": 1676,
+    "oracle_age59_estimation_error": 0.000628365104667572,
+    "selected_m": 500,
+    "test_at_risk_order_days": 149158,
+    "test_pooled_hazard_brier": 0.009135583650689068,
+    "test_smoothed_hazard_brier": 0.009134737874923707
+  },
+  "informative": {
+    "n_test_orders": 4907,
+    "n_train_orders": 6858,
+    "n_validation_orders": 1676,
+    "oracle_age59_estimation_error": 0.09233625199338491,
+    "selected_m": 100,
+    "test_at_risk_order_days": 120997,
+    "test_pooled_hazard_brier": 0.0076130579961136355,
+    "test_smoothed_hazard_brier": 0.007619654644346564
+  }
+}

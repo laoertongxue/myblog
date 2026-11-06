@@ -1,0 +1,3 @@
+﻿ship_day,shipped,return_p,good_p,lag_days,lag_p,target_day
+8,100,0.2,0.8,2,0.4,10
+7,50,0.2,0.8,3,0.6,10

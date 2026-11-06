@@ -1,0 +1,68 @@
+{
+  "completed_only_naive_p50": {
+    "coverage_lower": 0.4388059701492537,
+    "coverage_upper": 0.4388059701492537,
+    "n": 335,
+    "pinball_completed_only": 5.520979020979021,
+    "pinball_n": 286,
+    "predictions_available": 335,
+    "unknown_due_to_censoring": 0,
+    "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+  },
+  "completed_only_naive_p90": {
+    "coverage_lower": 0.7910447761194029,
+    "coverage_upper": 0.7910447761194029,
+    "n": 335,
+    "pinball_completed_only": 5.327972027972028,
+    "pinball_n": 286,
+    "predictions_available": 335,
+    "unknown_due_to_censoring": 0,
+    "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+  },
+  "fixed_p50": {
+    "coverage_lower": 0.3850746268656716,
+    "coverage_upper": 0.3850746268656716,
+    "n": 335,
+    "pinball_completed_only": 5.56993006993007,
+    "pinball_n": 286,
+    "predictions_available": 335,
+    "unknown_due_to_censoring": 0,
+    "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+  },
+  "fixed_p90": {
+    "coverage_lower": 0.7701492537313432,
+    "coverage_upper": 0.7701492537313432,
+    "n": 335,
+    "pinball_completed_only": 5.2951048951048945,
+    "pinball_n": 286,
+    "predictions_available": 335,
+    "unknown_due_to_censoring": 0,
+    "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+  },
+  "km_p50": {
+    "coverage_lower": 0.5253731343283582,
+    "coverage_upper": 0.5253731343283582,
+    "n": 335,
+    "pinball_completed_only": 4.479020979020979,
+    "pinball_n": 286,
+    "predictions_available": 335,
+    "unknown_due_to_censoring": 0,
+    "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+  },
+  "km_p90": {
+    "coverage_lower": 0.832579185520362,
+    "coverage_upper": 0.9321266968325792,
+    "n": 335,
+    "pinball_completed_only": 11.739999999999997,
+    "pinball_n": 190,
+    "predictions_available": 221,
+    "unknown_due_to_censoring": 22,
+    "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+  },
+  "n_test": 335,
+  "n_train": 506,
+  "n_validation": 165,
+  "selected_model": "supplier",
+  "test_right_censored": 49,
+  "train_right_censored": 60
+}

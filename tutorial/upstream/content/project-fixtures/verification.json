@@ -1,0 +1,23 @@
+{
+  "P01": {
+    "duplicate_extra_rows": 3,
+    "unknown_sku_cells": 2,
+    "wrong_unit_cells": 2,
+    "invalid_order_events": 1
+  },
+  "P03": {
+    "records": 2880,
+    "series": 16,
+    "train_days": 112,
+    "validation_days": 28,
+    "historical_test_days": 40,
+    "validation_one_step_targets_per_series": 28,
+    "one_step_ledger_rows": 448,
+    "fixed_5day_windows_per_series": 24,
+    "leak_types": 4,
+    "seed": 20261106,
+    "data": "synthetic, fully observed; no stockout; all day data available at 23:59; origins after this cutoff",
+    "evaluation_note": "historical test is not an untouched blind holdout"
+  },
+  "status": "passed"
+}

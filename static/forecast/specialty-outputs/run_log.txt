@@ -1,0 +1,42 @@
+Generated presale: 20,000 entities, 80,000 events
+Generated returns: 12,000 entities, 33,053 events
+Generated cod: 10,000 entities, 34,319 events
+Generated po: 2,000 entities, 7,659 events
+Evaluating presale ...
+Evaluating returns ...
+Evaluating cod ...
+Evaluating po ...
+test_01_exact_entity_counts_and_unique_ids (test_project.ProjectContracts.test_01_exact_entity_counts_and_unique_ids) ... ok
+test_02_recorded_hashes_match_raw_files (test_project.ProjectContracts.test_02_recorded_hashes_match_raw_files) ... ok
+test_03_features_available_before_or_at_score (test_project.ProjectContracts.test_03_features_available_before_or_at_score) ... ok
+test_04_labels_mature_before_next_prediction_block (test_project.ProjectContracts.test_04_labels_mature_before_next_prediction_block) ... ok
+test_05_events_refer_to_valid_entities_and_times (test_project.ProjectContracts.test_05_events_refer_to_valid_entities_and_times) ... ok
+test_06_presale_event_span_and_competing_events (test_project.ProjectContracts.test_06_presale_event_span_and_competing_events) ... ok
+test_07_risk_set_and_survival_invariants (test_project.ProjectContracts.test_07_risk_set_and_survival_invariants) ... ok
+test_08_presale_calendar_states_conserve (test_project.ProjectContracts.test_08_presale_calendar_states_conserve) ... ok
+test_09_future_events_cannot_change_training_labels (test_project.ProjectContracts.test_09_future_events_cannot_change_training_labels) ... ok
+test_10_unresolved_labels_not_false_negatives (test_project.ProjectContracts.test_10_unresolved_labels_not_false_negatives) ... ok
+test_11_return_event_order_and_maturity_guarantee (test_project.ProjectContracts.test_11_return_event_order_and_maturity_guarantee) ... ok
+test_12_return_inventory_conservation_and_cold_scenario (test_project.ProjectContracts.test_12_return_inventory_conservation_and_cold_scenario) ... ok
+test_13_return_probability_mass_and_no_double_count (test_project.ProjectContracts.test_13_return_probability_mass_and_no_double_count) ... ok
+test_14_cod_probabilities_and_frozen_selection (test_project.ProjectContracts.test_14_cod_probabilities_and_frozen_selection) ... ok
+test_15_cod_physical_inventory_never_discounted_by_probability (test_project.ProjectContracts.test_15_cod_physical_inventory_never_discounted_by_probability) ... ok
+test_16_po_partial_receipts_and_conservation (test_project.ProjectContracts.test_16_po_partial_receipts_and_conservation) ... ok
+test_17_km_handles_unknown_tail_and_ties (test_project.ProjectContracts.test_17_km_handles_unknown_tail_and_ties) ... ok
+test_18_hand_calculations (test_project.ProjectContracts.test_18_hand_calculations) ... ok
+test_19_summary_changes_when_metric_direction_changes (test_project.ProjectContracts.test_19_summary_changes_when_metric_direction_changes) ... ok
+test_20_alternate_seed_runs_and_report_matches (test_project.ProjectContracts.test_20_alternate_seed_runs_and_report_matches) ... ok
+test_21_zero_test_returns_has_undefined_wape_not_crash (test_project.ProjectContracts.test_21_zero_test_returns_has_undefined_wape_not_crash) ... ok
+test_22_all_training_po_censored_has_no_fabricated_quantiles (test_project.ProjectContracts.test_22_all_training_po_censored_has_no_fabricated_quantiles) ... ok
+test_23_po_age_shift_and_receipt_reordering_are_detected (test_project.ProjectContracts.test_23_po_age_shift_and_receipt_reordering_are_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 12.126s
+
+OK
+
+Complete. See outputs/all_metrics.json and README.md. All data are simulated.
+
+real	0m20.032s
+user	0m19.698s
+sys	0m0.314s

@@ -1,0 +1,5 @@
+﻿defect,evidence,fix
+centered_mean,last_source_day exceeds origin,Use trailing mean ending at origin
+target_value,target_source_day exceeds origin,Drop target from features
+global_scaler,fit_end_day 180 exceeds origin,Fit transforms on current training data only
+random_split,training contains dates later than evaluation targets,Use fixed chronological split

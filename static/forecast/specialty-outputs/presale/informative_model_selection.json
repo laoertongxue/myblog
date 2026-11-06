@@ -1,0 +1,32 @@
+{
+  "candidates": [
+    {
+      "m": 0,
+      "validation_brier": 0.008182623284504026,
+      "validation_risk_days": 38867
+    },
+    {
+      "m": 20,
+      "validation_brier": 0.008177720689636883,
+      "validation_risk_days": 38867
+    },
+    {
+      "m": 100,
+      "validation_brier": 0.00817156032809904,
+      "validation_risk_days": 38867
+    },
+    {
+      "m": 500,
+      "validation_brier": 0.00817397759396143,
+      "validation_risk_days": 38867
+    }
+  ],
+  "chosen_m": 100,
+  "features": [
+    "sku",
+    "order_age"
+  ],
+  "test_used_for_selection": false,
+  "train_event_cutoff": 179,
+  "warning": "Natural cancellation survival under no shipping requires independent censoring. Day 60 is a policy event."
+}

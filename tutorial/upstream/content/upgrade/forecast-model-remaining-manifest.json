@@ -1,0 +1,93 @@
+{
+  "package": "forecast-model-labs",
+  "data_scope": "synthetic-only",
+  "production_actions": false,
+  "test_count": 43,
+  "test_status": "PASS",
+  "reproducibility": "12 input/output files match temporary regenerated copy",
+  "lesson_path": "/workspace/shared/forecast-model-remaining.md",
+  "units": [
+    {
+      "id": "model-causal-three",
+      "source_ids": [
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "evidence_scope": "OLS fitted, relative-price derivation, randomized vs confounded, baseline-relative scenario and stock-constrained margin; no real causal evidence"
+    },
+    {
+      "id": "model-pricing-stochastic",
+      "source_ids": [
+        "M01",
+        "M02",
+        "M03",
+        "M04"
+      ],
+      "evidence_scope": "3-period stochastic DP, 42-row response, expiry/minprice/markdown constraints; finite synthetic single-batch scope"
+    },
+    {
+      "id": "model-tree-trained",
+      "source_ids": [
+        "A05",
+        "G08"
+      ],
+      "evidence_scope": "Actual sklearn GBDT and ridge, frozen-train/validation-selected/test-heldout one-step evaluation; no named external GBDT library run"
+    },
+    {
+      "id": "model-deep-inputs",
+      "source_ids": [
+        "A06",
+        "C07"
+      ],
+      "evidence_scope": "Tensor contracts, synthetic sample quantiles, 8-item vector neighbors and actual KMeans fit on six train items; no TFT/DeepAR/vision training"
+    },
+    {
+      "id": "model-prophet-decomposition",
+      "source_ids": [
+        "A04"
+      ],
+      "evidence_scope": "Decomposition arithmetic and interface explained; Prophet not run"
+    }
+  ],
+  "limitations": [
+    "No business effect evidence",
+    "No Prophet, TFT, DeepAR or vision encoder training",
+    "No LightGBM, XGBoost or CatBoost execution",
+    "No statistical significance or calibrated coverage claim",
+    "No multi-batch perishability optimization",
+    "Clustering K=2 is fixed and not tuned; demand analogues use category-filtered nearest neighbors"
+  ],
+  "sha256": {
+    "README.md": "ccf8f95cd8770b4816833df8be541df4d61583ca812d2c2fdb92cee5af39374f",
+    "data/deep_inputs.json": "7585f89d2e36b6b13fd6800256020434b1e29a63f9f18ed67f7c6ba4c5db76f1",
+    "data/elasticity_truth.json": "102fc28aab039e2a4d3463ac47aade98b52b43fc9bf45dcddd6597161d0a193f",
+    "data/image_vectors.csv": "309d21574333727f5b0a217e6f9b45917302a15627487bd23151049cf1c84fb0",
+    "data/price_response.csv": "ea0c8784ef67eefb2bfe1d177c0b523067b782c85fc0932df42c1183ad92bec0",
+    "data/pricing_config.json": "e13a7f5c64a54749a4d9059dfa0e4dc44097f1f335528666472256c5feb92441",
+    "data/pricing_scenarios.csv": "b13dd41c57a2c6bf616325a48b4ae9a7aec5a3eb5c14d51cb7adf587db56a2c2",
+    "data/prophet_components.csv": "20c0e658905636430edd6e75db14395a9bcd36ea89ff704cdd249dcf2874bea2",
+    "data/three_products.csv": "60e775fe597f3d6d478d59466338f0131ad4360584c948abeaed439660d29c27",
+    "data/tree_features.csv": "c0f9f67377d2c8b5ef68e0a6f63e23333077500d02ba7cd1abe05350ddf8dabd",
+    "data/trend_history.csv": "8a4df9666a54f15d0b42195a04cc0b5a4de0ac0a291d31e5f7d67772e684a92e",
+    "docs/lesson.md": "5c9536bebd942529e62a830893333f463acf6ba790b57b309b3323ee5d5e5c8c",
+    "generate_data.py": "a207c7e6b44ca652d9bfcc5935ddf13a9632bd9815fd46f0a1b629430575a6e6",
+    "outputs/reproducibility.json": "ee8fd5239b198ee379e0f41935ddf5cedaca9726b1c44c5644d48d66352a11b6",
+    "outputs/results.json": "f87dd08cc352d05e046ca40a45d80764de23647d388f946d1a1767593e461035",
+    "outputs/run_log.txt": "7f8f5d02a7c091d8e9df7d224abf05dd5120fc72622601961ef14537cca15d03",
+    "outputs/tests.txt": "e786076375957fbae8abb7fe428e9b4c3a803d63099d32d05d3bf4cdab5bf0f8",
+    "outputs/tree_test_predictions.csv": "0163901a3555d52765df35e10239564e467b63d09da3d11209cbd952aad465dc",
+    "requirements.txt": "9065205926ce1cf97720f58b6ebdb76ef8f82a2669b18d861baf627f1a3e086d",
+    "run_models.py": "ed86ce510feb60f96076c7a14960793c8281d86178df9ea1d976e45a878e72e1",
+    "tests/test_labs.py": "7dc4e6b4fa928abc851e43fbbc15c64e1d761893df6c149bedb2ae020372ee8d",
+    "verify_reproducibility.py": "56736f8d04f65daa2f5f6a5f66803fcbd6512c36811ae93fa1d1a9e808571908"
+  },
+  "revision": "r3",
+  "audit_fixes": [
+    "Initial price ceiling applies to DP and all benchmark policies",
+    "Strict day/date/previous-day-18:00-origin and parsed as-of timestamps",
+    "Exactly two finite positive series scaling values",
+    "Internal single-thread KMeans fit/predict fixes symmetric equal-inertia multi-thread nondeterminism; strict holdout isolation tests retained",
+    "Reproducibility child no longer adds hidden thread environment overrides"
+  ]
+}

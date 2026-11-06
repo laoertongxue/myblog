@@ -1,0 +1,183 @@
+{
+  "cod": {
+    "frozen_threshold": 0.0,
+    "model_selection_sha256": "ac773572891db6f59edb2e49ba201812246bbd56804dbdc363b63a37f15e5a01",
+    "n_test": 2194,
+    "n_train": 3303,
+    "n_validation_calibration": 563,
+    "n_validation_threshold": 552,
+    "test_global_mean": {
+      "brier": 0.153946622066003,
+      "log_loss": 0.48975016973305424,
+      "mean_probability": 0.1386618225855283,
+      "n": 2194,
+      "observed_rate": 0.18641750227894258
+    },
+    "test_intercept_calibrated_logistic": {
+      "brier": 0.15252396928508752,
+      "log_loss": 0.4849640770662402,
+      "mean_probability": 0.12029941512628457,
+      "n": 2194,
+      "observed_rate": 0.18641750227894258
+    },
+    "test_no_review_cost": {
+      "actual_refused_units": 1118,
+      "cost_per_parcel_yuan": 12.739288969917958,
+      "n": 2194,
+      "review_count": 0,
+      "review_fraction": 0.0,
+      "simulated_cost_yuan": 27950.0,
+      "threshold": 1.01
+    },
+    "test_raw_logistic": {
+      "brier": 0.14960583927831403,
+      "log_loss": 0.4737376069597129,
+      "mean_probability": 0.143485329505541,
+      "n": 2194,
+      "observed_rate": 0.18641750227894258
+    },
+    "test_review_all_cost": {
+      "actual_refused_units": 1118,
+      "cost_per_parcel_yuan": 7.095715587967184,
+      "n": 2194,
+      "review_count": 2194,
+      "review_fraction": 1.0,
+      "simulated_cost_yuan": 15568.0,
+      "threshold": 0
+    },
+    "test_selected_threshold_cost": {
+      "actual_refused_units": 1118,
+      "cost_per_parcel_yuan": 7.095715587967184,
+      "n": 2194,
+      "review_count": 2194,
+      "review_fraction": 1.0,
+      "simulated_cost_yuan": 15568.0,
+      "threshold": 0.0
+    }
+  },
+  "po": {
+    "completed_only_naive_p50": {
+      "coverage_lower": 0.4388059701492537,
+      "coverage_upper": 0.4388059701492537,
+      "n": 335,
+      "pinball_completed_only": 5.520979020979021,
+      "pinball_n": 286,
+      "predictions_available": 335,
+      "unknown_due_to_censoring": 0,
+      "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+    },
+    "completed_only_naive_p90": {
+      "coverage_lower": 0.7910447761194029,
+      "coverage_upper": 0.7910447761194029,
+      "n": 335,
+      "pinball_completed_only": 5.327972027972028,
+      "pinball_n": 286,
+      "predictions_available": 335,
+      "unknown_due_to_censoring": 0,
+      "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+    },
+    "fixed_p50": {
+      "coverage_lower": 0.3850746268656716,
+      "coverage_upper": 0.3850746268656716,
+      "n": 335,
+      "pinball_completed_only": 5.56993006993007,
+      "pinball_n": 286,
+      "predictions_available": 335,
+      "unknown_due_to_censoring": 0,
+      "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+    },
+    "fixed_p90": {
+      "coverage_lower": 0.7701492537313432,
+      "coverage_upper": 0.7701492537313432,
+      "n": 335,
+      "pinball_completed_only": 5.2951048951048945,
+      "pinball_n": 286,
+      "predictions_available": 335,
+      "unknown_due_to_censoring": 0,
+      "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+    },
+    "km_p50": {
+      "coverage_lower": 0.5253731343283582,
+      "coverage_upper": 0.5253731343283582,
+      "n": 335,
+      "pinball_completed_only": 4.479020979020979,
+      "pinball_n": 286,
+      "predictions_available": 335,
+      "unknown_due_to_censoring": 0,
+      "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+    },
+    "km_p90": {
+      "coverage_lower": 0.832579185520362,
+      "coverage_upper": 0.9321266968325792,
+      "n": 335,
+      "pinball_completed_only": 11.739999999999997,
+      "pinball_n": 190,
+      "predictions_available": 221,
+      "unknown_due_to_censoring": 22,
+      "warning": "Coverage denominator excludes unavailable predictions. Completed-only pinball is selection-biased."
+    },
+    "n_test": 335,
+    "n_train": 506,
+    "n_validation": 165,
+    "selected_model": "supplier",
+    "test_right_censored": 49,
+    "train_right_censored": 60
+  },
+  "presale": {
+    "independent": {
+      "n_test_orders": 4907,
+      "n_train_orders": 6858,
+      "n_validation_orders": 1676,
+      "oracle_age59_estimation_error": 0.000628365104667572,
+      "selected_m": 500,
+      "test_at_risk_order_days": 149158,
+      "test_pooled_hazard_brier": 0.009135583650689068,
+      "test_smoothed_hazard_brier": 0.009134737874923707
+    },
+    "informative": {
+      "n_test_orders": 4907,
+      "n_train_orders": 6858,
+      "n_validation_orders": 1676,
+      "oracle_age59_estimation_error": 0.09233625199338491,
+      "selected_m": 100,
+      "test_at_risk_order_days": 120997,
+      "test_pooled_hazard_brier": 0.0076130579961136355,
+      "test_smoothed_hazard_brier": 0.007619654644346564
+    }
+  },
+  "returns": {
+    "n_test": 2612,
+    "n_train": 4057,
+    "n_validation": 1404,
+    "next7_daily_mae": 2.162992276368802,
+    "next7_unsupported_entities": 0,
+    "pooled_daily_restock_mae": 1.9205359343638906,
+    "selected_m": 100,
+    "test_cohort_actual_restock_units": 367,
+    "test_cohort_daily_restock_mae": 1.925764245780995,
+    "test_cohort_expected_restock_units": 387.76083293455264,
+    "test_cohort_restock_wape": 0.3673119814841135,
+    "test_restock_grouped": {
+      "brier": 0.11786968565310335,
+      "log_loss": 0.3933134946764457,
+      "mean_probability": 0.14845361138382548,
+      "n": 2612,
+      "observed_rate": 0.14050535987748852
+    },
+    "test_return_grouped": {
+      "brier": 0.14411339450338423,
+      "log_loss": 0.45453809313741517,
+      "mean_probability": 0.20074639450612877,
+      "n": 2612,
+      "observed_rate": 0.1883614088820827
+    },
+    "test_return_pooled": {
+      "brier": 0.15305735960101155,
+      "log_loss": 0.4843941251314971,
+      "mean_probability": 0.2016268178456988,
+      "n": 2612,
+      "observed_rate": 0.1883614088820827
+    },
+    "zero_restock_daily_mae": 5.242857142857143
+  }
+}

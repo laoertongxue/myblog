@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "assertions": 8,
+  "datasets": 9,
+  "data": "simulated",
+  "rounding": "display only; compute with full precision"
+}

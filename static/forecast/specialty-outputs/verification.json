@@ -1,0 +1,17 @@
+{
+  "all_tests_passed": true,
+  "data_manifest_sha256": "f772e6a88ddcb8397c66966f7765a77f2636fb7928c1617fbbcc36f30b45d2bf",
+  "metrics_sha256": "97bfd4267304e6c9f86656e975b17c1f1d412d0db91b9151c7c806df360dd29e",
+  "python_version": "3.12.14",
+  "runner_sha256": "16d097aa0d3dc5795a754d462120f873bb17da904add9606ac99e5400caaf27b",
+  "source_sha256": {
+    "src/common.py": "720d6d13c8ae03f755d85ea1ae0fcbd12ed6364ec3111c2f53a1268647666f01",
+    "src/evaluate.py": "0f40b1c9ff304dd129de576522fee834789fe2ca8282f5d8dedb20425b2a9ced",
+    "src/generate.py": "823242d11df4434b840f7014831c346c53c3d4ffdbc75e48987540dd80e59f46",
+    "src/labels.py": "749cb4f9915f4142bd745f83338fb8070928cd6be3c29af068ce73c687125b81",
+    "src/models.py": "7e309f57ea7edf362670f2c90a0ac1cf207c199a8fee44bab87baa9212c793a2"
+  },
+  "synthetic_only": true,
+  "test_count": 23,
+  "test_sha256": "10f8af84b302f08d5e5430688f31fb7dad5d764511942c2562e359a4b736b5f0"
+}

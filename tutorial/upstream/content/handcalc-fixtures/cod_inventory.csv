@@ -1,0 +1,4 @@
+﻿step,qty_change,meaning
+ship,-100,all physical shipments leave
+qualified_restock,18,20 refused times 90 percent good
+damaged,0,2 damaged are not sellable

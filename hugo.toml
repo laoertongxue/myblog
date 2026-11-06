@@ -74,9 +74,16 @@ timeout = "60s"
     placement = "leading"
 
 [[menu.main]]
+  name = "预测课堂"
+  pageRef = "/forecast"
+  weight = 6
+  [menu.main.params]
+    placement = "leading"
+
+[[menu.main]]
   name = "关于"
   pageRef = "/about"
-  weight = 6
+  weight = 7
   [menu.main.params]
     placement = "quick"
 

@@ -1,0 +1,547 @@
+{
+  "provenance": "All inputs are synthetic teaching assumptions. Not measured business results.",
+  "N": 1000,
+  "day60_policy": "Force close all remaining orders at start of day 60.",
+  "rows": [
+    {
+      "day": 1,
+      "natural_hazard": 0.18,
+      "start_expected": 1000.0,
+      "natural_cancels_expected": 180.0,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 820.0,
+      "natural_cumulative_rate": 0.18000000000000005
+    },
+    {
+      "day": 2,
+      "natural_hazard": 0.037,
+      "start_expected": 820.0,
+      "natural_cancels_expected": 30.34,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 789.66,
+      "natural_cumulative_rate": 0.21034000000000008
+    },
+    {
+      "day": 3,
+      "natural_hazard": 0.033,
+      "start_expected": 789.66,
+      "natural_cancels_expected": 26.05878,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 763.60122,
+      "natural_cumulative_rate": 0.23639878000000003
+    },
+    {
+      "day": 4,
+      "natural_hazard": 0.03,
+      "start_expected": 763.60122,
+      "natural_cancels_expected": 22.9080366,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 740.6931834000001,
+      "natural_cumulative_rate": 0.2593068165999999
+    },
+    {
+      "day": 5,
+      "natural_hazard": 0.027,
+      "start_expected": 740.6931834000001,
+      "natural_cancels_expected": 19.9987159518,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 720.6944674482,
+      "natural_cumulative_rate": 0.2793055325517999
+    },
+    {
+      "day": 6,
+      "natural_hazard": 0.023,
+      "start_expected": 720.6944674482,
+      "natural_cancels_expected": 16.5759727513086,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 704.1184946968914,
+      "natural_cumulative_rate": 0.29588150530310864
+    },
+    {
+      "day": 7,
+      "natural_hazard": 0.02,
+      "start_expected": 704.1184946968914,
+      "natural_cancels_expected": 14.082369893937829,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 690.0361248029535,
+      "natural_cumulative_rate": 0.3099638751970465
+    },
+    {
+      "day": 8,
+      "natural_hazard": 0.015,
+      "start_expected": 690.0361248029535,
+      "natural_cancels_expected": 10.350541872044301,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 679.6855829309092,
+      "natural_cumulative_rate": 0.3203144170690908
+    },
+    {
+      "day": 9,
+      "natural_hazard": 0.015,
+      "start_expected": 679.6855829309092,
+      "natural_cancels_expected": 10.195283743963637,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 669.4902991869455,
+      "natural_cumulative_rate": 0.3305097008130544
+    },
+    {
+      "day": 10,
+      "natural_hazard": 0.015,
+      "start_expected": 669.4902991869455,
+      "natural_cancels_expected": 10.042354487804182,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 659.4479446991413,
+      "natural_cumulative_rate": 0.34055205530085864
+    },
+    {
+      "day": 11,
+      "natural_hazard": 0.015,
+      "start_expected": 659.4479446991413,
+      "natural_cancels_expected": 9.89171917048712,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 649.5562255286542,
+      "natural_cumulative_rate": 0.3504437744713458
+    },
+    {
+      "day": 12,
+      "natural_hazard": 0.015,
+      "start_expected": 649.5562255286542,
+      "natural_cancels_expected": 9.743343382929812,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 639.8128821457244,
+      "natural_cumulative_rate": 0.3601871178542756
+    },
+    {
+      "day": 13,
+      "natural_hazard": 0.015,
+      "start_expected": 639.8128821457244,
+      "natural_cancels_expected": 9.597193232185866,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 630.2156889135385,
+      "natural_cumulative_rate": 0.3697843110864615
+    },
+    {
+      "day": 14,
+      "natural_hazard": 0.015,
+      "start_expected": 630.2156889135385,
+      "natural_cancels_expected": 9.453235333703077,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 620.7624535798354,
+      "natural_cumulative_rate": 0.3792375464201646
+    },
+    {
+      "day": 15,
+      "natural_hazard": 0.009,
+      "start_expected": 620.7624535798354,
+      "natural_cancels_expected": 5.586862082218518,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 615.1755914976169,
+      "natural_cumulative_rate": 0.3848244085023831
+    },
+    {
+      "day": 16,
+      "natural_hazard": 0.009,
+      "start_expected": 615.1755914976169,
+      "natural_cancels_expected": 5.536580323478551,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 609.6390111741383,
+      "natural_cumulative_rate": 0.3903609888258617
+    },
+    {
+      "day": 17,
+      "natural_hazard": 0.009,
+      "start_expected": 609.6390111741383,
+      "natural_cancels_expected": 5.486751100567244,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 604.152260073571,
+      "natural_cumulative_rate": 0.39584773992642897
+    },
+    {
+      "day": 18,
+      "natural_hazard": 0.009,
+      "start_expected": 604.152260073571,
+      "natural_cancels_expected": 5.437370340662139,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 598.7148897329089,
+      "natural_cumulative_rate": 0.4012851102670911
+    },
+    {
+      "day": 19,
+      "natural_hazard": 0.009,
+      "start_expected": 598.7148897329089,
+      "natural_cancels_expected": 5.38843400759618,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 593.3264557253127,
+      "natural_cumulative_rate": 0.40667354427468727
+    },
+    {
+      "day": 20,
+      "natural_hazard": 0.009,
+      "start_expected": 593.3264557253127,
+      "natural_cancels_expected": 5.339938101527814,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 587.986517623785,
+      "natural_cumulative_rate": 0.41201348237621505
+    },
+    {
+      "day": 21,
+      "natural_hazard": 0.009,
+      "start_expected": 587.986517623785,
+      "natural_cancels_expected": 5.291878658614064,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 582.6946389651708,
+      "natural_cumulative_rate": 0.4173053610348292
+    },
+    {
+      "day": 22,
+      "natural_hazard": 0.009,
+      "start_expected": 582.6946389651708,
+      "natural_cancels_expected": 5.244251750686537,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 577.4503872144843,
+      "natural_cumulative_rate": 0.4225496127855157
+    },
+    {
+      "day": 23,
+      "natural_hazard": 0.009,
+      "start_expected": 577.4503872144843,
+      "natural_cancels_expected": 5.1970534849303585,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 572.2533337295539,
+      "natural_cumulative_rate": 0.4277466662704461
+    },
+    {
+      "day": 24,
+      "natural_hazard": 0.009,
+      "start_expected": 572.2533337295539,
+      "natural_cancels_expected": 5.150280003565984,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 567.1030537259879,
+      "natural_cumulative_rate": 0.4328969462740121
+    },
+    {
+      "day": 25,
+      "natural_hazard": 0.009,
+      "start_expected": 567.1030537259879,
+      "natural_cancels_expected": 5.103927483533891,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 561.999126242454,
+      "natural_cumulative_rate": 0.4380008737575459
+    },
+    {
+      "day": 26,
+      "natural_hazard": 0.009,
+      "start_expected": 561.999126242454,
+      "natural_cancels_expected": 5.0579921361820865,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 556.941134106272,
+      "natural_cumulative_rate": 0.443058865893728
+    },
+    {
+      "day": 27,
+      "natural_hazard": 0.009,
+      "start_expected": 556.941134106272,
+      "natural_cancels_expected": 5.012470206956448,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 551.9286638993156,
+      "natural_cumulative_rate": 0.4480713361006845
+    },
+    {
+      "day": 28,
+      "natural_hazard": 0.009,
+      "start_expected": 551.9286638993156,
+      "natural_cancels_expected": 4.967357975093839,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 546.9613059242217,
+      "natural_cumulative_rate": 0.45303869407577824
+    },
+    {
+      "day": 29,
+      "natural_hazard": 0.009,
+      "start_expected": 546.9613059242217,
+      "natural_cancels_expected": 4.922651753317996,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 542.0386541709038,
+      "natural_cumulative_rate": 0.4579613458290962
+    },
+    {
+      "day": 30,
+      "natural_hazard": 0.009,
+      "start_expected": 542.0386541709038,
+      "natural_cancels_expected": 4.878347887538133,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 537.1603062833657,
+      "natural_cumulative_rate": 0.46283969371663436
+    },
+    {
+      "day": 31,
+      "natural_hazard": 0.005,
+      "start_expected": 537.1603062833657,
+      "natural_cancels_expected": 2.6858015314168284,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 534.4745047519489,
+      "natural_cumulative_rate": 0.4655254952480511
+    },
+    {
+      "day": 32,
+      "natural_hazard": 0.005,
+      "start_expected": 534.4745047519489,
+      "natural_cancels_expected": 2.672372523759744,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 531.8021322281892,
+      "natural_cumulative_rate": 0.4681978677718108
+    },
+    {
+      "day": 33,
+      "natural_hazard": 0.005,
+      "start_expected": 531.8021322281892,
+      "natural_cancels_expected": 2.659010661140946,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 529.1431215670482,
+      "natural_cumulative_rate": 0.47085687843295176
+    },
+    {
+      "day": 34,
+      "natural_hazard": 0.005,
+      "start_expected": 529.1431215670482,
+      "natural_cancels_expected": 2.645715607835241,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 526.497405959213,
+      "natural_cumulative_rate": 0.473502594040787
+    },
+    {
+      "day": 35,
+      "natural_hazard": 0.005,
+      "start_expected": 526.497405959213,
+      "natural_cancels_expected": 2.632487029796065,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 523.864918929417,
+      "natural_cumulative_rate": 0.4761350810705831
+    },
+    {
+      "day": 36,
+      "natural_hazard": 0.005,
+      "start_expected": 523.864918929417,
+      "natural_cancels_expected": 2.6193245946470847,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 521.2455943347699,
+      "natural_cumulative_rate": 0.4787544056652301
+    },
+    {
+      "day": 37,
+      "natural_hazard": 0.005,
+      "start_expected": 521.2455943347699,
+      "natural_cancels_expected": 2.6062279716738495,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 518.639366363096,
+      "natural_cumulative_rate": 0.48136063363690407
+    },
+    {
+      "day": 38,
+      "natural_hazard": 0.005,
+      "start_expected": 518.639366363096,
+      "natural_cancels_expected": 2.59319683181548,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 516.0461695312805,
+      "natural_cumulative_rate": 0.48395383046871954
+    },
+    {
+      "day": 39,
+      "natural_hazard": 0.005,
+      "start_expected": 516.0461695312805,
+      "natural_cancels_expected": 2.5802308476564026,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 513.4659386836241,
+      "natural_cumulative_rate": 0.4865340613163759
+    },
+    {
+      "day": 40,
+      "natural_hazard": 0.005,
+      "start_expected": 513.4659386836241,
+      "natural_cancels_expected": 2.5673296934181207,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 510.898608990206,
+      "natural_cumulative_rate": 0.489101391009794
+    },
+    {
+      "day": 41,
+      "natural_hazard": 0.005,
+      "start_expected": 510.898608990206,
+      "natural_cancels_expected": 2.55449304495103,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 508.344115945255,
+      "natural_cumulative_rate": 0.49165588405474503
+    },
+    {
+      "day": 42,
+      "natural_hazard": 0.005,
+      "start_expected": 508.344115945255,
+      "natural_cancels_expected": 2.541720579726275,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 505.8023953655287,
+      "natural_cumulative_rate": 0.49419760463447127
+    },
+    {
+      "day": 43,
+      "natural_hazard": 0.005,
+      "start_expected": 505.8023953655287,
+      "natural_cancels_expected": 2.5290119768276433,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 503.27338338870106,
+      "natural_cumulative_rate": 0.4967266166112989
+    },
+    {
+      "day": 44,
+      "natural_hazard": 0.005,
+      "start_expected": 503.27338338870106,
+      "natural_cancels_expected": 2.5163669169435052,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 500.75701647175754,
+      "natural_cumulative_rate": 0.4992429835282425
+    },
+    {
+      "day": 45,
+      "natural_hazard": 0.005,
+      "start_expected": 500.75701647175754,
+      "natural_cancels_expected": 2.503785082358788,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 498.25323138939876,
+      "natural_cumulative_rate": 0.5017467686106012
+    },
+    {
+      "day": 46,
+      "natural_hazard": 0.003,
+      "start_expected": 498.25323138939876,
+      "natural_cancels_expected": 1.4947596941681964,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 496.7584716952306,
+      "natural_cumulative_rate": 0.5032415283047694
+    },
+    {
+      "day": 47,
+      "natural_hazard": 0.003,
+      "start_expected": 496.7584716952306,
+      "natural_cancels_expected": 1.4902754150856918,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 495.2681962801449,
+      "natural_cumulative_rate": 0.5047318037198552
+    },
+    {
+      "day": 48,
+      "natural_hazard": 0.003,
+      "start_expected": 495.2681962801449,
+      "natural_cancels_expected": 1.4858045888404348,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 493.78239169130444,
+      "natural_cumulative_rate": 0.5062176083086956
+    },
+    {
+      "day": 49,
+      "natural_hazard": 0.003,
+      "start_expected": 493.78239169130444,
+      "natural_cancels_expected": 1.4813471750739133,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 492.30104451623055,
+      "natural_cumulative_rate": 0.5076989554837694
+    },
+    {
+      "day": 50,
+      "natural_hazard": 0.003,
+      "start_expected": 492.30104451623055,
+      "natural_cancels_expected": 1.4769031335486917,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 490.82414138268183,
+      "natural_cumulative_rate": 0.5091758586173182
+    },
+    {
+      "day": 51,
+      "natural_hazard": 0.003,
+      "start_expected": 490.82414138268183,
+      "natural_cancels_expected": 1.4724724241480456,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 489.35166895853376,
+      "natural_cumulative_rate": 0.5106483310414662
+    },
+    {
+      "day": 52,
+      "natural_hazard": 0.003,
+      "start_expected": 489.35166895853376,
+      "natural_cancels_expected": 1.4680550068756013,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 487.88361395165816,
+      "natural_cumulative_rate": 0.5121163860483419
+    },
+    {
+      "day": 53,
+      "natural_hazard": 0.003,
+      "start_expected": 487.88361395165816,
+      "natural_cancels_expected": 1.4636508418549745,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 486.4199631098032,
+      "natural_cumulative_rate": 0.5135800368901968
+    },
+    {
+      "day": 54,
+      "natural_hazard": 0.003,
+      "start_expected": 486.4199631098032,
+      "natural_cancels_expected": 1.4592598893294095,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 484.96070322047376,
+      "natural_cumulative_rate": 0.5150392967795263
+    },
+    {
+      "day": 55,
+      "natural_hazard": 0.003,
+      "start_expected": 484.96070322047376,
+      "natural_cancels_expected": 1.4548821096614213,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 483.50582111081235,
+      "natural_cumulative_rate": 0.5164941788891877
+    },
+    {
+      "day": 56,
+      "natural_hazard": 0.003,
+      "start_expected": 483.50582111081235,
+      "natural_cancels_expected": 1.4505174633324371,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 482.0553036474799,
+      "natural_cumulative_rate": 0.51794469635252
+    },
+    {
+      "day": 57,
+      "natural_hazard": 0.003,
+      "start_expected": 482.0553036474799,
+      "natural_cancels_expected": 1.4461659109424396,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 480.60913773653743,
+      "natural_cumulative_rate": 0.5193908622634625
+    },
+    {
+      "day": 58,
+      "natural_hazard": 0.003,
+      "start_expected": 480.60913773653743,
+      "natural_cancels_expected": 1.4418274132096123,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 479.1673103233278,
+      "natural_cumulative_rate": 0.5208326896766722
+    },
+    {
+      "day": 59,
+      "natural_hazard": 0.003,
+      "start_expected": 479.1673103233278,
+      "natural_cancels_expected": 1.4375019309699835,
+      "forced_cancels_expected": 0.0,
+      "active_end_expected": 477.7298083923578,
+      "natural_cumulative_rate": 0.5222701916076422
+    },
+    {
+      "day": 60,
+      "natural_hazard": null,
+      "start_expected": 477.7298083923578,
+      "natural_cancels_expected": 0.0,
+      "forced_cancels_expected": 477.7298083923578,
+      "active_end_expected": 0.0,
+      "natural_cumulative_rate": 0.5222701916076422
+    }
+  ]
+}

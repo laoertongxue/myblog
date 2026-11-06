@@ -1,0 +1,377 @@
+{
+  "version": "2.0",
+  "data_kind": "SIMULATED_TEACHING_ONLY",
+  "source_review": "whitepaper-82-scope-review.json",
+  "source_item_ids": [
+    "B01",
+    "B02",
+    "C10",
+    "C09",
+    "C11",
+    "C14",
+    "B06",
+    "B05",
+    "C17",
+    "C19"
+  ],
+  "lesson_count": 9,
+  "lessons": [
+    {
+      "slug": "industry-hierarchy-fresh",
+      "source_ids": [
+        "B01"
+      ],
+      "title": "生鲜基地月度与门店短期协调",
+      "evidence": "6月×两基地/两店×30日与前三日四时段，加总/出品率/提前60日释放/冲突校验",
+      "limits": "固定权重与固定月总量情景，不是最优随机协调或真实鲜品供应承诺"
+    },
+    {
+      "slug": "industry-apparel-region-chain",
+      "source_ids": [
+        "B02",
+        "C10"
+      ],
+      "title": "地区颜色尺码与测款追单贯通",
+      "evidence": "72小时Beta→双地区颜色尺码→共同有货平滑→到货前后→独立预售净需→5件箱MOQ→面料→五地区情景",
+      "limits": "固定场景离线建议，不是全流程快反系统，预售保留率给定"
+    },
+    {
+      "slug": "industry-apparel-postponement",
+      "source_ids": [
+        "C09"
+      ],
+      "title": "坯布前置与染裁缝后置",
+      "evidence": "坯布21日+染裁缝7/2/3日，冻结点、截止和四情景成本/无信号反例",
+      "limits": "100件两色限量例，准确率题设，非多订单APS"
+    },
+    {
+      "slug": "industry-promotion-pantry-fit",
+      "source_ids": [
+        "C11"
+      ],
+      "title": "多促销交互与透支的时间回测",
+      "evidence": "实际OLS估三个促销项、成熟历史估透支，三场逐事件完整窗口回测及未来污染测试",
+      "limits": "模拟可比基线；统计关系不是因果识别，确定性首折误差零不证明泛化"
+    },
+    {
+      "slug": "industry-event-feature-analogy",
+      "source_ids": [
+        "C14"
+      ],
+      "title": "用活动特征选择类似事件",
+      "evidence": "四活动前特征、成熟同类过滤、历史尺度、距离选邻居、权重→包材/首二配",
+      "limits": "条件类比离线账，无真实活动泛化、配送或因果声明"
+    },
+    {
+      "slug": "industry-pharma-month-week",
+      "source_ids": [
+        "B06"
+      ],
+      "title": "医药大仓月采购与门店周补",
+      "evidence": "同货号月采300→4周配送/销售/安全量/全网守恒，晚到失销90反例",
+      "limits": "只使用覆盖4周已放行批次，非完整FEFO/GSP认证"
+    },
+    {
+      "slug": "industry-mps-count-vmi",
+      "source_ids": [
+        "B05"
+      ],
+      "title": "制造主计划计数分布与产权责任",
+      "evidence": "13/52周MPS冻结、Poisson/NB实际拟合与24/12留出、VMI数量/产权/价值/往来守恒",
+      "limits": "给定VMI产权合同、固定单位价值、无财税/法务认证，非通用APS"
+    },
+    {
+      "slug": "industry-installed-base-bathtub",
+      "source_ids": [
+        "C17"
+      ],
+      "title": "设备入退网与三阶段浴盆先验",
+      "evidence": "12月分龄入退网，早期/稳定/磨损Beta先验及更新，安装基数守恒",
+      "limits": "修复设备、每月一次故障指示，先验非真实拟合可靠性曲线"
+    },
+    {
+      "slug": "industry-aggregate-repurchase-leading-ols",
+      "source_ids": [
+        "C19"
+      ],
+      "title": "聚合复购窗口与先行指标滚动回归",
+      "evidence": "直方图生成80%窗口、条件尚未复购概率、实际双指标OLS40期逐周回测/6期迟报回退/冻结历史版本",
+      "limits": "匿名模拟聚合购买事件，无患者/处方/治疗判断，固定滞后不证明因果"
+    }
+  ],
+  "verification": {
+    "unittest_industry_passed": 48,
+    "manufacture_pharma_assertions_passed": 48,
+    "fresh_archive_rerun": "passed",
+    "reproduced_output_files": 24,
+    "unmodified_input_files": 29,
+    "author_rerun_independent_probes_passed": 70
+  },
+  "scope_statement": "Bounded teaching coverage only. No assertion that the entire whitepaper is complete, any real business gains occurred, or a production system was built.",
+  "files": {
+    "DATA_DICTIONARY.md": {
+      "bytes": 5900,
+      "sha256": "493e4b9b3aaf8ae11be0d2a29763c63570611804b3c005540d18b1713fb10551"
+    },
+    "LESSONS.md": {
+      "bytes": 65828,
+      "sha256": "64a57ff471c3118e55eb654f54a3cba4ce5bffa6128a1ff65152e53775eb84c4"
+    },
+    "README.md": {
+      "bytes": 3627,
+      "sha256": "b6c29cad831aea5bf71481572b8bfeaf891ee3f05cda99633a66b30f27e461bc"
+    },
+    "REVISION_R2.md": {
+      "bytes": 1753,
+      "sha256": "33bb1e241e5bd5d18e53d306cb9066c92a9e56a23f52777c9aba84cdf290dab0"
+    },
+    "data/apparel_config.json": {
+      "bytes": 224,
+      "sha256": "256a8c3064e7552dc95f8fadae13baa8921779d41f127b45cda5859e4e8886d1"
+    },
+    "data/apparel_regions.csv": {
+      "bytes": 1333,
+      "sha256": "a16f2181dcab93be798d1deb9821050c1613955b6aae71a91bb7be5c16acce3b"
+    },
+    "data/event_target.json": {
+      "bytes": 366,
+      "sha256": "6d71589834fb220ba49fa9ba9a856a7fdef1262269236fbf68b0bdbdafcc5743"
+    },
+    "data/events.csv": {
+      "bytes": 292,
+      "sha256": "8b0b1e0b641b38228cd2c855a4b1ed255ec7fc38a654c7c97181ba9e44414760"
+    },
+    "data/fresh_months.csv": {
+      "bytes": 298,
+      "sha256": "101d118b9f7ca885c8c892ba675742de92a55241b3676c806a8c1a5ba71a9380"
+    },
+    "data/fresh_short.csv": {
+      "bytes": 70,
+      "sha256": "f7d0162f80ddde02d3fc4ebd5389446206d5dac7953796026bdf413a0d606812"
+    },
+    "data/manufacture_pharma/bathtub_history.csv": {
+      "bytes": 177,
+      "sha256": "692f949d97260a4bf7f20d6106cdf845126f22623143a91549a34a5154727039"
+    },
+    "data/manufacture_pharma/bathtub_priors.csv": {
+      "bytes": 136,
+      "sha256": "78013061df8df30ef4f1c98e4c8d9f2bd5630cec8baff01788d5ca9123007177"
+    },
+    "data/manufacture_pharma/branch_month_counts.csv": {
+      "bytes": 2940,
+      "sha256": "60ce36a5f856d071e3bfd1f52a9fc0e32ec0b470e74c1b4e0fccfc12d2c4d077"
+    },
+    "data/manufacture_pharma/count_parameters.csv": {
+      "bytes": 79,
+      "sha256": "bfba3771b8f0337e515e17577999f2ac926227fdfbed08935e359fb983ce425d"
+    },
+    "data/manufacture_pharma/installed_base_parameters.csv": {
+      "bytes": 95,
+      "sha256": "b60bbcdcd5732159d5e859cb478bd5d24c2721ac556d81e6e83a24a6215d35c8"
+    },
+    "data/manufacture_pharma/installed_cohorts.csv": {
+      "bytes": 249,
+      "sha256": "c5d85b2dfc41daae853eee7d34c4b9ded36bcfbbac82e0b118b5c2ab07e3654a"
+    },
+    "data/manufacture_pharma/installed_movements.csv": {
+      "bytes": 385,
+      "sha256": "e78634fb55659119b5860190d1425c11f791104082c2b835dc96ab910834c39b"
+    },
+    "data/manufacture_pharma/leading_indicator_vintages.csv": {
+      "bytes": 20941,
+      "sha256": "b32d25d9be180c04221569df8dc3ff969531ca048a612d286d21f574270e7214"
+    },
+    "data/manufacture_pharma/mps_demand.csv": {
+      "bytes": 2116,
+      "sha256": "d39ef044167ec4e8e7f13f648ae17238950acf5a87dd94e6747e236d91573d7c"
+    },
+    "data/manufacture_pharma/mps_parameters.csv": {
+      "bytes": 200,
+      "sha256": "dbbddc0d37284640f3ad776371f66d31947adbf2e4dbfc48b2d4e62762957642"
+    },
+    "data/manufacture_pharma/ols_parameters.csv": {
+      "bytes": 126,
+      "sha256": "4ea2ad9d46cc1b65e6b2aa772b9cc4b3a406f0fc72f59273941a256623484be0"
+    },
+    "data/manufacture_pharma/pharma_weekly_demand.csv": {
+      "bytes": 2753,
+      "sha256": "25e770da6e736c5132967e32ea9e1e34a30df074086b81364213a34fb91c20f8"
+    },
+    "data/manufacture_pharma/repurchase_cohorts.csv": {
+      "bytes": 226,
+      "sha256": "e3123b6d3c6909bb5123a93d6c943a487ffc23a8fa6e7af7d5e5b2d66eea3439"
+    },
+    "data/manufacture_pharma/repurchase_histogram.csv": {
+      "bytes": 196,
+      "sha256": "7863b8f37ec8d51aab03996220203ee4f4762d10c6e26bde7dbcfba0232808d0"
+    },
+    "data/manufacture_pharma/repurchase_parameters.csv": {
+      "bytes": 107,
+      "sha256": "2d43805970dc31557c96751338f0825c320888f86d4d1be38f0f0d75cd13d08d"
+    },
+    "data/manufacture_pharma/vmi_events.csv": {
+      "bytes": 420,
+      "sha256": "c1581b503bf682b09cb7d5be20920df0e34a01f4af684a56c1305fdbd55d171b"
+    },
+    "data/manufacture_pharma/vmi_parameters.csv": {
+      "bytes": 81,
+      "sha256": "64012d3f79865d805bf63fbc834be55eae878162cda6d00c675a82087ea8b045"
+    },
+    "data/pharma_config.json": {
+      "bytes": 133,
+      "sha256": "4540306218fb4f83cba179e6f9b8efc596fd4e7bb519e29a662c15a46a57846f"
+    },
+    "data/pharma_stock.csv": {
+      "bytes": 159,
+      "sha256": "bf446f773e72c67c3185bf518e59112db49c029c4cf3663607185460d10a0c18"
+    },
+    "data/pharma_weeks.csv": {
+      "bytes": 83,
+      "sha256": "e5e15b55ebe42da6b4f9de4a3bd71b7e0b18fd24f1c1c4e264a49315c6b61a5a"
+    },
+    "data/postpone_config.json": {
+      "bytes": 263,
+      "sha256": "0ae1888eb23cab457fe9cc79c86876a6c813a23228b1bd3a1dd8eecaea22b976"
+    },
+    "data/postpone_scenarios.csv": {
+      "bytes": 146,
+      "sha256": "6fb18508919a0fa2a9ddc3e860f49e91acec5268615eb0919585cadc0807af81"
+    },
+    "data/promotions.csv": {
+      "bytes": 972,
+      "sha256": "bcb94f9f522036857836a5eb401e2ee001f93f9a931e4cfcfa32cda5154a1c05"
+    },
+    "generate_all.py": {
+      "bytes": 570,
+      "sha256": "0978775df0c55a2761551c63884dafe1dd49876d24e059f0364146d01d0d1fa8"
+    },
+    "industry_chain.py": {
+      "bytes": 25169,
+      "sha256": "80abad6f9595dbdb89eb981623605d02ac2773658c6a257fb5a7cb19a68137e2"
+    },
+    "manufacture_pharma.py": {
+      "bytes": 41016,
+      "sha256": "79ceae3bda33f033abb88eb272059455bd928e61734458374e377f669137364e"
+    },
+    "outputs/all_results.json": {
+      "bytes": 15474,
+      "sha256": "08d11125daea3ab6146bc6755756db0369c9b35d8c0d33c466c4738c82ec5609"
+    },
+    "outputs/apparel_scenarios.csv": {
+      "bytes": 351,
+      "sha256": "91810d70df91f89d5ec777392b151b235245ea136c796b0348d2d6d2dd673a04"
+    },
+    "outputs/apparel_sku_orders.csv": {
+      "bytes": 1351,
+      "sha256": "d4c5c7c26845af0bd706d4b65e9015cdf89f0884e2ba47fa0e502dfdf68979de"
+    },
+    "outputs/event_neighbors.csv": {
+      "bytes": 218,
+      "sha256": "a12463a407d82cefb57834189963812e6a401e26de75e49c0ddde1f6517e9ad0"
+    },
+    "outputs/fresh_daily_plan.csv": {
+      "bytes": 14971,
+      "sha256": "d2b91dbde509a6c241a8413c77ac0798ad1bc3df0686794a9f6b745150032645"
+    },
+    "outputs/fresh_hour_plan.csv": {
+      "bytes": 318,
+      "sha256": "4bb92a50e9e412974a3d39a084f4f2a62c813796dc17ec0d90d290b7ffef28f1"
+    },
+    "outputs/fresh_month_plan.csv": {
+      "bytes": 486,
+      "sha256": "1b337bb8e467af0e82b91af4211f70ac5736465c6beeb0b104e5ab5572765723"
+    },
+    "outputs/fresh_source_plan.csv": {
+      "bytes": 730,
+      "sha256": "fc2efb59e1c54b21144510f7bb40f34cecd537c4f4e42c5e9b1c0e9beaa15f61"
+    },
+    "outputs/independent_probes_r2.json": {
+      "bytes": 11601,
+      "sha256": "9606eb824c1a144ebe57bd4cfc292b0766dfddb68296157e2024b000f633852d"
+    },
+    "outputs/industry_results.json": {
+      "bytes": 7679,
+      "sha256": "1902c0e97a6421c432ec7c4cdc98672abd84192393f930eda6241e7c76796a54"
+    },
+    "outputs/manufacture_pharma/count_model_comparison.csv": {
+      "bytes": 945,
+      "sha256": "86c3e367c32d634c9122eda41c6f7c9e5d54451d823a9881095706d5c74a665a"
+    },
+    "outputs/manufacture_pharma/installed_base_by_age.csv": {
+      "bytes": 5941,
+      "sha256": "496d450ee619014c6ccdb55b290b8faa635374d4d10b9fdf51256e6f1e827ba1"
+    },
+    "outputs/manufacture_pharma/installed_base_monthly.csv": {
+      "bytes": 927,
+      "sha256": "bed8dae65c6a309aa296a628e4c71e3f9cd8be6c2bf5e1cad3e553e9d12de8b4"
+    },
+    "outputs/manufacture_pharma/mps_13.csv": {
+      "bytes": 1686,
+      "sha256": "83e39d61ed9b4535f7706fdadf811e579cd8ef1cf4f0c980238b45502989eedc"
+    },
+    "outputs/manufacture_pharma/mps_52.csv": {
+      "bytes": 5742,
+      "sha256": "740076c76742242e604982d2296b491f8387264e4c4d91226c4543b8c4dd45e4"
+    },
+    "outputs/manufacture_pharma/ols_historical_asof_features.csv": {
+      "bytes": 6681,
+      "sha256": "900f372b6de80e6186515d0be225e6f98310b198b86da1be274f6f265b4e97f0"
+    },
+    "outputs/manufacture_pharma/ols_rolling_metrics.csv": {
+      "bytes": 420,
+      "sha256": "f74cf212897d51df56e3edbd8f8fbbcbc42a42b742b59f692a4912ff53abfcaf"
+    },
+    "outputs/manufacture_pharma/ols_rolling_predictions.csv": {
+      "bytes": 8762,
+      "sha256": "ef903ed9e1d07f575296dcd83cf43b2a56879d48b12a23277fdf23f8ccfad539"
+    },
+    "outputs/manufacture_pharma/repurchase_windows.csv": {
+      "bytes": 781,
+      "sha256": "0b279a5ff83f5e84dfc68001e410321a2511efefded699c1a551ab2d6ca6990b"
+    },
+    "outputs/manufacture_pharma/results.json": {
+      "bytes": 6642,
+      "sha256": "d7d8742a40aee001bb390e58010459c4e8ddb42bb5ad05d9cc9fe998edbbf8cb"
+    },
+    "outputs/manufacture_pharma/vmi_responsibility_ledger.csv": {
+      "bytes": 1484,
+      "sha256": "950d7a8c8df33f1b3e591771e44d2377753edc69a01baffa8858db026a3f241c"
+    },
+    "outputs/pharma_network.csv": {
+      "bytes": 355,
+      "sha256": "dfae802817296beb5f97cd2d7030a12f994db6792f9c7de610e31cc7aeeb4a90"
+    },
+    "outputs/postpone_costs.csv": {
+      "bytes": 377,
+      "sha256": "e6317ede85018389a0c1601b18a72fb08ab65835239d4b54e8ae5da6a82e851d"
+    },
+    "outputs/postpone_schedule.csv": {
+      "bytes": 149,
+      "sha256": "0279d8e20b01a69403254a7165dff8eef1464720f374532a6a847dbf3c0f52f9"
+    },
+    "outputs/promotion_backtest.csv": {
+      "bytes": 445,
+      "sha256": "e02ae5cce9a05816b4a5823762adb410fd39a6ab9469ea8199f8388f78d935c6"
+    },
+    "outputs/reproducibility.json": {
+      "bytes": 222,
+      "sha256": "1024caea5a32d79ce3fc1b9d08e354c8fc9a0afecd2d46530335e939dcaeefe8"
+    },
+    "outputs/test_industry.txt": {
+      "bytes": 5115,
+      "sha256": "b648a528a7ae368744f8b299e449d6837b904222fa8e0602d7ffdf1abb155c6d"
+    },
+    "outputs/test_manufacture_pharma.json": {
+      "bytes": 1718,
+      "sha256": "7c7e9bf4f991c0363943e31dbb94ffde4db0f8b12fd8d24561a0f1c36488982f"
+    },
+    "run_all.py": {
+      "bytes": 739,
+      "sha256": "3904bf560f678bc51c99c9fa5cac2a24ed5b78ae0a24e93139dd9a11907a9c78"
+    },
+    "test_industry.py": {
+      "bytes": 13560,
+      "sha256": "c8b452b3838e35ee9c5df0dee0a0f05ef1d1d4c80e64127b663802deef747ea4"
+    }
+  }
+}

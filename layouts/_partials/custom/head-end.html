@@ -19,6 +19,15 @@
   }}
 <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
 {{- end }}
+{{- if eq .Section "forecast" }}
+  {{- $type := cond .IsSection "Course" "LearningResource" }}
+  {{- $ld := dict "@context" "https://schema.org" "@type" $type "name" .Title "description" (.Store.Get "seoDescription") "url" .Permalink "inLanguage" .Site.Language.Lang "isAccessibleForFree" true }}
+  {{- if .IsPage }}{{ $ld = merge $ld (dict "learningResourceType" "课程与练习" "isPartOf" (dict "@type" "Course" "name" "预测课堂：供应链预测与计划实战教程" "url" ("forecast/" | absURL))) }}{{ end }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+  {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "首页" "item" .Site.BaseURL) (dict "@type" "ListItem" "position" 2 "name" "预测课堂" "item" ("forecast/" | absURL)) }}
+  {{- if .IsPage }}{{ $items = $items | append (dict "@type" "ListItem" "position" 3 "name" .Title "item" .Permalink) }}{{ end }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items | jsonify | safeJS }}</script>
+{{- end }}
 {{- with .OutputFormats.Get "rss" }}
 <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
 {{- end }}

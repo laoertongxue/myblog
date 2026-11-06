@@ -322,12 +322,12 @@ async (page, ctx) => {
   const indexHref = await page.goto(base + '/search/').then(() => page.locator('.search-page').getAttribute('data-index'));
   const index = await (await fetch(base + indexHref)).json();
   const sample = index[0];
-  const labels = { blog: '博客', weekly: 'Weekly', topics: '专题' };
   assert(sample, 'search index carries no item to search for');
   await page.goto(`${base}/search/?q=${encodeURIComponent(sample.title)}`);
   await page.waitForFunction(() => document.querySelectorAll('.search-result').length > 0);
   await page.locator(`[data-filter=${sample.section}]`).click();
-  await page.waitForFunction(expected => [...document.querySelectorAll('.result-kind')].every(node => node.textContent === expected), labels[sample.section]);
+  const sectionLabel = await page.locator(`[data-filter=${sample.section}] span`).first().textContent();
+  await page.waitForFunction(expected => [...document.querySelectorAll('.result-kind')].every(node => node.textContent === expected), sectionLabel);
   report.push(`Search and the ${sample.section} filter work for the indexed title ${JSON.stringify(sample.title)}`);
 
   const noJsContext = await page.context().browser().newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
