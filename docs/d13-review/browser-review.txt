@@ -1,0 +1,30 @@
+### Result
+[{"width":1440,"overflow":false,"tables":[{"client":1152,"scroll":1152,"tabindex":0},{"client":1152,"scroll":1152,"tabindex":0}],"images":[{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-00_cover_hu_f10d31f6127d6d83.webp","w":1152,"h":490,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-01_origins_hu_299372d539ed9ca1.webp","w":1152,"h":1228,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-02_revisions_hu_1a39d3152578e341.webp","w":1152,"h":1334,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-03_stockout_hu_ef926e12ceccc173.webp","w":1152,"h":1814,"loaded":true}]},{"width":390,"overflow":false,"tables":[{"client":350,"scroll":700,"tabindex":0},{"client":350,"scroll":700,"tabindex":0}],"images":[{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-00_cover_hu_f10d31f6127d6d83.webp","w":350,"h":148,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-01_origins_hu_299372d539ed9ca1.webp","w":350,"h":373,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-02_revisions_hu_1a39d3152578e341.webp","w":350,"h":405,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-03_stockout_hu_ef926e12ceccc173.webp","w":350,"h":551,"loaded":true}]},{"width":320,"overflow":false,"tables":[{"client":280,"scroll":700,"tabindex":0},{"client":280,"scroll":700,"tabindex":0}],"images":[{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-00_cover_hu_f10d31f6127d6d83.webp","w":280,"h":119,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-01_origins_hu_299372d539ed9ca1.webp","w":280,"h":298,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-02_revisions_hu_1a39d3152578e341.webp","w":280,"h":324,"loaded":true},{"src":"http://127.0.0.1:1323/blog/rolling-backtest-stockout-censoring/images/d13-03_stockout_hu_ef926e12ceccc173.webp","w":280,"h":441,"loaded":true}]}]
+### Ran Playwright code
+```js
+await (async (page) => {
+const report=[];
+for (const width of [1440,390,320]) {
+ await page.setViewportSize({width,height:1000});
+ await page.evaluate(()=>window.scrollTo(0,0));
+ await page.screenshot({path:`output/playwright/d13-${width}-top.png`});
+ const tables=page.getByRole('region').filter({has:page.getByRole('table')});
+ if (await tables.count() !== 2) throw new Error('Expected two metric tables');
+ const sizes=[];
+ for(let i=0;i<2;i++) {
+  await tables.nth(i).scrollIntoViewIfNeeded();
+  sizes.push(await tables.nth(i).evaluate(el=>({client:el.clientWidth,scroll:el.scrollWidth,tabindex:el.tabIndex})));
+ }
+ if(width<700 && !sizes.every(s=>s.scroll>s.client && s.tabindex===0)) throw new Error('Mobile tables must scroll and be keyboard focusable');
+ const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
+ if(overflow) throw new Error('Page overflow');
+ await tables.nth(0).scrollIntoViewIfNeeded();
+ await page.screenshot({path:`output/playwright/d13-${width}-table.png`});
+ for(const img of await page.getByRole('img').all()) {await img.scrollIntoViewIfNeeded(); await img.evaluate(el=>el.decode());}
+ const images=await page.getByRole('img').evaluateAll(els=>els.map(e=>({src:e.currentSrc,w:e.naturalWidth,h:e.naturalHeight,loaded:e.complete})));
+ if(images.some(i=>!i.loaded||!i.w)) throw new Error('Unloaded image');
+ report.push({width,overflow,tables:sizes,images});
+}
+return report;
+})(page);
+```

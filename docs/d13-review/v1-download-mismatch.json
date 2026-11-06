@@ -1,0 +1,12 @@
+{
+  "static/downloads": {
+    "sha256": "4b653644c86b38e2f4be5de7ea41cea90a5541bce2ec8a332c4d834f9aa47361",
+    "has_figure_readme": true,
+    "mtime_ns": 1793929850357212871
+  },
+  ".hugo-check/downloads": {
+    "sha256": "884237a424d792cd5effc89ac09f3134a83fa8d648193ba5c7942f7c65cd7910",
+    "has_figure_readme": false,
+    "mtime_ns": 1793929768778579896
+  }
+}

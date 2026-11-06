@@ -1,0 +1,173 @@
+[
+  {
+    "case": "hewei",
+    "method": "MA3",
+    "task_horizon": "5",
+    "metric": "rmse",
+    "old": "28.295317633841826",
+    "new": "28.295317633841822",
+    "same_4dp": true
+  },
+  {
+    "case": "hewei",
+    "method": "MA7",
+    "task_horizon": "1",
+    "metric": "me",
+    "old": "0.2091836734693879",
+    "new": "0.20918367346938752",
+    "same_4dp": true
+  },
+  {
+    "case": "hewei",
+    "method": "MA7",
+    "task_horizon": "5",
+    "metric": "me",
+    "old": "0.9583333333333351",
+    "new": "0.9583333333333316",
+    "same_4dp": true
+  },
+  {
+    "case": "hewei",
+    "method": "MA7",
+    "task_horizon": "5",
+    "metric": "mae",
+    "old": "9.375",
+    "new": "9.374999999999998",
+    "same_4dp": true
+  },
+  {
+    "case": "hewei",
+    "method": "MA7",
+    "task_horizon": "5",
+    "metric": "wape",
+    "old": "0.07124762507916403",
+    "new": "0.071247625079164",
+    "same_4dp": true
+  },
+  {
+    "case": "hewei",
+    "method": "MA14",
+    "task_horizon": "1",
+    "metric": "rmse",
+    "old": "5.983471524698723",
+    "new": "5.9834715246987225",
+    "same_4dp": true
+  },
+  {
+    "case": "hewei",
+    "method": "MA14",
+    "task_horizon": "5",
+    "metric": "me",
+    "old": "0.4077380952380973",
+    "new": "0.40773809523809845",
+    "same_4dp": true
+  },
+  {
+    "case": "hewei",
+    "method": "MA14",
+    "task_horizon": "5",
+    "metric": "mae",
+    "old": "9.151785714285715",
+    "new": "9.151785714285714",
+    "same_4dp": true
+  },
+  {
+    "case": "hewei",
+    "method": "MA14",
+    "task_horizon": "5",
+    "metric": "wape",
+    "old": "0.06955125305346965",
+    "new": "0.06955125305346964",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA3",
+    "task_horizon": "1",
+    "metric": "me",
+    "old": "0.1666666666666638",
+    "new": "0.16666666666666785",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA3",
+    "task_horizon": "1",
+    "metric": "rmse",
+    "old": "47.854441999125",
+    "new": "47.85444199912501",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA3",
+    "task_horizon": "5",
+    "metric": "me",
+    "old": "-6.097222222222257",
+    "new": "-6.097222222222214",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA3",
+    "task_horizon": "5",
+    "metric": "rmse",
+    "old": "218.70747205647396",
+    "new": "218.70747205647393",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA3",
+    "task_horizon": "5",
+    "metric": "wape",
+    "old": "0.2773983517734372",
+    "new": "0.27739835177343714",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA7",
+    "task_horizon": "1",
+    "metric": "me",
+    "old": "0.31632653061224353",
+    "new": "0.3163265306122445",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA7",
+    "task_horizon": "1",
+    "metric": "mae",
+    "old": "30.153061224489797",
+    "new": "30.153061224489793",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA7",
+    "task_horizon": "1",
+    "metric": "wape",
+    "old": "0.2502328732322805",
+    "new": "0.25023287323228044",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA7",
+    "task_horizon": "5",
+    "metric": "me",
+    "old": "2.3154761904761805",
+    "new": "2.31547619047619",
+    "same_4dp": true
+  },
+  {
+    "case": "apparel",
+    "method": "MA14",
+    "task_horizon": "5",
+    "metric": "me",
+    "old": "4.36904761904762",
+    "new": "4.369047619047625",
+    "same_4dp": true
+  }
+]

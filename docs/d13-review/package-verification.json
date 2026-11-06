@@ -1,0 +1,19 @@
+{
+  "d13-rolling-backtest-article.zip": {
+    "sha256": "1f9247ceea88beeb51e0902341bf73fa40a9b51d6e0efa2a16fbd0bde3733317",
+    "members": 6,
+    "manifest": "complete and verified"
+  },
+  "d13-rolling-backtest-images.zip": {
+    "sha256": "cf112cad7e5ab481f44f0395b996c980e6e639c865e0e9a980876d5bd817555b",
+    "members": 34,
+    "manifest": "complete and verified"
+  },
+  "d13-rolling-backtest-practice.zip": {
+    "sha256": "6bafac220cad3a33e86d5486a6ea45f512d4d4a24f64071bb8a33d28d263d7dc",
+    "members": 18,
+    "manifest": "complete and verified",
+    "fresh_extract_tests": "test_all_dates_horizons_parameters_and_no_cross_block (test_backtest.BacktestTests.test_all_dates_horizons_parameters_and_no_cross_block) ... ok\ntest_all_forecasts_with_fraction_oracle (test_backtest.BacktestTests.test_all_forecasts_with_fraction_oracle) ... ok\ntest_all_future_and_prefix_attacks (test_backtest.BacktestTests.test_all_future_and_prefix_attacks) ... ok\ntest_freeze_is_post_replay_min_mae_per_task (test_backtest.BacktestTests.test_freeze_is_post_replay_min_mae_per_task) ... ok\ntest_full_replay_future_change_cannot_rewrite_prior_vintages (test_backtest.BacktestTests.test_full_replay_future_change_cannot_rewrite_prior_vintages) ... ok\ntest_metric_manual_zero_denominator_and_invalid (test_backtest.BacktestTests.test_metric_manual_zero_denominator_and_invalid) ... ok\ntest_moving_average_preserves_subnormal_mean (test_backtest.BacktestTests.test_moving_average_preserves_subnormal_mean) ... ok\ntest_moving_average_rejects_unrepresentable_mean (test_backtest.BacktestTests.test_moving_average_rejects_unrepresentable_mean) ... ok\ntest_moving_average_requires_finite_aggregate (test_backtest.BacktestTests.test_moving_average_requires_finite_aggregate) ... ok\ntest_no_full_sample_preprocessing (test_backtest.BacktestTests.test_no_full_sample_preprocessing) ... ok\ntest_observed_history_can_update_next_origin (test_backtest.BacktestTests.test_observed_history_can_update_next_origin) ... ok\ntest_overlap_denominator_not_unique_volume (test_backtest.BacktestTests.test_overlap_denominator_not_unique_volume) ... ok\ntest_reject_missing_duplicate_and_foreign_series (test_backtest.BacktestTests.test_reject_missing_duplicate_and_foreign_series) ... ok\ntest_revisions_negative_control_is_detectably_wrong (test_backtest.BacktestTests.test_revisions_negative_control_is_detectably_wrong) ... ok\ntest_sales_perfect_does_not_imply_demand_perfect (test_backtest.BacktestTests.test_sales_perfect_does_not_imply_demand_perfect) ... ok\ntest_scores_against_exact_oracle (test_backtest.BacktestTests.test_scores_against_exact_oracle) ... ok\ntest_separate_stockout_does_not_mutate_main (test_backtest.BacktestTests.test_separate_stockout_does_not_mutate_main) ... ok\ntest_source_hashes_and_only_development (test_backtest.BacktestTests.test_source_hashes_and_only_development) ... ok\ntest_stockout_different_statuses_not_zero_imputation (test_backtest.BacktestTests.test_stockout_different_statuses_not_zero_imputation) ... ok\ntest_sum_error_is_not_sum_absolute_error (test_backtest.BacktestTests.test_sum_error_is_not_sum_absolute_error) ... ok\ntest_totals_equal_same_origin_forecasts (test_backtest.BacktestTests.test_totals_equal_same_origin_forecasts) ... ok\ntest_window_counts_and_edges (test_backtest.BacktestTests.test_window_counts_and_edges) ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 1.662s\n\nOK\n",
+    "rerun": "all nine result files byte-identical; all manifest files unchanged"
+  }
+}

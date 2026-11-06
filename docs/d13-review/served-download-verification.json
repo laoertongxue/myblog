@@ -1,0 +1,30 @@
+{
+  "page": "/blog/rolling-backtest-stockout-censoring/",
+  "page_sha256": "c8b5d7a9c6d886b0d090c3dc9a80047e8649d17bb1850d5ab4709b4d4eac0ad5",
+  "downloads": [
+    {
+      "href": "/downloads/d13-rolling-backtest-article.zip",
+      "source_sha256": "1f9247ceea88beeb51e0902341bf73fa40a9b51d6e0efa2a16fbd0bde3733317",
+      "build_sha256": "1f9247ceea88beeb51e0902341bf73fa40a9b51d6e0efa2a16fbd0bde3733317",
+      "http_sha256": "1f9247ceea88beeb51e0902341bf73fa40a9b51d6e0efa2a16fbd0bde3733317",
+      "bytes": 649288,
+      "manifest": "complete, all members verified"
+    },
+    {
+      "href": "/downloads/d13-rolling-backtest-images.zip",
+      "source_sha256": "cf112cad7e5ab481f44f0395b996c980e6e639c865e0e9a980876d5bd817555b",
+      "build_sha256": "cf112cad7e5ab481f44f0395b996c980e6e639c865e0e9a980876d5bd817555b",
+      "http_sha256": "cf112cad7e5ab481f44f0395b996c980e6e639c865e0e9a980876d5bd817555b",
+      "bytes": 1007384,
+      "manifest": "complete, all members verified"
+    },
+    {
+      "href": "/downloads/d13-rolling-backtest-practice.zip",
+      "source_sha256": "6bafac220cad3a33e86d5486a6ea45f512d4d4a24f64071bb8a33d28d263d7dc",
+      "build_sha256": "6bafac220cad3a33e86d5486a6ea45f512d4d4a24f64071bb8a33d28d263d7dc",
+      "http_sha256": "6bafac220cad3a33e86d5486a6ea45f512d4d4a24f64071bb8a33d28d263d7dc",
+      "bytes": 61098,
+      "manifest": "complete, all members verified"
+    }
+  ]
+}

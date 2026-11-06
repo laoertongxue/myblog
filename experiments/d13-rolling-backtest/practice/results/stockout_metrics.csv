@@ -1,0 +1,5 @@
+case,unit,target,mask,n,actual_sum,absolute_error_sum,me,mae,rmse,wape,wape_status
+hewei,kg/day,observed_sales,same 12 open days with observed sales; no missing or closed day,12,231.0,75.0,-0.75,6.25,9.205976319760985,0.3246753246753247,defined
+hewei,kg/day,latent_simulated_demand,same 12 open days with observed sales; no missing or closed day,12,304.0,108.0,5.333333333333333,9.0,11.423659658795861,0.35526315789473684,defined
+apparel,pieces/day,observed_sales,same 12 open days with observed sales; no missing or closed day,12,1155.0,375.0,-3.75,31.25,46.02988159880492,0.3246753246753247,defined
+apparel,pieces/day,latent_simulated_demand,same 12 open days with observed sales; no missing or closed day,12,1520.0,540.0,26.666666666666668,45.0,57.11829829397931,0.35526315789473684,defined

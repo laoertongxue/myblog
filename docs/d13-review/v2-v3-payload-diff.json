@@ -1,0 +1,20 @@
+{
+  "scope": "Only article wording and article ZIP changed in deliverable payload; model, data, results, figures, practice ZIP, images ZIP and packaging script unchanged",
+  "changes": [
+    {
+      "path": "content/blog/rolling-backtest-stockout-censoring/index.md",
+      "v2_sha256": "992e1f759a3c861b72c852c6a1bae579e87505ac6ef35dd8726b27cc73a6d513",
+      "v3_sha256": "2630744df203c73ffb2d24b2e9cb0d24106db201c4e36c1fe857d2dfeedc65df"
+    },
+    {
+      "path": "static/downloads/d13-rolling-backtest-article.zip",
+      "v2_sha256": "c811768b896dee8c7f5ddc204c39c0cb49aade3d2ec016832af119bca5262392",
+      "v3_sha256": "1f9247ceea88beeb51e0902341bf73fa40a9b51d6e0efa2a16fbd0bde3733317"
+    }
+  ],
+  "article_zip_changed_members": [
+    "MANIFEST.sha256",
+    "index.md"
+  ],
+  "unchanged_payload_files": 40
+}

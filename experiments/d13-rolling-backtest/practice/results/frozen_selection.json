@@ -1,0 +1,45 @@
+{
+  "run_id": "D13-v2-development-replay",
+  "selection_rule": "minimum validation MAE separately by case and task; tie: method lexical order",
+  "selection_timing": "after full development replay, never fed back into historical issuance",
+  "claim_limit": "retrospective teaching choice on repeatedly inspected data, not unbiased generalization or a new blind test",
+  "source_sha256": {
+    "data/hewei-development.csv": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407",
+    "data/apparel-development.csv": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5"
+  },
+  "selected": [
+    {
+      "case": "hewei",
+      "task_horizon": 1,
+      "method": "SNaive7",
+      "parameters": "{\"method\": \"seasonal_naive_7\"}",
+      "mae": 1.7857142857142858,
+      "unit": "kg/day"
+    },
+    {
+      "case": "hewei",
+      "task_horizon": 5,
+      "method": "SNaive7",
+      "parameters": "{\"method\": \"seasonal_naive_7\"}",
+      "mae": 3.2916666666666665,
+      "unit": "kg"
+    },
+    {
+      "case": "apparel",
+      "task_horizon": 1,
+      "method": "SNaive7",
+      "parameters": "{\"method\": \"seasonal_naive_7\"}",
+      "mae": 21.107142857142858,
+      "unit": "pieces/day"
+    },
+    {
+      "case": "apparel",
+      "task_horizon": 5,
+      "method": "MA14",
+      "parameters": "{\"k\": 14, \"method\": \"moving_average\"}",
+      "mae": 109.45238095238095,
+      "unit": "pieces"
+    }
+  ],
+  "deployment_scope": "frozen teaching configurations only; no production order or replenishment action"
+}

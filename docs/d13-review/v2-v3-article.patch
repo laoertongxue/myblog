@@ -1,0 +1,5 @@
+--- v2/content/blog/rolling-backtest-stockout-censoring/index.md
++++ v3/content/blog/rolling-backtest-stockout-censoring/index.md
+@@ -150 +150 @@
+-还对完整回放增加一道检查：把第121天之后的标签改大，所有截至第120天日终已经发出的预测保持不变。评分结果可以变，因为实际标签变了；预测版本不能变。最后四个一步起点也单独覆盖。
++还对完整回放增加一道检查：从第121天起把标签改大，所有截至第120天日终已经发出的预测保持不变。评分结果可以变，因为实际标签变了；预测版本不能变。最后四个一步起点也单独覆盖。
