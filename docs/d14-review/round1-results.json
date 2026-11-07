@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": 4286,
+  "oracle": "65 digit Decimal; independently generated 2072 predictions and 28 metric rows",
+  "archives": {
+    "d14-model-selection-article.zip": {
+      "sha256": "aab317c1aebb4cf239937fb0463c41bce4d1bfb5edb4bccdd72985e4b68a20d3",
+      "members": 5
+    },
+    "d14-model-selection-images.zip": {
+      "sha256": "d1c9da9c6cffc4c9fdd06a38ff3292fc99857c399aecef66adef9cca86229a4c",
+      "members": 40
+    },
+    "d14-model-selection-practice.zip": {
+      "sha256": "43d41353fcfc830e89eca7caa104ca1a71c32dc391346fdbc772fc805966c205",
+      "members": 20
+    }
+  }
+}

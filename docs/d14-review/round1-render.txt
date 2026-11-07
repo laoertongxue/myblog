@@ -1,0 +1,1 @@
+Rendered three monochrome figures; glyphs, text bounds, and pairwise overlap checks passed.

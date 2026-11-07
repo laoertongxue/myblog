@@ -1,0 +1,10 @@
+{
+  "source_version": "D9-v1",
+  "public_zip_sha256": "0063b6ddae7459eff9dc7779c0a0a6c9ecef8d0bd48320c653eae1c072ce1c31",
+  "files": {
+    "data/hewei-development.csv": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407",
+    "data/apparel-development.csv": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5"
+  },
+  "copy_policy": "Development CSV bytes copied from D13; inherited fixed D9 hashes verified. Only days 1..140.",
+  "public_zip_hash_status": "Inherited declaration only; original D9 ZIP not opened or reverified for D14."
+}

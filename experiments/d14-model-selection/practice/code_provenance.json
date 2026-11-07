@@ -1,0 +1,17 @@
+{
+  "derived_from": "experiments/d13-rolling-backtest/practice",
+  "contract_revision": "D14 post-review input-contract hardening; same run_id and identical development results",
+  "files": {
+    "baseline.py": {
+      "d13_source_sha256": "f9631b4753439da9c207306ebf16de8c251a9b5c10f7a1a50c010de60ae2c90b",
+      "d14_sha256": "8872b20caff7e554ef3f39e3a4255487ae9c2b83abeff65479d1de0163b13daf",
+      "status": "modified: reject mathematically positive SES state rounded to zero"
+    },
+    "metrics.py": {
+      "d13_source_sha256": "ecb4d15e0a46f272e9b954cb8bb42a4c22542117c9f1b90b2c3c8aaf052b23c3",
+      "d14_sha256": "ecb4d15e0a46f272e9b954cb8bb42a4c22542117c9f1b90b2c3c8aaf052b23c3",
+      "status": "copied unchanged"
+    }
+  },
+  "reused_logic": "run.py and Fraction oracle tests adapted from D13; D14 rankings are retrospective only. Post-review issue/replay bind case to validated series; no access to future rows added."
+}
