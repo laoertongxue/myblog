@@ -1,0 +1,7 @@
+{
+  "test": "ZIP extraction with only figure-tools and practice/results/metrics.csv; run from unrelated /tmp cwd",
+  "success": true,
+  "all_three_png_sha256_match_repository": true,
+  "all_three_svgs_in_package": true,
+  "no_d13_or_hugo_dependency": true
+}

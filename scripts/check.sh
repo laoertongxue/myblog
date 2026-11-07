@@ -39,6 +39,7 @@ python3 scripts/check-published-pages.py "$OUT"
 
 python3 scripts/check-content.py
 python3 -m unittest discover -s experiments/p01-math-bridge/practice -v
+python3 scripts/check-d14.py
 
 if grep -rq '0001-01-01' "$OUT"; then
   fail "a page publishes a 0001-01-01 date - a dated content type is missing front matter date"

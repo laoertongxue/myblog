@@ -1,0 +1,60 @@
+[
+  {
+    "case": "hewei",
+    "method": "SES0.8",
+    "origin_day": 117,
+    "target_days": [
+      118,
+      119,
+      120,
+      121,
+      122
+    ],
+    "fixed_origin_predictions": [
+      28.76875166019437,
+      28.76875166019437,
+      28.76875166019437,
+      28.76875166019437,
+      28.76875166019437
+    ],
+    "later_one_step_revisions_WRONG_FOR_ORIGIN117": [
+      28.76875166019437,
+      35.35375033203887,
+      31.870750066407773,
+      21.574150013281553,
+      21.91483000265631
+    ],
+    "fixed_total": 143.84375830097184,
+    "revised_total": 139.48223207457886,
+    "warning": "revisions use new observations; never used as five-day scores"
+  },
+  {
+    "case": "apparel",
+    "method": "SES0.8",
+    "origin_day": 117,
+    "target_days": [
+      118,
+      119,
+      120,
+      121,
+      122
+    ],
+    "fixed_origin_predictions": [
+      111.2032713427297,
+      111.2032713427297,
+      111.2032713427297,
+      111.2032713427297,
+      111.2032713427297
+    ],
+    "later_one_step_revisions_WRONG_FOR_ORIGIN117": [
+      111.2032713427297,
+      213.44065426854596,
+      224.28813085370922,
+      188.05762617074186,
+      110.41152523414836
+    ],
+    "fixed_total": 556.0163567136485,
+    "revised_total": 847.4012078698751,
+    "warning": "revisions use new observations; never used as five-day scores"
+  }
+]
