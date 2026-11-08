@@ -1,0 +1,8 @@
+{
+  "provenance": "New fictional D15 teaching inputs; no D9 or other historical/test data read or reused. Dates are synthetic.",
+  "files": {
+    "parameters.json": "b57135811ba1328defe102d95ecdcc18ff41f77dd422a27193c13430a1cc701e",
+    "data/hewei-demand.csv": "1dfb8f697b9a4d3245ef0d434e2a26c8e40b5d2473835407e6d7535d93a87ee9",
+    "data/apparel-demand.csv": "e234309868f11eb9b2c7bbcda2b7baa5d8a546179463f2f2ff51b500734e8288"
+  }
+}

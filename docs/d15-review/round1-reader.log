@@ -1,0 +1,53 @@
+test_apparel_hand_calculation (test_inventory.InventoryTests.test_apparel_hand_calculation) ... ok
+test_day_one_order_arrives_day_four_not_day_three (test_inventory.InventoryTests.test_day_one_order_arrives_day_four_not_day_three) ... ok
+test_deterministic_run_from_other_working_directory (test_inventory.InventoryTests.test_deterministic_run_from_other_working_directory) ... ok
+test_duplicate_initial_order_and_event_rejected (test_inventory.InventoryTests.test_duplicate_initial_order_and_event_rejected) ... ok
+test_early_actual_arrival_rejected_even_with_correct_due_date (test_inventory.InventoryTests.test_early_actual_arrival_rejected_even_with_correct_due_date) ... ok
+test_excess_position_does_not_cancel_stock (test_inventory.InventoryTests.test_excess_position_does_not_cancel_stock) ... ok
+test_forgetting_pipeline_debit_on_receipt_rejected (test_inventory.InventoryTests.test_forgetting_pipeline_debit_on_receipt_rejected) ... ok
+test_fractional_kg_but_not_fractional_pieces (test_inventory.InventoryTests.test_fractional_kg_but_not_fractional_pieces) ... ok
+test_future_demand_does_not_change_issued_orders (test_inventory.InventoryTests.test_future_demand_does_not_change_issued_orders) ... ok
+test_hewei_hand_calculated_all_days (test_inventory.InventoryTests.test_hewei_hand_calculated_all_days) ... ok
+test_invalid_configuration (test_inventory.InventoryTests.test_invalid_configuration) ... ok
+test_invalid_dates_duplicate_day_and_missing_rows (test_inventory.InventoryTests.test_invalid_dates_duplicate_day_and_missing_rows) ... ok
+test_lost_sales_not_subtracted_twice (test_inventory.InventoryTests.test_lost_sales_not_subtracted_twice) ... ok
+test_missing_arrival_and_duplicate_arrival_rejected (test_inventory.InventoryTests.test_missing_arrival_and_duplicate_arrival_rejected) ... ok
+test_negative_nan_infinite_demand_rejected (test_inventory.InventoryTests.test_negative_nan_infinite_demand_rejected) ... ok
+test_on_hand_only_reordering_counterexample (test_inventory.InventoryTests.test_on_hand_only_reordering_counterexample) ... ok
+test_partial_receipt_and_cancellation_rejected (test_inventory.InventoryTests.test_partial_receipt_and_cancellation_rejected) ... ok
+test_prefix_alone_has_same_decisions (test_inventory.InventoryTests.test_prefix_alone_has_same_decisions) ... ok
+test_receipt_transfers_pipeline_without_changing_position (test_inventory.InventoryTests.test_receipt_transfers_pipeline_without_changing_position) ... ok
+test_total_material_conservation (test_inventory.InventoryTests.test_total_material_conservation) ... ok
+test_units_cases_and_entities_cannot_cross (test_inventory.InventoryTests.test_units_cases_and_entities_cannot_cross) ... ok
+test_zero_lead_time_means_next_day (test_inventory.InventoryTests.test_zero_lead_time_means_next_day) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.034s
+
+OK
+{
+  "hewei": {
+    "series": "hewei/A/SKU01",
+    "unit": "kg",
+    "days": 7,
+    "total_demand": 42,
+    "total_served": 38,
+    "total_lost_sales": 4,
+    "total_new_orders": 38,
+    "closing_on_hand": 6,
+    "closing_on_order": 14,
+    "closing_inventory_position": 20
+  },
+  "apparel": {
+    "series": "anonymous-apparel/terminal/SKU01",
+    "unit": "pieces",
+    "days": 7,
+    "total_demand": 35,
+    "total_served": 32,
+    "total_lost_sales": 3,
+    "total_new_orders": 34,
+    "closing_on_hand": 4,
+    "closing_on_order": 8,
+    "closing_inventory_position": 12
+  }
+}

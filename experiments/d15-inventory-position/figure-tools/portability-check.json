@@ -1,0 +1,29 @@
+{
+  "standalone_redraw": true,
+  "revision": "round-1-unit-correction",
+  "cwd": "/",
+  "external_data_required": false,
+  "no_repository_paths_created": true,
+  "images": [
+    {
+      "file": "d15-00_cover.png",
+      "byte_identical": true,
+      "sha256": "cd332f13405fb02f70c0ad201602195dd401b4758b6864849648ce61f89ccf4c"
+    },
+    {
+      "file": "d15-01_event-timing.png",
+      "byte_identical": true,
+      "sha256": "c7f76c8f87a11ce2ef64537db8cd33acaa0f18c0c393c0ea2ac98d7474f0b700"
+    },
+    {
+      "file": "d15-02_inventory-position.png",
+      "byte_identical": true,
+      "sha256": "b3bb0038151eeaf47a96fc86d801590075b9757ca4f85a09be56d1c800053916"
+    },
+    {
+      "file": "d15-03_lost-sales.png",
+      "byte_identical": true,
+      "sha256": "2283f83efb58bb4b365ad894db7b370dead5578046c6eefb99cc025f4a285c11"
+    }
+  ]
+}

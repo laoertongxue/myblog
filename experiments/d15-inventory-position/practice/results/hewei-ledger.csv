@@ -1,0 +1,8 @@
+case,series,unit,day,date,opening_on_hand,opening_on_order,arrivals,available_before_demand,demand,served,lost_sales,closing_on_hand,on_order_before_order,ip_before_order,order_quantity,on_order_after_order,ip_after_order
+hewei,hewei/A/SKU01,kg,1,2026-01-01,12,8,0,12,7,7,0,5,8,13,7,15,20
+hewei,hewei/A/SKU01,kg,2,2026-01-02,5,15,8,13,9,9,0,4,7,11,9,16,20
+hewei,hewei/A/SKU01,kg,3,2026-01-03,4,16,0,4,8,4,4,0,16,16,4,20,20
+hewei,hewei/A/SKU01,kg,4,2026-01-04,0,20,7,7,4,4,0,3,13,16,4,17,20
+hewei,hewei/A/SKU01,kg,5,2026-01-05,3,17,9,12,5,5,0,7,8,15,5,13,20
+hewei,hewei/A/SKU01,kg,6,2026-01-06,7,13,4,11,6,6,0,5,9,14,6,15,20
+hewei,hewei/A/SKU01,kg,7,2026-01-07,5,15,4,9,3,3,0,6,11,17,3,14,20

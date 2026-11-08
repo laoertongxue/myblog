@@ -1,0 +1,53 @@
+D15 final candidate validation
+Base: f4a6cd98ee93e73f31f7ba3c1cd17a9a6362b76f
+Command: BROWSER_CHECKS=require make check
+Hugo: v0.166.0 extended, matching CI
+Playwright: 1.64.0, matching package-lock
+No browser checks skipped. Normal approved process escalation used for local Chromium.
+Completed: 2026-11-08T01:57:31.159184+00:00
+
+ok    forecast: 109 generated lessons match published source
+ok    built 226 pages
+ok    all 144 required routes exist (143 published content entries plus home/404)
+ok    parsed content: 19 published/scheduled articles; 0 drafts excluded from required-field checks
+Ran 45 tests in 0.400s
+Ran 25 tests in 1.840s
+ok    D14 archive manifests, source equality, clean reader tests and deterministic replay
+Ran 26 tests in 0.066s
+ok    D15 archive manifests, source equality, clean reader tests and deterministic replay
+ok    no year-1 dates
+ok    date layout tokens valid
+ok    no localhost URLs
+ok    no template escaping placeholders
+ok    2 processed image(s) emitted
+ok    indexing fixtures: empty sections, explicit noindex/testContent and their exclusive tags excluded; populated sections indexable
+ok    summaries: complete explicit text, short-summary support, description fallback and independent SEO metadata
+ok    thumbnails: cover over images, first explicit image, bundle discovery; exactly one cover per row
+ok    900x383 covers: 540x230 previews, 540/900 responsive widths
+ok    body images: portrait source keeps its independent original proportions
+ok    homepage pagination: 10 + 10 + 10 + 10 + 3, date order, no duplicates, drafts/future excluded
+ok    topic pagination fixture: 10 + 4 chapters, weight order, no duplicates
+ok    all local image/article links resolve; 0 test articles and 257 image references
+ok    SEO: 184 pages, self canonicals, crawlable graph/fragments, robots, contextual metadata, visible authors and Article schema; 177 sitemap URLs and 133 RSS items
+ok    forecast: 109 full HTML lessons, unique metadata/IDs, sitemap/schema, 68 unchanged resources
+ok    SEO fault injection: accidental noindex, wrong canonical host, blocked robots, broken fragments, sitemap omission and invisible author all rejected
+ok    series: 2 chapters in weight order (12 pictures, 5 pictures); sizes, TOC, tables, references, previews, search, sitemap and RSS all derived from content and templates
+ok    parsed content: 3 published/scheduled articles; 0 drafts excluded from required-field checks
+ok    parsed content: 3 published/scheduled articles; 1 drafts excluded from required-field checks
+ok    authoring: three archetypes, quoted dates, incomplete drafts, published/scheduled metadata rejection
+Ran 11 tests in 0.204s
+Ran 20 tests in 0.053s
+ok    D9: published test artifact and frozen development sources intact; 2 validation regressions passed; no sealed labels read or test scores recomputed
+ok    browser/d15: 4 assertion group(s), three ZIPs, 900×383 cover, one home cover
+ok    browser/d14: 4 assertion group(s), three ZIPs, 900×383 cover, one home cover
+ok    browser/forecast: 1 assertion group(s), 109 lessons at 1440/390/320px, shared blog design in light/dark preferences, images, calculator, hash aliases, local progress/export, search and no-JS reading
+ok    browser/p01: 1 assertion group(s), 1440px, 390px and 320px: complete forecasting topic chain, published chapter, original links, images and downloads passed
+ok    browser/design: 17 assertion group(s), 1440px: 16 blog article(s), 82 inline image(s) preserve intrinsic proportions, 58 source link(s), no overflow; 390px: 16 blog article(s), 82 inline image(s) preserve intrinsic proportions, 58 source link(s), no overflow; 320px: 16 blog article(s), 82 inline image(s) preserve intrinsic proportions, 58 source link(s), no overflow; 104 distinct original source(s) decoded with preserved proportions; every cover is 900x383
+ok    browser/mobile-navigation: 3 assertion group(s), 760px: menu open/close, Escape, backdrop, focus return, navigation, resize reset, reading stats and TOC passed
+ok    browser/adversarial-ui: 5 assertion group(s), Exactly the first preview of each listing is prioritized, exactly one cover per row, the rest lazy
+ok    browser/agent-series: 9 assertion group(s), 320px: series and every chapter are searchable under the topics filter
+ok    browser/thumbnail-fit: 13 assertion group(s), Blog/Weekly/topic rows show one 900:383 cover; body-picture dimensions remain independent
+ok    browser/resource-loading: 3 assertion group(s), Search code only on the search page; the fingerprinted index is fetched on demand and finds "数学桥梁"
+ok    browser/d9: 4 assertion group(s), 21 original/responsive image candidates: R=G=B; 3 ZIPs; home/category navigation
+All 11 browser checks passed (<isolated-checkout>/.hugo-check served on http://127.0.0.1:1316).
+All checks passed.

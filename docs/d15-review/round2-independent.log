@@ -1,0 +1,67 @@
+{
+  "cases": {
+    "hewei": {
+      "total_demand": "42",
+      "served": "38",
+      "lost": "4",
+      "receipts": "32",
+      "orders": "38",
+      "closing": "6",
+      "pending": {
+        "8": "5",
+        "9": "6",
+        "10": "3"
+      }
+    },
+    "apparel": {
+      "total_demand": "35",
+      "served": "32",
+      "lost": "3",
+      "receipts": "30",
+      "orders": "34",
+      "closing": "4",
+      "pending": {
+        "8": "6",
+        "9": "2"
+      }
+    }
+  },
+  "random_decimal_cases": 600,
+  "invalid_cases": 21,
+  "independent_redraw": {
+    "matching_pngs": [
+      "d15-03_lost-sales.png",
+      "d15-01_event-timing.png",
+      "d15-00_cover.png",
+      "d15-02_inventory-position.png",
+      "preview-350/d15-03_lost-sales.png",
+      "preview-350/d15-01_event-timing.png",
+      "preview-350/d15-00_cover.png",
+      "preview-350/d15-02_inventory-position.png",
+      "preview-350/contact-sheet.png",
+      "preview-280/d15-03_lost-sales.png",
+      "preview-280/d15-01_event-timing.png",
+      "preview-280/d15-00_cover.png",
+      "preview-280/d15-02_inventory-position.png",
+      "preview-280/contact-sheet.png"
+    ],
+    "matching_svgs": 4,
+    "no_practice_needed": true,
+    "cwd": "/"
+  },
+  "sha256": {
+    "content/blog/inventory-position-event-timing/index.md": "e19d60d8d2a85faad85c16019e04be29bf5c014ff77c5d4502717137bd61fadd",
+    "experiments/d15-inventory-position/practice/run.py": "460e8467ceefc4e834a4bfb1b371aa24e7b1c325632779978e731abd8030792c",
+    "experiments/d15-inventory-position/practice/test_inventory.py": "ab1f4353214342fda960670d5e61820b50268d13211e8315977780ab7d1460e0",
+    "experiments/d15-inventory-position/practice/parameters.json": "b57135811ba1328defe102d95ecdcc18ff41f77dd422a27193c13430a1cc701e",
+    "experiments/d15-inventory-position/practice/source_manifest.json": "d62f8d94183a2836e0d8c257e3d40d3722733385042963956fb483c87ab781ae",
+    "experiments/d15-inventory-position/practice/data/apparel-demand.csv": "e234309868f11eb9b2c7bbcda2b7baa5d8a546179463f2f2ff51b500734e8288",
+    "experiments/d15-inventory-position/practice/data/hewei-demand.csv": "1dfb8f697b9a4d3245ef0d434e2a26c8e40b5d2473835407e6d7535d93a87ee9",
+    "scripts/check-d15.py": "00112ba487039c228592fcc20527b78b03972f880e3934b84857988254cb4657",
+    "scripts/check-d15-browser.js": "635064feac61e8c39161fb8bf0289d6f5f37c8cbd2f53c590d1c79aa804f6132",
+    "scripts/package-d15.py": "15295f3f5a99ab28d4ff94a3615c16ea2c7b308ef8a304e3c0f75e5ea095d805",
+    "static/downloads/d15-inventory-position-images.zip": "148de8ce88b20d0c90be81fe1f786ae82bec4c59092c4a33b5d24f85ab0d6d0a",
+    "static/downloads/d15-inventory-position-practice.zip": "8bdaeca1cef8c6458973e98da3af54c9253a21027cd730535aac3bac0b6ddaf3",
+    "static/downloads/d15-inventory-position-article.zip": "cc1941e9487a76d8ecb004cb45ff89f94eae07b97adc7e6c20deccc8420f0f1f"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "hewei": {
+    "case": "hewei",
+    "series": "hewei/A/SKU01",
+    "unit": "kg",
+    "start_date": "2026-01-01",
+    "days": 7,
+    "initial_on_hand": 12,
+    "lead_time": 2,
+    "order_up_to": 20,
+    "shortage_mode": "lost_sales",
+    "initial_orders": [
+      {
+        "order_id": "initial-hewei-01",
+        "case": "hewei",
+        "series": "hewei/A/SKU01",
+        "unit": "kg",
+        "placed_day": -1,
+        "arrival_day": 2,
+        "quantity": 8
+      }
+    ]
+  },
+  "apparel": {
+    "case": "apparel",
+    "series": "anonymous-apparel/terminal/SKU01",
+    "unit": "pieces",
+    "start_date": "2026-01-01",
+    "days": 7,
+    "initial_on_hand": 6,
+    "lead_time": 1,
+    "order_up_to": 12,
+    "shortage_mode": "lost_sales",
+    "initial_orders": [
+      {
+        "order_id": "initial-apparel-01",
+        "case": "apparel",
+        "series": "anonymous-apparel/terminal/SKU01",
+        "unit": "pieces",
+        "placed_day": -1,
+        "arrival_day": 1,
+        "quantity": 4
+      }
+    ]
+  }
+}

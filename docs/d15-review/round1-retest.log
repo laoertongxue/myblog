@@ -1,0 +1,31 @@
+{
+  "hewei": {
+    "ledger_rows": 7,
+    "ending_queue": {
+      "8": 5,
+      "9": 6,
+      "10": 3
+    },
+    "demand": 42,
+    "served": 38
+  },
+  "apparel": {
+    "ledger_rows": 7,
+    "ending_queue": {
+      "8": 6,
+      "9": 2
+    },
+    "demand": 35,
+    "served": 32
+  },
+  "random_integer_scenarios": 400,
+  "practice_zip_sha256": "8bdaeca1cef8c6458973e98da3af54c9253a21027cd730535aac3bac0b6ddaf3",
+  "article_zip_sha256": "cc1941e9487a76d8ecb004cb45ff89f94eae07b97adc7e6c20deccc8420f0f1f",
+  "images_zip_sha256": "148de8ce88b20d0c90be81fe1f786ae82bec4c59092c4a33b5d24f85ab0d6d0a",
+  "zero_target_empty_event_attack": {
+    "exit_code": 0,
+    "stderr": ""
+  },
+  "unknown_event_field": "REJECTED ValueError('unexpected event fields')"
+}
+PASS: original empty-event attack, strict schemas (8 attacks), header-only CSV and deterministic rerun, pending queue, article date date: 2026-11-08T09:00:00+08:00

@@ -1,0 +1,64 @@
+{
+  "run_id": "D15-v1-new-seven-day-teaching-fixture",
+  "boundary": "Fixed seven-day arithmetic example, not statistical evaluation or business benefit evidence.",
+  "cases": {
+    "hewei": {
+      "series": "hewei/A/SKU01",
+      "unit": "kg",
+      "days": 7,
+      "total_demand": 42,
+      "total_served": 38,
+      "total_lost_sales": 4,
+      "total_new_orders": 38,
+      "closing_on_hand": 6,
+      "closing_on_order": 14,
+      "closing_inventory_position": 20,
+      "closing_pending_orders": [
+        {
+          "order_id": "new-hewei-005",
+          "arrival_day": 8,
+          "quantity": 5
+        },
+        {
+          "order_id": "new-hewei-006",
+          "arrival_day": 9,
+          "quantity": 6
+        },
+        {
+          "order_id": "new-hewei-007",
+          "arrival_day": 10,
+          "quantity": 3
+        }
+      ]
+    },
+    "apparel": {
+      "series": "anonymous-apparel/terminal/SKU01",
+      "unit": "pieces",
+      "days": 7,
+      "total_demand": 35,
+      "total_served": 32,
+      "total_lost_sales": 3,
+      "total_new_orders": 34,
+      "closing_on_hand": 4,
+      "closing_on_order": 8,
+      "closing_inventory_position": 12,
+      "closing_pending_orders": [
+        {
+          "order_id": "new-apparel-006",
+          "arrival_day": 8,
+          "quantity": 6
+        },
+        {
+          "order_id": "new-apparel-007",
+          "arrival_day": 9,
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  "input_sha256": {
+    "parameters.json": "b57135811ba1328defe102d95ecdcc18ff41f77dd422a27193c13430a1cc701e",
+    "data/hewei-demand.csv": "1dfb8f697b9a4d3245ef0d434e2a26c8e40b5d2473835407e6d7535d93a87ee9",
+    "data/apparel-demand.csv": "e234309868f11eb9b2c7bbcda2b7baa5d8a546179463f2f2ff51b500734e8288"
+  }
+}

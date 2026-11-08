@@ -1,0 +1,6 @@
+Rendered four monochrome figures; glyphs, bounds and pairwise text overlap passed.
+d15-03_lost-sales.png (700, 940) grayscale PASS
+d15-01_event-timing.png (700, 1240) grayscale PASS
+d15-00_cover.png (900, 383) grayscale PASS
+d15-02_inventory-position.png (700, 1120) grayscale PASS
+PASS: clean independent ZIP rendering; all 18 PNG/SVG files byte-identical; no repository path generated.
