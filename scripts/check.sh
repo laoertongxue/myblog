@@ -38,6 +38,7 @@ ok "built $PAGES pages"
 python3 scripts/check-published-pages.py "$OUT"
 
 python3 scripts/check-content.py
+python3 scripts/check-p02.py
 python3 -m unittest discover -s experiments/p01-math-bridge/practice -v
 python3 scripts/check-d14.py
 python3 scripts/check-d15.py
