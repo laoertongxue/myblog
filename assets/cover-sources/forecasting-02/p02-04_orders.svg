@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1008pt" height="633.6pt" viewBox="0 0 1008 633.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-09T15:45:12.983729</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 633.6 
+L 1008 633.6 
+L 1008 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 355.68 127.44 
+L 652.32 127.44 
+Q 658.8 127.44 658.8 133.92 
+L 658.8 198.72 
+Q 658.8 205.2 652.32 205.2 
+L 355.68 205.2 
+Q 349.2 205.2 349.2 198.72 
+L 349.2 133.92 
+Q 349.2 127.44 355.68 127.44 
+L 355.68 127.44 
+z
+" clip-path="url(#p28feddff4c)" style="fill: none; stroke: #000000; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 46.08 284.4 
+L 292.32 284.4 
+Q 298.8 284.4 298.8 290.88 
+L 298.8 371.52 
+Q 298.8 378 292.32 378 
+L 46.08 378 
+Q 39.6 378 39.6 371.52 
+L 39.6 290.88 
+Q 39.6 284.4 46.08 284.4 
+L 46.08 284.4 
+z
+" clip-path="url(#p28feddff4c)" style="fill: none; stroke: #000000; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 380.88 284.4 
+L 627.12 284.4 
+Q 633.6 284.4 633.6 290.88 
+L 633.6 371.52 
+Q 633.6 378 627.12 378 
+L 380.88 378 
+Q 374.4 378 374.4 371.52 
+L 374.4 290.88 
+Q 374.4 284.4 380.88 284.4 
+L 380.88 284.4 
+z
+" clip-path="url(#p28feddff4c)" style="fill: none; stroke: #000000; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 715.68 284.4 
+L 961.92 284.4 
+Q 968.4 284.4 968.4 290.88 
+L 968.4 371.52 
+Q 968.4 378 961.92 378 
+L 715.68 378 
+Q 709.2 378 709.2 371.52 
+L 709.2 290.88 
+Q 709.2 284.4 715.68 284.4 
+L 715.68 284.4 
+z
+" clip-path="url(#p28feddff4c)" style="fill: none; stroke: #000000; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 229.68 493.92 
+L 778.32 493.92 
+Q 784.8 493.92 784.8 500.4 
+L 784.8 552.24 
+Q 784.8 558.72 778.32 558.72 
+L 229.68 558.72 
+Q 223.2 558.72 223.2 552.24 
+L 223.2 500.4 
+Q 223.2 493.92 229.68 493.92 
+L 229.68 493.92 
+z
+" clip-path="url(#p28feddff4c)" style="fill: none; stroke: #000000; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 33px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="39.6" y="50.812969" transform="rotate(-0 39.6 50.812969)">先核对当前状态，再预测未来变化</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 22px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="39.6" y="89.510625" transform="rotate(-0 39.6 89.510625)">匿名服装S01-M / 同一批100件 / 全部订单与事件均为模拟</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 30px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="504" y="174.823125" transform="rotate(-0 504 174.823125)">已确认 100件</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 29px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(96.7 318.786641)">发货前取消</text>
+    <text style="font-size: 29px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(138.605 360.052734)">10件</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 29px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(431.5 318.786641)">累计已发货</text>
+    <text style="font-size: 29px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(473.405 360.052734)">60件</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 29px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(795.3 318.786641)">仍待发</text>
+    <text style="font-size: 29px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(808.205 360.052734)">30件</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 401.296893 207.243138 
+Q 286.202886 243.719085 173.240459 279.519485 
+" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 177.657774 280.217574 
+L 173.240459 279.519485 
+L 176.449318 276.404486 
+" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 504 208.636128 
+Q 504 243.716033 504 276.559869 
+" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 506 272.559869 
+L 504 276.559869 
+L 502 272.559869 
+" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 606.703107 207.243138 
+Q 721.797114 243.719085 834.759541 279.519485 
+" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 831.550682 276.404486 
+L 834.759541 279.519485 
+L 830.342226 280.217574 
+" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 31px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="504" y="438.017031" transform="rotate(-0 504 438.017031)">10 + 60 + 30 = 100</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 504 451.996436 
+Q 504 469.799832 504 485.367161 
+" style="fill: none; stroke-dasharray: 7.4,3.2; stroke-dashoffset: 0; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 506 481.367161 
+L 504 485.367161 
+L 502 481.367161 
+" style="fill: none; stroke-dasharray: 7.4,3.2; stroke-dashoffset: 0; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 26px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="504" y="533.689375" transform="rotate(-0 504 533.689375)">已发货中后续退货3件，另行记录</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 23px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="504" y="603.666563" transform="rotate(-0 504 603.666563)">待发仍为30件；累计发货仍为60件；可售回仓数量尚未知。</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p28feddff4c">
+   <rect x="0" y="0" width="1008" height="633.6"/>
+  </clipPath>
+ </defs>
+</svg>

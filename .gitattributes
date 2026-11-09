@@ -6,3 +6,5 @@ static/forecast/** -text
 
 # D16 frozen inputs, manifests and deterministic outputs must retain LF bytes.
 experiments/d16-fixed-batch/practice/** text eol=lf
+# Reviewed article bundles retain exact bytes on every checkout.
+static/downloads/forecasting/02-problem-and-data/*.zip -text
