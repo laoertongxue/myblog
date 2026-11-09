@@ -1,0 +1,8 @@
+case,series,unit,day,date,demand
+apparel,anonymous-apparel/terminal/SKU01,pieces,1,2026-01-01,5
+apparel,anonymous-apparel/terminal/SKU01,pieces,2,2026-01-02,8
+apparel,anonymous-apparel/terminal/SKU01,pieces,3,2026-01-03,4
+apparel,anonymous-apparel/terminal/SKU01,pieces,4,2026-01-04,7
+apparel,anonymous-apparel/terminal/SKU01,pieces,5,2026-01-05,3
+apparel,anonymous-apparel/terminal/SKU01,pieces,6,2026-01-06,6
+apparel,anonymous-apparel/terminal/SKU01,pieces,7,2026-01-07,2

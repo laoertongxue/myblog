@@ -3,3 +3,6 @@ examples/d9-seasonal-naive/** text eol=lf
 
 # Published classroom downloads are byte-preserved, including CSV CRLF endings.
 static/forecast/** -text
+
+# D16 frozen inputs, manifests and deterministic outputs must retain LF bytes.
+experiments/d16-fixed-batch/practice/** text eol=lf

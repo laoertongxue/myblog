@@ -1,0 +1,109 @@
+{
+  "experiment": "D16-v1-seven-day-fixed-batch",
+  "purpose": "Seven-day mechanism test only; parameters fixed before producing results, no optimization or 28-day evaluation.",
+  "input_origin": "D15 seven-day teaching demand and initial states; no D9 sealed access.",
+  "event_order": [
+    "opening_full_receipts",
+    "demand_and_lost_sales",
+    "closing_review_and_at_most_one_order"
+  ],
+  "decision": "Q if closing_preorder_IP <= r else 0",
+  "inventory_position": "available_on_hand + confirmed_unreceived_orders; lost sales are not backorders",
+  "arrival_day": "placed_day + L + 1",
+  "review": "once at day end, not continuous review",
+  "no_repeat": "At most one order per day, including if postorder IP remains <= r.",
+  "parameters": {
+    "hewei-q6": {
+      "case": "hewei",
+      "series": "hewei/A/SKU01",
+      "unit": "kg",
+      "start_date": "2026-01-01",
+      "days": 7,
+      "initial_on_hand": 12,
+      "lead_time": 2,
+      "shortage_mode": "lost_sales",
+      "initial_orders": [
+        {
+          "order_id": "initial-hewei-01",
+          "case": "hewei",
+          "series": "hewei/A/SKU01",
+          "unit": "kg",
+          "placed_day": -1,
+          "arrival_day": 2,
+          "quantity": 8
+        }
+      ],
+      "fixed_quantity": 6,
+      "reorder_point": 10
+    },
+    "hewei-q12": {
+      "case": "hewei",
+      "series": "hewei/A/SKU01",
+      "unit": "kg",
+      "start_date": "2026-01-01",
+      "days": 7,
+      "initial_on_hand": 12,
+      "lead_time": 2,
+      "shortage_mode": "lost_sales",
+      "initial_orders": [
+        {
+          "order_id": "initial-hewei-01",
+          "case": "hewei",
+          "series": "hewei/A/SKU01",
+          "unit": "kg",
+          "placed_day": -1,
+          "arrival_day": 2,
+          "quantity": 8
+        }
+      ],
+      "fixed_quantity": 12,
+      "reorder_point": 10
+    },
+    "apparel-q6": {
+      "case": "apparel",
+      "series": "anonymous-apparel/terminal/SKU01",
+      "unit": "pieces",
+      "start_date": "2026-01-01",
+      "days": 7,
+      "initial_on_hand": 6,
+      "lead_time": 1,
+      "shortage_mode": "lost_sales",
+      "initial_orders": [
+        {
+          "order_id": "initial-apparel-01",
+          "case": "apparel",
+          "series": "anonymous-apparel/terminal/SKU01",
+          "unit": "pieces",
+          "placed_day": -1,
+          "arrival_day": 1,
+          "quantity": 4
+        }
+      ],
+      "fixed_quantity": 6,
+      "reorder_point": 8
+    },
+    "apparel-q12": {
+      "case": "apparel",
+      "series": "anonymous-apparel/terminal/SKU01",
+      "unit": "pieces",
+      "start_date": "2026-01-01",
+      "days": 7,
+      "initial_on_hand": 6,
+      "lead_time": 1,
+      "shortage_mode": "lost_sales",
+      "initial_orders": [
+        {
+          "order_id": "initial-apparel-01",
+          "case": "apparel",
+          "series": "anonymous-apparel/terminal/SKU01",
+          "unit": "pieces",
+          "placed_day": -1,
+          "arrival_day": 1,
+          "quantity": 4
+        }
+      ],
+      "fixed_quantity": 12,
+      "reorder_point": 8
+    }
+  }
+}

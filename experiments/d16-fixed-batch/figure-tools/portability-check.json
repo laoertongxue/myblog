@@ -1,0 +1,94 @@
+{
+  "standalone": true,
+  "working_directory": "outside repository",
+  "input": "figure-tools only; explicit installed font",
+  "all_identical": true,
+  "files": [
+    {
+      "file": "images/d16-00_cover.png",
+      "sha256": "2f6766eacce8e6c878782eb89891d9dc29c62906009fa62d616cccbaef653183",
+      "identical": true
+    },
+    {
+      "file": "images/d16-01_rule.png",
+      "sha256": "55583cb4a4cb354c5bd57af5d8bafedc66d50f03c1701c5246462253c988358c",
+      "identical": true
+    },
+    {
+      "file": "images/d16-02_one-batch.png",
+      "sha256": "376caeb7ae36b248b6add76a05eedc7414e2db03635c957bb8adbc11d8ef5dcb",
+      "identical": true
+    },
+    {
+      "file": "images/d16-03_timing.png",
+      "sha256": "ba649d5ecf496c13149c91961ce4e940727c880db55dfcddbc2670601b6f56fb",
+      "identical": true
+    },
+    {
+      "file": "images/preview-280/contact-sheet.png",
+      "sha256": "852d233dbe052c4a0bbe1b646a04fe4a0a234c4ef513a34b69e261077d2ed63e",
+      "identical": true
+    },
+    {
+      "file": "images/preview-280/d16-00_cover.png",
+      "sha256": "e4a640cc99563beb36b46001b6ce7b896c66d8a62382b6a9e7cd370a8444d9fb",
+      "identical": true
+    },
+    {
+      "file": "images/preview-280/d16-01_rule.png",
+      "sha256": "0e832bcb1923115e4bf1d5bcfe830c8062f71d7d25950b7151c1e9618777b669",
+      "identical": true
+    },
+    {
+      "file": "images/preview-280/d16-02_one-batch.png",
+      "sha256": "412c72ab2841503a434cb8e9f43ffbf36ed2c999c2f4fe3f01d9ef337ac947c1",
+      "identical": true
+    },
+    {
+      "file": "images/preview-280/d16-03_timing.png",
+      "sha256": "e7f55a21577423df4603f68f68afca0d84b7370882258ce6e806ee18c16400b7",
+      "identical": true
+    },
+    {
+      "file": "images/preview-350/contact-sheet.png",
+      "sha256": "efab89bc3935f9791499639150b246603725d7ef2bd586942902f854a0eaf329",
+      "identical": true
+    },
+    {
+      "file": "images/preview-350/d16-00_cover.png",
+      "sha256": "5427b53aae536c39dea6cd13f1460295ba975059d135cfe28d292fc7f7fdf96e",
+      "identical": true
+    },
+    {
+      "file": "images/preview-350/d16-01_rule.png",
+      "sha256": "af5daa173e368ca935f9d5475f4e3691ef552f7dfd7bc789ba32a147607544a2",
+      "identical": true
+    },
+    {
+      "file": "images/preview-350/d16-02_one-batch.png",
+      "sha256": "e96c394617e5974da40cee7505dbc3fcd56e6c053a28096abca18a5530a1a8bf",
+      "identical": true
+    },
+    {
+      "file": "images/preview-350/d16-03_timing.png",
+      "sha256": "c2e57f98011401c600234eaca8a81b46d4f3a24576c710bbf32e769a5eb6dee3",
+      "identical": true
+    },
+    {
+      "file": "figure-tools/d16-00_cover.svg",
+      "identical": true
+    },
+    {
+      "file": "figure-tools/d16-01_rule.svg",
+      "identical": true
+    },
+    {
+      "file": "figure-tools/d16-02_one-batch.svg",
+      "identical": true
+    },
+    {
+      "file": "figure-tools/d16-03_timing.svg",
+      "identical": true
+    }
+  ]
+}

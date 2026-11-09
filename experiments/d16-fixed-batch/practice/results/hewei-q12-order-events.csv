@@ -1,0 +1,6 @@
+order_id,case,series,unit,placed_day,arrival_day,quantity,event,event_day
+initial-hewei-01,hewei,hewei/A/SKU01,kg,-1,2,8,initial_open,0
+initial-hewei-01,hewei,hewei/A/SKU01,kg,-1,2,8,arrival,2
+new-hewei-002,hewei,hewei/A/SKU01,kg,2,5,12,placed,2
+new-hewei-002,hewei,hewei/A/SKU01,kg,2,5,12,arrival,5
+new-hewei-005,hewei,hewei/A/SKU01,kg,5,8,12,placed,5

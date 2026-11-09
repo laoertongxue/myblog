@@ -1,0 +1,129 @@
+{
+  "run_id": "D16-v1-seven-day-fixed-batch",
+  "boundary": "Fixed seven-day mechanism example, not statistical evaluation or business benefit evidence.",
+  "strategies": {
+    "hewei-q6": {
+      "case": "hewei",
+      "series": "hewei/A/SKU01",
+      "unit": "kg",
+      "days": 7,
+      "fixed_quantity": 6,
+      "reorder_point": 10,
+      "lead_time": 2,
+      "total_demand": 42,
+      "total_served": 32,
+      "total_lost_sales": 10,
+      "total_arrivals": 20,
+      "order_count": 4,
+      "total_new_orders": 24,
+      "closing_on_hand": 0,
+      "closing_on_order": 12,
+      "closing_inventory_position": 12,
+      "closing_pending_orders": [
+        {
+          "order_id": "new-hewei-005",
+          "placed_day": 5,
+          "arrival_day": 8,
+          "quantity": 6
+        },
+        {
+          "order_id": "new-hewei-006",
+          "placed_day": 6,
+          "arrival_day": 9,
+          "quantity": 6
+        }
+      ]
+    },
+    "hewei-q12": {
+      "case": "hewei",
+      "series": "hewei/A/SKU01",
+      "unit": "kg",
+      "days": 7,
+      "fixed_quantity": 12,
+      "reorder_point": 10,
+      "lead_time": 2,
+      "total_demand": 42,
+      "total_served": 32,
+      "total_lost_sales": 10,
+      "total_arrivals": 20,
+      "order_count": 2,
+      "total_new_orders": 24,
+      "closing_on_hand": 0,
+      "closing_on_order": 12,
+      "closing_inventory_position": 12,
+      "closing_pending_orders": [
+        {
+          "order_id": "new-hewei-005",
+          "placed_day": 5,
+          "arrival_day": 8,
+          "quantity": 12
+        }
+      ]
+    },
+    "apparel-q6": {
+      "case": "apparel",
+      "series": "anonymous-apparel/terminal/SKU01",
+      "unit": "pieces",
+      "days": 7,
+      "fixed_quantity": 6,
+      "reorder_point": 8,
+      "lead_time": 1,
+      "total_demand": 35,
+      "total_served": 32,
+      "total_lost_sales": 3,
+      "total_arrivals": 28,
+      "order_count": 6,
+      "total_new_orders": 36,
+      "closing_on_hand": 2,
+      "closing_on_order": 12,
+      "closing_inventory_position": 14,
+      "closing_pending_orders": [
+        {
+          "order_id": "new-apparel-006",
+          "placed_day": 6,
+          "arrival_day": 8,
+          "quantity": 6
+        },
+        {
+          "order_id": "new-apparel-007",
+          "placed_day": 7,
+          "arrival_day": 9,
+          "quantity": 6
+        }
+      ]
+    },
+    "apparel-q12": {
+      "case": "apparel",
+      "series": "anonymous-apparel/terminal/SKU01",
+      "unit": "pieces",
+      "days": 7,
+      "fixed_quantity": 12,
+      "reorder_point": 8,
+      "lead_time": 1,
+      "total_demand": 35,
+      "total_served": 32,
+      "total_lost_sales": 3,
+      "total_arrivals": 28,
+      "order_count": 3,
+      "total_new_orders": 36,
+      "closing_on_hand": 2,
+      "closing_on_order": 12,
+      "closing_inventory_position": 14,
+      "closing_pending_orders": [
+        {
+          "order_id": "new-apparel-006",
+          "placed_day": 6,
+          "arrival_day": 8,
+          "quantity": 12
+        }
+      ]
+    }
+  },
+  "input_sha256": {
+    "frozen_policy.json": "f9789bcc0818476137de2a09ccecae31974e1466116825b1d7c069dbffa64019",
+    "POLICY_CARD.md": "8f4c8636c947ad464cdcdf19884d89bf721ef50adca41f6c9876e50910386fd6",
+    "data/hewei-demand.csv": "1dfb8f697b9a4d3245ef0d434e2a26c8e40b5d2473835407e6d7535d93a87ee9",
+    "data/apparel-demand.csv": "e234309868f11eb9b2c7bbcda2b7baa5d8a546179463f2f2ff51b500734e8288"
+  },
+  "source_manifest_sha256": "756c71c22c95b0ba789fc120d82185c83532d6a6900093368a82908761258761"
+}

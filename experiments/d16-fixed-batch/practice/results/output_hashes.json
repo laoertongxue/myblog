@@ -1,0 +1,11 @@
+{
+  "apparel-q12-ledger.csv": "0a772dae73704d86cd218f36fe24a9360616f5d41d70296a2d0bcd057cdc7a18",
+  "apparel-q12-order-events.csv": "b28826234f9e70ebdfdf3c3cd03dae5bcc0e0dbf72e64c072f318cbfec61612e",
+  "apparel-q6-ledger.csv": "f575d70f721f88bf2e2848e7c386c7aba9def30d7d9b6c554270085d28a22649",
+  "apparel-q6-order-events.csv": "51460a5cd30f34c7567774f0bfa6d22907af405ad770cd36b264171ab75dde28",
+  "hewei-q12-ledger.csv": "1a140b0a1024e981954ad24e9a111dfaf18df477f520d52f34ba434cda15e403",
+  "hewei-q12-order-events.csv": "c846e5fb6ddded12bc5db56d1d537833799046314072d7e9af87feec685e3840",
+  "hewei-q6-ledger.csv": "01d4854c60ca3b27c3c911e1c15ea6c87c07f84d1445f007b8415425ffd00215",
+  "hewei-q6-order-events.csv": "2aa04ef77b0f1b9762cf0cea3f93d5f5f2c6531bc9e2ce0373f4ff409272b048",
+  "summary.json": "5bebf3790cf1a5fb817c56096db42278a2de21b99b0b6a652fbf94ce19ebf7b5"
+}

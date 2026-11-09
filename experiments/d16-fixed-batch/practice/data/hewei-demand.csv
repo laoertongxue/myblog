@@ -1,0 +1,8 @@
+case,series,unit,day,date,demand
+hewei,hewei/A/SKU01,kg,1,2026-01-01,7
+hewei,hewei/A/SKU01,kg,2,2026-01-02,9
+hewei,hewei/A/SKU01,kg,3,2026-01-03,8
+hewei,hewei/A/SKU01,kg,4,2026-01-04,4
+hewei,hewei/A/SKU01,kg,5,2026-01-05,5
+hewei,hewei/A/SKU01,kg,6,2026-01-06,6
+hewei,hewei/A/SKU01,kg,7,2026-01-07,3

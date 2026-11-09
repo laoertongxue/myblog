@@ -1,0 +1,9 @@
+{
+  "experiment": "D16-v1-seven-day-fixed-batch",
+  "files": {
+    "frozen_policy.json": "f9789bcc0818476137de2a09ccecae31974e1466116825b1d7c069dbffa64019",
+    "POLICY_CARD.md": "8f4c8636c947ad464cdcdf19884d89bf721ef50adca41f6c9876e50910386fd6",
+    "data/hewei-demand.csv": "1dfb8f697b9a4d3245ef0d434e2a26c8e40b5d2473835407e6d7535d93a87ee9",
+    "data/apparel-demand.csv": "e234309868f11eb9b2c7bbcda2b7baa5d8a546179463f2f2ff51b500734e8288"
+  }
+}
