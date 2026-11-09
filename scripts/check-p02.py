@@ -9,9 +9,9 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLES = ROOT / 'static/downloads/forecasting/02-problem-and-data'
 EXPECTED = {
-    'article.zip': '9ebb737af36354a7088f995ddf1d95646034e60701849f60bb69b0424324f9ee',
+    'article.zip': 'c2e8a2fb9d6689ee5743af57da8b0b34ddf469b268cb44d7dc2e94aab5943338',
     'images.zip': '0ed9988550e258ab20351d4f1aa274f9475e24807b9d07153c3cd019a8008e8b',
-    'practice.zip': '9e76dc5f3a897927a378464ee57bda46a232d2854d72d2b76097d14061ba2ff8',
+    'practice.zip': '6967920efd1de389ccfc80f0a73c4594f48df760364f9f5ec17ef709dc8d5343',
 }
 for name, digest in EXPECTED.items():
     assert hashlib.sha256((BUNDLES / name).read_bytes()).hexdigest() == digest, name
