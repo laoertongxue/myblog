@@ -48,9 +48,19 @@ async (page, ctx) => {
     assert(pager.prev<pager.next && pager.href==='/blog/supply-chain-metrics-evidence-package/',`${width}: previous/next placement changed`);
     report.push(`${width}px: metadata, five images, tables, pager, no overflow`);
   }
+  // Older articles move to later home pages as new posts are published.
+  // Validate uniqueness across the real pager, then inspect the actual row.
+  const homeEntries=await ctx.walkPagination(page,{path:'/'});
+  assert(homeEntries.links.filter(link=>link===route).length===1,'D9 absent/duplicated across home pages');
   await page.goto(base+'/');
   const homeRow=page.locator('.post-row').filter({has:page.locator(`h2 a[href="${route}"]`)});
-  assert(await homeRow.count()===1,'D9 absent/duplicated in home');
+  for(let current=1;current<homeEntries.pages && await homeRow.count()===0;current++){
+    const next=page.locator('.feed-pagination [rel=next]');
+    assert(await next.count()===1,'D9 home pagination ended before its row');
+    await next.click();
+    await page.waitForFunction(expected=>document.querySelector('.feed-pagination [aria-current=page]')?.textContent.trim()===String(expected),current+1);
+  }
+  assert(await homeRow.count()===1,'D9 row missing from its home pagination');
   assert(await homeRow.locator('img').count()===1,'D9 home has extra covers');
   const cover=homeRow.locator('img');
   for(const url of await cover.evaluate(n=>[n.src,n.dataset.originalSrc,...n.srcset.split(',').map(v=>v.trim().split(' ')[0])])){
@@ -82,16 +92,12 @@ async (page, ctx) => {
     const bytes=await response.body();
     assert(response.ok() && bytes[0]===80 && bytes[1]===75,`ZIP invalid ${url}`);
   }
-  await page.goto(base+'/');
-  const row=page.locator('.post-row').filter({has:page.locator(`h2 a[href="${route}"]`)});
-  assert(await row.count()===1,'D9 absent/duplicated in home');
-  assert(await row.locator('img').count()===1,'D9 home has extra covers');
   await page.goto(base+'/categories/');
   const category=page.locator('a').filter({hasText:'供应链'}).first();
   assert(await category.count()===1,'supply-chain category missing');
   const categoryRoute=await category.getAttribute('href');
   const entries=await ctx.walkPagination(page,{path:categoryRoute});
   assert(entries.links ? entries.links.includes(route) : entries.includes(route),'D9 missing from supply-chain category');
-  report.push(`${colors.length} original/responsive image candidates: R=G=B; 3 ZIPs; home/category navigation`);
+  report.push(`${colors.length} original/responsive image candidates: R=G=B; 3 ZIPs; unique home pagination row/category navigation`);
   return report;
 }
