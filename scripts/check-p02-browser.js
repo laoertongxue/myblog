@@ -8,7 +8,12 @@ async (page, ctx) => {
     assert(new URL(page.url()).pathname===route,'P02 topic entry');
     assert(await page.locator('link[rel=canonical]').getAttribute('href')==='https://12lab.cn'+route,'P02 canonical');
     assert(await page.locator('.article-prev a').getAttribute('href')===topic+'01-math-bridge/','P02 previous chapter');
-    assert(await page.locator('.article-next a').count()===0,'P02 no unpublished next chapter');
+    const published=(await ctx.walkPagination(page,{path:topic})).links;
+    await page.goto(base+route);
+    const index=published.indexOf(route);
+    assert(index>=0,"current article is a published chapter");
+    const next=await page.locator('.article-next a').evaluateAll(ns=>ns.map(n=>n.getAttribute('href')));
+    assert(JSON.stringify(next)===JSON.stringify(index+1<published.length?[published[index+1]]:[]),'P02 next matches published chapter order');
     assert(await page.locator('.prose img').count()===4,'P02 four images');
     for(const img of await page.locator('.prose img').all()) {
       await img.scrollIntoViewIfNeeded(); await img.evaluate(n=>n.decode());

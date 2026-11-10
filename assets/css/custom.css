@@ -99,6 +99,11 @@ h3 { font-size:21px; }
 .prose .math-bridge-error-table table { display:table; min-width:760px; max-width:none; }
 .prose .math-bridge-error-table th,.prose .math-bridge-error-table td { min-width:90px; }
 .prose .math-bridge-error-table td { white-space:nowrap; }
+/* Regression tables keep numerical tokens intact; only their container scrolls. */
+.prose .regression-table-scroll { max-width:100%; overflow-x:auto; }
+.prose .regression-table-scroll table { display:table; min-width:620px; max-width:none; overflow-wrap:normal; word-break:normal; }
+.prose .regression-table-scroll th,.prose .regression-table-scroll td { min-width:85px; }
+.prose .regression-table-scroll th { white-space:nowrap; }
 .prose th,.prose td { border:1px solid #ddd8cc; padding:9px 15px; }
 .prose hr { border:0; border-top:1px solid var(--lab-line); margin:40px 0; }
 .article-pager { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; margin-top:70px; padding-top:32px; border-top:1px solid var(--lab-line); }
