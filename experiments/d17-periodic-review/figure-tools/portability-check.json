@@ -1,0 +1,46 @@
+{
+  "copied_outside_repository": true,
+  "cwd_independent": true,
+  "font_explicit": true,
+  "python": "3.12.14",
+  "pillow": "13.0.0",
+  "fonttools": "4.61.1",
+  "results": [
+    {
+      "file": "d17-00_cover.png",
+      "identical": true,
+      "sha256": "dd793ee2c3887f32f1c4a1c316e876a096abcb85c0d988541a3894b418a78c73",
+      "pixels": [
+        900,
+        383
+      ]
+    },
+    {
+      "file": "d17-01_calendar.png",
+      "identical": true,
+      "sha256": "6eb0814b461e7d37f9556acbb90d0eaeeb6d04b8601a8300eb7193c277ad67b4",
+      "pixels": [
+        700,
+        1090
+      ]
+    },
+    {
+      "file": "d17-02_order-up-to.png",
+      "identical": true,
+      "sha256": "54825fe3da8475505c35bc8d4d39c3d0bd62fbda2099e1c762d56b2648425296",
+      "pixels": [
+        700,
+        1430
+      ]
+    },
+    {
+      "file": "d17-03_timing.png",
+      "identical": true,
+      "sha256": "6b71348f3ab76d0d4fefa3e7a8550165f7d48fd3fbd982ef562691549fdc5de4",
+      "pixels": [
+        700,
+        1510
+      ]
+    }
+  ]
+}

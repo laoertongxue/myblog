@@ -1,0 +1,9 @@
+{
+  "freeze_stage": "before_first_evaluation",
+  "files": {
+    "POLICY_CARD.md": "4ecf7fd80abbc60a6f71ead73f3c3dbbb4b4c4b9af942ae80e7627c259d7b94b",
+    "frozen_policy.json": "c044587bb060540a9e6ce78297a101a6d71af2a4dd2cf148a64c1a018491961c",
+    "data/hewei-demand.csv": "1dfb8f697b9a4d3245ef0d434e2a26c8e40b5d2473835407e6d7535d93a87ee9",
+    "data/apparel-demand.csv": "e234309868f11eb9b2c7bbcda2b7baa5d8a546179463f2f2ff51b500734e8288"
+  }
+}

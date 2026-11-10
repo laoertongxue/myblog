@@ -1,0 +1,11 @@
+{
+  "apparel-r2-ledger.csv": "201c1b0dfd2227aef3c3462a412ec363640bf10339d2551aa6b4e143d051bc5e",
+  "apparel-r2-order-events.csv": "d1dc084a6728191e40c18f513a5d3e73b8d6b733e8ea3dae4f80c806c0087b06",
+  "apparel-r3-ledger.csv": "3b69cc55335e42df71809496d8d54c30a530c253552351c3f0f4c5d6dcf8322e",
+  "apparel-r3-order-events.csv": "1c2cdab184816bb8ea707d40f63380672ba5a23fb24b2b6743292c98fb382452",
+  "hewei-r2-ledger.csv": "3eb551840ec3a10f4dd09943ee6a982a09c0557dda6b4b68a62aa18e9f6cd701",
+  "hewei-r2-order-events.csv": "90db3201c56294a025f25fce50dd6b772f1751330621f397403898f94fe02e9b",
+  "hewei-r3-ledger.csv": "aff565799aa5fc5673ff7e283403d384b353e987d78bb22e9888e2d34f8dfb8b",
+  "hewei-r3-order-events.csv": "32ed15b90bf42aab3d65125f0af22a401b2bcfeff1649d46a25de420047b290d",
+  "summary.json": "4e0660132417c04f8e21ec78ecf51565a941601d9de0f3e05bee9d2adbcab714"
+}

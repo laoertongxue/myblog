@@ -1,0 +1,6 @@
+order_id,case,series,unit,placed_day,arrival_day,quantity,event,event_day
+initial-apparel-01,apparel,anonymous-apparel/terminal/SKU01,pieces,-2,1,4,initial_open,0
+initial-apparel-01,apparel,anonymous-apparel/terminal/SKU01,pieces,-2,1,4,arrival,1
+new-apparel-002,apparel,anonymous-apparel/terminal/SKU01,pieces,2,5,24,placed,2
+new-apparel-002,apparel,anonymous-apparel/terminal/SKU01,pieces,2,5,24,arrival,5
+new-apparel-006,apparel,anonymous-apparel/terminal/SKU01,pieces,6,9,9,placed,6
