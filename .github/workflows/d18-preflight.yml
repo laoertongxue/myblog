@@ -1,0 +1,38 @@
+name: D18 non-deploy preflight
+
+on:
+  push:
+    branches: [d18-review]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      HUGO_VERSION: 0.166.0
+      BROWSER_CHECKS: require
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3.2.1
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+      - name: Install the same browser dependencies as deployment
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium --only-shell
+      - name: Full checks without deployment
+        run: OUT=public make check
+      - name: Upload D18 visual evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: d18-preflight-screenshots
+          path: output/playwright/d18-*.png
+          if-no-files-found: ignore
+          retention-days: 7

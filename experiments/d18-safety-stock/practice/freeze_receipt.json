@@ -1,0 +1,20 @@
+{
+  "experiment_id": "D18-v2-disclosed-mechanism",
+  "stage": "reviewed_precision_fix_after_known_replay_before_release_rerun",
+  "unseen_test": "not_created_not_read_not_run",
+  "candidate_selection": "none",
+  "supersedes_receipt_sha256": "ffb638ec2bcd74329f3ce161cab04ade17d71bd3299af8834603016e7ea2b782",
+  "evidence_limit": "V1 and V2 disclosed results were already seen. Release precision-boundary fix, not parameter selection or unseen testing. No numerical policy/path change.",
+  "files": {
+    "POLICY_CARD.md": "e4dbebf2bf39ca89836acd2f43c5c11e6e74e0556fa2b0a5a521727de61b3b34",
+    "REVISION_NOTES.md": "d18f3f58c7b8b84f23372040b5d50b840b5d3b0ca8d73674c176dcf01d9c1bf3",
+    "data/apparel-replay.csv": "cdea8b9c53b4f1cbd8ff044ec514ed3293285f5d2ecf39940b7d80c05b4e4395",
+    "data/apparel-training.csv": "6f91dcce5caa4bb1ccd24ff6f5a83778c1cf5daf1fbd759253f9c917ed461ef6",
+    "data/hewei-replay.csv": "a24f03c9cea851a824f29f27a26b58d4af52f04e4db5e0dc47f234f3fab6c6bb",
+    "data/hewei-training.csv": "dcf1b33dc4d6d9b6186623fcae684d95194973dc8370adc1f7cca69d09f4ecab",
+    "freeze_receipt_v1_superseded.json": "ffb638ec2bcd74329f3ce161cab04ade17d71bd3299af8834603016e7ea2b782",
+    "parameters.json": "6fca6b53e6150fa1190aa72c3a5dbe4d39bc374cf2300a022936a7a7ec7e598f",
+    "freeze_receipt_v2_pre_precision.json": "12b8c2200d0670ced7364b66aae1287f311f1dacec4a773ae802c2f626745e8f"
+  },
+  "previous_v2_receipt_sha256": "12b8c2200d0670ced7364b66aae1287f311f1dacec4a773ae802c2f626745e8f"
+}

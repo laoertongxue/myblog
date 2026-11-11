@@ -1,0 +1,47 @@
+{
+  "experiment_id": "D18-v2-disclosed-mechanism",
+  "design": "fixed_candidates_no_selection_no_unseen_test",
+  "candidates": [
+    "0",
+    "1",
+    "1.645"
+  ],
+  "cases": {
+    "hewei": {
+      "simulation": {
+        "case": "hewei",
+        "series": "hewei/A/SKU01",
+        "unit": "kg",
+        "start_date": "2026-10-01",
+        "days": 15,
+        "initial_on_hand": 24,
+        "lead_time": 2,
+        "review_interval": 2,
+        "first_review_day": 2,
+        "initial_orders": [],
+        "shortage_mode": "lost_sales"
+      },
+      "training_start_date": "2026-09-01",
+      "training_days": 9,
+      "target_rounding_increment": "1"
+    },
+    "apparel": {
+      "simulation": {
+        "case": "apparel",
+        "series": "anonymous-apparel/terminal/SKU01",
+        "unit": "pieces",
+        "start_date": "2026-10-01",
+        "days": 15,
+        "initial_on_hand": 32,
+        "lead_time": 2,
+        "review_interval": 2,
+        "first_review_day": 2,
+        "initial_orders": [],
+        "shortage_mode": "lost_sales"
+      },
+      "training_start_date": "2026-09-01",
+      "training_days": 9,
+      "target_rounding_increment": "1"
+    }
+  }
+}

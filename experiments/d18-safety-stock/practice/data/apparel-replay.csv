@@ -1,0 +1,16 @@
+case,series,unit,day,date,demand
+apparel,anonymous-apparel/terminal/SKU01,pieces,1,2026-10-01,8
+apparel,anonymous-apparel/terminal/SKU01,pieces,2,2026-10-02,8
+apparel,anonymous-apparel/terminal/SKU01,pieces,3,2026-10-03,8
+apparel,anonymous-apparel/terminal/SKU01,pieces,4,2026-10-04,8
+apparel,anonymous-apparel/terminal/SKU01,pieces,5,2026-10-05,12
+apparel,anonymous-apparel/terminal/SKU01,pieces,6,2026-10-06,12
+apparel,anonymous-apparel/terminal/SKU01,pieces,7,2026-10-07,11
+apparel,anonymous-apparel/terminal/SKU01,pieces,8,2026-10-08,11
+apparel,anonymous-apparel/terminal/SKU01,pieces,9,2026-10-09,8
+apparel,anonymous-apparel/terminal/SKU01,pieces,10,2026-10-10,8
+apparel,anonymous-apparel/terminal/SKU01,pieces,11,2026-10-11,0
+apparel,anonymous-apparel/terminal/SKU01,pieces,12,2026-10-12,0
+apparel,anonymous-apparel/terminal/SKU01,pieces,13,2026-10-13,14
+apparel,anonymous-apparel/terminal/SKU01,pieces,14,2026-10-14,14
+apparel,anonymous-apparel/terminal/SKU01,pieces,15,2026-10-15,6

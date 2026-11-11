@@ -1,0 +1,9 @@
+{
+  "independent_renderer": true,
+  "png_sha256_identical": {
+    "d18-00_cover.png": "4cd07be53e08220d5735e9267006622bc8f3457f5318db10e574c0fc1a8a0e4a",
+    "d18-01_service.png": "29db69cbfcf61f870d399f2782df606d6ddd0d25df027691afea3b78b7d8780c",
+    "d18-02_buffer.png": "9343823e975817e6f5c66bacd893adfd196dc33cb55ef28d4e593012b58a9e42",
+    "d18-03_freeze.png": "e668cde81709dfa8c7abad0f2b00a4e8fef5a531385040cf5d8d3f4a1a165e6f"
+  }
+}

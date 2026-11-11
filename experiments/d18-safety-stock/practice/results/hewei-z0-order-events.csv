@@ -1,0 +1,12 @@
+order_id,case,series,unit,placed_day,arrival_day,quantity,event,event_day
+new-hewei-002,hewei,hewei/A/SKU01,kg,2,5,12,placed,2
+new-hewei-004,hewei,hewei/A/SKU01,kg,4,7,12,placed,4
+new-hewei-002,hewei,hewei/A/SKU01,kg,2,5,12,arrival,5
+new-hewei-006,hewei,hewei/A/SKU01,kg,6,9,12,placed,6
+new-hewei-004,hewei,hewei/A/SKU01,kg,4,7,12,arrival,7
+new-hewei-008,hewei,hewei/A/SKU01,kg,8,11,12,placed,8
+new-hewei-006,hewei,hewei/A/SKU01,kg,6,9,12,arrival,9
+new-hewei-010,hewei,hewei/A/SKU01,kg,10,13,12,placed,10
+new-hewei-008,hewei,hewei/A/SKU01,kg,8,11,12,arrival,11
+new-hewei-010,hewei,hewei/A/SKU01,kg,10,13,12,arrival,13
+new-hewei-014,hewei,hewei/A/SKU01,kg,14,17,20,placed,14

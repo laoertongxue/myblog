@@ -1,0 +1,21 @@
+{
+  "apparel-z0-cycles.csv": "8ccdab9cbea57531159bdf81c7c3edebc5b84a38ee746b732b25194da0ffb7c3",
+  "apparel-z0-ledger.csv": "fb221163f4a3b7a5a5924b26a37012d9c3bc1a23e1bcc897c1374def0cfe383f",
+  "apparel-z0-order-events.csv": "169c9d8912d3baed2463472dc2ea14303adde9eb7a7b5275934fc359fd3d2f73",
+  "apparel-z1-cycles.csv": "95eaa8f755e276faaa23c27e324518b9379dbee79f07f8673fe3c3216055306f",
+  "apparel-z1-ledger.csv": "e1775cb0467469531bfb082973714eb1c485ef5703369df3599f6c726aef278a",
+  "apparel-z1-order-events.csv": "3f12ad92d40170974f99b3a065a964811cd3de909ba86d69959943af5aa278dc",
+  "apparel-z1.645-cycles.csv": "2f2548f8e32f13673adacdb7a044df989531d62b0be0a11b9b489aa342d27b1e",
+  "apparel-z1.645-ledger.csv": "5f3e3c5de8661f1037cca9736137d1d5e0154f3403e1036663d917247a249a32",
+  "apparel-z1.645-order-events.csv": "556f30328086952eb3c3539ca260019ee2c5df97a7168cf227a4805051b678c7",
+  "hewei-z0-cycles.csv": "895157163550e4487fc9329e46974e871447a612651f973979c57e7bf168e593",
+  "hewei-z0-ledger.csv": "61fa393e82bf7fc30cbd6560ed06df0cd44b2b34ca30537835ea4ea43b254353",
+  "hewei-z0-order-events.csv": "ec6c419700f4ae72465d0bc7b239f6ce722ee1995700b00620c136b3e0813fb2",
+  "hewei-z1-cycles.csv": "653ea089e6304841dfc2429515d6443971bb44fcfeae5ae31fa94ed55d161ff3",
+  "hewei-z1-ledger.csv": "98cd31104247142958d52d1570cc3f207411e9488596fa0b48e2ade0afa58a1d",
+  "hewei-z1-order-events.csv": "dfcbe2757e47ddb76ff725aff1c6332f6313ee89e14de900be5ed2c6adfec6fc",
+  "hewei-z1.645-cycles.csv": "19f2d044d1a4217140c16a0f001a8bf5704dd50ac16bbd5b549eb4154b7f0032",
+  "hewei-z1.645-ledger.csv": "2c1ca5b7b1ca9f8ee21116cffa15af3e3cb1019c391c573ad66287bc5ca163b6",
+  "hewei-z1.645-order-events.csv": "f56aa7bb4f8ccbd59537915581304a6dc02b1f945df7f4ac118845c265e878ed",
+  "summary.json": "2e6d0d78b0c12b5914e3cbf652087ce4100224d59cab8d72dec1b0a415c93fa8"
+}

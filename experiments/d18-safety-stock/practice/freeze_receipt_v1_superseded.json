@@ -1,0 +1,15 @@
+{
+  "experiment_id": "D18-v1-disclosed-mechanism",
+  "stage": "fixed_design_before_first_official_replay",
+  "unseen_test": "not_created_not_read_not_run",
+  "candidate_selection": "none",
+  "evidence_limit": "Local content receipt, not external timestamp, preregistration or statistical validation. Public replay inputs are already disclosed.",
+  "files": {
+    "POLICY_CARD.md": "424e90eafbe2ffc378abf6771c395da6b9e9969809258c184420184f38c5747e",
+    "data/apparel-replay.csv": "cdea8b9c53b4f1cbd8ff044ec514ed3293285f5d2ecf39940b7d80c05b4e4395",
+    "data/apparel-training.csv": "6f91dcce5caa4bb1ccd24ff6f5a83778c1cf5daf1fbd759253f9c917ed461ef6",
+    "data/hewei-replay.csv": "a24f03c9cea851a824f29f27a26b58d4af52f04e4db5e0dc47f234f3fab6c6bb",
+    "data/hewei-training.csv": "dcf1b33dc4d6d9b6186623fcae684d95194973dc8370adc1f7cca69d09f4ecab",
+    "parameters.json": "e995784a9ec7a6bd9d7df21a74d4ce6a872bc547de0332a88969832401fc15df"
+  }
+}

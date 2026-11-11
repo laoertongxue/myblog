@@ -1,0 +1,6 @@
+cycle_index,start_day,end_day,unit,demand,served,lost_sales,no_stockout,unit_fill_rate
+1,5,6,kg,18,16,2,False,0.888888888889
+2,7,8,kg,16,12,4,False,0.750000000000
+3,9,10,kg,12,12,0,True,1.000000000000
+4,11,12,kg,0,0,0,True,
+5,13,14,kg,20,20,0,True,1.000000000000

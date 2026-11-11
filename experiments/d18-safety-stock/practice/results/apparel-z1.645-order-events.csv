@@ -1,0 +1,12 @@
+order_id,case,series,unit,placed_day,arrival_day,quantity,event,event_day
+new-apparel-002,apparel,anonymous-apparel/terminal/SKU01,pieces,2,5,26,placed,2
+new-apparel-004,apparel,anonymous-apparel/terminal/SKU01,pieces,4,7,16,placed,4
+new-apparel-002,apparel,anonymous-apparel/terminal/SKU01,pieces,2,5,26,arrival,5
+new-apparel-006,apparel,anonymous-apparel/terminal/SKU01,pieces,6,9,24,placed,6
+new-apparel-004,apparel,anonymous-apparel/terminal/SKU01,pieces,4,7,16,arrival,7
+new-apparel-008,apparel,anonymous-apparel/terminal/SKU01,pieces,8,11,18,placed,8
+new-apparel-006,apparel,anonymous-apparel/terminal/SKU01,pieces,6,9,24,arrival,9
+new-apparel-010,apparel,anonymous-apparel/terminal/SKU01,pieces,10,13,16,placed,10
+new-apparel-008,apparel,anonymous-apparel/terminal/SKU01,pieces,8,11,18,arrival,11
+new-apparel-010,apparel,anonymous-apparel/terminal/SKU01,pieces,10,13,16,arrival,13
+new-apparel-014,apparel,anonymous-apparel/terminal/SKU01,pieces,14,17,28,placed,14

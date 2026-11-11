@@ -1,0 +1,6 @@
+cycle_index,start_day,end_day,unit,demand,served,lost_sales,no_stockout,unit_fill_rate
+1,5,6,pieces,24,24,0,True,1.000000000000
+2,7,8,pieces,22,18,4,False,0.818181818182
+3,9,10,pieces,16,16,0,True,1.000000000000
+4,11,12,pieces,0,0,0,True,
+5,13,14,pieces,28,28,0,True,1.000000000000
