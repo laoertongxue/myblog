@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="648pt" height="275.76pt" viewBox="0 0 648 275.76" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-11T14:14:14.853593</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 275.76 
+L 648 275.76 
+L 648 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="FillBetweenPolyCollection_1">
+    <defs>
+     <path id="m725f6d7aae" d="M 460.669091 -120.833018 
+L 460.669091 -132.866182 
+L 488.945455 -150.915927 
+L 517.221818 -201.054109 
+L 545.498182 -221.109382 
+L 573.774545 -170.9712 
+L 602.050909 -135.874473 
+L 602.050909 -120.833018 
+L 602.050909 -120.833018 
+L 573.774545 -120.833018 
+L 545.498182 -120.833018 
+L 517.221818 -120.833018 
+L 488.945455 -120.833018 
+L 460.669091 -120.833018 
+z
+" style="stroke: #e6e6e6"/>
+    </defs>
+    <g clip-path="url(#p5647b93f7c)">
+     <use xlink:href="#m725f6d7aae" x="0" y="275.76" style="fill: #e6e6e6; stroke: #e6e6e6"/>
+    </g>
+   </g>
+   <g id="line2d_1">
+    <path d="M 460.669091 142.893818 
+L 488.945455 124.844073 
+L 517.221818 74.705891 
+L 545.498182 54.650618 
+L 573.774545 104.7888 
+L 602.050909 139.885527 
+" clip-path="url(#p5647b93f7c)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 545.498182 159.9408 
+L 545.498182 49.6368 
+" clip-path="url(#p5647b93f7c)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #000000; stroke-width: 1.5"/>
+   </g>
+  </g>
+  <g id="text_1">
+   <text style="font-size: 15px; font-family: 'Noto Sans CJK JP'; text-anchor: start; fill: #4c4c4c" x="35.64" y="41.364" transform="rotate(-0 35.64 41.364)">供应链预测与计划 · 04</text>
+  </g>
+  <g id="text_2">
+   <text style="font-weight: 700; font-size: 30px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="35.64" y="93.7584" transform="rotate(-0 35.64 93.7584)">从点预测到概率预测</text>
+  </g>
+  <g id="text_3">
+   <text style="font-weight: 700; font-size: 30px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="35.64" y="140.6376" transform="rotate(-0 35.64 140.6376)">与预售取消</text>
+  </g>
+  <g id="text_4">
+   <text style="font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="35.64" y="220.608" transform="rotate(-0 35.64 220.608)">分布与分位数  /  概率评分  /  条件留存</text>
+  </g>
+  <g id="text_5">
+   <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'; text-anchor: start; fill: #4c4c4c" x="35.64" y="250.9416" transform="rotate(-0 35.64 250.9416)">教学模拟 · 期望数量不等于执行指令</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p5647b93f7c">
+   <rect x="453.6" y="49.6368" width="155.52" height="110.304"/>
+  </clipPath>
+ </defs>
+</svg>
