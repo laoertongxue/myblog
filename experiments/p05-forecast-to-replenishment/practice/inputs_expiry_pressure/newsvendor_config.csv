@@ -1,0 +1,6 @@
+key,value
+underage_cost,6
+overage_cost,2
+candidate_start,80
+candidate_stop,160
+candidate_step,20

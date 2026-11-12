@@ -1,0 +1,8 @@
+q,feasible,reasons,lost_kg,expired_kg,closing_kg
+0,True,,18,0,0
+5,False,pack_or_moq,13,0,0
+10,True,,8,0,0
+15,True,,3,0,0
+20,False,capacity_day2,2,4,0
+25,False,capacity_day2;capacity_day3,2,9,0
+30,False,capacity_day2;capacity_day3,2,14,0

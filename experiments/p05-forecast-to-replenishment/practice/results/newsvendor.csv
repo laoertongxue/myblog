@@ -1,0 +1,6 @@
+q,expected_shortage,expected_surplus,expected_cost
+80,30,0,180
+100,15,5,100
+120,5,15,60
+140,0,30,60
+160,0,50,100

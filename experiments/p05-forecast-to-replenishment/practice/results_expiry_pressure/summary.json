@@ -1,0 +1,54 @@
+{
+  "teaching_only": true,
+  "inventory_data_semantics": "frozen planning scenario, not observed outcomes",
+  "quantile_definition": "inverse empirical CDF",
+  "newsvendor_alpha": "0.75",
+  "newsvendor_quantile": "120",
+  "newsvendor_minimizers": [
+    "120",
+    "140"
+  ],
+  "daily_p90": [
+    "10",
+    "10",
+    "10"
+  ],
+  "sum_daily_p90": "30",
+  "total_p90": "50",
+  "inventory_selected": {
+    "q": "15",
+    "feasible": true,
+    "reasons": "",
+    "lost_kg": "1",
+    "expired_kg": "4",
+    "closing_kg": "0"
+  },
+  "naive_q": "15",
+  "apparel": {
+    "expected_scenario_pieces": "100.0",
+    "production_needed_pieces": "85.0",
+    "gross_material_m": "178.947368421052631578947368421052631578947368421052631578947",
+    "shortage_m": "98.9473684210526315789473684210526315789473684210526315789474",
+    "purchase_m": "100",
+    "late_excluded_m": "25",
+    "capacity_pieces": "70",
+    "production_capacity_gap": "15.0"
+  },
+  "inventory_enumeration": {
+    "start_kg": "0",
+    "stop_kg": "30",
+    "step_kg": "5",
+    "selection_scope": "best among enumerated feasible candidates only; not a global optimum claim",
+    "potentially_truncated": false,
+    "warning": "",
+    "capacity_based_pack_ceiling_kg": "15"
+  },
+  "apparel_capacity_plan": {
+    "planned_production_pieces": "70",
+    "gross_material_m": "147.368421052631578947368421052631578947368421052631578947368",
+    "shortage_m": "67.3684210526315789473684210526315789473684210526315789473684",
+    "purchase_m": "80",
+    "unmet_scenario_pieces": "15.0",
+    "not_a_delivery_guarantee": true
+  }
+}

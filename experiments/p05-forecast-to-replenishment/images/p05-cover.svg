@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="648pt" height="275.76pt" viewBox="0 0 648 275.76" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-12T10:59:29.853709</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 275.76 
+L 648 275.76 
+L 648 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 34.7328 231.390216 
+L 203.472 231.390216 
+L 203.472 151.888608 
+L 34.7328 151.888608 
+z
+" clip-path="url(#pf6c690d9c8)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 239.6304 231.390216 
+L 408.3696 231.390216 
+L 408.3696 151.888608 
+L 239.6304 151.888608 
+z
+" clip-path="url(#pf6c690d9c8)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 444.528 231.390216 
+L 613.2672 231.390216 
+L 613.2672 151.888608 
+L 444.528 151.888608 
+z
+" clip-path="url(#pf6c690d9c8)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 211.496411 190.357128 
+Q 221.550344 190.357128 230.262637 190.357128 
+" clip-path="url(#pf6c690d9c8)" style="fill: none; stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 224.662637 187.557128 
+L 230.262637 190.357128 
+L 224.662637 193.157128 
+z
+" clip-path="url(#pf6c690d9c8)" style="stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 416.394011 190.357128 
+Q 426.447944 190.357128 435.160237 190.357128 
+" clip-path="url(#pf6c690d9c8)" style="fill: none; stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 429.560237 187.557128 
+L 435.160237 190.357128 
+L 429.560237 193.157128 
+z
+" clip-path="url(#pf6c690d9c8)" style="stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'; text-anchor: start; fill: #666666" x="34.7328" y="33.235833" transform="rotate(-0 34.7328 33.235833)">供应链预测与计划  /  05</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 28px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="34.7328" y="85.677698" transform="rotate(-0 34.7328 85.677698)">预测之后，究竟该订多少</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 15px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="34.7328" y="121.113792" transform="rotate(-0 34.7328 121.113792)">数量有依据，时间接得上，约束过得去。</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="119.1024" y="180.40284" transform="rotate(-0 119.1024 180.40284)">需求判断</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="119.1024" y="212.531016" transform="rotate(-0 119.1024 212.531016)">分布 · 保护期</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="324" y="180.40284" transform="rotate(-0 324 180.40284)">库存账本</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="324" y="212.531016" transform="rotate(-0 324 212.531016)">可用 · 到货 · 效期</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="528.8976" y="180.40284" transform="rotate(-0 528.8976 180.40284)">审核建议</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="528.8976" y="212.531016" transform="rotate(-0 528.8976 212.531016)">箱规 · 容量 · 缺口</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK JP'; text-anchor: start; fill: #595959" x="34.7328" y="259.600464" transform="rotate(-0 34.7328 259.600464)">双案例均为教学模拟；预测量不等于采购量。</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf6c690d9c8">
+   <rect x="22.68" y="8.2728" width="602.64" height="256.4568"/>
+  </clipPath>
+ </defs>
+</svg>

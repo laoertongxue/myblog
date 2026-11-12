@@ -1,0 +1,14 @@
+key,value
+pending_orders,100
+pieces_per_order,1
+conditional_retention,0.8
+additional_demand,20
+finished_stock,15
+net_bom_m,2
+yield,0.95
+material_stock_m,50
+timely_transit_m,30
+late_transit_m,25
+roll_m,20
+moq_m,40
+production_capacity_pieces,70

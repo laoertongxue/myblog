@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="460.8pt" viewBox="0 0 792 460.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-12T10:59:30.182798</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 460.8 
+L 792 460.8 
+L 792 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 38.6496 186.46272 
+L 243.936 186.46272 
+L 243.936 87.36768 
+L 38.6496 87.36768 
+z
+" clip-path="url(#p0a29c98f02)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 297.1584 186.46272 
+L 487.2384 186.46272 
+L 487.2384 87.36768 
+L 297.1584 87.36768 
+z
+" clip-path="url(#p0a29c98f02)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 548.064 186.46272 
+L 753.3504 186.46272 
+L 753.3504 87.36768 
+L 548.064 87.36768 
+z
+" clip-path="url(#p0a29c98f02)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 253.539309 139.06944 
+Q 270.547058 139.06944 286.213165 139.06944 
+" clip-path="url(#p0a29c98f02)" style="fill: none; stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 280.613165 136.26944 
+L 286.213165 139.06944 
+L 280.613165 141.86944 
+z
+" clip-path="url(#p0a29c98f02)" style="stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 496.843566 139.06944 
+Q 517.652532 139.06944 537.119858 139.06944 
+" clip-path="url(#p0a29c98f02)" style="fill: none; stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 531.519858 136.26944 
+L 537.119858 139.06944 
+L 531.519858 141.86944 
+z
+" clip-path="url(#p0a29c98f02)" style="stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 38.6496 341.568 
+L 243.936 341.568 
+L 243.936 242.47296 
+L 38.6496 242.47296 
+z
+" clip-path="url(#p0a29c98f02)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 297.1584 341.568 
+L 487.2384 341.568 
+L 487.2384 242.47296 
+L 297.1584 242.47296 
+z
+" clip-path="url(#p0a29c98f02)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 548.064 341.568 
+L 753.3504 341.568 
+L 753.3504 242.47296 
+L 548.064 242.47296 
+z
+" clip-path="url(#p0a29c98f02)" style="fill: #f5f5f5; stroke: #000000; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 253.539309 294.17472 
+Q 270.547058 294.17472 286.213165 294.17472 
+" clip-path="url(#p0a29c98f02)" style="fill: none; stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 280.613165 291.37472 
+L 286.213165 294.17472 
+L 280.613165 296.97472 
+z
+" clip-path="url(#p0a29c98f02)" style="stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 646.9056 192.770025 
+Q 646.9056 214.468431 646.9056 234.825195 
+" clip-path="url(#p0a29c98f02)" style="fill: none; stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 649.7056 229.225195 
+L 646.9056 234.825195 
+L 644.1056 229.225195 
+z
+" clip-path="url(#p0a29c98f02)" style="stroke: #000000; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="46.2528" y="44.28288" transform="rotate(-0 46.2528 44.28288)">材料够，不代表生产来得及</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="141.2928" y="121.759942" transform="rotate(-0 141.2928 121.759942)">100件需求情景</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="141.2928" y="162.117359" transform="rotate(-0 141.2928 162.117359)">待发留存80 + 新增20</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="392.1984" y="121.759942" transform="rotate(-0 392.1984 121.759942)">85件待生产</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="392.1984" y="162.117359" transform="rotate(-0 392.1984 162.117359)">减去可用成衣15件</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="650.7072" y="121.759942" transform="rotate(-0 650.7072 121.759942)">毛布178.947米</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="650.7072" y="162.117359" transform="rotate(-0 650.7072 162.117359)">85 × 2 ÷ 0.95</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="141.2928" y="276.865222" transform="rotate(-0 141.2928 276.865222)">及时可用80米</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'" transform="translate(85.95405 307.729701)">现有50 + 及时在途30</text>
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'" transform="translate(98.6328 326.715576)">晚到25米不扣减</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="392.1984" y="276.865222" transform="rotate(-0 392.1984 276.865222)">候选购布100米</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'" transform="translate(355.880587 307.729701)">净缺98.947米</text>
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'" transform="translate(355.856212 326.715576)">20米/卷，5卷</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="650.7072" y="276.865222" transform="rotate(-0 650.7072 276.865222)">产能仍缺15件</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'" transform="translate(607.36845 307.729701)">待产85 &gt; 可产70</text>
+    <text style="font-size: 12px; font-family: 'Noto Sans CJK JP'" transform="translate(608.7072 326.715576)">整体计划不可行</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 14px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="46.2528" y="406.1952" transform="rotate(-0 46.2528 406.1952)">另一方案：只为70件备料，可购80米；仍须保留15件需求缺口。</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 11px; font-family: 'Noto Sans CJK JP'; text-anchor: start; fill: #595959" x="46.2528" y="449.28" transform="rotate(-0 46.2528 449.28)">匿名服装教学模拟；期望情景不是P90；数值显示保留三位小数。</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0a29c98f02">
+   <rect x="15.84" y="18.432" width="760.32" height="430.848"/>
+  </clipPath>
+ </defs>
+</svg>

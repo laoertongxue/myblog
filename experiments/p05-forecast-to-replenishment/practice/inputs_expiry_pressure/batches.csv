@@ -1,0 +1,3 @@
+batch,source_type,arrival_day,expiry_day,kg
+initial,initial,1,1,10
+old_transit,transit,3,3,8

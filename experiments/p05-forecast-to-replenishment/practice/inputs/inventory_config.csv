@@ -1,0 +1,9 @@
+key,value
+lead_time,1
+review_period,2
+new_arrival_day,2
+new_expiry_day,3
+pack_kg,5
+moq_kg,10
+capacity_kg,18
+candidate_max_kg,30
