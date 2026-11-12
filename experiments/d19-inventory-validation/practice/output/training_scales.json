@@ -1,0 +1,38 @@
+{
+  "apparel": {
+    "daily_sQ": {
+      "first_origin": 7,
+      "horizon": 3,
+      "last_origin": 109,
+      "mean_error": 1.3592233009708738,
+      "n": 103,
+      "rms": 5.670567855675941
+    },
+    "periodic_RS": {
+      "first_origin": 7,
+      "horizon": 5,
+      "last_origin": 107,
+      "mean_error": 2.3366336633663365,
+      "n": 101,
+      "rms": 7.751077855420631
+    }
+  },
+  "hewei": {
+    "daily_sQ": {
+      "first_origin": 7,
+      "horizon": 3,
+      "last_origin": 109,
+      "mean_error": 0.1650485436893204,
+      "n": 103,
+      "rms": 5.143569838119402
+    },
+    "periodic_RS": {
+      "first_origin": 7,
+      "horizon": 5,
+      "last_origin": 107,
+      "mean_error": 0.31683168316831684,
+      "n": 101,
+      "rms": 6.568752914479669
+    }
+  }
+}

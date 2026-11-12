@@ -1,0 +1,836 @@
+[
+  {
+    "case": "hewei",
+    "events": [
+      {
+        "arrival_day": 2,
+        "day": 2,
+        "event": "arrival",
+        "id": "initial",
+        "quantity": 8
+      },
+      {
+        "arrival_day": 5,
+        "day": 2,
+        "event": "placed",
+        "id": "new-2",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 6,
+        "day": 3,
+        "event": "placed",
+        "id": "new-3",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 5,
+        "day": 5,
+        "event": "arrival",
+        "id": "new-2",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 8,
+        "day": 5,
+        "event": "placed",
+        "id": "new-5",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 6,
+        "day": 6,
+        "event": "arrival",
+        "id": "new-3",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 9,
+        "day": 6,
+        "event": "placed",
+        "id": "new-6",
+        "quantity": 6
+      }
+    ],
+    "initial_oh": 12,
+    "initial_pipeline": [
+      {
+        "arrival_day": 2,
+        "id": "initial",
+        "quantity": 8
+      }
+    ],
+    "ledger": [
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 1,
+        "demand": 7,
+        "end_oh": 5,
+        "fulfilled": 7,
+        "ip_after": 13,
+        "ip_before": 13,
+        "lost": 0,
+        "opening_oh": 12,
+        "ordered": 0,
+        "pipeline_after": 8,
+        "pipeline_before": 8,
+        "review": 1,
+        "threshold": 10
+      },
+      {
+        "arrival_day": 5,
+        "arrivals": 8,
+        "day": 2,
+        "demand": 9,
+        "end_oh": 4,
+        "fulfilled": 9,
+        "ip_after": 10,
+        "ip_before": 4,
+        "lost": 0,
+        "opening_oh": 5,
+        "ordered": 6,
+        "pipeline_after": 6,
+        "pipeline_before": 0,
+        "review": 1,
+        "threshold": 10
+      },
+      {
+        "arrival_day": 6,
+        "arrivals": 0,
+        "day": 3,
+        "demand": 8,
+        "end_oh": 0,
+        "fulfilled": 4,
+        "ip_after": 12,
+        "ip_before": 6,
+        "lost": 4,
+        "opening_oh": 4,
+        "ordered": 6,
+        "pipeline_after": 12,
+        "pipeline_before": 6,
+        "review": 1,
+        "threshold": 10
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 4,
+        "demand": 4,
+        "end_oh": 0,
+        "fulfilled": 0,
+        "ip_after": 12,
+        "ip_before": 12,
+        "lost": 4,
+        "opening_oh": 0,
+        "ordered": 0,
+        "pipeline_after": 12,
+        "pipeline_before": 12,
+        "review": 1,
+        "threshold": 10
+      },
+      {
+        "arrival_day": 8,
+        "arrivals": 6,
+        "day": 5,
+        "demand": 5,
+        "end_oh": 1,
+        "fulfilled": 5,
+        "ip_after": 13,
+        "ip_before": 7,
+        "lost": 0,
+        "opening_oh": 0,
+        "ordered": 6,
+        "pipeline_after": 12,
+        "pipeline_before": 6,
+        "review": 1,
+        "threshold": 10
+      },
+      {
+        "arrival_day": 9,
+        "arrivals": 6,
+        "day": 6,
+        "demand": 6,
+        "end_oh": 1,
+        "fulfilled": 6,
+        "ip_after": 13,
+        "ip_before": 7,
+        "lost": 0,
+        "opening_oh": 1,
+        "ordered": 6,
+        "pipeline_after": 12,
+        "pipeline_before": 6,
+        "review": 1,
+        "threshold": 10
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 7,
+        "demand": 3,
+        "end_oh": 0,
+        "fulfilled": 1,
+        "ip_after": 12,
+        "ip_before": 12,
+        "lost": 2,
+        "opening_oh": 1,
+        "ordered": 0,
+        "pipeline_after": 12,
+        "pipeline_before": 12,
+        "review": 1,
+        "threshold": 10
+      }
+    ],
+    "parameters": {
+      "L": 2,
+      "Q": 6,
+      "R": 1,
+      "fixed_threshold": 10,
+      "policy": "daily_sQ"
+    },
+    "pending": [
+      {
+        "arrival_day": 8,
+        "id": "new-5",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 9,
+        "id": "new-6",
+        "quantity": 6
+      }
+    ],
+    "summary": {
+      "arrivals": 20,
+      "demand": 42,
+      "end_oh": 0,
+      "end_pipeline": 12,
+      "fill_rate": 0.7619047619047619,
+      "fulfilled": 32,
+      "lost": 10,
+      "mean_end_oh": 1.5714285714285714,
+      "order_count": 4,
+      "ordered": 24
+    }
+  },
+  {
+    "case": "hewei",
+    "events": [
+      {
+        "arrival_day": 4,
+        "day": 1,
+        "event": "placed",
+        "id": "new-1",
+        "quantity": 7
+      },
+      {
+        "arrival_day": 2,
+        "day": 2,
+        "event": "arrival",
+        "id": "initial",
+        "quantity": 8
+      },
+      {
+        "arrival_day": 4,
+        "day": 4,
+        "event": "arrival",
+        "id": "new-1",
+        "quantity": 7
+      },
+      {
+        "arrival_day": 7,
+        "day": 4,
+        "event": "placed",
+        "id": "new-4",
+        "quantity": 17
+      },
+      {
+        "arrival_day": 7,
+        "day": 7,
+        "event": "arrival",
+        "id": "new-4",
+        "quantity": 17
+      },
+      {
+        "arrival_day": 10,
+        "day": 7,
+        "event": "placed",
+        "id": "new-7",
+        "quantity": 6
+      }
+    ],
+    "initial_oh": 12,
+    "initial_pipeline": [
+      {
+        "arrival_day": 2,
+        "id": "initial",
+        "quantity": 8
+      }
+    ],
+    "ledger": [
+      {
+        "arrival_day": 4,
+        "arrivals": 0,
+        "day": 1,
+        "demand": 7,
+        "end_oh": 5,
+        "fulfilled": 7,
+        "ip_after": 20,
+        "ip_before": 13,
+        "lost": 0,
+        "opening_oh": 12,
+        "ordered": 7,
+        "pipeline_after": 15,
+        "pipeline_before": 8,
+        "review": 1,
+        "threshold": 20
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 8,
+        "day": 2,
+        "demand": 9,
+        "end_oh": 4,
+        "fulfilled": 9,
+        "ip_after": 11,
+        "ip_before": 11,
+        "lost": 0,
+        "opening_oh": 5,
+        "ordered": 0,
+        "pipeline_after": 7,
+        "pipeline_before": 7,
+        "review": 0,
+        "threshold": 20
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 3,
+        "demand": 8,
+        "end_oh": 0,
+        "fulfilled": 4,
+        "ip_after": 7,
+        "ip_before": 7,
+        "lost": 4,
+        "opening_oh": 4,
+        "ordered": 0,
+        "pipeline_after": 7,
+        "pipeline_before": 7,
+        "review": 0,
+        "threshold": 20
+      },
+      {
+        "arrival_day": 7,
+        "arrivals": 7,
+        "day": 4,
+        "demand": 4,
+        "end_oh": 3,
+        "fulfilled": 4,
+        "ip_after": 20,
+        "ip_before": 3,
+        "lost": 0,
+        "opening_oh": 0,
+        "ordered": 17,
+        "pipeline_after": 17,
+        "pipeline_before": 0,
+        "review": 1,
+        "threshold": 20
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 5,
+        "demand": 5,
+        "end_oh": 0,
+        "fulfilled": 3,
+        "ip_after": 17,
+        "ip_before": 17,
+        "lost": 2,
+        "opening_oh": 3,
+        "ordered": 0,
+        "pipeline_after": 17,
+        "pipeline_before": 17,
+        "review": 0,
+        "threshold": 20
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 6,
+        "demand": 6,
+        "end_oh": 0,
+        "fulfilled": 0,
+        "ip_after": 17,
+        "ip_before": 17,
+        "lost": 6,
+        "opening_oh": 0,
+        "ordered": 0,
+        "pipeline_after": 17,
+        "pipeline_before": 17,
+        "review": 0,
+        "threshold": 20
+      },
+      {
+        "arrival_day": 10,
+        "arrivals": 17,
+        "day": 7,
+        "demand": 3,
+        "end_oh": 14,
+        "fulfilled": 3,
+        "ip_after": 20,
+        "ip_before": 14,
+        "lost": 0,
+        "opening_oh": 0,
+        "ordered": 6,
+        "pipeline_after": 6,
+        "pipeline_before": 0,
+        "review": 1,
+        "threshold": 20
+      }
+    ],
+    "parameters": {
+      "L": 2,
+      "Q": 6,
+      "R": 3,
+      "fixed_threshold": 20,
+      "policy": "periodic_RS"
+    },
+    "pending": [
+      {
+        "arrival_day": 10,
+        "id": "new-7",
+        "quantity": 6
+      }
+    ],
+    "summary": {
+      "arrivals": 32,
+      "demand": 42,
+      "end_oh": 14,
+      "end_pipeline": 6,
+      "fill_rate": 0.7142857142857143,
+      "fulfilled": 30,
+      "lost": 12,
+      "mean_end_oh": 3.7142857142857144,
+      "order_count": 3,
+      "ordered": 30
+    }
+  },
+  {
+    "case": "apparel",
+    "events": [
+      {
+        "arrival_day": 1,
+        "day": 1,
+        "event": "arrival",
+        "id": "initial",
+        "quantity": 4
+      },
+      {
+        "arrival_day": 4,
+        "day": 1,
+        "event": "placed",
+        "id": "new-1",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 5,
+        "day": 2,
+        "event": "placed",
+        "id": "new-2",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 4,
+        "day": 4,
+        "event": "arrival",
+        "id": "new-1",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 7,
+        "day": 4,
+        "event": "placed",
+        "id": "new-4",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 5,
+        "day": 5,
+        "event": "arrival",
+        "id": "new-2",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 9,
+        "day": 6,
+        "event": "placed",
+        "id": "new-6",
+        "quantity": 6
+      },
+      {
+        "arrival_day": 7,
+        "day": 7,
+        "event": "arrival",
+        "id": "new-4",
+        "quantity": 6
+      }
+    ],
+    "initial_oh": 6,
+    "initial_pipeline": [
+      {
+        "arrival_day": 1,
+        "id": "initial",
+        "quantity": 4
+      }
+    ],
+    "ledger": [
+      {
+        "arrival_day": 4,
+        "arrivals": 4,
+        "day": 1,
+        "demand": 5,
+        "end_oh": 5,
+        "fulfilled": 5,
+        "ip_after": 11,
+        "ip_before": 5,
+        "lost": 0,
+        "opening_oh": 6,
+        "ordered": 6,
+        "pipeline_after": 6,
+        "pipeline_before": 0,
+        "review": 1,
+        "threshold": 8
+      },
+      {
+        "arrival_day": 5,
+        "arrivals": 0,
+        "day": 2,
+        "demand": 8,
+        "end_oh": 0,
+        "fulfilled": 5,
+        "ip_after": 12,
+        "ip_before": 6,
+        "lost": 3,
+        "opening_oh": 5,
+        "ordered": 6,
+        "pipeline_after": 12,
+        "pipeline_before": 6,
+        "review": 1,
+        "threshold": 8
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 3,
+        "demand": 4,
+        "end_oh": 0,
+        "fulfilled": 0,
+        "ip_after": 12,
+        "ip_before": 12,
+        "lost": 4,
+        "opening_oh": 0,
+        "ordered": 0,
+        "pipeline_after": 12,
+        "pipeline_before": 12,
+        "review": 1,
+        "threshold": 8
+      },
+      {
+        "arrival_day": 7,
+        "arrivals": 6,
+        "day": 4,
+        "demand": 7,
+        "end_oh": 0,
+        "fulfilled": 6,
+        "ip_after": 12,
+        "ip_before": 6,
+        "lost": 1,
+        "opening_oh": 0,
+        "ordered": 6,
+        "pipeline_after": 12,
+        "pipeline_before": 6,
+        "review": 1,
+        "threshold": 8
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 6,
+        "day": 5,
+        "demand": 3,
+        "end_oh": 3,
+        "fulfilled": 3,
+        "ip_after": 9,
+        "ip_before": 9,
+        "lost": 0,
+        "opening_oh": 0,
+        "ordered": 0,
+        "pipeline_after": 6,
+        "pipeline_before": 6,
+        "review": 1,
+        "threshold": 8
+      },
+      {
+        "arrival_day": 9,
+        "arrivals": 0,
+        "day": 6,
+        "demand": 6,
+        "end_oh": 0,
+        "fulfilled": 3,
+        "ip_after": 12,
+        "ip_before": 6,
+        "lost": 3,
+        "opening_oh": 3,
+        "ordered": 6,
+        "pipeline_after": 12,
+        "pipeline_before": 6,
+        "review": 1,
+        "threshold": 8
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 6,
+        "day": 7,
+        "demand": 2,
+        "end_oh": 4,
+        "fulfilled": 2,
+        "ip_after": 10,
+        "ip_before": 10,
+        "lost": 0,
+        "opening_oh": 0,
+        "ordered": 0,
+        "pipeline_after": 6,
+        "pipeline_before": 6,
+        "review": 1,
+        "threshold": 8
+      }
+    ],
+    "parameters": {
+      "L": 2,
+      "Q": 6,
+      "R": 1,
+      "fixed_threshold": 8,
+      "policy": "daily_sQ"
+    },
+    "pending": [
+      {
+        "arrival_day": 9,
+        "id": "new-6",
+        "quantity": 6
+      }
+    ],
+    "summary": {
+      "arrivals": 22,
+      "demand": 35,
+      "end_oh": 4,
+      "end_pipeline": 6,
+      "fill_rate": 0.6857142857142857,
+      "fulfilled": 24,
+      "lost": 11,
+      "mean_end_oh": 1.7142857142857142,
+      "order_count": 4,
+      "ordered": 24
+    }
+  },
+  {
+    "case": "apparel",
+    "events": [
+      {
+        "arrival_day": 1,
+        "day": 1,
+        "event": "arrival",
+        "id": "initial",
+        "quantity": 4
+      },
+      {
+        "arrival_day": 4,
+        "day": 1,
+        "event": "placed",
+        "id": "new-1",
+        "quantity": 13
+      },
+      {
+        "arrival_day": 4,
+        "day": 4,
+        "event": "arrival",
+        "id": "new-1",
+        "quantity": 13
+      },
+      {
+        "arrival_day": 7,
+        "day": 4,
+        "event": "placed",
+        "id": "new-4",
+        "quantity": 12
+      },
+      {
+        "arrival_day": 7,
+        "day": 7,
+        "event": "arrival",
+        "id": "new-4",
+        "quantity": 12
+      },
+      {
+        "arrival_day": 10,
+        "day": 7,
+        "event": "placed",
+        "id": "new-7",
+        "quantity": 8
+      }
+    ],
+    "initial_oh": 6,
+    "initial_pipeline": [
+      {
+        "arrival_day": 1,
+        "id": "initial",
+        "quantity": 4
+      }
+    ],
+    "ledger": [
+      {
+        "arrival_day": 4,
+        "arrivals": 4,
+        "day": 1,
+        "demand": 5,
+        "end_oh": 5,
+        "fulfilled": 5,
+        "ip_after": 18,
+        "ip_before": 5,
+        "lost": 0,
+        "opening_oh": 6,
+        "ordered": 13,
+        "pipeline_after": 13,
+        "pipeline_before": 0,
+        "review": 1,
+        "threshold": 18
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 2,
+        "demand": 8,
+        "end_oh": 0,
+        "fulfilled": 5,
+        "ip_after": 13,
+        "ip_before": 13,
+        "lost": 3,
+        "opening_oh": 5,
+        "ordered": 0,
+        "pipeline_after": 13,
+        "pipeline_before": 13,
+        "review": 0,
+        "threshold": 18
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 3,
+        "demand": 4,
+        "end_oh": 0,
+        "fulfilled": 0,
+        "ip_after": 13,
+        "ip_before": 13,
+        "lost": 4,
+        "opening_oh": 0,
+        "ordered": 0,
+        "pipeline_after": 13,
+        "pipeline_before": 13,
+        "review": 0,
+        "threshold": 18
+      },
+      {
+        "arrival_day": 7,
+        "arrivals": 13,
+        "day": 4,
+        "demand": 7,
+        "end_oh": 6,
+        "fulfilled": 7,
+        "ip_after": 18,
+        "ip_before": 6,
+        "lost": 0,
+        "opening_oh": 0,
+        "ordered": 12,
+        "pipeline_after": 12,
+        "pipeline_before": 0,
+        "review": 1,
+        "threshold": 18
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 5,
+        "demand": 3,
+        "end_oh": 3,
+        "fulfilled": 3,
+        "ip_after": 15,
+        "ip_before": 15,
+        "lost": 0,
+        "opening_oh": 6,
+        "ordered": 0,
+        "pipeline_after": 12,
+        "pipeline_before": 12,
+        "review": 0,
+        "threshold": 18
+      },
+      {
+        "arrival_day": "",
+        "arrivals": 0,
+        "day": 6,
+        "demand": 6,
+        "end_oh": 0,
+        "fulfilled": 3,
+        "ip_after": 12,
+        "ip_before": 12,
+        "lost": 3,
+        "opening_oh": 3,
+        "ordered": 0,
+        "pipeline_after": 12,
+        "pipeline_before": 12,
+        "review": 0,
+        "threshold": 18
+      },
+      {
+        "arrival_day": 10,
+        "arrivals": 12,
+        "day": 7,
+        "demand": 2,
+        "end_oh": 10,
+        "fulfilled": 2,
+        "ip_after": 18,
+        "ip_before": 10,
+        "lost": 0,
+        "opening_oh": 0,
+        "ordered": 8,
+        "pipeline_after": 8,
+        "pipeline_before": 0,
+        "review": 1,
+        "threshold": 18
+      }
+    ],
+    "parameters": {
+      "L": 2,
+      "Q": 6,
+      "R": 3,
+      "fixed_threshold": 18,
+      "policy": "periodic_RS"
+    },
+    "pending": [
+      {
+        "arrival_day": 10,
+        "id": "new-7",
+        "quantity": 8
+      }
+    ],
+    "summary": {
+      "arrivals": 29,
+      "demand": 35,
+      "end_oh": 10,
+      "end_pipeline": 8,
+      "fill_rate": 0.7142857142857143,
+      "fulfilled": 25,
+      "lost": 10,
+      "mean_end_oh": 3.4285714285714284,
+      "order_count": 3,
+      "ordered": 33
+    }
+  }
+]

@@ -47,6 +47,7 @@ python3 scripts/check-d15.py
 python3 scripts/check-d16.py
 python3 scripts/check-d17.py
 python3 scripts/check-d18.py
+python3 scripts/check-d19.py
 
 if grep -rq '0001-01-01' "$OUT"; then
   fail "a page publishes a 0001-01-01 date - a dated content type is missing front matter date"

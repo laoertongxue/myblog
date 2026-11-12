@@ -1,0 +1,70 @@
+{
+  "standalone_outside_repository": true,
+  "explicit_environment": [
+    "FONT_PATH",
+    "PLAYWRIGHT_MODULE"
+  ],
+  "png_count": 12,
+  "results": [
+    {
+      "file": "d19-00_cover.png",
+      "byte_identical": true,
+      "sha256": "0d0cc03aabb14a9cf17822d136c25f29cae6681dc72e3a7c54e566c9b621ee0c"
+    },
+    {
+      "file": "d19-01_timing.png",
+      "byte_identical": true,
+      "sha256": "44dd6c10564b067e362572abc70218366f6edd3be85a1ab3b92eeeb4e74ef9e3"
+    },
+    {
+      "file": "d19-02_fair-comparison.png",
+      "byte_identical": true,
+      "sha256": "50b89e4610da998047dee501d005464383399ea285066e8feaa9d93079d4d648"
+    },
+    {
+      "file": "d19-03_freeze.png",
+      "byte_identical": true,
+      "sha256": "3febff4dc34352b2c77c078687062acf9df56a23e49cfde29dae45f6854ea54a"
+    },
+    {
+      "file": "preview-280/d19-00_cover.png",
+      "byte_identical": true,
+      "sha256": "46ef67668699a9406c567251284ec50217c1c0764c5849e6dc2187acb23f5864"
+    },
+    {
+      "file": "preview-280/d19-01_timing.png",
+      "byte_identical": true,
+      "sha256": "28411f0fecbef8fb74d7f551eaef8e5464bdf7d937f8c8a360e5dda3f98c20eb"
+    },
+    {
+      "file": "preview-280/d19-02_fair-comparison.png",
+      "byte_identical": true,
+      "sha256": "99b8c26e9dd446137482fb546ba72e1cc0c6e9bc31914c6786613740d2acbeae"
+    },
+    {
+      "file": "preview-280/d19-03_freeze.png",
+      "byte_identical": true,
+      "sha256": "324647d3879e490af6420861260c4e2ffd9396b3f3615fe8a3922abdbbfeef5c"
+    },
+    {
+      "file": "preview-350/d19-00_cover.png",
+      "byte_identical": true,
+      "sha256": "e9c4d59390d4f422b96438aceb95a24ff969e1a7fd601145afdbd659a3640362"
+    },
+    {
+      "file": "preview-350/d19-01_timing.png",
+      "byte_identical": true,
+      "sha256": "bffe5df484e6da6b1ab8b9decd47776d37d7505106c4ce94d257f0146711e8eb"
+    },
+    {
+      "file": "preview-350/d19-02_fair-comparison.png",
+      "byte_identical": true,
+      "sha256": "581e72a6feb18a5435e86160c64e2735b6f050e71ada8eca1a444f9632716257"
+    },
+    {
+      "file": "preview-350/d19-03_freeze.png",
+      "byte_identical": true,
+      "sha256": "eb9edf5159b4743031e341e5d74d341b0c81102223ca6ccf679c67b3c9d5be3e"
+    }
+  ]
+}

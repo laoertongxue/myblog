@@ -1,0 +1,20 @@
+{
+  ".gitignore": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
+  "README.md": "036daf7e43f0583d8be008455fccf39813653dcd405e552aa4219cc877a2cd03",
+  "REVISION_NOTES.md": "0f80e438c81272efb90c8c73fd9298ca07f4ecc2711a39f53b0f702ad6bc1465",
+  "data/apparel-development.csv": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5",
+  "data/hewei-development.csv": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407",
+  "output/freeze_receipt.json": "eca909d2f6970db7d1f2a5cd5844dd8bd9c03260c296dc1543702200d3879ea0",
+  "output/frozen_config.json": "ee52a89b4dfd208160a30338cffbcfedfe2bf53e37e01a6cefd52200ea11400d",
+  "output/ledger.csv": "305498c0a3bc7dbadbe786064743b7d52808b6a3f68fbd8646bf1b6f90e52a70",
+  "output/manual_seven_days.json": "b7a10c5a02020f97a0a5565094fd4c40e886460bae8ba042b8e8bc922902b3e3",
+  "output/order_events.csv": "d15c159b6fa0565c8e2bd5013edb9b7d00116441b50b935fce55693ff3428dd8",
+  "output/parameters.json": "670cabeebfcdf28f2d5368d56f2311b831505dd380ea7d507aa5bd4f856f27ef",
+  "output/pending.csv": "3feeeb8bc7b2d006074e7f54d8b0b0655b6038edafa7685b6a09b66ad246eaa5",
+  "output/results.json": "219952dce9e6b70dbaadc74e484223bec119b2ec95b7c149be262dea8b905a77",
+  "output/training_errors.csv": "47b4e8f8a3bc33066c2eec45b25a9e36d5143437ddffa84d97dc15ca9df22794",
+  "output/training_scales.json": "98aac774304c88b3846315e512e4e5666bad22b99da19e1062853a58b5d27adc",
+  "protocol.json": "f30264d093e2647e7d4bbef123e08b32e599fa72b4d76ac9f288a24c7d2c240e",
+  "run.py": "1676840f60d6b4622ac2805ca8c98b3c72075626c4fb2e2f8817772f3d65e88e",
+  "test_inventory.py": "b766f08577fbe7b0a295671d98b613c4cce1e9e3bb09891ca31705bd2c770a84"
+}
