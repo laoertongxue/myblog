@@ -12,3 +12,6 @@ static/downloads/forecasting/02-problem-and-data/*.zip -text
 # D19 evidence and downloads keep exact portable bytes.
 experiments/d19-inventory-validation/practice/** -text
 static/downloads/d19-inventory-validation-*.zip -text
+
+# P05 reviewed experiment CSVs retain exact original bytes across platforms.
+experiments/p05-forecast-to-replenishment/practice/**/*.csv -text
