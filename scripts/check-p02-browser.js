@@ -4,7 +4,7 @@ async (page, ctx) => {
   for (const width of [1440,390,320]) {
     await page.setViewportSize({width,height:900});
     await page.goto(base+topic);
-    await page.locator('.topic-intro a[href="'+route+'"]').click();
+    await page.locator('.post-row h2 a[href="'+route+'"]').click();
     assert(new URL(page.url()).pathname===route,'P02 topic entry');
     assert(await page.locator('link[rel=canonical]').getAttribute('href')==='https://12lab.cn'+route,'P02 canonical');
     assert(await page.locator('.article-prev a').getAttribute('href')===topic+'01-math-bridge/','P02 previous chapter');

@@ -2,7 +2,7 @@ async (page,ctx) => {
  const {base,assert}=ctx,topic='/topics/forecasting/',route=topic+'06-source-allocation/';
  for(const width of [1440,390,320]){
   await page.setViewportSize({width,height:900});await page.goto(base+topic);
-  await page.locator('.topic-intro a[href="'+route+'"]').click();
+  await page.locator('.post-row h2 a[href="'+route+'"]').click();
   assert(new URL(page.url()).pathname===route,'P06 topic link');
   assert(await page.locator('link[rel=canonical]').getAttribute('href')==='https://12lab.cn'+route,'P06 canonical');
   assert(await page.locator('.article-prev a').getAttribute('href')===topic+'05-forecast-to-replenishment/','P06 previous');

@@ -8,7 +8,14 @@ async (page, ctx) => {
     await page.goto(base+'/topics/');
     await page.locator('h2 a[href="'+topic+'"]').click();
     assert(new URL(page.url()).pathname===topic,'topic list opens forecasting');
-    await page.locator('.topic-intro a[href="'+article+'"]').click();
+    assert(await page.locator('.topic-intro > p').count()===1,'topic has one introductory paragraph');
+    assert(await page.locator('.topic-intro').evaluate(el=>el.children.length===1),'no duplicate guide, table or planned sections');
+    assert(await page.locator('.topic-intro').evaluate(el=>el.nextElementSibling?.classList.contains('post-row')),'article list follows introduction immediately');
+    assert(JSON.stringify(await page.locator('.post-row h2 a').evaluateAll(ns=>ns.map(n=>n.getAttribute('href'))))===JSON.stringify(published.slice(0,ctx.pagerSize)),'topic lists published articles in order');
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'topic has no horizontal overflow');
+    await page.screenshot({path:`output/playwright/forecast-topic-simple-${width}.png`,fullPage:true});
+
+    await page.locator('.post-row h2 a[href="'+article+'"]').click();
     assert(new URL(page.url()).pathname===article,'topic opens first article');
     const index=published.indexOf(article);
     assert(index>=0,'math bridge is a published chapter');
@@ -38,11 +45,10 @@ async (page, ctx) => {
     const expected=['seasonal-naive-demand-forecast','moving-average-demand-forecast','simple-exponential-smoothing-demand-forecast','forecast-error-bias-metrics','rolling-backtest-stockout-censoring'];
     for (const slug of expected) {
       const url='/blog/'+slug+'/';
-      assert(await page.locator('.topic-intro a[href="'+url+'"]').count()===1,'original link '+slug);
       assert((await page.request.get(base+url)).status()===200,'original route '+slug);
     }
     await page.goto(base+article);
     for(const kind of ['practice','article','images'])assert((await page.request.get(base+'/downloads/p01-math-bridge-'+kind+'.zip')).status()===200,'download '+kind);
   }
-  return ['1440px, 390px and 320px: complete forecasting topic chain, published chapter, original links, images and downloads passed'];
+  return ['1440px, 390px and 320px: complete forecasting topic chain, published chapter, original routes, images and downloads passed'];
 }
