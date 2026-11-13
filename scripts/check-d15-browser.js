@@ -30,8 +30,14 @@ async (page, ctx) => {
   for(const link of links){const r=await page.request.get(base+link);const b=await r.body();assert(r.ok()&&b[0]===80&&b[1]===75,'D15 ZIP missing '+link);}
   const cover=await page.request.get(base+route+'images/d15-00_cover.png');
   const bytes=await cover.body();assert(cover.ok()&&bytes.readUInt32BE(16)===900&&bytes.readUInt32BE(20)===383,'D15 cover dimensions');
+  const {links:listingLinks}=await ctx.walkPagination(page);
+  assert(listingLinks.filter(h=>h===route).length===1,'D15 present exactly once across homepage pagination');
   await page.goto(base+'/');
+  while(await page.locator(`.post-row h2 a[href="${route}"]`).count()===0){
+    const next=page.locator('.feed-pagination [rel=next]');
+    assert(await next.count()===1,'D15 pagination reachable');await next.click();
+  }
   const row=page.locator('.post-row').filter({has:page.locator(`h2 a[href="${route}"]`)});
-  assert(await row.count()===1,'D15 home listing absent or duplicate');assert(await row.locator('img').count()===1,'D15 has multiple list covers');
-  reports.push('three ZIPs, 900×383 cover, one home cover');return reports;
+  assert(await row.count()===1,'D15 blog listing absent or duplicate');assert(await row.locator('img').count()===1,'D15 has multiple list covers');
+  reports.push('three ZIPs, 900×383 cover, one blog-list cover');return reports;
 }

@@ -6,7 +6,7 @@ async (page,ctx) => {
   assert(new URL(page.url()).pathname===route,'P05 topic link');
   assert(await page.locator('link[rel=canonical]').getAttribute('href')==='https://12lab.cn'+route,'P05 canonical');
   assert(await page.locator('.article-prev a').getAttribute('href')===topic+'04-probability-and-presale/','P05 previous');
-  assert(await page.locator('.article-next a').count()===0,'P05 has no placeholder next');
+  assert(await page.locator('.article-next a').getAttribute('href')===topic+'06-source-allocation/','P05 points to published P06');
   assert(await page.locator('.prose img').count()===5,'P05 cover and four figures');
   for(const img of await page.locator('.prose img').all()){
    await img.scrollIntoViewIfNeeded();await img.evaluate(n=>n.decode());

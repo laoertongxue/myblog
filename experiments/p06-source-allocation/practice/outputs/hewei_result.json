@@ -1,0 +1,178 @@
+{
+  "input_snapshot": {
+    "batch": 5,
+    "case_id": "hewei",
+    "deadline": "2026-01-02T08:00:00+08:00",
+    "decision_at": "2026-01-01T08:00:00+08:00",
+    "known_at": "2026-01-01T07:00:00+08:00",
+    "production": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "capacity": 0,
+      "fixed_cost": "0",
+      "material_available": 0,
+      "material_per_unit": 1,
+      "unit_cost": "0"
+    },
+    "purchase": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "capacity": 40,
+      "fixed_cost": "0",
+      "unit_cost": "3"
+    },
+    "receive_capacity": 50,
+    "scenarios": [
+      {
+        "demand": 20,
+        "name": "低",
+        "probability": "0.2"
+      },
+      {
+        "demand": 30,
+        "name": "中",
+        "probability": "0.5"
+      },
+      {
+        "demand": 40,
+        "name": "高",
+        "probability": "0.3"
+      }
+    ],
+    "shortage_cost": "10",
+    "surplus_cost": "1",
+    "title": "虚构禾味：A店一种食材的截止时点净缺口",
+    "transfer": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "donor_reserve": 15,
+      "donor_stock": 35,
+      "fixed_cost": "30",
+      "unit_cost": "1"
+    },
+    "unit": "kg"
+  },
+  "input_sha256": "3bf06712b227700c09c0945375b8668829233ef823fa39d3e98fbdf69c301cbb",
+  "hash_encoding": "UTF-8 JSON, ensure_ascii=False, sort_keys=True, separators=(comma,colon), no trailing newline",
+  "case_id": "hewei",
+  "unit": "kg",
+  "candidate_count": 42,
+  "effective_caps": [
+    40,
+    20,
+    0
+  ],
+  "bound_explanation": {
+    "receive_capacity": 50,
+    "batch": 5,
+    "purchase_capacity": 40,
+    "donor_stock": 35,
+    "donor_reserve": 15,
+    "machine_capacity": 0,
+    "material_supported_quantity": 0,
+    "timely_sources": {
+      "purchase": true,
+      "transfer": true,
+      "production": true
+    },
+    "note": "effective_caps已按及时性与接收容量过滤；再按批量枚举并检查合计容量。上述是本模型上界说明，不是通用最小冲突诊断。"
+  },
+  "tie_rule": "按(采购量,调拨量,生产量)字典序最小；不代表额外业务偏好",
+  "expected": {
+    "status": "OPTIMAL_IN_ENUMERATED_MODEL",
+    "all_optimal_plans": [
+      [
+        10,
+        20,
+        0
+      ]
+    ],
+    "selected": {
+      "plan": [
+        10,
+        20,
+        0
+      ],
+      "quantity": 30,
+      "supply_cost": "80",
+      "expected_cost": "112",
+      "expected_shortage": "3",
+      "expected_surplus": "2",
+      "scenarios": [
+        {
+          "name": "低",
+          "probability": "1/5",
+          "demand": 20,
+          "shortage": 0,
+          "surplus": 10,
+          "total_cost": "90"
+        },
+        {
+          "name": "中",
+          "probability": "1/2",
+          "demand": 30,
+          "shortage": 0,
+          "surplus": 0,
+          "total_cost": "80"
+        },
+        {
+          "name": "高",
+          "probability": "3/10",
+          "demand": 40,
+          "shortage": 10,
+          "surplus": 0,
+          "total_cost": "180"
+        }
+      ]
+    },
+    "required_quantity": 0,
+    "max_feasible_quantity": 50
+  },
+  "high_service": {
+    "status": "OPTIMAL_IN_ENUMERATED_MODEL",
+    "all_optimal_plans": [
+      [
+        20,
+        20,
+        0
+      ]
+    ],
+    "selected": {
+      "plan": [
+        20,
+        20,
+        0
+      ],
+      "quantity": 40,
+      "supply_cost": "110",
+      "expected_cost": "119",
+      "expected_shortage": "0",
+      "expected_surplus": "9",
+      "scenarios": [
+        {
+          "name": "低",
+          "probability": "1/5",
+          "demand": 20,
+          "shortage": 0,
+          "surplus": 20,
+          "total_cost": "130"
+        },
+        {
+          "name": "中",
+          "probability": "1/2",
+          "demand": 30,
+          "shortage": 0,
+          "surplus": 10,
+          "total_cost": "120"
+        },
+        {
+          "name": "高",
+          "probability": "3/10",
+          "demand": 40,
+          "shortage": 0,
+          "surplus": 0,
+          "total_cost": "110"
+        }
+      ]
+    },
+    "required_quantity": 40,
+    "max_feasible_quantity": 50
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "case_id": "apparel", "title": "匿名服装企业：同款同尺码成衣的截止时点净缺口", "unit": "piece",
+  "decision_at": "2026-01-01T08:00:00+08:00", "deadline": "2026-01-02T08:00:00+08:00", "known_at": "2026-01-01T07:00:00+08:00",
+  "batch":10, "receive_capacity":100, "shortage_cost":"20", "surplus_cost":"2",
+  "scenarios":[{"name":"低","demand":60,"probability":"0.2"},{"name":"中","demand":80,"probability":"0.5"},{"name":"高","demand":100,"probability":"0.3"}],
+  "purchase":{"capacity":80,"unit_cost":"8","fixed_cost":"0","arrival_at":"2026-01-02T07:00:00+08:00"},
+  "transfer":{"donor_stock":70,"donor_reserve":30,"unit_cost":"3","fixed_cost":"60","arrival_at":"2026-01-02T07:00:00+08:00"},
+  "production":{"capacity":60,"material_available":100,"material_per_unit":2,"unit_cost":"4","fixed_cost":"40","arrival_at":"2026-01-02T07:00:00+08:00"}
+}

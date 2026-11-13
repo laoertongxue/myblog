@@ -1,0 +1,40 @@
+{
+  "case_id": "hewei",
+  "title": "虚构禾味：独立确定10kg净缺口反例",
+  "unit": "kg",
+  "decision_at": "2026-01-01T08:00:00+08:00",
+  "deadline": "2026-01-02T08:00:00+08:00",
+  "known_at": "2026-01-01T07:00:00+08:00",
+  "batch": 5,
+  "receive_capacity": 50,
+  "shortage_cost": "10",
+  "surplus_cost": "1",
+  "scenarios": [
+    {
+      "name": "确定净缺口10kg",
+      "demand": 10,
+      "probability": "1"
+    }
+  ],
+  "purchase": {
+    "capacity": 40,
+    "unit_cost": "3",
+    "fixed_cost": "0",
+    "arrival_at": "2026-01-02T07:00:00+08:00"
+  },
+  "transfer": {
+    "donor_stock": 35,
+    "donor_reserve": 15,
+    "unit_cost": "1",
+    "fixed_cost": "30",
+    "arrival_at": "2026-01-02T07:00:00+08:00"
+  },
+  "production": {
+    "capacity": 0,
+    "material_available": 0,
+    "material_per_unit": 1,
+    "unit_cost": "0",
+    "fixed_cost": "0",
+    "arrival_at": "2026-01-02T07:00:00+08:00"
+  }
+}

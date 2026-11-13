@@ -1,0 +1,129 @@
+{
+  "input_snapshot": {
+    "batch": 5,
+    "case_id": "hewei",
+    "deadline": "2026-01-02T08:00:00+08:00",
+    "decision_at": "2026-01-01T08:00:00+08:00",
+    "known_at": "2026-01-01T07:00:00+08:00",
+    "production": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "capacity": 0,
+      "fixed_cost": "0",
+      "material_available": 0,
+      "material_per_unit": 1,
+      "unit_cost": "0"
+    },
+    "purchase": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "capacity": 40,
+      "fixed_cost": "0",
+      "unit_cost": "3"
+    },
+    "receive_capacity": 50,
+    "scenarios": [
+      {
+        "demand": 10,
+        "name": "确定净缺口10kg",
+        "probability": "1"
+      }
+    ],
+    "shortage_cost": "10",
+    "surplus_cost": "1",
+    "title": "虚构禾味：独立确定10kg净缺口反例",
+    "transfer": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "donor_reserve": 15,
+      "donor_stock": 35,
+      "fixed_cost": "30",
+      "unit_cost": "1"
+    },
+    "unit": "kg"
+  },
+  "input_sha256": "d6c3621dfd574728d9404eb53de5f199c1c77437298ddadf46bac2629e4be578",
+  "hash_encoding": "UTF-8 JSON, ensure_ascii=False, sort_keys=True, separators=(comma,colon), no trailing newline",
+  "note": "counterexample.json为独立确定缺口手算诊断输入，不跟随hewei.json修改；不是看完主情景后改方案",
+  "cheap_unit_first": {
+    "status": "FEASIBLE",
+    "evaluation": {
+      "plan": [
+        0,
+        10,
+        0
+      ],
+      "quantity": 10,
+      "supply_cost": "40",
+      "expected_cost": "40",
+      "expected_shortage": "0",
+      "expected_surplus": "0",
+      "scenarios": [
+        {
+          "name": "确定净缺口10kg",
+          "probability": "1",
+          "demand": 10,
+          "shortage": 0,
+          "surplus": 0,
+          "total_cost": "40"
+        }
+      ]
+    }
+  },
+  "all_purchase": {
+    "status": "FEASIBLE",
+    "evaluation": {
+      "plan": [
+        10,
+        0,
+        0
+      ],
+      "quantity": 10,
+      "supply_cost": "30",
+      "expected_cost": "30",
+      "expected_shortage": "0",
+      "expected_surplus": "0",
+      "scenarios": [
+        {
+          "name": "确定净缺口10kg",
+          "probability": "1",
+          "demand": 10,
+          "shortage": 0,
+          "surplus": 0,
+          "total_cost": "30"
+        }
+      ]
+    }
+  },
+  "enumeration": {
+    "status": "OPTIMAL_IN_ENUMERATED_MODEL",
+    "all_optimal_plans": [
+      [
+        10,
+        0,
+        0
+      ]
+    ],
+    "selected": {
+      "plan": [
+        10,
+        0,
+        0
+      ],
+      "quantity": 10,
+      "supply_cost": "30",
+      "expected_cost": "30",
+      "expected_shortage": "0",
+      "expected_surplus": "0",
+      "scenarios": [
+        {
+          "name": "确定净缺口10kg",
+          "probability": "1",
+          "demand": 10,
+          "shortage": 0,
+          "surplus": 0,
+          "total_cost": "30"
+        }
+      ]
+    },
+    "required_quantity": 0,
+    "max_feasible_quantity": 50
+  }
+}

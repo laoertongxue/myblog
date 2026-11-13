@@ -19,3 +19,6 @@ experiments/p05-forecast-to-replenishment/practice/**/*.csv -text
 # D20 frozen source and evidence retain reviewed bytes.
 experiments/d20-inventory-test/practice/** -text
 static/downloads/d20-inventory-test-*.zip -text
+
+# P06 reviewed simulation files retain exact portable bytes.
+experiments/p06-source-allocation/practice/** -text

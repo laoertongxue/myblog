@@ -1,0 +1,178 @@
+{
+  "input_snapshot": {
+    "batch": 10,
+    "case_id": "apparel",
+    "deadline": "2026-01-02T08:00:00+08:00",
+    "decision_at": "2026-01-01T08:00:00+08:00",
+    "known_at": "2026-01-01T07:00:00+08:00",
+    "production": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "capacity": 60,
+      "fixed_cost": "40",
+      "material_available": 100,
+      "material_per_unit": 2,
+      "unit_cost": "4"
+    },
+    "purchase": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "capacity": 80,
+      "fixed_cost": "0",
+      "unit_cost": "8"
+    },
+    "receive_capacity": 100,
+    "scenarios": [
+      {
+        "demand": 60,
+        "name": "低",
+        "probability": "0.2"
+      },
+      {
+        "demand": 80,
+        "name": "中",
+        "probability": "0.5"
+      },
+      {
+        "demand": 100,
+        "name": "高",
+        "probability": "0.3"
+      }
+    ],
+    "shortage_cost": "20",
+    "surplus_cost": "2",
+    "title": "匿名服装企业：同款同尺码成衣的截止时点净缺口",
+    "transfer": {
+      "arrival_at": "2026-01-02T07:00:00+08:00",
+      "donor_reserve": 30,
+      "donor_stock": 70,
+      "fixed_cost": "60",
+      "unit_cost": "3"
+    },
+    "unit": "piece"
+  },
+  "input_sha256": "ad7446c9aa1774d8286b039ed98cddca45bc223c89e174ff0207805ade284b5d",
+  "hash_encoding": "UTF-8 JSON, ensure_ascii=False, sort_keys=True, separators=(comma,colon), no trailing newline",
+  "case_id": "apparel",
+  "unit": "piece",
+  "candidate_count": 191,
+  "effective_caps": [
+    80,
+    40,
+    50
+  ],
+  "bound_explanation": {
+    "receive_capacity": 100,
+    "batch": 10,
+    "purchase_capacity": 80,
+    "donor_stock": 70,
+    "donor_reserve": 30,
+    "machine_capacity": 60,
+    "material_supported_quantity": 50,
+    "timely_sources": {
+      "purchase": true,
+      "transfer": true,
+      "production": true
+    },
+    "note": "effective_caps已按及时性与接收容量过滤；再按批量枚举并检查合计容量。上述是本模型上界说明，不是通用最小冲突诊断。"
+  },
+  "tie_rule": "按(采购量,调拨量,生产量)字典序最小；不代表额外业务偏好",
+  "expected": {
+    "status": "OPTIMAL_IN_ENUMERATED_MODEL",
+    "all_optimal_plans": [
+      [
+        0,
+        40,
+        50
+      ]
+    ],
+    "selected": {
+      "plan": [
+        0,
+        40,
+        50
+      ],
+      "quantity": 90,
+      "supply_cost": "420",
+      "expected_cost": "502",
+      "expected_shortage": "3",
+      "expected_surplus": "11",
+      "scenarios": [
+        {
+          "name": "低",
+          "probability": "1/5",
+          "demand": 60,
+          "shortage": 0,
+          "surplus": 30,
+          "total_cost": "480"
+        },
+        {
+          "name": "中",
+          "probability": "1/2",
+          "demand": 80,
+          "shortage": 0,
+          "surplus": 10,
+          "total_cost": "440"
+        },
+        {
+          "name": "高",
+          "probability": "3/10",
+          "demand": 100,
+          "shortage": 10,
+          "surplus": 0,
+          "total_cost": "620"
+        }
+      ]
+    },
+    "required_quantity": 0,
+    "max_feasible_quantity": 100
+  },
+  "high_service": {
+    "status": "OPTIMAL_IN_ENUMERATED_MODEL",
+    "all_optimal_plans": [
+      [
+        10,
+        40,
+        50
+      ]
+    ],
+    "selected": {
+      "plan": [
+        10,
+        40,
+        50
+      ],
+      "quantity": 100,
+      "supply_cost": "500",
+      "expected_cost": "536",
+      "expected_shortage": "0",
+      "expected_surplus": "18",
+      "scenarios": [
+        {
+          "name": "低",
+          "probability": "1/5",
+          "demand": 60,
+          "shortage": 0,
+          "surplus": 40,
+          "total_cost": "580"
+        },
+        {
+          "name": "中",
+          "probability": "1/2",
+          "demand": 80,
+          "shortage": 0,
+          "surplus": 20,
+          "total_cost": "540"
+        },
+        {
+          "name": "高",
+          "probability": "3/10",
+          "demand": 100,
+          "shortage": 0,
+          "surplus": 0,
+          "total_cost": "500"
+        }
+      ]
+    },
+    "required_quantity": 100,
+    "max_feasible_quantity": 100
+  }
+}
