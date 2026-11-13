@@ -1,0 +1,7 @@
+{
+  "frozen_config_sha256": "ee52a89b4dfd208160a30338cffbcfedfe2bf53e37e01a6cefd52200ea11400d",
+  "protocol_sha256": "f30264d093e2647e7d4bbef123e08b32e599fa72b4d76ac9f288a24c7d2c240e",
+  "selection_results_sha256": "219952dce9e6b70dbaadc74e484223bec119b2ec95b7c149be262dea8b905a77",
+  "status": "development selected; no D20 execution; no external timestamp or tamper-proof guarantee",
+  "version": "D19-v2-reviewed-protocol"
+}

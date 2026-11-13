@@ -1,0 +1,6 @@
+case,unit,policy,candidate,id,quantity,arrival_day
+hewei,kg,daily_sQ,daily_sQ-z1-Q52,new-178,52,181
+hewei,kg,daily_sQ,daily_sQ-z1-Q52,new-180,52,183
+hewei,kg,periodic_RS,periodic_RS-z1,new-180,64,183
+apparel,piece,daily_sQ,daily_sQ-z0-Q422,new-179,422,182
+apparel,piece,periodic_RS,periodic_RS-z2,new-180,284,183

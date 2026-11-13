@@ -33,6 +33,7 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 // Keep this list explicit: `--list` is the record of what actually runs.
 const CHECKS = [
   { name: 'p05', file: 'check-p05-browser.js', description: 'constrained replenishment chapter, simulations, navigation, downloads and responsive figures' },
+  { name: 'd20', file: 'check-d20-browser.js', description: 'D20 fixed-policy test, metrics, curves, downloads and responsive layout' },
   { name: 'd19', file: 'check-d19-browser.js', description: 'D19 inventory validation, frozen policies, all candidate tables, downloads and mobile figures' },
   { name: 'p04', file: 'check-p04-browser.js', description: 'probability and presale chapter, downloads, images and mobile tables' },
   { name: 'd18', file: 'check-d18-browser.js', description: 'D18 safety stock, service denominators, downloads and mobile tables' },

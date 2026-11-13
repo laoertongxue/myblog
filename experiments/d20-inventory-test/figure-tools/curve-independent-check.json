@@ -1,0 +1,11 @@
+{
+  "source_sha256": "8069dab38b42b1e922dd885068d60ad36e0426ea6d105522b9c7d87999141ca7",
+  "checked_points": 112,
+  "groups": [
+    "hewei/daily_sQ",
+    "hewei/periodic_RS",
+    "apparel/daily_sQ",
+    "apparel/periodic_RS"
+  ],
+  "checks": "从SVG反算横轴日编号和纵轴库存，逐点与原始台账比较，误差小于1e-9。"
+}

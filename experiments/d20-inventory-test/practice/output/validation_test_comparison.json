@@ -1,0 +1,86 @@
+[
+  {
+    "candidate": "daily_sQ-z1-Q52",
+    "case": "hewei",
+    "note": "Different demand segments; descriptive only; no retuning",
+    "policy": "daily_sQ",
+    "test": {
+      "demand": 720,
+      "fill_rate": 0.9930555555555556,
+      "lost": 5,
+      "mean_end_oh": 30.071428571428573,
+      "order_count": 15
+    },
+    "unit": "kg",
+    "validation": {
+      "demand": 738,
+      "fill_rate": 1.0,
+      "lost": 0,
+      "mean_end_oh": 34.07142857142857,
+      "order_count": 14
+    }
+  },
+  {
+    "candidate": "periodic_RS-z1",
+    "case": "hewei",
+    "note": "Different demand segments; descriptive only; no retuning",
+    "policy": "periodic_RS",
+    "test": {
+      "demand": 720,
+      "fill_rate": 0.9888888888888889,
+      "lost": 8,
+      "mean_end_oh": 32.5,
+      "order_count": 10
+    },
+    "unit": "kg",
+    "validation": {
+      "demand": 738,
+      "fill_rate": 1.0,
+      "lost": 0,
+      "mean_end_oh": 34.107142857142854,
+      "order_count": 10
+    }
+  },
+  {
+    "candidate": "daily_sQ-z0-Q422",
+    "case": "apparel",
+    "note": "Different demand segments; descriptive only; no retuning",
+    "policy": "daily_sQ",
+    "test": {
+      "demand": 3173,
+      "fill_rate": 0.9795146549007249,
+      "lost": 65,
+      "mean_end_oh": 189.89285714285714,
+      "order_count": 8
+    },
+    "unit": "piece",
+    "validation": {
+      "demand": 3374,
+      "fill_rate": 0.98221695317131,
+      "lost": 60,
+      "mean_end_oh": 225.96428571428572,
+      "order_count": 8
+    }
+  },
+  {
+    "candidate": "periodic_RS-z2",
+    "case": "apparel",
+    "note": "Different demand segments; descriptive only; no retuning",
+    "policy": "periodic_RS",
+    "test": {
+      "demand": 3173,
+      "fill_rate": 0.978254018279231,
+      "lost": 69,
+      "mean_end_oh": 132.67857142857142,
+      "order_count": 10
+    },
+    "unit": "piece",
+    "validation": {
+      "demand": 3374,
+      "fill_rate": 0.9229401304090101,
+      "lost": 260,
+      "mean_end_oh": 180.53571428571428,
+      "order_count": 10
+    }
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "policy": {
+    "version": "D9-v1",
+    "seed": 20261102,
+    "period": 7,
+    "splits": {
+      "train": [
+        1,
+        112
+      ],
+      "validation": [
+        113,
+        140
+      ],
+      "test": [
+        141,
+        180
+      ]
+    },
+    "core": "hewei/A/SKU01",
+    "units": {
+      "hewei": "kg/day",
+      "apparel": "pieces/day"
+    },
+    "daily": "rolling origin, horizon=1, all days in block",
+    "five_day": "rolling origin, horizon=5, full target window inside block",
+    "selection": "period=7 fixed by weekly teaching hypothesis; no tuning",
+    "test_history": "past observed test days may update history; policy fixed"
+  },
+  "sha256": {
+    "baseline.py": "ce9c3fa8892fdd76f26fe6f2cacad899f334cccd94b5840cbcefb1f26b4a3340",
+    "generate.py": "e96b36cb0e53ebd21517db256404ecff51b00deb2aba451ee1c234891c846fb5",
+    "run.py": "00cd97e063be4c393192a782523018205bdcb013d6395ea5f382e77c6cea34a1",
+    "policy.json": "27d5bfd7256521cc1a993a9b03f35ffbb13229b22eb945f0cf6f12d83a3e50b8",
+    "data/hewei-development.csv": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407",
+    "sealed/hewei-test.csv": "13f75d6ab98de450dbed98663f16b935232a20fe2357df17da9b3c583deb0e5c",
+    "data/apparel-development.csv": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5",
+    "sealed/apparel-test.csv": "09db02e8c83717cd2984a3866ab0e87d89499198b327b4861adf1b56179649ae"
+  },
+  "note": "Reproducible policy receipt, not access control or proof of an earlier timestamp. See review log."
+}

@@ -1,0 +1,108 @@
+{
+  "cases": {
+    "apparel": {
+      "initial_oh": 316,
+      "initial_pipeline": [],
+      "unit": "piece",
+      "winners": {
+        "daily_sQ": {
+          "candidate": "daily_sQ-z0-Q422",
+          "parameters": {
+            "L": 2,
+            "Q": 422,
+            "R": 1,
+            "policy": "daily_sQ",
+            "scale": 5.670567855675941,
+            "z": 0
+          }
+        },
+        "periodic_RS": {
+          "candidate": "periodic_RS-z2",
+          "parameters": {
+            "L": 2,
+            "R": 3,
+            "policy": "periodic_RS",
+            "scale": 7.751077855420631,
+            "z": 2
+          }
+        }
+      }
+    },
+    "hewei": {
+      "initial_oh": 78,
+      "initial_pipeline": [],
+      "unit": "kg",
+      "winners": {
+        "daily_sQ": {
+          "candidate": "daily_sQ-z1-Q52",
+          "parameters": {
+            "L": 2,
+            "Q": 52,
+            "R": 1,
+            "policy": "daily_sQ",
+            "scale": 5.143569838119402,
+            "z": 1
+          }
+        },
+        "periodic_RS": {
+          "candidate": "periodic_RS-z1",
+          "parameters": {
+            "L": 2,
+            "R": 3,
+            "policy": "periodic_RS",
+            "scale": 6.568752914479669,
+            "z": 1
+          }
+        }
+      }
+    }
+  },
+  "forecast": "seasonal_naive_7_from_observed_raw_demand_only",
+  "future_plan": {
+    "five_day_origins": [
+      140,
+      175
+    ],
+    "five_day_window_count": 36,
+    "forecast_days": [
+      141,
+      180
+    ],
+    "inventory_initialization": "reset at start of day153 to frozen training-derived OH and empty pipeline; no inventory warmup",
+    "inventory_run_days": [
+      153,
+      180
+    ],
+    "inventory_score_days": [
+      153,
+      180
+    ],
+    "observed_history": "day153 end decision may use observed raw demand through153 including141..152, only when D20 authorized",
+    "one_day_origins": [
+      140,
+      179
+    ],
+    "parameters": "frozen; no retuning; append observed raw demand only",
+    "phase_rule": "review offset 0 relative to each inventory evaluation start: validation113, test153; never move after results",
+    "review_anchor": 153
+  },
+  "protection_horizons": {
+    "daily_sQ": 3,
+    "periodic_RS": 5
+  },
+  "protocol_sha256": "f30264d093e2647e7d4bbef123e08b32e599fa72b4d76ac9f288a24c7d2c240e",
+  "rounding": "ceil to whole unit; both kg and piece are integer simulation units",
+  "selection": [
+    "lost ascending",
+    "mean_end_on_hand ascending",
+    "order_count ascending",
+    "canonical parameter JSON lexical ascending"
+  ],
+  "sources": {
+    "apparel": "56badd2fc37decd72b2f55a980acb7add2594b96c7b8d269f6aaae59ee7d47e5",
+    "hewei": "292072a63439529f22a73d41b83516928ae5a5b474b907b33d42e74962c23407"
+  },
+  "timing": "arrivals at start; raw demand fulfillment with lost sales; review at end; order t arrives t+L+1",
+  "validation_review_anchor": 113,
+  "version": "D19-v2-reviewed-protocol"
+}

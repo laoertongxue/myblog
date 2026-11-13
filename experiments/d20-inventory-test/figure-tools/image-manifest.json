@@ -1,0 +1,42 @@
+[
+  {
+    "file": "d20-00_cover.png",
+    "size": [
+      900,
+      383
+    ],
+    "sha256": "610fe2242c35322243cccf23458c59fc347b6b40443a6cf645e90f81bfe04dcd"
+  },
+  {
+    "file": "d20-01_boundary.png",
+    "size": [
+      700,
+      1450
+    ],
+    "sha256": "e476c260a437364ebb67904c2016c844c8aecfc4d3853e78808ef14b4e94dc0e"
+  },
+  {
+    "file": "d20-02_metrics.png",
+    "size": [
+      700,
+      1530
+    ],
+    "sha256": "389c439055edb166645664000776b23d2eb362c06d95cd7e07d61ff217b68d38"
+  },
+  {
+    "file": "d20-03_tradeoff.png",
+    "size": [
+      700,
+      1450
+    ],
+    "sha256": "394c8df703a3b1923f3082842e4561691fc4df67ae6cc4091536f0ce27439d9b"
+  },
+  {
+    "file": "d20-04_inventory-curves.png",
+    "size": [
+      700,
+      1530
+    ],
+    "sha256": "5b672036ee9812e49b8b0ac89198c681bed7172e735101e3b4f38dcca737146b"
+  }
+]

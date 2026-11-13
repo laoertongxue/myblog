@@ -1,0 +1,61 @@
+{
+  "version": "D19-v2-reviewed-protocol",
+  "timing": "arrivals at start; raw demand fulfillment with lost sales; review at end; order t arrives t+L+1",
+  "lead_time": 2,
+  "review_period": 3,
+  "forecast": "seasonal_naive_7_from_observed_raw_demand_only",
+  "safety_scale": "RMS of fixed-origin cumulative errors; origins 7..112-H; H=3 or 5; training only",
+  "daily_protection": 3,
+  "periodic_protection": 5,
+  "z_grid": [
+    0,
+    1,
+    2
+  ],
+  "q_mean_multipliers": [
+    2,
+    4
+  ],
+  "rounding": "ceil to whole unit; both kg and piece are integer simulation units",
+  "initial_state": "OH=ceil(3*mean(training demand)); no initial pipeline; identical for all candidates within case",
+  "validation": [
+    113,
+    140
+  ],
+  "selection": [
+    "lost ascending",
+    "mean_end_on_hand ascending",
+    "order_count ascending",
+    "canonical parameter JSON lexical ascending"
+  ],
+  "selection_scope": "one winner per case per policy; no economic optimality claim",
+  "future_plan": {
+    "forecast_days": [
+      141,
+      180
+    ],
+    "inventory_run_days": [
+      153,
+      180
+    ],
+    "inventory_score_days": [
+      153,
+      180
+    ],
+    "five_day_origins": [
+      140,
+      175
+    ],
+    "five_day_window_count": 36,
+    "inventory_initialization": "reset at start of day153 to frozen training-derived OH and empty pipeline; no inventory warmup",
+    "review_anchor": 153,
+    "parameters": "frozen; no retuning; append observed raw demand only",
+    "observed_history": "day153 end decision may use observed raw demand through153 including141..152, only when D20 authorized",
+    "one_day_origins": [
+      140,
+      179
+    ],
+    "phase_rule": "review offset 0 relative to each inventory evaluation start: validation113, test153; never move after results"
+  },
+  "limitations": "All synthetic. D9 test summaries already public; not a new blind holdout. D19 reads days 1..140 only. D20 not executed."
+}

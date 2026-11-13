@@ -1,0 +1,6 @@
+{
+  "source": "experiments/d20-inventory-test/practice/output/ledger.csv",
+  "sha256": "8069dab38b42b1e922dd885068d60ad36e0426ea6d105522b9c7d87999141ca7",
+  "rows": 112,
+  "purpose": "D20四套冻结策略153—180日的日末现存曲线；数据原样复制，不重算或修改实验。"
+}

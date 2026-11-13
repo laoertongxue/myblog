@@ -1,0 +1,27 @@
+{
+  "forecast_days": [
+    141,
+    180
+  ],
+  "historical_exposure": "D9 published original test summaries; D19 protocol v2 revised after validation; not a new blind holdout",
+  "initial_state": "same frozen OH and empty pipeline per case",
+  "inventory_days": [
+    153,
+    180
+  ],
+  "no_inventory_warmup": true,
+  "no_retuning": true,
+  "result_sha256": {
+    "forecast_metrics.json": "b05ffc9706865ac196350070824ddefb05f8ecec11c1c97ac5c35a23e57a22e4",
+    "forecast_windows.csv": "7b4e370a4715cc99c5d6cb6d5115ac63207bc509946f38f5f4d2c9ebcb4278d6",
+    "ledger.csv": "8069dab38b42b1e922dd885068d60ad36e0426ea6d105522b9c7d87999141ca7",
+    "order_events.csv": "c7968f05f1ce04569915c2db875909869abf27e44eddd33b45b976ed7186c8b5",
+    "pending.csv": "f2453fdde511c9235d061bfe679cc70a71995a04f665c7dfc0eb8f08d9a3bf7e",
+    "results.json": "ec591c4382c464c049109cbc553a1b44f1039d1103fd4431d7286ab53bb874d4",
+    "validation_test_comparison.json": "c238f30e6d88858128172aa05480527c7df880254c78c76d6fd03ed3089fc739"
+  },
+  "review_anchor": 153,
+  "source_config_sha256": "ee52a89b4dfd208160a30338cffbcfedfe2bf53e37e01a6cefd52200ea11400d",
+  "source_protocol_sha256": "f30264d093e2647e7d4bbef123e08b32e599fa72b4d76ac9f288a24c7d2c240e",
+  "version": "D20-frozen-continuation-v1"
+}

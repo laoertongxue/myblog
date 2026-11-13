@@ -1,0 +1,42 @@
+[
+  {
+    "MAE": 2.175,
+    "ME": 0.025,
+    "RMSE": 2.6410225292488514,
+    "case": "hewei",
+    "error_sign": "actual minus prediction",
+    "horizon": 1,
+    "n": 40,
+    "unit": "kg"
+  },
+  {
+    "MAE": 4.111111111111111,
+    "ME": 0.16666666666666666,
+    "RMSE": 4.904646323187388,
+    "case": "hewei",
+    "error_sign": "actual minus prediction",
+    "horizon": 5,
+    "n": 36,
+    "unit": "kg"
+  },
+  {
+    "MAE": 2.925,
+    "ME": 0.375,
+    "RMSE": 3.59513560244951,
+    "case": "apparel",
+    "error_sign": "actual minus prediction",
+    "horizon": 1,
+    "n": 40,
+    "unit": "piece"
+  },
+  {
+    "MAE": 5.916666666666667,
+    "ME": 2.138888888888889,
+    "RMSE": 7.507403753036805,
+    "case": "apparel",
+    "error_sign": "actual minus prediction",
+    "horizon": 5,
+    "n": 36,
+    "unit": "piece"
+  }
+]

@@ -15,3 +15,7 @@ static/downloads/d19-inventory-validation-*.zip -text
 
 # P05 reviewed experiment CSVs retain exact original bytes across platforms.
 experiments/p05-forecast-to-replenishment/practice/**/*.csv -text
+
+# D20 frozen source and evidence retain reviewed bytes.
+experiments/d20-inventory-test/practice/** -text
+static/downloads/d20-inventory-test-*.zip -text
