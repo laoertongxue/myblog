@@ -2,11 +2,14 @@ async (page,ctx) => {
  const {base,assert}=ctx,topic='/topics/forecasting/',route=topic+'06-source-allocation/';
  for(const width of [1440,390,320]){
   await page.setViewportSize({width,height:900});await page.goto(base+topic);
+  const chapterLinks=await page.locator('.post-row h2 a').evaluateAll(ns=>ns.map(n=>new URL(n.href).pathname));
+  const expectedNext=chapterLinks[chapterLinks.indexOf(route)+1];
   await page.locator('.post-row h2 a[href="'+route+'"]').click();
   assert(new URL(page.url()).pathname===route,'P06 topic link');
   assert(await page.locator('link[rel=canonical]').getAttribute('href')==='https://12lab.cn'+route,'P06 canonical');
   assert(await page.locator('.article-prev a').getAttribute('href')===topic+'05-forecast-to-replenishment/','P06 previous');
-  assert(await page.locator('.article-next a').count()===0,'P06 has no unpublished next');
+  if(expectedNext) assert(await page.locator('.article-next a').getAttribute('href')===expectedNext,'P06 next matches published topic order');
+  else assert(await page.locator('.article-next a').count()===0,'P06 no next beyond published topic order');
   assert(await page.locator('.prose img').count()===5,'P06 cover and four figures');
   for(const img of await page.locator('.prose img').all()){
    await img.scrollIntoViewIfNeeded();await img.evaluate(n=>n.decode());

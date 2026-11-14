@@ -13,6 +13,8 @@ table or a broken reference still can.
 """
 from html.parser import HTMLParser
 import json
+from datetime import datetime
+from email.utils import parsedate_to_datetime
 import re
 import struct
 from pathlib import Path
@@ -379,11 +381,59 @@ def check(output='.hugo-check'):
     assert not any(str(REMOVED_ROUTE) in url for url in urls), 'removed test topic still in the search index'
     locations = {urlsplit(element.text).path for element in ET.parse(root / 'sitemap.xml').findall('.//{*}loc')}
     assert {TOPIC_ROUTE, *routes} <= locations, 'series or articles missing from the sitemap'
+    # Aggregated feeds are date-descending, limited by the actual RSS template.
+    # A chapter older than the 30th item is correctly absent, not a regression.
+    limit_match = re.search(r'range first (\d+) \$pages.ByDate.Reverse', Path('layouts/list.rss.xml').read_text())
+    assert limit_match, 'RSS template limit/order contract changed; review this check'
+    limit = int(limit_match.group(1))
+    indexed = json.loads(indices[0].read_text())
+    def publication_date(route):
+        html = (root / route.lstrip('/') / 'index.html').read_text()
+        matches = re.findall(r'"datePublished"\s*:\s*"([^"]+)"', html)
+        if not matches and '<meta property="og:type" content="website">' in html:
+            return None
+        assert len(matches) == 1, f'{route}: expected one Article publication date'
+        return datetime.fromisoformat(matches[0].replace('Z', '+00:00'))
+    def check_feed_window(candidates, actual, cap):
+        assert len(actual) == min(cap, len(candidates)), 'RSS item count differs from source window'
+        assert len({route for route, _ in actual}) == len(actual), 'duplicate RSS item'
+        assert all(route in candidates and date == candidates[route] for route, date in actual), 'wrong RSS candidate/date'
+        dates = [date for _, date in actual]
+        assert dates == sorted(dates, reverse=True), 'RSS not date-descending'
+        if not dates:
+            return
+        boundary = sorted(candidates.values(), reverse=True)[min(cap, len(candidates))-1]
+        required = {route for route, date in candidates.items() if date > boundary}
+        eligible = {route for route, date in candidates.items() if date >= boundary}
+        actual_routes = {route for route, _ in actual}
+        # Hugo may resolve exact-date ties by its page order. Any boundary tie
+        # is valid, but every strictly newer item is mandatory and no older one is.
+        assert required <= actual_routes <= eligible, 'RSS truncation lost a newer article or included an older one'
+    # Boundary regression: allow either tied item; reject lost newest/oldest/duplicate.
+    d = [datetime.fromisoformat(f'2026-01-0{i}T00:00:00+00:00') for i in (1,2,3)]
+    fixture = {'old': d[0], 'tie-a': d[1], 'tie-b': d[1], 'new': d[2]}
+    check_feed_window(fixture, [('new', d[2]), ('tie-a', d[1])], 2)
+    check_feed_window(fixture, [('new', d[2]), ('tie-b', d[1])], 2)
+    for bad in ([('tie-a', d[1]), ('tie-b', d[1])], [('new', d[2]), ('old', d[0])], [('new',d[2]),('new',d[2])]):
+        try:
+            check_feed_window(fixture, bad, 2)
+        except AssertionError:
+            pass
+        else:
+            raise AssertionError('RSS boundary negative fixture was not rejected')
     for feed in ('index.xml', 'topics/index.xml', 'topics/agent-engineering/index.xml'):
         path = root / feed
         assert path.is_file(), f'{feed}: missing'
-        links = {urlsplit(item.findtext('link')).path for item in ET.parse(path).findall('./channel/item')}
-        assert set(routes) <= links, f'{feed}: articles missing'
+        items = ET.parse(path).findall('./channel/item')
+        actual = [(urlsplit(item.findtext('link')).path, parsedate_to_datetime(item.findtext('pubDate'))) for item in items]
+        if feed == 'topics/agent-engineering/index.xml':
+            assert set(routes) <= {route for route, _ in actual}, f'{feed}: articles missing'
+        else:
+            sections = {'topics'} if feed == 'topics/index.xml' else {'blog', 'weekly', 'topics'}
+            candidates = {item['url']: publication_date(item['url']) for item in indexed
+                          if item.get('section') in sections and item.get('date')}
+            candidates = {route: date for route, date in candidates.items() if date is not None}
+            check_feed_window(candidates, actual, limit)
     assert not (root / REMOVED_ROUTE).exists(), 'removed test topic is still generated'
 
     counts = ', '.join(f'{len(chapter["pictures"])} pictures' for chapter in chapters)
