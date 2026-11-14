@@ -32,8 +32,17 @@ async (page, ctx) => {
   for(const link of links){const r=await page.request.get(base+link);const b=await r.body();assert(r.ok()&&b[0]===80&&b[1]===75,'D16 ZIP missing '+link);}
   const cover=await page.request.get(base+route+'images/d16-00_cover.png');
   const bytes=await cover.body();assert(cover.ok()&&bytes.readUInt32BE(16)===900&&bytes.readUInt32BE(20)===383,'D16 cover dimensions');
+  // Publishing a new article can move D16 to a later home page.
+  const homeEntries=await ctx.walkPagination(page,{path:'/'});
+  assert(homeEntries.links.filter(link=>link===route).length===1,'D16 absent or duplicate across home pages');
   await page.goto(base+'/');
   const row=page.locator('.post-row').filter({has:page.locator(`h2 a[href="${route}"]`)});
-  assert(await row.count()===1,'D16 home listing absent or duplicate');assert(await row.locator('img').count()===1,'D16 has multiple list covers');
+  for(let current=1;current<homeEntries.pages && await row.count()===0;current++){
+    const next=page.locator('.feed-pagination [rel=next]');
+    assert(await next.count()===1,'D16 home pagination ended before its row');
+    await next.click();
+    await page.waitForFunction(expected=>document.querySelector('.feed-pagination [aria-current=page]')?.textContent.trim()===String(expected),current+1);
+  }
+  assert(await row.count()===1,'D16 listing absent or duplicate');assert(await row.locator('img').count()===1,'D16 has multiple list covers');
   reports.push('three ZIPs, 900×383 cover, one home cover');return reports;
 }

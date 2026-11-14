@@ -1,0 +1,86 @@
+[
+  {
+    "case_id": "hewei_extension",
+    "simulated": true,
+    "optimality_claim": false,
+    "routes": [
+      {
+        "vehicle": 1,
+        "route": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0
+        ],
+        "distance_m": 10000,
+        "initial_load_box": 10,
+        "capacity_box": 12,
+        "remaining_box": 0
+      },
+      {
+        "vehicle": 2,
+        "route": [
+          0,
+          6,
+          7,
+          8,
+          9,
+          10,
+          0
+        ],
+        "distance_m": 10000,
+        "initial_load_box": 10,
+        "capacity_box": 12,
+        "remaining_box": 0
+      }
+    ],
+    "total_distance_m": 20000,
+    "total_delivered_box": 20,
+    "all_customers_once": true
+  },
+  {
+    "case_id": "apparel",
+    "simulated": true,
+    "optimality_claim": false,
+    "routes": [
+      {
+        "vehicle": 1,
+        "route": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0
+        ],
+        "distance_m": 14000,
+        "initial_load_box": 10,
+        "capacity_box": 12,
+        "remaining_box": 0
+      },
+      {
+        "vehicle": 2,
+        "route": [
+          0,
+          6,
+          7,
+          8,
+          9,
+          10,
+          0
+        ],
+        "distance_m": 14000,
+        "initial_load_box": 10,
+        "capacity_box": 12,
+        "remaining_box": 0
+      }
+    ],
+    "total_distance_m": 28000,
+    "total_delivered_box": 20,
+    "all_customers_once": true
+  }
+]

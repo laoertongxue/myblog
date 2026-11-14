@@ -22,3 +22,7 @@ static/downloads/d20-inventory-test-*.zip -text
 
 # P06 reviewed simulation files retain exact portable bytes.
 experiments/p06-source-allocation/practice/** -text
+
+# D21 reproducible routing inputs and evidence retain exact bytes.
+experiments/d21-routing-baseline/practice/** -text
+static/downloads/d21-routing-baseline-*.zip -text
