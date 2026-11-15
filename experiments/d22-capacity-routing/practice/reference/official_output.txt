@@ -1,0 +1,23 @@
+Objective: 6208
+Route for vehicle 0:
+ 0 Load(0) ->  7 Load(8) ->  3 Load(10) ->  4 Load(14) ->  1 Load(15) ->  0 Load(15)
+Distance of the route: 1552m
+Load of the route: 15
+
+Route for vehicle 1:
+ 0 Load(0) ->  14 Load(4) ->  16 Load(12) ->  10 Load(14) ->  9 Load(15) ->  0 Load(15)
+Distance of the route: 1552m
+Load of the route: 15
+
+Route for vehicle 2:
+ 0 Load(0) ->  12 Load(2) ->  11 Load(3) ->  15 Load(11) ->  13 Load(15) ->  0 Load(15)
+Distance of the route: 1552m
+Load of the route: 15
+
+Route for vehicle 3:
+ 0 Load(0) ->  8 Load(8) ->  2 Load(9) ->  6 Load(13) ->  5 Load(15) ->  0 Load(15)
+Distance of the route: 1552m
+Load of the route: 15
+
+Total distance of all routes: 6208m
+Total load of all routes: 60

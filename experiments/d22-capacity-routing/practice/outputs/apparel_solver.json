@@ -1,0 +1,52 @@
+{
+  "ortools_version": "9.14.6206",
+  "python_version": "3.12.13",
+  "first_solution": "PATH_CHEAPEST_ARC",
+  "local_search": "GREEDY_DESCENT",
+  "time_limit_seconds": 10,
+  "raw_status": 1,
+  "optimality_claim": false,
+  "outcome": "feasible_found_not_proven_optimal",
+  "routes": [
+    [
+      0,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+    ],
+    [
+      0,
+      6,
+      10,
+      9,
+      8,
+      7,
+      0
+    ]
+  ],
+  "capacity_cumul_before_service": [
+    [
+      0,
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    [
+      0,
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ]
+  ],
+  "objective_m": 28000,
+  "input_sha256": "e6f9d5de15146b2ca6bf861aa1096daab77c56746af29eee6e5af24fdf2b4be8"
+}

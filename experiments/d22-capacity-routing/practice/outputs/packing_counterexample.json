@@ -1,0 +1,17 @@
+{
+  "ortools_version": "9.14.6206",
+  "python_version": "3.12.13",
+  "first_solution": "PATH_CHEAPEST_ARC",
+  "local_search": "GREEDY_DESCENT",
+  "time_limit_seconds": 10,
+  "raw_status": 3,
+  "optimality_claim": false,
+  "outcome": "no_solution_returned_not_a_proof",
+  "routes": [],
+  "proof": {
+    "type": "exhaustive_assignment",
+    "allocations_checked": 8,
+    "feasible_assignments": 0,
+    "reason": "Each vehicle can serve at most one indivisible 6-box demand; two vehicles cannot serve three customers."
+  }
+}

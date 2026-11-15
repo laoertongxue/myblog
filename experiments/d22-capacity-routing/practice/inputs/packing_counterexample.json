@@ -1,0 +1,68 @@
+{
+  "case_id": "packing_counterexample",
+  "simulated": true,
+  "distance_unit": "m",
+  "load_unit": "box",
+  "depot": 0,
+  "node_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "coordinates_grid": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      3,
+      0
+    ]
+  ],
+  "grid_step_m": 1000,
+  "distance_matrix": [
+    [
+      0,
+      1000,
+      2000,
+      3000
+    ],
+    [
+      1000,
+      0,
+      1000,
+      2000
+    ],
+    [
+      2000,
+      1000,
+      0,
+      1000
+    ],
+    [
+      3000,
+      2000,
+      1000,
+      0
+    ]
+  ],
+  "demands": [
+    0,
+    6,
+    6,
+    6
+  ],
+  "vehicle_capacities": [
+    10,
+    10
+  ]
+}
