@@ -1,0 +1,33 @@
+test_bad_weight (test_reconcile.Tests.test_bad_weight) ... ok
+test_bottom (test_reconcile.Tests.test_bottom) ... ok
+test_counterexample (test_reconcile.Tests.test_counterexample) ... ok
+test_csv_row_order (test_reconcile.Tests.test_csv_row_order) ... ok
+test_duplicate (test_reconcile.Tests.test_duplicate) ... ok
+test_fixed (test_reconcile.Tests.test_fixed) ... ok
+test_fractional_integer_target (test_reconcile.Tests.test_fractional_integer_target) ... ok
+test_full_fixture (test_reconcile.Tests.test_full_fixture) ... ok
+test_gross (test_reconcile.Tests.test_gross) ... ok
+test_gross_overflow (test_reconcile.Tests.test_gross_overflow) ... ok
+test_inf (test_reconcile.Tests.test_inf) ... ok
+test_large_finite_input (test_reconcile.Tests.test_large_finite_input) ... ok
+test_leaf_sum_overflow (test_reconcile.Tests.test_leaf_sum_overflow) ... ok
+test_milk (test_reconcile.Tests.test_milk) ... ok
+test_missing_full_group (test_reconcile.Tests.test_missing_full_group) ... ok
+test_mixed (test_reconcile.Tests.test_mixed) ... ok
+test_nan (test_reconcile.Tests.test_nan) ... ok
+test_negative (test_reconcile.Tests.test_negative) ... ok
+test_order (test_reconcile.Tests.test_order) ... ok
+test_output_protect (test_reconcile.Tests.test_output_protect) ... ok
+test_second_counterexample (test_reconcile.Tests.test_second_counterexample) ... ok
+test_tie (test_reconcile.Tests.test_tie) ... ok
+test_wrong_day_grid (test_reconcile.Tests.test_wrong_day_grid) ... ok
+test_wrong_leaf_id (test_reconcile.Tests.test_wrong_leaf_id) ... ok
+test_wrong_unit (test_reconcile.Tests.test_wrong_unit) ... ok
+test_zero (test_reconcile.Tests.test_zero) ... ok
+test_zero_conflict (test_reconcile.Tests.test_zero_conflict) ... ok
+test_zero_yield (test_reconcile.Tests.test_zero_yield) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.048s
+
+OK

@@ -1,0 +1,8 @@
+{
+  "scope": "constructed point-forecast reconciliation; no model fitting or blind test",
+  "groups": 118,
+  "input_leaves": 236,
+  "output_rows": 708,
+  "summary_rows": 354,
+  "warning": "Do not aggregate kg errors across different ingredient SKUs; no procurement executed."
+}

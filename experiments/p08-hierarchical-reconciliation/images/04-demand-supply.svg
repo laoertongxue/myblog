@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="720pt" height="410.4pt" viewBox="0 0 720 410.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-15T11:08:32.328699</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 410.4 
+L 720 410.4 
+L 720 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 36.72 104.4 
+L 340.56 104.4 
+Q 347.04 104.4 347.04 110.88 
+L 347.04 184.32 
+Q 347.04 190.8 340.56 190.8 
+L 36.72 190.8 
+Q 30.24 190.8 30.24 184.32 
+L 30.24 110.88 
+Q 30.24 104.4 36.72 104.4 
+z
+" clip-path="url(#pa9ce535332)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 379.44 104.4 
+L 683.28 104.4 
+Q 689.76 104.4 689.76 110.88 
+L 689.76 184.32 
+Q 689.76 190.8 683.28 190.8 
+L 379.44 190.8 
+Q 372.96 190.8 372.96 184.32 
+L 372.96 110.88 
+Q 372.96 104.4 379.44 104.4 
+z
+" clip-path="url(#pa9ce535332)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 172.08 234 
+L 547.92 234 
+Q 554.4 234 554.4 240.48 
+L 554.4 299.52 
+Q 554.4 306 547.92 306 
+L 172.08 306 
+Q 165.6 306 165.6 299.52 
+L 165.6 240.48 
+Q 165.6 234 172.08 234 
+z
+" clip-path="url(#pa9ce535332)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="30.24" y="41.76" transform="rotate(-0 30.24 41.76)">需求与供给，保留两本账</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 14px; font-family: 'Noto Sans CJK JP'; text-anchor: start; fill: #4c4c4c" x="30.24" y="71.28" transform="rotate(-0 30.24 71.28)">同一交付窗口、同一 SKU、同一单位 · 教学模拟</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 23px; font-family: 'Noto Sans CJK JP'" transform="translate(142.64 136.839594)">需求判断</text>
+    <text style="font-size: 23px; font-family: 'Noto Sans CJK JP'" transform="translate(100.4925 171.398531)">协调预测：100件</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 23px; font-family: 'Noto Sans CJK JP'" transform="translate(485.36 136.839594)">供给限制</text>
+    <text style="font-size: 23px; font-family: 'Noto Sans CJK JP'" transform="translate(438.095 171.398531)">可交付产能：80件</text>
+   </g>
+   <g id="patch_5">
+    <path d="M 189.073389 192.949211 
+Q 237.602314 211.320876 284.458255 229.059196 
+" style="fill: none; stroke: #595959; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 278.999204 223.143221 
+L 284.458255 229.059196 
+L 276.450044 229.876852 
+" style="fill: none; stroke: #595959; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 530.926611 192.949211 
+Q 482.397686 211.320876 435.541745 229.059196 
+" style="fill: none; stroke: #595959; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 443.549956 229.876852 
+L 435.541745 229.059196 
+L 441.000796 223.143221 
+" style="fill: none; stroke: #595959; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 22px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="360" y="276.235625" transform="rotate(-0 360 276.235625)">供给缺口 = 100 − 80 = 20件</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 23px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="30.24" y="345.6" transform="rotate(-0 30.24 345.6)">保留100件需求，单独报告20件缺口。</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 19px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="30.24" y="381.6" transform="rotate(-0 30.24 381.6)">不能把预测改成80件，再宣称计划已经平衡。</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa9ce535332">
+   <rect x="0" y="0" width="720" height="410.4"/>
+  </clipPath>
+ </defs>
+</svg>

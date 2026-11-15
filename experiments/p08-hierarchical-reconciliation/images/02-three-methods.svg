@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="720pt" height="446.4pt" viewBox="0 0 720 446.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-15T11:08:32.163906</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 446.4 
+L 720 446.4 
+L 720 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 36.72 104.4 
+L 239.76 104.4 
+Q 246.24 104.4 246.24 110.88 
+L 246.24 143.28 
+Q 246.24 149.76 239.76 149.76 
+L 36.72 149.76 
+Q 30.24 149.76 30.24 143.28 
+L 30.24 110.88 
+Q 30.24 104.4 36.72 104.4 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #e6e6e6; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 36.72 164.16 
+L 239.76 164.16 
+Q 246.24 164.16 246.24 170.64 
+L 246.24 287.28 
+Q 246.24 293.76 239.76 293.76 
+L 36.72 293.76 
+Q 30.24 293.76 30.24 287.28 
+L 30.24 170.64 
+Q 30.24 164.16 36.72 164.16 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 36.72 309.6 
+L 239.76 309.6 
+Q 246.24 309.6 246.24 316.08 
+L 246.24 353.52 
+Q 246.24 360 239.76 360 
+L 36.72 360 
+Q 30.24 360 30.24 353.52 
+L 30.24 316.08 
+Q 30.24 309.6 36.72 309.6 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 258.48 104.4 
+L 461.52 104.4 
+Q 468 104.4 468 110.88 
+L 468 143.28 
+Q 468 149.76 461.52 149.76 
+L 258.48 149.76 
+Q 252 149.76 252 143.28 
+L 252 110.88 
+Q 252 104.4 258.48 104.4 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #e6e6e6; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 258.48 164.16 
+L 461.52 164.16 
+Q 468 164.16 468 170.64 
+L 468 287.28 
+Q 468 293.76 461.52 293.76 
+L 258.48 293.76 
+Q 252 293.76 252 287.28 
+L 252 170.64 
+Q 252 164.16 258.48 164.16 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 258.48 309.6 
+L 461.52 309.6 
+Q 468 309.6 468 316.08 
+L 468 353.52 
+Q 468 360 461.52 360 
+L 258.48 360 
+Q 252 360 252 353.52 
+L 252 316.08 
+Q 252 309.6 258.48 309.6 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 480.24 104.4 
+L 683.28 104.4 
+Q 689.76 104.4 689.76 110.88 
+L 689.76 143.28 
+Q 689.76 149.76 683.28 149.76 
+L 480.24 149.76 
+Q 473.76 149.76 473.76 143.28 
+L 473.76 110.88 
+Q 473.76 104.4 480.24 104.4 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #e6e6e6; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 480.24 164.16 
+L 683.28 164.16 
+Q 689.76 164.16 689.76 170.64 
+L 689.76 287.28 
+Q 689.76 293.76 683.28 293.76 
+L 480.24 293.76 
+Q 473.76 293.76 473.76 287.28 
+L 473.76 170.64 
+Q 473.76 164.16 480.24 164.16 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 480.24 309.6 
+L 683.28 309.6 
+Q 689.76 309.6 689.76 316.08 
+L 689.76 353.52 
+Q 689.76 360 683.28 360 
+L 480.24 360 
+Q 473.76 360 473.76 353.52 
+L 473.76 316.08 
+Q 473.76 309.6 480.24 309.6 
+z
+" clip-path="url(#p9386d15ae3)" style="fill: #f5f5f5; stroke: #4c4c4c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="30.24" y="41.76" transform="rotate(-0 30.24 41.76)">三条协调路径，不是一道唯一答案</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 14px; font-family: 'Noto Sans CJK JP'; text-anchor: start; fill: #4c4c4c" x="30.24" y="71.28" transform="rotate(-0 30.24 71.28)">均采用同一组模拟输入：总部100，北区60，南区50</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 17px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="138.24" y="131.898438" transform="rotate(-0 138.24 131.898438)">自下而上</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 18px; font-family: 'Noto Sans CJK JP'" transform="translate(84.24 220.538813)">保留地区预测</text>
+    <text style="font-size: 18px; font-family: 'Noto Sans CJK JP'" transform="translate(110.698594 247.584938)">60 / 50</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 23px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="138.24" y="341.319063" transform="rotate(-0 138.24 341.319063)">总量110</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 17px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="360" y="131.898438" transform="rotate(-0 360 131.898438)">固定总部总量</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 18px; font-family: 'Noto Sans CJK JP'" transform="translate(306 207.01575)">按原比例拆分</text>
+    <text style="font-size: 18px; font-family: 'Noto Sans CJK JP'" transform="translate(279.485156 234.061875)">54.545… / 45.454…</text>
+    <text style="font-size: 18px; font-family: 'Noto Sans CJK JP'" transform="translate(305.458594 261.108)">整数：55 / 45</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 23px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="360" y="341.319063" transform="rotate(-0 360 341.319063)">总量100</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 17px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="581.76" y="131.898438" transform="rotate(-0 581.76 131.898438)">混合总量（权重0.6）</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 18px; font-family: 'Noto Sans CJK JP'" transform="translate(527.76 207.01575)">先混合再拆分</text>
+    <text style="font-size: 18px; font-family: 'Noto Sans CJK JP'" transform="translate(501.245156 234.061875)">56.727… / 47.272…</text>
+    <text style="font-size: 18px; font-family: 'Noto Sans CJK JP'" transform="translate(527.218594 261.108)">整数：57 / 47</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 23px; font-family: 'Noto Sans CJK JP'; text-anchor: middle" x="581.76" y="341.319063" transform="rotate(-0 581.76 341.319063)">总量104</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 21px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="30.24" y="396" transform="rotate(-0 30.24 396)">混合总量 = 0.6 × 100 + 0.4 × 110 = 104</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 16px; font-family: 'Noto Sans CJK JP'; text-anchor: start" x="30.24" y="424.8" transform="rotate(-0 30.24 424.8)">权重为教学给定，不代表已经训练出最优权重。</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p9386d15ae3">
+   <rect x="0" y="0" width="720" height="446.4"/>
+  </clipPath>
+ </defs>
+</svg>

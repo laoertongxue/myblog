@@ -1,0 +1,7 @@
+scenario,method,unit,actual_north,actual_south,forecast_north,forecast_south,leaf_absolute_error_sum,leaf_MAE
+bottom_up_exact,bottom_up,piece,60,50,60,50,0,0.0
+bottom_up_exact,fixed,piece,60,50,55,45,10,5.0
+bottom_up_exact,mixed,piece,60,50,57,47,6,3.0
+fixed_exact,bottom_up,piece,55,45,60,50,10,5.0
+fixed_exact,fixed,piece,55,45,55,45,0,0.0
+fixed_exact,mixed,piece,55,45,57,47,4,2.0
