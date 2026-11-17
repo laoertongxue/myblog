@@ -35,3 +35,9 @@ experiments/d23-time-windows/practice/** -text
 experiments/d24-routing-parameters/practice/** -text
 static/downloads/d23-time-windows-*.zip -text
 static/downloads/d24-routing-parameters-*.zip -text
+
+# P09/P10 reviewed simulation data retain exact bytes.
+experiments/p09-intermittent-demand/practice/** -text
+experiments/p10-new-product-cold-start/practice/** -text
+static/downloads/p09-intermittent-demand-*.zip -text
+static/downloads/p10-new-product-cold-start-*.zip -text

@@ -1,0 +1,163 @@
+{
+  "simulated": true,
+  "input_sha256": "da59a6ef0204452bdb3dfa4ea0eedd61c8706bee858ffc3fe70fb8485701fd2e",
+  "protocol": "two weekly age windows; frozen reference cohort; validate weight then test new IDs",
+  "cases": [
+    {
+      "case": "匿名服装",
+      "unit": "件",
+      "weight": 0.5,
+      "validation_scores": [
+        {
+          "weight": 0,
+          "mae": 20.0
+        },
+        {
+          "weight": 0.25,
+          "mae": 10.0
+        },
+        {
+          "weight": 0.5,
+          "mae": 0.0
+        },
+        {
+          "weight": 0.75,
+          "mae": 10.0
+        },
+        {
+          "weight": 1,
+          "mae": 20.0
+        }
+      ],
+      "test": [
+        {
+          "id": "A6",
+          "launch": "2026-03-01",
+          "origin_w2": "2026-03-08",
+          "analog_ids": [
+            "A1",
+            "A2",
+            "A3"
+          ],
+          "zero_history_w1": 100.0,
+          "actual_w1": 80,
+          "analog_w2": 120.0,
+          "recent_w2": 80,
+          "weight": 0.5,
+          "mixed_w2": 100.0,
+          "actual_w2": 100
+        },
+        {
+          "id": "A7",
+          "launch": "2026-03-08",
+          "origin_w2": "2026-03-15",
+          "analog_ids": [
+            "A1",
+            "A2",
+            "A3"
+          ],
+          "zero_history_w1": 100.0,
+          "actual_w1": 160,
+          "analog_w2": 120.0,
+          "recent_w2": 160,
+          "weight": 0.5,
+          "mixed_w2": 140.0,
+          "actual_w2": 180
+        }
+      ],
+      "test_mae_week2": {
+        "analog_w2": 40.0,
+        "recent_w2": 20.0,
+        "mixed_w2": 20.0
+      }
+    },
+    {
+      "case": "禾味",
+      "unit": "份",
+      "weight": 0.5,
+      "validation_scores": [
+        {
+          "weight": 0,
+          "mae": 20.0
+        },
+        {
+          "weight": 0.25,
+          "mae": 12.5
+        },
+        {
+          "weight": 0.5,
+          "mae": 5.0
+        },
+        {
+          "weight": 0.75,
+          "mae": 5.0
+        },
+        {
+          "weight": 1,
+          "mae": 10.0
+        }
+      ],
+      "test": [
+        {
+          "id": "H6",
+          "launch": "2026-03-01",
+          "origin_w2": "2026-03-08",
+          "analog_ids": [
+            "H1",
+            "H2",
+            "H3"
+          ],
+          "zero_history_w1": 60.0,
+          "actual_w1": 40,
+          "analog_w2": 70.0,
+          "recent_w2": 40,
+          "weight": 0.5,
+          "mixed_w2": 55.0,
+          "actual_w2": 45
+        },
+        {
+          "id": "H7",
+          "launch": "2026-03-08",
+          "origin_w2": "2026-03-15",
+          "analog_ids": [
+            "H1",
+            "H2",
+            "H3"
+          ],
+          "zero_history_w1": 60.0,
+          "actual_w1": 100,
+          "analog_w2": 70.0,
+          "recent_w2": 100,
+          "weight": 0.5,
+          "mixed_w2": 85.0,
+          "actual_w2": 80
+        }
+      ],
+      "test_mae_week2": {
+        "analog_w2": 17.5,
+        "recent_w2": 12.5,
+        "mixed_w2": 7.5
+      }
+    }
+  ],
+  "hewei_scenarios": [
+    {
+      "substitution": 0,
+      "new_units": 70,
+      "retained_old_units": 100,
+      "ingredient_total_kg": 22.5
+    },
+    {
+      "substitution": 0.4,
+      "new_units": 70,
+      "retained_old_units": 72.0,
+      "ingredient_total_kg": 19.14
+    },
+    {
+      "substitution": 0.8,
+      "new_units": 70,
+      "retained_old_units": 44.0,
+      "ingredient_total_kg": 15.78
+    }
+  ]
+}

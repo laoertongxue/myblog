@@ -1,0 +1,168 @@
+[
+  {
+    "name": "匿名服装",
+    "unit": "件",
+    "products": [
+      {
+        "id": "A1",
+        "split": "reference",
+        "launch": "2026-01-01",
+        "family": "基础上衣",
+        "band": "同价格带",
+        "coverage": "固定两渠道",
+        "w1": 80,
+        "w2": 100,
+        "fully_observed": true
+      },
+      {
+        "id": "A2",
+        "split": "reference",
+        "launch": "2026-01-08",
+        "family": "基础上衣",
+        "band": "同价格带",
+        "coverage": "固定两渠道",
+        "w1": 100,
+        "w2": 120,
+        "fully_observed": true
+      },
+      {
+        "id": "A3",
+        "split": "reference",
+        "launch": "2026-01-15",
+        "family": "基础上衣",
+        "band": "同价格带",
+        "coverage": "固定两渠道",
+        "w1": 120,
+        "w2": 140,
+        "fully_observed": true
+      },
+      {
+        "id": "A4",
+        "split": "validation",
+        "launch": "2026-02-01",
+        "family": "基础上衣",
+        "band": "同价格带",
+        "coverage": "固定两渠道",
+        "w1": 60,
+        "w2": 90,
+        "fully_observed": true
+      },
+      {
+        "id": "A5",
+        "split": "validation",
+        "launch": "2026-02-08",
+        "family": "基础上衣",
+        "band": "同价格带",
+        "coverage": "固定两渠道",
+        "w1": 100,
+        "w2": 110,
+        "fully_observed": true
+      },
+      {
+        "id": "A6",
+        "split": "test",
+        "launch": "2026-03-01",
+        "family": "基础上衣",
+        "band": "同价格带",
+        "coverage": "固定两渠道",
+        "w1": 80,
+        "w2": 100,
+        "fully_observed": true
+      },
+      {
+        "id": "A7",
+        "split": "test",
+        "launch": "2026-03-08",
+        "family": "基础上衣",
+        "band": "同价格带",
+        "coverage": "固定两渠道",
+        "w1": 160,
+        "w2": 180,
+        "fully_observed": true
+      }
+    ]
+  },
+  {
+    "name": "禾味",
+    "unit": "份",
+    "products": [
+      {
+        "id": "H1",
+        "split": "reference",
+        "launch": "2026-01-01",
+        "family": "鸡肉午餐",
+        "band": "同价格带",
+        "coverage": "固定两门店合计",
+        "w1": 40,
+        "w2": 50,
+        "fully_observed": true
+      },
+      {
+        "id": "H2",
+        "split": "reference",
+        "launch": "2026-01-08",
+        "family": "鸡肉午餐",
+        "band": "同价格带",
+        "coverage": "固定两门店合计",
+        "w1": 60,
+        "w2": 70,
+        "fully_observed": true
+      },
+      {
+        "id": "H3",
+        "split": "reference",
+        "launch": "2026-01-15",
+        "family": "鸡肉午餐",
+        "band": "同价格带",
+        "coverage": "固定两门店合计",
+        "w1": 80,
+        "w2": 90,
+        "fully_observed": true
+      },
+      {
+        "id": "H4",
+        "split": "validation",
+        "launch": "2026-02-01",
+        "family": "鸡肉午餐",
+        "band": "同价格带",
+        "coverage": "固定两门店合计",
+        "w1": 20,
+        "w2": 40,
+        "fully_observed": true
+      },
+      {
+        "id": "H5",
+        "split": "validation",
+        "launch": "2026-02-08",
+        "family": "鸡肉午餐",
+        "band": "同价格带",
+        "coverage": "固定两门店合计",
+        "w1": 60,
+        "w2": 60,
+        "fully_observed": true
+      },
+      {
+        "id": "H6",
+        "split": "test",
+        "launch": "2026-03-01",
+        "family": "鸡肉午餐",
+        "band": "同价格带",
+        "coverage": "固定两门店合计",
+        "w1": 40,
+        "w2": 45,
+        "fully_observed": true
+      },
+      {
+        "id": "H7",
+        "split": "test",
+        "launch": "2026-03-08",
+        "family": "鸡肉午餐",
+        "band": "同价格带",
+        "coverage": "固定两门店合计",
+        "w1": 100,
+        "w2": 80,
+        "fully_observed": true
+      }
+    ]
+  }
+]

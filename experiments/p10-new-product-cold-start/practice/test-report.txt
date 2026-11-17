@@ -1,0 +1,25 @@
+test_all_reference_censored (test_run.Test.test_all_reference_censored) ... ok
+test_bad_substitution (test_run.Test.test_bad_substitution) ... ok
+test_bad_weight (test_run.Test.test_bad_weight) ... ok
+test_blend_bounds (test_run.Test.test_blend_bounds) ... ok
+test_blend_hand (test_run.Test.test_blend_hand) ... ok
+test_censor (test_run.Test.test_censor) ... ok
+test_duplicates (test_run.Test.test_duplicates) ... ok
+test_expected (test_run.Test.test_expected) ... ok
+test_future_reference (test_run.Test.test_future_reference) ... ok
+test_hewei (test_run.Test.test_hewei) ... ok
+test_negative_units (test_run.Test.test_negative_units) ... ok
+test_no_match (test_run.Test.test_no_match) ... ok
+test_no_test_labels_in_selection (test_run.Test.test_no_test_labels_in_selection) ... ok
+test_not_observed (test_run.Test.test_not_observed) ... ok
+test_reference_censor (test_run.Test.test_reference_censor) ... ok
+test_scenario (test_run.Test.test_scenario) ... ok
+test_selection_rejects_test (test_run.Test.test_selection_rejects_test) ... ok
+test_self_reference (test_run.Test.test_self_reference) ... ok
+test_split_maturity (test_run.Test.test_split_maturity) ... ok
+test_weights (test_run.Test.test_weights) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.002s
+
+OK

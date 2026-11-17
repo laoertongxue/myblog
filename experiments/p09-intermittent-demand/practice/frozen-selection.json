@@ -1,0 +1,10 @@
+{
+  "apparel": {
+    "method": "croston",
+    "alpha": 0.1
+  },
+  "hewei": {
+    "method": "croston",
+    "alpha": 0.1
+  }
+}

@@ -43,6 +43,7 @@ python3 scripts/check-p03.py
 python3 scripts/check-p04.py
 python3 scripts/check-p05.py
 python3 scripts/check-p08.py
+python3 scripts/check-p09-p10.py
 python3 -m unittest discover -s experiments/p01-math-bridge/practice -v
 python3 scripts/check-d14.py
 python3 scripts/check-d15.py

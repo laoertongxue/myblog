@@ -1,0 +1,23 @@
+test_alpha (test_run.Tests.test_alpha) ... ok
+test_decay (test_run.Tests.test_decay) ... ok
+test_describe (test_run.Tests.test_describe) ... ok
+test_describe_edges (test_run.Tests.test_describe_edges) ... ok
+test_empty (test_run.Tests.test_empty) ... ok
+test_hold (test_run.Tests.test_hold) ... ok
+test_initial (test_run.Tests.test_initial) ... ok
+test_invalid (test_run.Tests.test_invalid) ... ok
+test_no_future (test_run.Tests.test_no_future) ... ok
+test_nonnegative (test_run.Tests.test_nonnegative) ... ok
+test_reproducible (test_run.Tests.test_reproducible) ... ok
+test_sba (test_run.Tests.test_sba) ... ok
+test_selection_no_test (test_run.Tests.test_selection_no_test) ... ok
+test_test_windows (test_run.Tests.test_test_windows) ... ok
+test_unknown (test_run.Tests.test_unknown) ... ok
+test_update (test_run.Tests.test_update) ... ok
+test_windows (test_run.Tests.test_windows) ... ok
+test_zero (test_run.Tests.test_zero) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.051s
+
+OK
