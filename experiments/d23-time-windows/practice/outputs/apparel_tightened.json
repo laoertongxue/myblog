@@ -1,0 +1,164 @@
+{
+  "ortools_version": "9.14.6206",
+  "raw_status": 1,
+  "elapsed_seconds": 5.00017221600001,
+  "time_limit_seconds": 5,
+  "first_solution": "PATH_CHEAPEST_ARC",
+  "local_search": "GUIDED_LOCAL_SEARCH",
+  "optimality_claim": false,
+  "routes": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      2,
+      1,
+      4,
+      3,
+      0
+    ]
+  ],
+  "objective_m": 18000,
+  "audit": {
+    "feasible": true,
+    "errors": [],
+    "distance_m": 18000,
+    "used_vehicles": 1,
+    "rows": [
+      {
+        "vehicle": 0,
+        "seq": 1,
+        "node": 0,
+        "arrival": 480,
+        "wait": 0,
+        "service_start": 480,
+        "departure": 480,
+        "remaining_box": 0
+      },
+      {
+        "vehicle": 1,
+        "seq": 1,
+        "node": 2,
+        "arrival": 497,
+        "wait": 13,
+        "service_start": 510,
+        "departure": 520,
+        "remaining_box": 6
+      },
+      {
+        "vehicle": 1,
+        "seq": 2,
+        "node": 1,
+        "arrival": 528,
+        "wait": 0,
+        "service_start": 528,
+        "departure": 536,
+        "remaining_box": 4
+      },
+      {
+        "vehicle": 1,
+        "seq": 3,
+        "node": 4,
+        "arrival": 544,
+        "wait": 0,
+        "service_start": 544,
+        "departure": 550,
+        "remaining_box": 2
+      },
+      {
+        "vehicle": 1,
+        "seq": 4,
+        "node": 3,
+        "arrival": 558,
+        "wait": 0,
+        "service_start": 558,
+        "departure": 566,
+        "remaining_box": 0
+      },
+      {
+        "vehicle": 1,
+        "seq": 5,
+        "node": 0,
+        "arrival": 589,
+        "wait": 0,
+        "service_start": 589,
+        "departure": 589,
+        "remaining_box": 0
+      }
+    ]
+  },
+  "baseline_audit": {
+    "feasible": false,
+    "errors": [
+      "window_0_2"
+    ],
+    "distance_m": 14000,
+    "used_vehicles": 1,
+    "rows": [
+      {
+        "vehicle": 0,
+        "seq": 1,
+        "node": 1,
+        "arrival": 491,
+        "wait": 9,
+        "service_start": 500,
+        "departure": 508,
+        "remaining_box": 6
+      },
+      {
+        "vehicle": 0,
+        "seq": 2,
+        "node": 2,
+        "arrival": 516,
+        "wait": 0,
+        "service_start": 516,
+        "departure": 526,
+        "remaining_box": 4
+      },
+      {
+        "vehicle": 0,
+        "seq": 3,
+        "node": 3,
+        "arrival": 534,
+        "wait": 0,
+        "service_start": 534,
+        "departure": 542,
+        "remaining_box": 2
+      },
+      {
+        "vehicle": 0,
+        "seq": 4,
+        "node": 4,
+        "arrival": 550,
+        "wait": 0,
+        "service_start": 550,
+        "departure": 556,
+        "remaining_box": 0
+      },
+      {
+        "vehicle": 0,
+        "seq": 5,
+        "node": 0,
+        "arrival": 573,
+        "wait": 0,
+        "service_start": 573,
+        "departure": 573,
+        "remaining_box": 0
+      },
+      {
+        "vehicle": 1,
+        "seq": 1,
+        "node": 0,
+        "arrival": 480,
+        "wait": 0,
+        "service_start": 480,
+        "departure": 480,
+        "remaining_box": 0
+      }
+    ]
+  },
+  "enumeration_count": 28,
+  "input_sha256": "34080c5c52afb227763a164f41d80078093e4ceb54f803aa1468169a62b08553"
+}

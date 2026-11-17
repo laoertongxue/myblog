@@ -1,0 +1,15 @@
+id,capacity,limit_seconds,status,distance_m,vehicles_used,wall_seconds,violations,waiting_minutes,certificate
+apparel_base,12,1,SUCCESS,28000,2,1.000051,0,,
+apparel_capacity_floor_minus20,9,1,FAIL_TIMEOUT,,,1.001673,,,total_demand_exceeds_total_capacity
+apparel_capacity_floor_plus20,14,1,SUCCESS,28000,2,1.000943,0,,
+apparel_time_5,12,5,SUCCESS,28000,2,4.999976,0,,
+apparel_time_10,12,10,SUCCESS,28000,2,9.999881,0,,
+hewei_extension_base,12,1,SUCCESS,20000,2,1.000625,0,,
+hewei_extension_capacity_floor_minus20,9,1,FAIL_TIMEOUT,,,1.001313,,,total_demand_exceeds_total_capacity
+hewei_extension_capacity_floor_plus20,14,1,SUCCESS,20000,2,1.000505,0,,
+hewei_extension_time_5,12,5,SUCCESS,20000,2,5.000522,0,,
+hewei_extension_time_10,12,10,SUCCESS,20000,2,10.00049,0,,
+apparel_tw_base,12,1,SUCCESS,14000,1,1.000547,0,13,
+apparel_tw_tight,12,1,SUCCESS,18000,1,1.000484,0,13,
+hewei_tw_base,12,1,SUCCESS,10000,1,1.000409,0,12,
+hewei_tw_tight,12,1,SUCCESS,10000,1,1.000436,0,12,

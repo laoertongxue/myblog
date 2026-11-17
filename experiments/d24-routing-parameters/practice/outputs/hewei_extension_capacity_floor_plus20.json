@@ -1,0 +1,47 @@
+{
+  "raw_status": 1,
+  "status": "SUCCESS",
+  "wall_seconds": 1.000505,
+  "routes": [
+    [
+      0,
+      1,
+      2,
+      5,
+      4,
+      3,
+      0
+    ],
+    [
+      0,
+      6,
+      7,
+      10,
+      9,
+      8,
+      0
+    ]
+  ],
+  "objective_m": 20000,
+  "metrics": {
+    "distance_m": 20000,
+    "vehicles_used": 2,
+    "violations": 0,
+    "waiting_minutes": null,
+    "schedule": []
+  },
+  "independent_infeasibility_certificate": null,
+  "id": "hewei_extension_capacity_floor_plus20",
+  "group": "capacity",
+  "input_sha256": "14f03a22303f7908cb85969a34f80a1d0968c1aba808c1916ef79021285fc514",
+  "time_limit_seconds": 1,
+  "capacity_box": [
+    14,
+    14
+  ],
+  "ortools_version": "9.14.6206",
+  "python_version": "3.12.14",
+  "first_solution": "PATH_CHEAPEST_ARC",
+  "local_search": "GUIDED_LOCAL_SEARCH",
+  "optimality_claim": false
+}

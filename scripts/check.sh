@@ -53,6 +53,8 @@ python3 scripts/check-d19.py
 python3 scripts/check-d20.py
 python3 scripts/check-d21.py
 python3 scripts/check-d22.py
+python3 -m unittest discover -s experiments/d23-time-windows/practice -v
+python3 -m unittest discover -s experiments/d24-routing-parameters/practice -v
 
 if grep -rq '0001-01-01' "$OUT"; then
   fail "a page publishes a 0001-01-01 date - a dated content type is missing front matter date"

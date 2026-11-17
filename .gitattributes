@@ -29,3 +29,9 @@ static/downloads/d21-routing-baseline-*.zip -text
 
 # P08 reviewed simulation inputs and outputs retain exact bytes across platforms.
 experiments/p08-hierarchical-reconciliation/practice/** -text
+
+# D23/D24 reviewed simulation evidence and downloads retain exact bytes.
+experiments/d23-time-windows/practice/** -text
+experiments/d24-routing-parameters/practice/** -text
+static/downloads/d23-time-windows-*.zip -text
+static/downloads/d24-routing-parameters-*.zip -text

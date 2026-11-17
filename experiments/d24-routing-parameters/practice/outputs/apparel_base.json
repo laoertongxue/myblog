@@ -1,0 +1,47 @@
+{
+  "raw_status": 1,
+  "status": "SUCCESS",
+  "wall_seconds": 1.000051,
+  "routes": [
+    [
+      0,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+    ],
+    [
+      0,
+      6,
+      10,
+      9,
+      8,
+      7,
+      0
+    ]
+  ],
+  "objective_m": 28000,
+  "metrics": {
+    "distance_m": 28000,
+    "vehicles_used": 2,
+    "violations": 0,
+    "waiting_minutes": null,
+    "schedule": []
+  },
+  "independent_infeasibility_certificate": null,
+  "id": "apparel_base",
+  "group": "capacity",
+  "input_sha256": "ba854596f6eba1ff8f0b2edcab1c202c108f9128a3324a7c44e4d0d7312f2541",
+  "time_limit_seconds": 1,
+  "capacity_box": [
+    12,
+    12
+  ],
+  "ortools_version": "9.14.6206",
+  "python_version": "3.12.14",
+  "first_solution": "PATH_CHEAPEST_ARC",
+  "local_search": "GUIDED_LOCAL_SEARCH",
+  "optimality_claim": false
+}

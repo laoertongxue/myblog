@@ -1,0 +1,47 @@
+{
+  "raw_status": 1,
+  "status": "SUCCESS",
+  "wall_seconds": 1.000625,
+  "routes": [
+    [
+      0,
+      1,
+      2,
+      5,
+      4,
+      3,
+      0
+    ],
+    [
+      0,
+      6,
+      7,
+      10,
+      9,
+      8,
+      0
+    ]
+  ],
+  "objective_m": 20000,
+  "metrics": {
+    "distance_m": 20000,
+    "vehicles_used": 2,
+    "violations": 0,
+    "waiting_minutes": null,
+    "schedule": []
+  },
+  "independent_infeasibility_certificate": null,
+  "id": "hewei_extension_base",
+  "group": "capacity",
+  "input_sha256": "00ea75b7a96ad66f8e6b3e1c175360441af9a0b589f4c6ab8ea76a7b5d97b33b",
+  "time_limit_seconds": 1,
+  "capacity_box": [
+    12,
+    12
+  ],
+  "ortools_version": "9.14.6206",
+  "python_version": "3.12.14",
+  "first_solution": "PATH_CHEAPEST_ARC",
+  "local_search": "GUIDED_LOCAL_SEARCH",
+  "optimality_claim": false
+}
