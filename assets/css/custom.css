@@ -318,3 +318,35 @@ html.navigation-open { overflow:hidden; }
 @media (max-width:660px) {
   .hook-research .tblwrap table { min-width:535px; }
 }
+
+/* Hook types article: original source data remains readable without JavaScript. */
+.hook-types-study .hero .meta-row { display:flex; flex-wrap:wrap; gap:.45rem; margin:1rem 0; font-size:.84em; }
+.hook-types-study .meta-row span,.hook-types-study .grade,.hook-types-study .fam-tag { display:inline-block; padding:.12rem .45rem; border:1px solid var(--lab-line); background:var(--lab-wash); font-size:.85em; }
+.hook-types-study section[id] { margin-top:2.6rem; border-top:2px solid var(--lab-line); }
+.hook-types-study section[id]>h2 { margin:1.05rem 0 .75rem; }
+.hook-types-study :is(.hook-anatomy,.prac,.tc-grid,.grid2) { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); gap:.75rem; }
+.hook-types-study :is(.anat,.prac-item,.type-card,.callout,.skillbox,.fail-item) { border:1px solid var(--lab-line); padding:.9rem 1rem; }
+.hook-types-study :is(.anat,.prac-item,.type-card,.fail-item) { min-width:0; }
+.hook-types-study :is(.anat,.prac-item,.tc-box) p:last-child,.hook-types-study .callout p:last-child { margin:0; }
+.hook-types-study .callout,.hook-types-study .formula { background:var(--lab-wash); margin:1rem 0; }
+.hook-types-study .filters { display:flex; flex-wrap:wrap; gap:.4rem; margin:1rem 0 .6rem; }
+.hook-types-study .filters button,.hook-types-study .skillbox button,.hook-types-study input[type="search"] { border:1px solid var(--lab-line); background:var(--lab-paper); color:inherit; font:inherit; font-size:.85em; min-height:44px; padding:.25rem .65rem; }
+.hook-types-study :is(.filters,.skillbox) button { cursor:pointer; }
+.hook-types-study .filters button.on { background:var(--lab-ink); color:var(--lab-paper); }
+.hook-types-study .searchbox { flex:1 1 14rem; }
+.hook-types-study .searchbox input { width:100%; }
+.hook-types-study .count-note,.hook-types-study .copied { font-size:.86em; }
+.hook-types-study .type-card { margin:.8rem 0; scroll-margin-top:6rem; }
+.hook-types-study .tc-head { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:space-between; align-items:baseline; }
+.hook-types-study .tc-head h3 { margin:0 .2rem .4rem 0; }
+.hook-types-study :is(.tc-head .no,.pn) { margin-inline-end:.55rem; }
+.hook-types-study :is(.tc-box,.formula) { padding:.6rem .75rem; }
+.hook-types-study .tc-box { border:1px solid var(--lab-line); font-size:.92em; }
+.hook-types-study .field-label { display:block; font-weight:700; font-size:.82em; }
+.hook-types-study .box-bad { margin-top:.75rem; border-inline-start:3px solid var(--lab-ink); }
+.hook-types-study .fail-item { margin:.75rem 0; }
+.hook-types-study .table-scroll { max-width:100%; overflow-x:auto; }
+.hook-types-study .table-scroll table { display:table; min-width:650px; max-width:none; margin:.5rem 0 1rem; font-size:.9em; }
+.hook-types-study .table-scroll :is(td,th) { vertical-align:top; }
+.hook-types-study #skillText { white-space:pre-wrap; overflow-wrap:anywhere; max-height:32rem; overflow:auto; margin:.7rem 0 0; }
+.hook-types-study footer { margin-top:2rem; border-top:1px solid var(--lab-line); padding-top:.85rem; font-size:.85em; }
