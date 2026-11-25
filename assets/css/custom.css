@@ -282,3 +282,39 @@ html.navigation-open { overflow:hidden; }
   body:has(.forecast-app) .page-content { padding:0; }
   .forecast-app .prose pre { white-space:pre-wrap; }
 }
+
+/* Short-video hooks research article. Scoped to the imported study. */
+.hook-research section[id] { scroll-margin-top:6rem; }
+.hook-research .kicker,.hook-research .sec-head .no,.hook-research .t { font-weight:700; }
+.hook-research .hook-toc,.hook-research .meta { display:flex; flex-wrap:wrap; gap:.4rem .8rem; margin:1.5rem 0; }
+.hook-research .hook-toc { border-block:1px solid var(--lab-line); padding:.75rem 0; font-size:.88em; }
+.hook-research .chip { font-size:.82em; padding:.1rem .55rem; background:var(--lab-wash); border:1px solid var(--lab-line); }
+.hook-research .sec { margin-top:3rem; }
+.hook-research .sec-head { border-top:2px solid var(--lab-line); padding-top:1rem; }
+.hook-research .sec-head h2 { margin:.15rem 0 .75rem; }
+.hook-research :is(.grid,.mech,.failgrid,.tl) { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr)); gap:.75rem; }
+.hook-research :is(.defbox,.step,.card,.failcard,.warnbox,.ex,.checker) { padding:.9rem 1rem; border:1px solid var(--lab-line); }
+.hook-research :is(.defbox,.warnbox,.ex) { background:var(--lab-wash); margin:.8rem 0; }
+.hook-research :is(.card,.failcard) h3 { margin:0 0 .45rem; }
+.hook-research :is(.card,.failcard,.step,.warnbox) p:last-child { margin-bottom:0; }
+.hook-research :is(.tag,.yr,.testline,.hook-editor-note,.foot,.src,figcaption) { font-size:.86em; }
+.hook-research .testline,.hook-research .hook-editor-note { padding:.45rem .7rem; background:var(--lab-wash); }
+.hook-research .hook-editor-note { margin:1rem 0; }
+.hook-research .tag,.hook-research .yr { display:inline-block; margin-inline-end:.4rem; font-weight:400; }
+.hook-research .tag { border:1px solid var(--lab-line); padding:0 .35rem; }
+.hook-research .tblwrap { overflow:auto; }
+.hook-research .tblwrap table { display:table; min-width:min(640px,100%); font-size:.9em; vertical-align:top; }
+.hook-research .tblwrap :is(td,th) { vertical-align:top; padding:.5rem; }
+.hook-research .checker textarea { display:block; width:100%; min-height:6rem; border:1px solid var(--lab-line); padding:.6rem; font:inherit; color:inherit; background:var(--lab-wash); resize:vertical; }
+.hook-research .checker .row { display:flex; flex-wrap:wrap; gap:.5rem; margin:.65rem 0; }
+.hook-research .checker button { font:inherit; font-size:.9em; color:inherit; border:1px solid var(--lab-line); padding:.25rem .6rem; background:var(--lab-wash); cursor:pointer; }
+.hook-research .checker .rrow { display:grid; grid-template-columns:1.2rem minmax(0,1fr); gap:.5rem; border-top:1px solid var(--lab-line); padding:.4rem 0; }
+.hook-research .checker .score { font-weight:700; margin-top:1rem; }
+.hook-research .checker .ic { font-weight:700; }
+.hook-research figure { margin:1.25rem 0; }
+.hook-research figure img { margin:0; }
+.hook-research figcaption { text-align:center; }
+.hook-research .foot { margin-top:2rem; border-top:1px solid var(--lab-line); padding-top:.6rem; }
+@media (max-width:660px) {
+  .hook-research .tblwrap table { min-width:535px; }
+}

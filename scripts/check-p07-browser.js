@@ -38,6 +38,7 @@ async (page,ctx) => {
  const links=await page.locator('.prose a[href$=".zip"]').evaluateAll(ns=>ns.map(n=>n.href));assert(links.length===2,'P07 two archives');
  for(const href of links){const res=await page.request.get(href);const b=await res.body();assert(res.ok()&&b[0]===80&&b[1]===75,'P07 ZIP loads');}
  await page.goto(base+topic+'06-source-allocation/');assert(await page.locator('.article-next a').getAttribute('href')===route,'P06 points to P07');
- await page.goto(base+'/'); assert(await page.locator('a[href="'+route+'"]').count()>0,'P07 appears on homepage');
+ const home = await ctx.walkPagination(page, { path: '/' });
+ assert(home.links.filter(link => link === route).length === 1, 'P07 appears exactly once across home pages');
  return ['P07 desktop, 390px and 320px: topic/navigation, four images, tables, formula, downloads, screenshots'];
 }
